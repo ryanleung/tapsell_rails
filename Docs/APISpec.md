@@ -25,9 +25,10 @@
         - [Connect Facebook](#api-facebook-connect)
         - [Disconnect Facebook](#api-facebook-disconnect)
     - [Users](#api-user)
-        - [Account Creation](#api-facebook-friends)
-        - [Profile](#api-profile)
-        - [Edit Profile](#api-profile)
+        - [Account Creation](#api-user-create)
+        - [Profile](#api-public-profile)
+        - [Private Profile](#api-private-profile)
+        - [Edit Profile](#api-edit-profile)
     - [Messages](#api-messages)
         - [Fetch Messages](#api-fetch-messages)
         - [Send Message](#api-send-message)
@@ -156,7 +157,7 @@ A user (buyer/seller)
 | first_name        | String  | First name of the user              |
 | last_name         | String  | Last name of the user               |
 | rating            | Integer | Rating for the user                 |
-| info              | String  | Info/Description of the user        |
+| bio               | String  | Bio/Description of the user         |
 | avatar_url        | String  | Avatar url of the user              |
 
 Example
@@ -537,5 +538,497 @@ Example
     {
         "error": "unable to disconnect facebook user"
     }
+
+<a name="api-user"></a>
+<a name="api-user-create"></a>
+
+## User :: Account Creation
+
+Given user information and a password, create an account (and a session as a courtesy).
+
+### Request
+
+__Permissions__
+    None needed
+
+__POST__
+
+    /users
+
+##### Parameters
+
+| Field                 | Type   | Description                                        |
+| :----                 | :---   | :----------                                        |
+| first_name            | String | The user's first name                              |
+| last_name             | String | The user's last name                               |
+| email                 | String | The user's email address                           |
+| username              | String | The requested username (which may be unavailable)  |
+| password              | String | The plaintext (before SSL) password to hash/etc    |
+| facebook_access_token | String | The facebook access token for the user             |
+
+### Response
+
+__Success (200)__
+
+| Field                          | Type      | Description                               |
+| :----                          | :---      | :----------                               |
+| data.user.first_name           | String    | See request                               |
+| data.user.last_name            | String    | See request                               |
+| data.user.username             | String    | See request                               |
+| data.user.avatar_url           | String    | The URL for the [default] avatar          |
+| data.api_token                 | String    | The session token, a la POST /sessions    |
+
+Example
+
+    {
+      "error":null,
+      "data":{
+        "user":{
+          "first_name":"Joe",
+          "last_name":"Smith",
+          "username":"joesmith",
+          "avatar_url":"http://s3.amazonaws.com/tapsell_prod/public/images/blank_avatar_profile.png",
+        },
+        "api_token":"YSX7gsfPiuvbGnkuUXJEOg"
+      }
+    }
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    {
+      "error":"Could not create user: [\"Username has already been taken\", \"Email has already been taken\"]"
+    }
+
+<a name="api-public-profile"></a>
+
+## User :: Profile
+
+Fetch user profile public information. 
+
+### Request
+
+__Permissions__
+    None needed.
+
+__GET__
+
+    /users/:username
+
+#### Parameters
+
+| Field                 | Type    | Description                             |
+| :----                 | :---    | :----------                             |
+| username              | String  | The user's username                     |
+
+### Response
+
+__Success (200)__
+
+| Field                | Type    | Description                                      |
+| :----                | :---    | :----------                                      |
+| data.first_name      | String  | The user's first name                            |
+| data.last_name       | String  | The user's last name                             |
+| data.username        | String  | The user's short username                        |
+| data.avatar_url      | String  | The URL to the user's avatar                     |
+| data.city            | String  | The city the user lives in                       |
+| data.state           | String  | The state the user lives in                      |
+| data.bio             | String  | A short user provided description.               |
+| data.rating          | Integer | Rating for the user                              |
+
+Example
+
+    HTTP/1.1 200 OK
+    {
+        "data": {
+            "first_name": "Marty",
+            "last_name": "McFly",
+            "username": "mcfly88",
+            "avatar_url": "http://images.mrfusion.com/avatar.png",
+            "city": "Hill Valley",
+            "state": "I dunno",
+            "bio": "Just a small-town girl, living in a lonely world",
+            "rating": 99
+        }
+    }
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    HTTP/1.1 404 Not Found
+    {
+        "error": "User not found"
+    }
+
+<a name="api-edit-profile"></a>
+
+## User :: Edit Profile
+
+Edit profile information.
+
+### Request
+
+__Permissions__
+    Authenticated user
+
+__POST__
+
+    /users/:user_id
+
+#### Parameters
+
+| Field                 | Type    | Description                             |
+| :----                 | :---    | :----------                             |
+| user_id               | Integer | The user_id of user                     |
+| user                  | User    | User object (defined above)             |
+
+### Response
+
+__Success (200)__
+
+| Field                | Type    | Description                                      |
+| :----                | :---    | :----------                                      |
+| data.user            | User    | Newly made user construct                        |
+
+Example
+
+    HTTP/1.1 200 OK
+    {
+        "data": {
+            "user": User (see above)
+        }
+    }
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    HTTP/1.1 422 Unprocessable Entity
+    {
+        "error": "Cannot Create"
+    }
+
+
+<a name="api-messages"></a>
+<a name="api-fetch-messages"></a>
+
+## Messages :: Fetch Messages
+
+Fetch current user's messages
+
+### Request
+
+__Permissions__
+    Authenticated user
+
+__GET__
+
+    /messages
+
+#### Parameters
+
+| Field                 | Type    | Description                                    |
+| :----                 | :---    | :----------                                    |
+| user_id               | Integer | The user_id of user                            |
+| offset                | Integer | The 0-based index of the first rec to return   |
+| max_results           | Integer | The max number of msg_chains to return         |
+
+### Response
+
+__Success (200)__
+
+| Field                | Type          | Description                                      |
+| :----                | :---          | :----------                                      |
+| data.msg_chains      | Message Chain | Message chains (see above)                       |
+
+Example
+
+    HTTP/1.1 200 OK
+    {
+        "data": {
+            "msg_chains": Msg_Chain objects (see above)
+        }
+    }
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    HTTP/1.1 404 Not Found
+    {
+        "error": "User not found"
+    }
+
+<a name="api-send-message"></a>
+
+## Messages :: Send Message
+
+Send message to user (type: default/inquiry)
+Default: Regular message
+Inquiry: Has options (accept/reject)
+
+### Request
+
+__Permissions__
+    Authenticated user
+
+__POST__
+
+    /messages/:user_id
+
+#### Parameters
+
+| Field             | Type    | Description                                                                            |
+| :----             | :---    | :----------                                                                            |
+| msg_chain_id      | Integer | The id of the owner msg_chain (can be nil if new message, but seller_id cant be nil)   |
+| seller_id         | Integer | The id of the seller (can be nil if msg_chain exists, but msg_chain cant be nil)       |
+| content           | String  | The content of the message                                                             |
+| type              | String  | The type (default/inquiry)                                                             |
+| date              | Date    | The date when message sent                                                             |
+
+### Response
+
+__Success (200)__
+
+| Field             | Type    | Description                         |
+| :----             | :---    | :----------                         |
+| data.message      | Message | Message object construct(see above) |
+
+Example
+
+    HTTP/1.1 200 OK
+    {
+        "data": {
+            "message": Message construct (see above)
+        }
+    }
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    HTTP/1.1 404 Not Found
+    {
+        "error": "User not found"
+    }
+
+<a name="api-listings"></a>
+<a name="api-fetch-listings"></a>
+
+## Listings :: Fetch Listings
+
+Fetch listings from a user
+
+### Request
+
+__Permissions__
+    Authenticated user
+
+__GET__
+
+    /listings
+
+| Field                 | Type    | Description                                    |
+| :----                 | :---    | :----------                                    |
+| user_id               | Integer | The user_id of user                            |
+| offset                | Integer | The 0-based index of the first rec to return   |
+| max_results           | Integer | The max number of listings to return           |
+
+
+### Response
+
+__Success (200)__
+
+| Field                | Type          | Description                            |
+| :----                | :---          | :----------                            |
+| data.listings        | Listing       | Listing constructs                     |
+
+Example
+
+    HTTP/1.1 200 OK
+    {
+        "data": {
+            "listings": Listing constructs (see above)
+        }
+    }
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    HTTP/1.1 404 Not Found
+    {
+        "error": "User not found"
+    }
+
+<a name="api-post-listing"></a>
+
+## Listings :: Post Listing
+
+Post listing 
+
+### Request
+
+__Permissions__
+    Authenticated user
+
+__POST__
+
+    /listings/:user_id
+
+| Field                 | Type    | Description                                    |
+| :----                 | :---    | :----------                                    |
+| user_id               | Integer | The user_id of user                            |
+| listing               | Listing | The listing construct                          |
+
+### Response
+
+__Success (200)__
+
+| Field                | Type          | Description                            |
+| :----                | :---          | :----------                            |
+| data.listing         | Listing       | Listing construct                      |
+
+Example
+
+    HTTP/1.1 200 OK
+    {
+        "data": {
+            "listing": Newly created listing construct (see above)
+        }
+    }
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    HTTP/1.1 422 Unprocessable Entity
+    {
+        "error": "Cannot Create"
+    }
+
+<a name="api-delete-listing"></a>
+
+## Listings :: Delete Listing
+
+Delete listing
+
+### Request 
+
+__Permissions__
+    Authenticated user
+
+__POST__
+
+    /listings/delete/:listing_id
+
+| Field                 | Type    | Description                                    |
+| :----                 | :---    | :----------                                    |
+| listing_id            | Listing | The listing construct                          |
+
+### Response
+
+__Success (200)__
+
+Example
+
+    HTTP/1.1 200 OK
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    HTTP/1.1 400 Bad Request
+    {
+        "error": "Missing listing_id parameter"
+    }
+
+<a name="api-edit-listing"></a>
+
+## Listings :: Edit Listing
+
+Edit listing 
+
+### Request
+
+__Permissions__
+    Authenticated user
+
+__POST__
+
+    /listings/edit
+
+| Field                 | Type    | Description                                    |
+| :----                 | :---    | :----------                                    |
+| listing               | Listing | The listing construct                          |
+
+### Response
+
+__Success (200)__
+
+| Field                | Type          | Description                            |
+| :----                | :---          | :----------                            |
+| data.listing         | Listing       | Listing construct                      |
+
+Example
+
+    HTTP/1.1 200 OK
+    {
+        "data": {
+            "listing": Edited listing construct (see above)
+        }
+    }
+
+__Error (4xx)__
+
+| Field | Type   | Description              |
+| :---- | :---   | :----------              |
+| error | String | Description of the error |
+
+Example
+
+    HTTP/1.1 422 Unprocessable Entity
+    {
+        "error": "Cannot Create"
+    }
+
+## Still TODO in the API implementation
+
+- Push notifications
+- Purchasing listing
 
 
