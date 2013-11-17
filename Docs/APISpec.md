@@ -451,58 +451,6 @@ Example
 
 <a name="api-facebook"></a>
 <a name="api-facebook-friends"></a>
-## Facebook :: FacebookFriends
-
-Returns the list of facebook friends who are currently on Luvocracy and the trust status of the given user.
-
-### Request
-
-__Permissions__
-Authenticated Facebook Connected User
-
-__GET__
-
-      /facebook_friends
-
-##### Parameters
-
-| Field                 | Type   | Description                       |
-| :----                 | :---   | :----------                       |
-| facebook_access_token | String | Url-encoded facebook access token |
-
-
-##### Response
-
-__Success (200)__
-
-| Field                   | Type      | Description                         |
-| :----                   | :---      | :----------                         |
-| data[n].user            | Substruct | A Luvocracy Facebook Friend         |
-| data[n].user.first_name | String    | The user's first name               |
-| data[n].user.last_name  | String    | The user's last name                |
-| data[n].user.username   | String    | The user's luvocracy username       |
-| data[n].user.avatar_url | String    | The url to the user's avatar        |
-| data[n].user.followed   | bool      | If the user follows in any category |
-
-Example
-
-    {
-      "error":null,
-      "data":[
-        "user":{
-          "first_name":"Joe",
-          "last_name":"Smith",
-          "username":"joesmith",
-          "avatar_url":"http://s3.amazonaws.com/luvocracy_prod/public/images/blank_avatar_profile.png",
-          "followed":true
-        },
-        "user":{
-          "first_name":"John",
-          ...
-        }
-        ...
-      }
-    }
 
 <a name="api-facebook-connect"></a>
 ## Facebook :: Connect Facebook
