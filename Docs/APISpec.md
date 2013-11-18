@@ -108,20 +108,21 @@ Example
 
 A listing posted by a seller
 
-| Field             | Type    | Description                         |
-| :----             | :---    | :----------                         |
-| id                | Integer | The id for this listing             |
-| address           | Address | The address for this listing        |
-| title             | String  | The title of listing                |
-| category          | String  | The category for this listing       |
-| date              | Date    | The date when the listing posted    |
-| info              | String  | Info/Description of listing         |
-| pic_url[n]        | String  | Urls of listing pics from S3        |
-| post_craig        | Bool    | Option to post to Craigslist        |
-| post_facebook     | Bool    | Option to post to fb timeline       |
-| post_fof          | Bool    | Option to post to fb free for sale  |
-| price             | Number  | Price of listing                    |
-| status            | String  | Status (sold, forsale, reserved)    |
+| Field             | Type    | Description                             |
+| :----             | :---    | :----------                             |
+| id                | Integer | The id for this listing                 |
+| seller_id         | Integer | The id for the seller of this listing   |
+| address           | Address | The address for this listing            |
+| title             | String  | The title of listing                    |
+| category          | String  | The category for this listing           |
+| date              | Date    | The date when the listing posted        |
+| info              | String  | Info/Description of listing             |
+| pic_url[n]        | String  | Urls of listing pics from S3            |
+| post_craig        | Bool    | Option to post to Craigslist            |
+| post_facebook     | Bool    | Option to post to fb timeline           |
+| post_fof          | Bool    | Option to post to fb free for sale      |
+| price             | Number  | Price of listing                        |
+| status            | String  | Status (sold, forsale, reserved)        |
 
 
 Example
