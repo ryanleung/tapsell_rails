@@ -1,23 +1,26 @@
 development:
+  host: localhost
   adapter: postgresql
   encoding: utf8
-  database: project_development
+  database: tapsell_development
   pool: 5
   username: 
   password:
 
 test: &TEST
+  host: localhost
   adapter: postgresql
   encoding: utf8
-  database: project_test
+  database: tapsell_test
   pool: 5
   username: 
   password:
 
 production:
+  host: localhost
   adapter: postgresql
   encoding: utf8
-  database: project_production
+  database: tapsell_production
   pool: 5
   username: 
   password:
