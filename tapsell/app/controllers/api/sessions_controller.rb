@@ -8,7 +8,7 @@ class Api::SessionsController < Api::ApiController
 			error: nil,
 			data: {
 				api_token: access_token.token,
-				user: @user
+				user: @user.api_hash
 			}
 		}
 	end
