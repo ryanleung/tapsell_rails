@@ -24,5 +24,39 @@ class Api::ApiController < ApplicationController
 		end
 	end
 
+	def fetch_user
+    # Note that #find_by_id will return nil when #find would raise an AR
+    # exception (so we use the former here).
+    if params[:user_id].blank?
+      @user = nil
+    elsif params[:user_id].to_i.to_s == params[:user_id].to_s
+      @user = User.find_by_id(params[:user_id].to_i)
+    end
+
+    if @user.blank?
+      render status: 404, json: {
+        error: "user not found ('#{params[:user_id]}')"
+      }
+    end
+  end
+
+  def fetch_users
+    if params[:user_id].blank?
+      @users = nil
+    else
+      user_ids = params[:user_id].map(&:upcase)
+      @users = User.where(
+        "id IN (?) OR UPPER(username) IN (?)",
+        user_ids.map{|u| u.to_i}, user_ids
+      )
+    end
+
+    unless @users.present?
+      render status: 404, json: {
+        error: "user not found ('#{params[:user_ids]}')"
+      }
+    end
+  end
+
 	
 end

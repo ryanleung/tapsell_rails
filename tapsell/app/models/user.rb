@@ -79,6 +79,22 @@ class User < ActiveRecord::Base
 	before_validation :normalize_attributes
 	before_save :encrypt_password
 
+  # API-specific methods
+  # --------------------
+
+  def api_hash
+  	{
+  		first_name: self.first_name,
+  		last_name: self.last_name,
+  		username: self.user_name,
+  		avatar_url: self.avatar_url,
+  		city: self.address.city,
+  		state: self.address.state,
+  		bio: self.bio,
+  		rating: self.rating
+  	}
+  end
+
 	# Class Methods
 	# -------------
 
@@ -125,7 +141,7 @@ class User < ActiveRecord::Base
 	# ------------------------
 	private
 
-	 def encrypt_password
+	 def encrypt_password’
     if password.present?
       self.password_hash = Password.create(password)
     end

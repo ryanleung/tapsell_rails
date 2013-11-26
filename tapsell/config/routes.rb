@@ -5,7 +5,9 @@ Tapsell::Application.routes.draw do
   ##################################
 
   namespace :api do
-    resources :users
+    post 'users' => 'users#create'
+    get 'users/:user_id' => 'users#show'
+    post 'users/profile' => 'users#update'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
