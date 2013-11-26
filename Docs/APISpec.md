@@ -160,6 +160,7 @@ A user (buyer/seller)
 | rating            | Integer | Rating for the user                 |
 | bio               | String  | Bio/Description of the user         |
 | avatar_url        | String  | Avatar url of the user              |
+| email             | String  | Email address of the user           |
 
 Example
 
@@ -171,7 +172,8 @@ Example
       "last_name": "Baggins",
       "rating": 98,
       "info": "The coolest dude ever",
-      "avatar_url": "www.ouramazons3server"
+      "avatar_url": "www.ouramazons3server",
+      "email": "wtf@gmail.com"
     }
 
 <a name="message"></a>
@@ -267,6 +269,7 @@ Example
     {
         "data": {
             "api_token": "API TOKEN"
+            "user": User construct
         }
     }
 
@@ -684,13 +687,12 @@ __Permissions__
 
 __POST__
 
-    /users/:user_id
+    /users/profile
 
 #### Parameters
 
 | Field                 | Type    | Description                             |
 | :----                 | :---    | :----------                             |
-| user_id               | Integer | The user_id of user                     |
 | user                  | User    | User object (defined above)             |
 
 ### Response
