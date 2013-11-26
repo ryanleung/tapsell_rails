@@ -10,7 +10,9 @@ Tapsell::Application.routes.draw do
     post 'users/profile' => 'users#update'
     post 'sessions' => 'sessions#create'
     delete 'sessions' => 'sessions#destroy'
-    
+    get 'listings' => 'listings#index'
+    post 'listings/:user_id' => 'listings#create'
+    delete 'listings' => 'listings#destroy'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

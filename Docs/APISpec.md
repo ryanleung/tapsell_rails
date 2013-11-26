@@ -951,9 +951,9 @@ Delete listing
 __Permissions__
     Authenticated user
 
-__POST__
+__DELETE__
 
-    /listings/delete/:listing_id
+    /listings
 
 | Field                 | Type    | Description                                    |
 | :----                 | :---    | :----------                                    |
