@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20131123213100) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: true do |t|
+    t.integer  "listing_id"
+    t.integer  "user_id"
     t.string   "street_address"
     t.string   "extended_address"
     t.string   "locality"

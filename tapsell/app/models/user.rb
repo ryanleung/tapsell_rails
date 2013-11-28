@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
 	# ------------------------
 	private
 
-	 def encrypt_password’
+	 def encrypt_password
     if password.present?
       self.password_hash = Password.create(password)
     end

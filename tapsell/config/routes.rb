@@ -11,7 +11,7 @@ Tapsell::Application.routes.draw do
     post 'sessions' => 'sessions#create'
     delete 'sessions' => 'sessions#destroy'
     get 'listings' => 'listings#index'
-    post 'listings/:user_id' => 'listings#create'
+    post 'listings' => 'listings#create'
     delete 'listings' => 'listings#destroy'
   end
 
