@@ -2,8 +2,9 @@ class Listing < ActiveRecord::Base
 	# Relationships - Ordered Alphabetically
 	# --------------------------------------
 
-	belongs_to :seller, :class_name => "User", :foreign_key => "seller_id"
 	has_one :address
+	has_many :listing_images
+	belongs_to :seller, :class_name => "User", :foreign_key => "seller_id"
 
 	# Validations
 	# -----------

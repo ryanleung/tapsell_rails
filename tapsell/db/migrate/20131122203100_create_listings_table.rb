@@ -5,8 +5,7 @@ class CreateListingsTable < ActiveRecord::Migration
 			t.references :address
 			t.string :title
 			t.string :category
-			t.string :info
-			t.string :pic_url
+			t.text :info
 			t.boolean :post_to_craigslist
 			t.boolean :post_to_fb_timeline
 			t.boolean :post_to_free_for_sale

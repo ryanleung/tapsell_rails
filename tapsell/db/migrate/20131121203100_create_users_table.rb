@@ -5,8 +5,8 @@ class CreateUsersTable < ActiveRecord::Migration
 			t.string :first_name
 			t.string :last_name
 			t.integer :rating
-			t.string :bio
-			t.string :avatar_url
+			t.text :bio
+			t.text :avatar_url
 			t.string :password_hash
 			t.string :email
 			t.references :address
