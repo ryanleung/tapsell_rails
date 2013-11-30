@@ -25,7 +25,6 @@ class Listing < ActiveRecord::Base
 			info: self.info,
 			price: self.price,
 			status: self.status,
-			pic_url: self.pic_url
 		}
 	end
 
