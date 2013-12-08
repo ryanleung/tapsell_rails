@@ -1,6 +1,23 @@
 Tapsell::Application.routes.draw do
 
   ##################################
+  # Static page routes
+  ##################################
+
+  
+  root 'static_pages#landing'
+  match '/about', to: 'static_pages#about', via: 'get'
+  match '/team', to: 'static_pages#team', via: 'get'
+  match '/jobs', to: 'static_pages#jobs', via: 'get'
+  match '/blog', to: 'static_pages#blog', via: 'get'
+  match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/faq', to: 'static_pages#faq', via: 'get'
+  match '/buyer_faq', to: 'static_pages#buyer_faq', via: 'get'
+  match '/terms', to: 'static_pages#terms', via: 'get'
+  match '/privacy', to: 'static_pages#privacy', via: 'get'
+  match '/buyer_guarantee', to: 'static_pages#buyer_guarantee', via: 'get'
+
+  ##################################
   # API methods
   ##################################
 
@@ -14,6 +31,7 @@ Tapsell::Application.routes.draw do
     post 'listings' => 'listings#create'
     delete 'listings' => 'listings#destroy'
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
