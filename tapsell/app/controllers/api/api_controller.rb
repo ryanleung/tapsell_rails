@@ -1,6 +1,7 @@
 class Api::ApiController < ApplicationController
 	API_SESSION_TOKEN_HEADER = 'X-TapsellAPIToken'
 
+  skip_before_filter :verify_authenticity_token
 	before_filter :maybe_login_current_user
 	before_filter :require_current_user
 
