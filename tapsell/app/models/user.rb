@@ -86,10 +86,10 @@ class User < ActiveRecord::Base
   	{
   		first_name: self.first_name,
   		last_name: self.last_name,
-  		username: self.user_name,
+  		username: self.username,
   		avatar_url: self.avatar_url,
-  		city: self.address.city,
-  		state: self.address.state,
+  		city: self.address.nil? ? nil : self.address.city,
+  		state: self.address.nil? ? nil : self.address.state,
   		bio: self.bio,
   		rating: self.rating
   	}
