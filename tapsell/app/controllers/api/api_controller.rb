@@ -47,7 +47,7 @@ class Api::ApiController < ApplicationController
     else
       user_ids = params[:user_id].map(&:upcase)
       @users = User.where(
-        "id IN (?) OR UPPER(username) IN (?)",
+        "id IN (?)",
         user_ids.map{|u| u.to_i}, user_ids
       )
     end
