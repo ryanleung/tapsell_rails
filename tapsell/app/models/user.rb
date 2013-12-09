@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
   		first_name: self.first_name,
   		last_name: self.last_name,
   		avatar_url: self.avatar_url,
+      email: self.email,
   		city: self.address.nil? ? nil : self.address.city,
   		state: self.address.nil? ? nil : self.address.state,
   		bio: self.bio,

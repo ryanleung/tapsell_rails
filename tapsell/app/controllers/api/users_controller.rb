@@ -50,7 +50,6 @@ class Api::UsersController < Api::ApiController
 	end
 
 	def create_user_from_params
-		debugger
 		begin
 			User.transaction do
 				@user = User.new(
