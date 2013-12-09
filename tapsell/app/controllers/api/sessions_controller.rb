@@ -1,6 +1,6 @@
 class Api::SessionsController < Api::ApiController
 	before_filter :authenticate, only: [:create]
-	skip_before_filter :require_current_user, only [:create]
+	skip_before_filter :require_current_user, only: [:create]
 
 	def create
 		access_token = ApiSession.create(user: @user)
