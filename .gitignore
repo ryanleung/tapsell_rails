@@ -26,3 +26,4 @@ pickle-email-*.html
 
 # DSSTORE
 .DS_Store
+.env
