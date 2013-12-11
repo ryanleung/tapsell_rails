@@ -50,14 +50,12 @@ class Api::UsersController < Api::ApiController
 	end
 
 	def create_user_from_params
-		debugger
 		begin
 			User.transaction do
 				@user = User.new(
 					first_name: params[:first_name],
 					last_name: params[:last_name],
 					email: params[:email],
-					username: params[:username],
 					password: params[:password]
 					)
 				@user.save!
