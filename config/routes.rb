@@ -1,10 +1,16 @@
 Tapsell::Application.routes.draw do
 
   ##################################
+  # Web app routes
+  ##################################
+
+  resources :users
+  match '/sign-up', to: 'users#new', via: 'get'
+  
+  ##################################
   # Static page routes
   ##################################
 
-  
   root 'static_pages#landing'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'
