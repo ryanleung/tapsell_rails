@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       create_remember_token
+      sign_in @user
       flash[:success] = "Welcome to Tapsell!"
       redirect_to @user
     else
