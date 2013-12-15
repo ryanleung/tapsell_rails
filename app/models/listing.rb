@@ -25,6 +25,8 @@ class Listing < ActiveRecord::Base
 			info: self.info,
 			price: self.price,
 			status: self.status,
+			locality: self.address.nil? ? nil : self.address.locality,
+			region: self.address.nil? ? nil : self.address.region
 		}
 	end
 
