@@ -63,9 +63,7 @@ class User < ActiveRecord::Base
 
 	before_validation :normalize_attributes
 	before_save :encrypt_password
-  # Ryan check these, not sure if it will mess with the mobile app.  Have a feeling we want this callback to only apply to the web app.
-  before_create :create_remember_token
-
+ 
   # API-specific methods
   # --------------------
 
@@ -132,10 +130,6 @@ class User < ActiveRecord::Base
       self[attr_name] = self[attr_name].strip if self[attr_name].respond_to?(:strip)
     end
     self[:email] = self[:email].downcase if self[:email].respond_to?(:downcase)
-  end
-
-  def create_remember_token
-    self.remember_token = User.encrypt(User.new_remember_token)
   end
 
 end
