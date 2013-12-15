@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 	has_many :message_chains
 	has_many :messages,
 	:through => :message_chains
+  # has_one :remember_token // Ryan, do I need to add the :remember_token attribute here?
 
 	# Validations
 	# -----------
@@ -62,7 +63,7 @@ class User < ActiveRecord::Base
 
 	before_validation :normalize_attributes
 	before_save :encrypt_password
-
+ 
   # API-specific methods
   # --------------------
 
@@ -98,17 +99,27 @@ class User < ActiveRecord::Base
       end
     end
 
+    def new_remember_token
+      SecureRandom.urlsafe_base64
+    end
+
+    def encrypt(token)
+      Digest::SHA1.hexdigest(token.to_s)
+    end
+
 	end
 
   # Protected instance methods
   # --------------------------
   # protected
 
+  # What are protected instance methods?
+
 	# Private instance methods
 	# ------------------------
 	private
 
-	 def encrypt_password
+	def encrypt_password
     if password.present?
       self.password_hash = Password.create(password)
     end

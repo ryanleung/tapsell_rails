@@ -1,0 +1,21 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "Tapsell", root_path, id: "logo" %>
+          <nav>
+            <ul class="nav pull-right">
+              <% if signed_in? %>
+              <li><%= link_to "Profile", '#' %></li>
+              <li><%= link_to "Payment Settings", '#' %></li>
+              <li><%= link_to "Get the mobile app", '#' %></li>
+              <%# Remove hardcoded path %>
+              <li><%= link_to "Sign out", '/sign-out', method: "delete" %></li>
+              <% else %>
+              <li><%= link_to "Sign in", '/sign-in' %></li>
+              <li><%= link_to "Sign up", '/sign-up' %></li>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
