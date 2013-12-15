@@ -1,0 +1,26 @@
+<% provide(:title, 'Join') %>
+
+<h1>Join Tapsell or Die</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+
+    <%= render 'error_messages' %>
+
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+	
+	  <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+      
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Create my account" %>
+    <% end %>
+  </div>
+</div>
