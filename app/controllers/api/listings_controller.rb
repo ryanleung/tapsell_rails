@@ -11,7 +11,6 @@ class Api::ListingsController < Api::ApiController
 	end
 
 	def create
-		debugger
 		render status: 200, json: {
       error: nil,
       data: @listing.api_hash
