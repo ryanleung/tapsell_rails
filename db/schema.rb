@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20131215035845) do
 
   create_table "listings", force: true do |t|
     t.integer  "seller_id"
+    t.integer  "buyer_id"
     t.integer  "address_id"
     t.string   "title"
     t.string   "category"
@@ -66,7 +67,6 @@ ActiveRecord::Schema.define(version: 20131215035845) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "rating"
