@@ -1,2 +1,53 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+.container-fluid.text-center.welcome-container
+  h1.no-marg
+    | Welcome back,&nbsp;
+    = current_user.first_name
+
+.container.marg-top-40.no-pad
+  .col-md-12
+    .row
+      .col-md-12
+        .row
+          .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.visible-md.visible-sm.visible-xs style="margin-bottom: 15px;"
+            = link_to "PROFILE", "#", class: "btn pros-link-active"
+            = link_to "PAYMENT SETTINGS", "#", class: "btn"
+          .col-lg-4.col-push-8.box-container
+            .row
+              .col-md-12.text-center.well-label-name
+                h2= current_user.first_name
+              .col-md-12.profile-live-view-image
+                - if current_user.avatar_url.blank?
+                  .avatar-profile.img-circle style="background-image: url('/assets/no_avatar.png');"
+                - else
+                  .avatar-profile.img-circle style="background-image: url('#{current_user.avatar.url}');"
+              .col-md-12.text-center.pad-location
+                .row
+                  .col-md-12.text-center
+                    - locality = current_user.address.try(:locality)
+                      unless locality.nil?
+                      h4.left-location
+                        = image_tag "/assets/pin.png", class: "pin-image"
+                        | &nbsp; 
+                        = locality
+          .col-md-8.col-push-4.profile-right-container
+            .row
+              .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.hidden-md.hidden-sm.hidden-xs
+                = link_to "PROFILE", "#", class: "btn pros-link-active"
+                = link_to "PAYMENT SETTINGS", "#", class: "btn"
+              .col-md-12.box-container.marg-top-30.no-pad
+                .row
+                  .col-md-12
+                    ul.list-inline.profile-tab-menu
+                      li.list-inline-item
+                        = link_to "EDIT PROFILE", "javascript:void(0);", class: "edit-form-link orange"
+                      li.list-inline-item
+                        = link_to "CHANGE PASSWORD", "javascript:void(0);", class: "change-pass-form-link"
+                  .col-md-12
+                    .row
+                      .content-container.hide
+                        = render "profile_detail"
+
+= content_for :javascript_contents do
+  = javascript_include_tag "profile"
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "profile"

@@ -1,0 +1,22 @@
+.col-md-12.tab-content.pad-bot-66
+  label About Me
+  .tab-content-item.border-bottom-medium.marg-top-23
+    - unless current_user.bio?
+      p= current_user.bio
+  .tab-content-item.border-top-medium
+    .col-md-6.no-pad
+      label First Name
+      - unless current_user.first_name.nil?
+        p= current_user.first_name
+    .col-md-6.no-pad
+      label Last Name
+      - unless current_user.last_name.nil?
+        p= current_user.last_name
+    .col-md-6.no-pad
+      label Email
+      - unless current_user.email.nil?
+        p= current_user.email
+      label My Location
+      - locality = current_user.address.try(:locality)
+        unless locality.nil?
+        p= locality
