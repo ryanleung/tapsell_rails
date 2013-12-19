@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       sign_in @user
       flash[:success] = "Welcome to Tapsell!"
       redirect_to @user
+      Notifier.send_welcome_email(@user).deliver
     else
       render 'new'
   	end
