@@ -14,7 +14,7 @@
           .col-lg-4.col-push-8.box-container
             .row
               .col-md-12.text-center.well-label-name
-                h2= current_user.first_name
+                h2= "#{current_user.first_name} #{current_user.last_name}"
               .col-md-12.profile-live-view-image
                 - if current_user.avatar_url.blank?
                   .avatar-profile.img-circle style="background-image: url('/assets/no_avatar.png');"
@@ -37,15 +37,17 @@
               .col-md-12.box-container.marg-top-30.no-pad
                 .row
                   .col-md-12
-                    ul.list-inline.profile-tab-menu
+                    ul.list-inline.profile-tab-menu                 
                       li.list-inline-item
-                        = link_to "EDIT PROFILE", "javascript:void(0);", class: "edit-form-link orange"
+                        = link_to "EDIT PROFILE", "javascript:void(0);", class: "edit-form-link"    
                       li.list-inline-item
                         = link_to "CHANGE PASSWORD", "javascript:void(0);", class: "change-pass-form-link"
                   .col-md-12
                     .row
                       .content-container.hide
                         = render "profile_detail"
+                      .edit-profile-container.hide
+                        = render "edit_profile_form"
 
 = content_for :javascript_contents do
   = javascript_include_tag "profile"

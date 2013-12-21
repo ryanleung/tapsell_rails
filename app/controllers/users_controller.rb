@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -23,6 +26,12 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile updated"
+    else
+      render 'show'
+    end
   end
 
 # Authorization methods for before filters
@@ -40,7 +49,7 @@ end
 private
 
   def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :bio)
   end
 
   def create_remember_token
