@@ -56,7 +56,7 @@ gem 'rails_12factor', group: :production
 # gem 'capistrano', group: :development
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+#gem 'debugger', group: [:development, :test]
 
 # Image uploading
 gem 'paperclip'

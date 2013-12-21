@@ -1,0 +1,115 @@
+doctype html
+html
+  head
+    title Tapsell
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false
+    = javascript_include_tag "application", "data-turbolinks-track" => false
+    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
+    = javascript_include_tag "jquery.geocomplete"
+    = yield :javascript_contents
+    = yield :stylesheet_contents
+    = csrf_meta_tags
+  body
+    .nav.navbar-default.container-fluid.no-marg.main-navbar.bg-white role="navigation"
+      .container.marg-top-0
+        = link_to "javascript:void(0);", "data-toggle"=>"collapse", "data-target"=>".main-navbar-collapse", class: "navbar-toggle"
+          i.glyphicon.glyphicon-home
+        .navbar-header
+          - if signed_in?
+            = link_to '#', class: "navbar-brand title-color col-md-12 no-pad" do
+              = image_tag "/assets/logo.png", class: "col-md-12 no-pad"
+          - else
+            = link_to root_path, class: "navbar-brand title-color col-md-12 no-pad" do
+              = image_tag "/assets/logo.png", class: "col-md-12 no-pad"
+        .collapse.navbar-collapse.main-navbar-collapse.col-xs-12
+          - if signed_in?
+            ul.nav.navbar-nav
+              li
+                p.pull-left.nav-location-container
+                  = image_tag "/assets/pin.png", class: "pin-image"
+                  - locality = current_user.address.try(:locality)
+                    unless locality.nil?
+                    p.pull-left.location-label locality
+                  - if locality.nil?
+                    p.pull-left.location-label UC Davis
+          ul.nav.navbar-nav.navbar-right.text-right.pull-right style="padding: 3px 0"
+            - if signed_in?
+              li.dropdown
+                = link_to "javascript:void(0);", class: "navbar-dropdown-first title-color", "data-toggle"=> "dropdown", "data-target"=>"#" do
+                  - if current_user.avatar_url.blank?
+                    .navbar-avatar.img-circle style= "background-image: url('assets/no_image.png')"
+                  - else
+                    .navbar-avatar.img-circle style= "background-image: url('#{current_user.avatar.url}')"
+                  p.pull-left= current_user.first_name
+                  span.cus-caret
+                ul.dropdown-menu role="menu" aria-labelledby="dlabel"
+                  li
+                    = link_to "Profile", "javascript:void(0);"
+                  li
+                    = link_to "Banks & Cards", "javascript:void(0);"
+                  li
+                    = link_to "Get the iPhone app", "javascript:void(0);"
+                  li
+                    = link_to "Log Out", '/sign-out', method: :delete
+            - else
+              li
+                = link_to "LOG IN", "/sign-in", class: "sign-in"
+              li
+                = link_to "SIGN UP", "/sign-up", class: "sign-up"
+    = yield
+#footer.container-fluid
+  .container
+    .col-md-4
+      h4 Get the mobile app
+      .row
+        .image-container.col-md-12
+          = link_to "javascipt:void(0);", class: "col-md-12" do
+            = image_tag "/assets/app-icon.png", class: "pull-left footer-app-icon"
+      .text-container
+        p Or, enter your mobile number
+        p below, and we'll send you a
+        p download link via text message
+    .col-md-8
+      .row
+        .col-md-12
+          .row
+            .col-md-3
+              h4 Company
+              ul.list-unstyled
+                li
+                  p = link_to "About Us", "javascript:void(0);"
+                li
+                  p = link_to "Meet The Team", "javascript:void(0);"
+                li
+                  p = link_to "Jobs", "javascript:void(0);"
+                li
+                  p = link_to "Blog", "javascript:void(0);"
+            .col-md-3
+              h4 Support
+              ul.list-unstyled
+                li
+                  p = link_to "Contact Us", "javascript:void(0);"
+                li
+                  p = link_to "FAQ", "javascript:void(0);"
+                li
+                  p = link_to "Buyer How-To", "javascript:void(0);"
+            .col-md-3
+              h4 Legal
+              ul.list-unstyled
+                li
+                  p = link_to "Term of Service", "javascript:void(0);"
+                li
+                  p = link_to "Privacy Policy", "javascript:void(0);"
+                li
+                  p = link_to "Buyer Guarantee", "javascript:void(0);"
+            .col-md-3
+              h4 Social
+              ul.list-inline
+                li.list-inline-item
+                  = link_to "javascript:void(0);" do
+                    = image_tag "/assets/fb2-icon.png", class: "fb-icon"
+                li.list-inline-item
+                  = link_to "javascript:void(0);" do
+                    = image_tag "/assets/in-icon.png", class: "in-icon"
+
+
