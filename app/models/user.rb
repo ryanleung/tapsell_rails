@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
 	has_many :message_chains
 	has_many :messages,
 	:through => :message_chains
-  # has_one :remember_token // Ryan, do I need to add the :remember_token attribute here?
 
 	# Validations
 	# -----------
@@ -79,6 +78,22 @@ class User < ActiveRecord::Base
   		bio: self.bio,
   		rating: self.rating
   	}
+  end
+
+  # Instance Methods
+  # -------------
+
+  def initiate_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    Notifier.send_password_reset_email(self).deliver
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
   end
 
 	# Class Methods

@@ -27,7 +27,7 @@
                       unless locality.nil?
                       h4.left-location
                         = image_tag "/assets/pin.png", class: "pin-image"
-                        | &nbsp; 
+                        | &nbsp;
                         = locality
           .col-md-8.col-push-4.profile-right-container
             .row
@@ -48,6 +48,8 @@
                         = render "profile_detail"
                       .edit-profile-container.hide
                         = render "edit_profile_form"
+                      .edit-password-container.col-md-12
+                        = render "edit_password_form"
 
 = content_for :javascript_contents do
   = javascript_include_tag "profile"
