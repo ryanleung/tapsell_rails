@@ -13,4 +13,4 @@
 # For Heroku
 Tapsell::Application.config.secret_token = ENV['SECRET_TOKEN']
 
-Tapsell::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
+Tapsell::Application.config.secret_key_base = '0367339da94597f458a19bc098f00ad129610e2d6169112342d8b2858a93036d87b017217c7aa1ccee25437331df249b38c51cc8bc9b09142b2b8d94541ce469'

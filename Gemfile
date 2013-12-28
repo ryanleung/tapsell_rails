@@ -58,8 +58,10 @@ gem 'rails_12factor', group: :production
 # Use debugger
 gem 'debugger', group: [:development, :test]
 
-# Image uploading
-gem 'paperclip'
-
 # Amazon
 gem 'aws-sdk'
+
+# Cloudinary for image uploading
+# CarrierWave integration with cloudinary
+gem 'carrierwave'
+gem 'cloudinary'

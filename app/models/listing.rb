@@ -3,7 +3,7 @@ class Listing < ActiveRecord::Base
 	# --------------------------------------
 
 	has_one :address
-	has_many :listing_images
+	has_many :images
 	belongs_to :seller, :class_name => "User", :foreign_key => "seller_id"
 	belongs_to :buyer, :class_name => "User", :foreign_key => "buyer_id"
 
@@ -16,6 +16,10 @@ class Listing < ActiveRecord::Base
 				:presence => true
 
 	def api_hash
+		images = []
+		self.images.each do |i|
+			images.push({ :url => i.image.url})
+		end
 		{
 			listing_id: self.id,
 			seller_id: self.seller_id,
@@ -26,6 +30,7 @@ class Listing < ActiveRecord::Base
 			info: self.info,
 			price: self.price,
 			status: self.status,
+			images: images,
 			locality: self.address.nil? ? nil : self.address.locality,
 			region: self.address.nil? ? nil : self.address.region
 		}

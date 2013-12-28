@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 	has_one :address
 	has_many :selling_listings, :class_name => "Listing", :foreign_key => :seller_id
   has_many :buying_listings, :class_name => "Listing", :foreign_key => :buyer_id
+  has_many :images
 	has_many :message_chains
 	has_many :messages,
 	:through => :message_chains
