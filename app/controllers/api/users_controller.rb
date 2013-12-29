@@ -37,6 +37,12 @@ class Api::UsersController < Api::ApiController
     if params[:email].present?
       @current_user.email = params[:email]
     end
+    if params[:city].present?
+    	@current_user.city = params[:city]
+    end
+    if params[:state].present?
+    	@current_user.state = params[:state]
+    end
     if @current_user.save
       render json: {
         error: nil,
