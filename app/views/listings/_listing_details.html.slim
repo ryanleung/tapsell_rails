@@ -1,0 +1,21 @@
+.col-xs-12
+  .alert.alert-success.marg-top-30.hide
+.col-xs-12
+  .row
+    .col-xs-10.pad-right-0
+      #carousel-example-generic.carousel.slide
+        .carousel-inner
+    .col-xs-2.text-right.pad-left-0
+      ol.carousel-indicator.list-inline
+.col-xs-12.product-description
+  = @listing.info
+- if session[:sosmed_type]
+  = render "home/modal_verify"
+  javascript:
+    $(document).ready(function(){
+      $("#verify-modal").modal({
+        backdrop: "static",
+        keyboard: false
+      })
+    });
+

@@ -35,18 +35,6 @@ class UsersController < ApplicationController
     end
   end
 
-# Authorization methods for before filters
-# Remove hard-coded path later
-
-def signed_in_user
-  redirect_to '/sign-in', notice: "Please sign in." unless signed_in?
-end
-
-def correct_user
-  @user = User.find(params[:id])
-  redirect_to(root_url) unless current_user?(@user)
-end
-  
 private
 
   def user_params
