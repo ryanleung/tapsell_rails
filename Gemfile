@@ -58,11 +58,13 @@ gem 'rails_12factor', group: :production
 # Use debugger
 gem 'debugger', group: [:development, :test]
 
-# Image uploading
-gem 'paperclip'
-
 # Amazon
 gem 'aws-sdk'
 
 # Use SimpleForm for form building
 gem 'simple_form'
+
+# Cloudinary for image uploading
+# CarrierWave integration with cloudinary
+gem 'carrierwave'
+gem 'cloudinary'

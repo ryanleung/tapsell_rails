@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: tapsell
+  api_key: '389594932565287'
+  api_secret: FBiFCqQAEqNDyP2iEkgCWiIgfag
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: tapsell
+  api_key: '389594932565287'
+  api_secret: FBiFCqQAEqNDyP2iEkgCWiIgfag
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: tapsell
+  api_key: '389594932565287'
+  api_secret: FBiFCqQAEqNDyP2iEkgCWiIgfag
+  enhance_image_tag: true
+  static_image_support: false

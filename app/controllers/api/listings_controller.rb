@@ -20,6 +20,34 @@ class Api::ListingsController < Api::ApiController
 	private
 
 	def build_listing
+		pic_data = []
+		if !params[:pic_data_1].blank?
+			pic_data.push(params[:pic_data_1])
+		end
+		if !params[:pic_data_2].blank?
+			pic_data.push(params[:pic_data_2])
+		end
+		if !params[:pic_data_3].blank?
+			pic_data.push(params[:pic_data_3])
+		end
+		if !params[:pic_data_4].blank?
+			pic_data.push(params[:pic_data_4])
+		end
+		images = []
+		pic_data.each do |p|
+			temp_file = Tempfile.new('tempfile')
+			begin
+				temp_file.binmode
+				temp_file.write(Base64.decode64(p))
+				img = Image.new()
+				img.image = temp_file
+				images.push(img)
+			ensure
+				temp_file.close
+				temp_file.unlink
+			end
+		end
+
 		@listing = Listing.new(
 			seller_id: @current_user.id,
 			title: params[:title],
@@ -30,6 +58,7 @@ class Api::ListingsController < Api::ApiController
 			post_to_free_for_sale: params[:post_ffs],
 			price: params[:price],
 			status: params[:status],
+			images: images
 			)
 		if params[:address_id].blank?
 			build_and_create_address

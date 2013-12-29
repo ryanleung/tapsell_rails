@@ -37,15 +37,12 @@ ActiveRecord::Schema.define(version: 20131227112250) do
     t.datetime "updated_at"
   end
 
-  create_table "listing_images", force: true do |t|
+  create_table "images", force: true do |t|
+    t.string   "title"
+    t.string   "image"
+    t.integer  "bytes"
+    t.integer  "user_id"
     t.integer  "listing_id"
-    t.text     "listing_image_remote_url"
-    t.text     "listing_image_file_name"
-    t.string   "listing_image_content_type"
-    t.integer  "listing_image_file_size"
-    t.integer  "width"
-    t.integer  "height"
-    t.boolean  "download_failed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
