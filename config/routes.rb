@@ -6,8 +6,8 @@ Tapsell::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-
-  # Web app get
+  resources :password_resets
+  resources :listings
 
   match '/sign-up', to: 'users#new', via: 'get'
   match 'sign-in', to: 'sessions#new', via: 'get'

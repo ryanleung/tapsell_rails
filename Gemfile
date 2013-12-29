@@ -61,6 +61,9 @@ gem 'debugger', group: [:development, :test]
 # Amazon
 gem 'aws-sdk'
 
+# Use SimpleForm for form building
+gem 'simple_form'
+
 # Cloudinary for image uploading
 # CarrierWave integration with cloudinary
 gem 'carrierwave'

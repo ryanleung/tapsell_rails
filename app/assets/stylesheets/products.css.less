@@ -1,0 +1,254 @@
+@import "global.css.less";
+.product-live-view-image {
+	img {
+		width: 125px;
+		box-shadow: 0 0 1px #666;
+		padding: 7px;
+		border: 1px solid #ccc;
+		margin-right: 10px;
+	}
+}
+
+.center-background {
+	background-size: cover;
+	background-position: center top;
+}
+
+.image-navigation {
+	margin-top: 10px;
+	width: 70px;
+	height: 70px;
+	text-align: center;
+	.center-background;
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+.carousel-inner {
+	.item {
+		width: 100%;
+		height: 350px;
+		.center-background;
+	}
+}
+
+.left-container {
+	.title-container{
+		.product-title {
+			font-family: @caeciliaroman !important;
+		}
+		.sub-product-title {
+			font-family: @futuraextended;
+			color: @mediumGrey;
+			font-size: 12px;
+		}
+	}
+	.content-section {
+		.product-description {
+			margin-top: 40px;
+			font-family: @futuraextended;
+			color: @darkGrey;
+		}
+	}
+	.commet-section {
+		background-color: #f9f9f9;
+		.comment-container {
+			padding: 0 40px;
+			.page-header {
+				margin: 20px 0 20px 0;
+				h4 {
+					font-family: @caecilialight !important;
+					font-size: 24px;
+				}
+				.button-container {
+					font-family: @futuraextended;
+					color: @darkGrey;
+					.button-signin, .button-signup {
+						background-color: @orange;
+						border: none !important;
+						font-family: @futuraextended;
+						color: white;
+						padding: 3px 13px;
+					}
+					.or {
+						font-family: @futuraextended;
+						padding-top: 2px;
+					}
+					.button-signup {
+						margin-right: 10px !important;
+					}
+				}
+			}
+		}
+		#comments {
+			form {
+				background: none !important;
+				img {
+					width: 100%;
+				}
+				#comment_raw_content {
+					border: none !important;
+				}
+			}
+		}
+	}
+}
+
+
+.right-container-content {
+	.price-product-container {
+		font-size: 36px !important;
+		padding: 0 !important;
+	}
+	.button-product-container {
+		float: left;
+		width: 100%;
+		padding: 0 0 10px 0;
+		margin-top: 10px;
+		.btn {
+			background-color: @aqua;
+			font-family: @futuraextended;
+			font-size: 20px;
+			color: white;
+			padding: 3px 36px;
+		}
+	}
+	.avatar-container {
+		img {
+			width: 72%;
+			margin: 20px;
+		}
+	}
+	.user-location-container {
+		float: left;
+		width: 100%;
+		padding: 10px 0;
+		.location {
+			float: left;
+			width: 100%;
+			font-family: @caecilialight;
+			padding-bottom: 15px;
+			img {
+				width: 16px;
+				opacity: 0.7;
+				margin-right: 10px;
+				margin-top: -2px;
+			}
+		}
+	}
+	.review-container {
+		float: left;
+		width: 100%;
+		img {
+			margin: 12px 19px 19px 19px;
+		}
+		h3 {
+			font-family: @futuraextended;
+			color: @darkGrey;
+			font-size: 18px;
+			margin-bottom: 0;
+		}
+	}
+}
+
+.userpic {
+	width: 20% !important;
+	float: left;
+	text-align: center;
+	img {
+		margin-top: 50px;
+		width: 65%;
+	}
+}
+
+.userbar {
+	float: left;
+	width: 97%;
+	margin: 0 !important;
+	background: none !important;
+	font-family: @futuraextended;
+	.name {
+		float: left;
+		font-size: 16px;
+		color: @darkGrey;
+	}
+	.time {
+		font-size: 12px;
+		color: @darkGrey;
+		padding-top: 4px !important;
+	}
+}
+
+.cbody {
+	float: left;
+	width: 100%;
+	margin: 0 !important;
+}
+
+.comment-content {
+	float: left;
+	width: 68%;
+	background-color: white;
+	border-radius: 12px;
+	margin-left: 25px;
+	padding: 12px;
+	.cbody {
+		font-family: @futuralight;
+		font-size: 16px;
+		border-bottom: none !important;
+		color: @darkGrey;
+		padding: 5px !important;
+	}
+}
+
+.comment {
+	border: none !important;
+	background: none !important;
+}
+
+#comment_raw_content {
+	width: 100% !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+	font-family: @futuraextended;
+	color: @darkGrey;
+	font-size: 16px;
+}
+
+.btn-comment-submit {
+	background-color: @orange;
+	border: none !important;
+	font-family: @futuraextended;
+	color: white;
+	padding: 3px 20px;
+	width: auto;
+	margin-right: 50px;
+	margin-right: 65px;
+	margin-top: 20px;
+	&:hover {
+		background-color: @orange !important;
+	}
+}
+
+.comment-form-costume {
+	background: white;
+	padding: 20px;
+	width: 92%;
+	margin: 0 auto;
+	.form-group {
+		float: left !important;
+		width: 81%;
+	}
+}
+
+.comment {
+	.highlighted {
+		border: none !important;
+	}
+}
+
+.comments_tree .comment.highlighted {
+	border: none !important;
+}

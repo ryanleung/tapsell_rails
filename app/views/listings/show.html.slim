@@ -1,0 +1,67 @@
+= content_for :stylesheet_contents
+  = stylesheet_link_tag "purchases", "products"
+
+.container.marg-top-125
+  .col-xs-8.box-container.left-container
+    .col-xs-12.title-container
+      h1.order-title.product-title
+        = @listing.title
+      .sub-product-title
+        | POSTED &nbsp;
+        b= @listing.created_at.strftime("%^b. %e")
+        | &nbsp; by &nbsp;
+        b= @listing.seller.first_name.upcase
+    .col-xs-12.content-section.no-bg
+      .row
+        = render "listing_details"
+  .col-xs-4
+    .row
+      .col-xs-11.box-container.right-container.no-pad
+        .right-container-label
+          | You are about to reserve the item:
+        .right-container-content
+          .price-container.price-product-container
+            | $
+            = @listing.price
+          .button-product-container
+            - if @listing.seller.eql?(current_user)
+                = link_to "BUY IT NOW", "javascript:void(0);", class: "btn", disabled: true
+            - else
+                = link_to "BUY IT NOW", "javascript:void(0);", class: "btn", disabled: false
+          .product-guarantee-container.pad-v-20
+            span.black-check-icon
+            p.pull-left Buyer guarantee
+          .list-container
+            .list
+            .list
+          .location-container
+            | Pick up location: &nbsp;
+            b= @listing.address
+      .col-xs-11.box-container.right-container.no-pad
+        .right-container-content
+          h3.text-center= @listing.seller.first_name
+          .avatar-container.text-center
+            = link_to "javascript:void(0);" do
+              - if @listing.seller.avatar_url.blank?
+                = image_tag "/assets/no_images.png", class: "img-circle"
+          .user-location-container
+            h4.location.text-center
+              = image_tag "/assets/pin.png"
+              = "UC San Diego"
+          .list-container
+            .list
+            .list
+          .review-container
+            h3.text-center
+              = image_tag "/assets/green-like.png"
+              | 98% POSITIVE REVIEWS &nbsp;
+
+= content_for :javascript_contents do
+  = javascript_include_tag "products"
+
+javascript:
+  $(document).ready(function(){
+    $(".image-navigation").hover(function(){
+      $(".image-navigation-"+$(this).attr("id")).click();
+    })
+  });

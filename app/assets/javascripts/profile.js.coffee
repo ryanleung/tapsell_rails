@@ -69,7 +69,7 @@ $(document).ready ->
     $(".text-remaining").empty
 
   $(".input-new-password").keyup ->
-    min = 8
+    min = 6
     val = $(this).val()
     len = $(this).val().length
     if len < min
