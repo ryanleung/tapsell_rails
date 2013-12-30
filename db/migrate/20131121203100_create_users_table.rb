@@ -8,7 +8,8 @@ class CreateUsersTable < ActiveRecord::Migration
 			t.text :avatar_url
 			t.string :password_hash
 			t.string :email
-			t.references :address
+			t.string :location
+			t.string :phone_number
 			t.timestamps
 		end
 	end

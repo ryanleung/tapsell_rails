@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 	# Relationships - Ordered Alphabetically
 	# --------------------------------------
 
-	has_one :address
 	has_many :selling_listings, :class_name => "Listing", :foreign_key => :seller_id
   has_many :buying_listings, :class_name => "Listing", :foreign_key => :buyer_id
   has_many :images
@@ -74,8 +73,7 @@ class User < ActiveRecord::Base
   		last_name: self.last_name,
   		avatar_url: self.avatar_url,
       email: self.email,
-  		city: self.address.nil? ? nil : self.address.city,
-  		state: self.address.nil? ? nil : self.address.state,
+  		location: self.location,
   		bio: self.bio,
   		rating: self.rating
   	}

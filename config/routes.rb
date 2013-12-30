@@ -35,8 +35,9 @@ Tapsell::Application.routes.draw do
 
   namespace :api do
     post 'users' => 'users#create'
+    get 'users/profile' => 'users#index'
+    post 'users/profile/edit' => 'users#update'
     get 'users/:user_id' => 'users#show'
-    post 'users/profile' => 'users#update'
     post 'sessions' => 'sessions#create'
     delete 'sessions' => 'sessions#destroy'
     get 'listings' => 'listings#index'

@@ -1,12 +1,12 @@
 class Api::UsersController < Api::ApiController
-	skip_before_filter :require_current_user, only: [:create, :show]
+	skip_before_filter :require_current_user, only: [:create]
 	before_filter :create_user_from_params, only: [:create]
-	before_filter :fetch_user, only: [:show]
+	# before_filter :fetch_user, only: [:show]
 
-	def show
+	def index
 		render json: {
 			error: nil,
-			data: @user.api_hash
+			data: @current_user.api_hash
 		}
 	end
 
@@ -37,11 +37,8 @@ class Api::UsersController < Api::ApiController
     if params[:email].present?
       @current_user.email = params[:email]
     end
-    if params[:city].present?
-    	@current_user.city = params[:city]
-    end
-    if params[:state].present?
-    	@current_user.state = params[:state]
+    if params[:location].present?
+    	@current_user.location = params[:location]
     end
     if @current_user.save
       render json: {
