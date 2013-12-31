@@ -27,10 +27,10 @@ html
               li
                 p.pull-left.nav-location-container
                   = image_tag "/assets/pin.png", class: "pin-image"
-                  - locality = current_user.address.try(:locality)
-                    unless locality.nil?
+                  - location = current_user.location.try
+                    unless location.nil?
                     p.pull-left.location-label locality
-                  - if locality.nil?
+                  - if location.nil?
                     p.pull-left.location-label UC Davis
           ul.nav.navbar-nav.navbar-right.text-right.pull-right style="padding: 3px 0"
             - if signed_in?

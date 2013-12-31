@@ -18,9 +18,9 @@
         p= current_user.email
     .col-md-6.no-pad  
       label My Location
-      - locality = current_user.address.try(:locality)
-        unless locality.nil?
-        p= locality
+      - location = current_user.location.try
+        unless location.nil?
+        p= location
     .col-md-6.no-pad  
       label Phone number
       p= "Number goes here"
