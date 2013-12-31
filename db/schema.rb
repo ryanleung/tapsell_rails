@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20131227112250) do
     t.string   "last_name"
     t.integer  "rating"
     t.text     "bio"
-    t.text     "avatar_url"
     t.string   "password_hash"
     t.string   "email"
     t.string   "location"

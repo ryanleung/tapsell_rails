@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
 	has_many :selling_listings, :class_name => "Listing", :foreign_key => :seller_id
   has_many :buying_listings, :class_name => "Listing", :foreign_key => :buyer_id
-  has_many :images
+  has_one :image
 	has_many :message_chains
 	has_many :messages,
 	:through => :message_chains
@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   	{
   		first_name: self.first_name,
   		last_name: self.last_name,
-  		avatar_url: self.avatar_url,
+  		avatar_url: self.image.try(:image).try(:url),
       email: self.email,
   		location: self.location,
   		bio: self.bio,

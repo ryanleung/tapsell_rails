@@ -25,6 +25,19 @@ class Api::UsersController < Api::ApiController
 	end
 
 	def update
+		if !params[:avatar_data].blank?
+			temp_file = Tempfile.new('tempfile')
+			begin
+				temp_file.binmode
+				temp_file.write(Base64.decode64(params[:avatar_data]))
+				img = Image.new()
+				img.image = temp_file
+				@current_user.image = img
+			ensure
+				temp_file.close
+				temp_file.unlink
+			end
+		end
 		if params[:first_name].present?
       @current_user.first_name = params[:first_name]
     end
