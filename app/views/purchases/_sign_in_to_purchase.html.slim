@@ -1,0 +1,47 @@
+.col-md-8.box-container.left-container
+  .col-md-12.title-container
+    h1 > Sign up to make an offer.
+  .col-md-12.content-section
+    p.content-section-title Why do I need to create an account?
+    p Our service is built on trust, and part of that is knowing who you're buying from and selling to. User accounts create a safer community for everyone. Plus, it's fast and easy!
+  .col-md-12.left-container-content
+    h3 CREATE AN ACCOUNT
+    .col-md-12.select-payment-container.purchase-signup-container
+      = render "signup_form"
+    .col-md-12.select-payment-container.purchase-signin-container.hide
+      = render "signin_form"
+  .col-md-12.text-center.footer-container.sign-up-footer
+    h4
+      | Already on Tapsell? &nbsp;
+      = link_to "Login", "javascript:void(0);", class: "purchase-singin"
+    p
+      | By signing up you agree to our &nbsp;
+      = link_to "Terms of Service", "javascript:void(0);"
+  .col-md-12.text-center.footer-container.sign-in-footer.hide
+    h4
+      | Didn't have Prospeqt Account? &nbsp;
+      = link_to "Sign Up", "javascript:void(0);", class: "purchase-singup"
+.col-md-4
+  .row
+    .col-md-11.box-container.right-container.no-pad
+      .right-container-label
+        | You are about to reserve the item:
+      .right-container-content
+        h4= @listing.title
+        .post-container
+          | POSTED &nbsp;
+          b= @listing.created_at.strftime("%^b. %e")
+          | &nbsp; by &nbsp;
+          b= @listing.seller.first_name.upcase
+        .price-container
+          | $
+          = @listing.price
+        .product-guarantee-container
+          span.black-check-icon
+          p.pull-left Buyer guarantee
+        .list-container
+          .list
+          .list
+        .location-container
+          | Pick up location: &nbsp;
+          b= @listing.address

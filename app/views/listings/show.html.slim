@@ -27,7 +27,7 @@
             - if @listing.seller.eql?(current_user)
                 = link_to "BUY IT NOW", "javascript:void(0);", class: "btn", disabled: true
             - else
-                = link_to "BUY IT NOW", "javascript:void(0);", class: "btn", disabled: false
+                = link_to "BUY IT NOW", new_purchase_path, class: "btn", disabled: false
           .product-guarantee-container.pad-v-20
             span.black-check-icon
             p.pull-left Buyer guarantee
