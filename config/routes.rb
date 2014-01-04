@@ -10,6 +10,8 @@ Tapsell::Application.routes.draw do
   resources :listings
   
   get "purchases/listings/:id" => "purchases#new", as: 'new_purchase'
+  post "purchases/listings/:id/" => "purchases#create", as: 'purchase'
+  
   match '/sign-up', to: 'users#new', via: 'get'
   match 'sign-in', to: 'sessions#new', via: 'get'
   match '/sign-out', to: 'sessions#destroy', via: 'delete'
