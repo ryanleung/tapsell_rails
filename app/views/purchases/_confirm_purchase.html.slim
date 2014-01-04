@@ -1,0 +1,91 @@
+col-md-8.box-container.left-container
+  = form_tag purchase_path, method: "post", id: "payment-form", class: "pull-left", role: "form" do |f|
+    .col-md-12.title-container
+      h1 > Confirm your offer.
+    .col-md-12.content-section
+      p.content-section-title What happens when I purchase the item?
+      p The listing will deactivate and the seller will have 24 hours to approve the sale. Your card won't be charged unless the seller approves. All purchases are covered by Tapsell Buyer Guarantee: if the items aren't as described, or the seller isn't being responsive, just let us know within 7 days for a full refund.
+    .col-md-12.left-container-content
+      h3 PAYMENT METHOD
+      .col-md-12.select-payment-container
+        .col-md-6.no-pad
+          label.col-md-offset-4.pull-left Choose from your saved cards
+          = select_tag "choose_method", options_for_select(credit_cards), class: "payment-method form-control col-md-offset-4 pull-left", prompt: ""
+        .col-md-1.or
+          | or
+        .col-md-4.no-pad.text-left.add-new-card
+          = link_to "Add a new card", "javascript:void(0);", class: "aqua add-new-credit-card"
+          = link_to "Cancel add a new card", "javascript:void(0);", class: "red cancel-add-credit-card hide"
+      .col-md-12.select-payment-container.insert-credit-card-container.hide
+        h3 ADD A NEW CREDITCARD
+        = render "credit_card_form"
+      .col-md-12.select-payment-container
+        h3 OPTIONAL INFORMATION
+        .form-container
+          label.marg-top-23
+            | Include a message for your seller. &nbsp;
+            = @product.user.full_name
+            | &nbsp; !
+          = text_area_tag "message"
+    .col-md-12.left-container-content.submit-container
+      .form-group
+        = submit_tag "FINISH AND MAKE OFFER", class: "btn btn-warning"
+
+
+.col-md-4
+  .row
+    .col-md-11.box-container.right-container.no-pad
+      .right-container-label
+        | You are about to reserve the item:
+      .right-container-content
+        h4= @product.title
+        .post-container
+          | POSTED &nbsp;
+          b= @product.created_at.strftime("%^b. %e")
+          | &nbsp; by &nbsp;
+          b= @product.user.full_name.upcase
+        .price-container
+          | $
+          = @product.price
+        .product-image-container style="background-image: url('#{product_image.file}')"
+        .product-guarantee-container
+          span.black-check-icon
+          p.pull-left Buyer guarantee
+        .list-container
+          .list
+          .list
+        .location-container
+          | Pick up location: &nbsp;
+          b= @product.address
+
+
+/ .col-md-12.text-center
+/   h1 Order Confirmation: Step 1
+/   .btn-group.btn-group-justified
+/     = link_to "Billing Details", "javascript:void(0);", class: "btn btn-success", disabled: "disabled"
+/     = link_to "Optional Info", "javascript:void(0);", class: "btn btn-default", disabled: "disabled"
+/ .col-md-12
+/   = render "purchase_product_list"
+/ .panel.panel-default
+/   .panel-heading
+/   .panel-body
+/ .col-md-12 style="padding-bottom: 50px;"
+/   .row
+/     = form_tag billing_path(@billing), method: "post", id: "payment-form", class: "pull-left", role: "form" do |f|
+/       = hidden_field_tag "product_id", @product.id, class: "disabled"
+/       .row
+/         .col-md-6
+/           .panel.panel-default
+/             .panel-heading
+/               | Add credit card
+/             .panel-body
+/               = render "credit_card_form"
+/         .col-md-6
+/           .panel.panel-default
+/             .panel-heading
+/               | Enter your billing address
+/             .panel-body
+/               = render "billing_address_form"
+/         .text-center
+/           = submit_tag "Continue", class: "btn btn-success btn-lg submit-purchase"
+

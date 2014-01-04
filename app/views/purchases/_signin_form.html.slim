@@ -1,0 +1,27 @@
+.col-md-5.no-pad.facebook-container
+  = link_to "javascript:void(0);", class: "facebook-button" do
+    span.fb-circle-icon
+    p SIGN IN WITH FACEBOOK
+.vertical-list.col-md-2.text-center
+  .image-container.text-center
+    = image_tag "/assets/vertical_list.png"
+  p or
+  .image-container.text-center
+    = image_tag "/assets/vertical_list.png"
+.col-md-5.no-pad.form-authentication
+  = form_for(:session, :url => sessions_path, html: {class: "signin-form", role: "form", remote: true}) do |f|
+    .row
+      .form-title
+        span.email-icon
+        h3
+          | SIGN IN WITH EMAIL
+      .form-body
+        .error-container
+        .row
+          .col-md-12.form-group
+            = f.email_field :email, :required => false, class: "form-control signup-email", placeholder: "Your Email", :required => true, autocomplete: "false"
+            p.registration-email.hide
+          .col-md-12.form-group
+            = f.password_field :password, :required => false, class: "form-control signup-password", placeholder: "Password", :required => true
+          .col-md-12.form-group.text-center
+            = f.submit "SIGN IN", class: "btn button-signup"
