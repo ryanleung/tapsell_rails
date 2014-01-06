@@ -22,7 +22,6 @@ class PurchasesController < ApplicationController
     end    
   end
   
-  # Create customer and transaction, save in Vault, return customer and card ID, and save to database
   def create_transaction
     @listing = Listing.find(params[:id])
     @user = current_user
@@ -31,8 +30,8 @@ class PurchasesController < ApplicationController
     :credit_card => {
       :number => params[:number],
       :cvv => params[:cvv],
-      :expiration_month => params[:month],
-      :expiration_year => params[:year]
+      :expiration_month => params[:exp_month],
+      :expiration_year => params[:exp_year]
     },
     :customer => {
       :email => @user.email.to_sym,
@@ -45,6 +44,16 @@ class PurchasesController < ApplicationController
       :store_in_vault => true
     }
   )
+    @credit_card = @user.credit_cards.build(credit_card_params)
+    @credit_card.save
+
+    first_four = params[:number].to_s[0..-13].to_i
+    last_four = params[:number].to_s[12..17].to_i
+    @credit_card.update_attribute(:starting_digits, first_four)
+    @credit_card.update_attribute(:ending_digits, last_four)
+
+    # Todo - Add method for setting braintree token
+
     redirect_to purchase_confirmation_path
   end
 
@@ -54,8 +63,12 @@ class PurchasesController < ApplicationController
 
   private
 
-  def user_params
+    def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password)
-  end
+    end
+
+    def credit_card_params
+      params.permit(:exp_month, :exp_year, :card_type)
+    end
 
 end

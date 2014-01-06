@@ -13,7 +13,7 @@
           = text_field_tag "billing[holder_name]", "", class: "form-control", placeholder: "Card Holdername", required: "true", autocomplete: "off"
         .col-md-3
           label Card Type
-          = select_tag "billing[card_type]", options_for_select(["Visa", "Master Card", "American Express"]), class: "form-control", placeholder: "Card Type", required: "true"
+          = select_tag :card_type, options_for_select(["Visa", "MasterCard", "American Express"]), class: "form-control", placeholder: "Card Type", required: "true"
     .form-group
       .row
         .col-lg-7
@@ -29,9 +29,9 @@
             .col-md-12
               label.pull-left.wid-100p Expiration Date
             .col-md-6
-              = select_tag :month, options_for_select(1..12), class: "form-control", placeholder: "month"
+              = select_tag :exp_month, options_for_select(1..12), class: "form-control", placeholder: "month"
             .col-md-6
-              = select_tag :year, options_for_select((Date.today.year).upto(10.years.from_now.year)), class: "form-control", required: "true"
+              = select_tag :exp_year, options_for_select((Date.today.year).upto(10.years.from_now.year)), class: "form-control", required: "true"
         .col-lg-3
            .row
             .col-md-12
