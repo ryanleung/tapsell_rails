@@ -18,10 +18,10 @@
       .row
         .col-lg-7
           label Card Number
-          = text_field_tag "billing[card_number]", "", class: "form-control card-number", placeholder: "Card Number", maxlength: "20", required: "true", autocomplete: "off"
+          = text_field_tag :number, "", class: "form-control card-number", placeholder: "Card Number", maxlength: "20", required: "true", autocomplete: "off"
         .col-lg-3
           label Security Number
-          = text_field_tag "billing[cvv_number]", "", class: "form-control security-number", maxlength: "4", autocomplete: "off"
+          = text_field_tag :cvv, "", class: "form-control security-number", maxlength: "4", autocomplete: "off"
     .form-group.no-marg
       .row
         .col-md-7
@@ -29,9 +29,9 @@
             .col-md-12
               label.pull-left.wid-100p Expiration Date
             .col-md-6
-              = select_tag "billing[month]", options_for_select(1..12), class: "form-control", placeholder: "month"
+              = select_tag :month, options_for_select(1..12), class: "form-control", placeholder: "month"
             .col-md-6
-              = select_tag "billing[year]", options_for_select((Date.today.year).upto(10.years.from_now.year)), class: "form-control", required: "true"
+              = select_tag :year, options_for_select((Date.today.year).upto(10.years.from_now.year)), class: "form-control", required: "true"
         .col-lg-3
            .row
             .col-md-12

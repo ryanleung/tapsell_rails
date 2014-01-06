@@ -23,16 +23,14 @@ class PurchasesController < ApplicationController
   end
 
   def create_transaction
-    result = Braintree::Transaction.sale(
-    :amount => "1000.00",
+    @user = current_user
+    result = Braintree::Customer.create(
+    :email => @user.email.to_sym,
     :credit_card => {
       :number => params[:number],
       :cvv => params[:cvv],
       :expiration_month => params[:month],
       :expiration_year => params[:year]
-    },
-    :options => {
-      :submit_for_settlement => false
     }
   )
     redirect_to purchase_confirmation_path
