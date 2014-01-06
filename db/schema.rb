@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131227112250) do
+ActiveRecord::Schema.define(version: 20140104132020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,25 @@ ActiveRecord::Schema.define(version: 20131227112250) do
     t.boolean  "post_to_free_for_sale"
     t.decimal  "price"
     t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "message_chains", force: true do |t|
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.integer  "listing_id"
+    t.boolean  "buyer_dirty",  default: false, null: false
+    t.boolean  "seller_dirty", default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.string   "content"
+    t.integer  "message_chain_id"
+    t.integer  "sender_id"
+    t.string   "type",             default: "default"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
