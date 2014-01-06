@@ -21,16 +21,28 @@ class PurchasesController < ApplicationController
       render '_sign_in_to_purchase'
     end    
   end
-
+  
+  # Create customer and transaction, save in Vault, return customer and card ID, and save to database
   def create_transaction
+    @listing = Listing.find(params[:id])
     @user = current_user
-    result = Braintree::Customer.create(
-    :email => @user.email.to_sym,
+    result = Braintree::Transaction.sale(
+    :amount => @listing.price,
     :credit_card => {
       :number => params[:number],
       :cvv => params[:cvv],
       :expiration_month => params[:month],
       :expiration_year => params[:year]
+    },
+    :customer => {
+      :email => @user.email.to_sym,
+      :first_name => @user.first_name.to_sym,
+      :last_name => @user.last_name.to_sym,
+      :id => @user.id
+    },
+    :options => {
+      :submit_for_settlement => false,
+      :store_in_vault => true
     }
   )
     redirect_to purchase_confirmation_path
