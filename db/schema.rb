@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131227112250) do
+ActiveRecord::Schema.define(version: 20140106083553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,18 @@ ActiveRecord::Schema.define(version: 20131227112250) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "credit_cards", force: true do |t|
+    t.string   "braintree_token"
+    t.integer  "ending_digits"
+    t.integer  "starting_digits"
+    t.string   "card_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "exp_month"
+    t.integer  "exp_year"
+    t.integer  "user_id"
   end
 
   create_table "images", force: true do |t|
@@ -68,6 +80,7 @@ ActiveRecord::Schema.define(version: 20131227112250) do
     t.string   "last_name"
     t.integer  "rating"
     t.text     "bio"
+    t.text     "avatar_url"
     t.string   "password_hash"
     t.string   "email"
     t.string   "location"
@@ -77,6 +90,7 @@ ActiveRecord::Schema.define(version: 20131227112250) do
     t.string   "remember_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.integer  "primary_card_id"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

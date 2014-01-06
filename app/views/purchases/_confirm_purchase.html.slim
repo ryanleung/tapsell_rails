@@ -1,3 +1,10 @@
+= content_for :javascript_contents do
+  = javascript_include_tag "purchases"
+
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "purchases"
+
+.container.marg-top-125
 col-md-8.box-container.left-container
   = form_tag purchase_path, method: "post", id: "payment-form", class: "pull-left", role: "form" do |f|
     .col-md-12.title-container
@@ -10,7 +17,7 @@ col-md-8.box-container.left-container
       .col-md-12.select-payment-container
         .col-md-6.no-pad
           label.col-md-offset-4.pull-left Choose from your saved cards
-          = select_tag "choose_method", options_for_select(credit_cards), class: "payment-method form-control col-md-offset-4 pull-left", prompt: ""
+          = select_tag "choose_method", options_for_select(['Placeholder']), class: "payment-method form-control col-md-offset-4 pull-left", prompt: ""
         .col-md-1.or
           | or
         .col-md-4.no-pad.text-left.add-new-card
@@ -24,7 +31,7 @@ col-md-8.box-container.left-container
         .form-container
           label.marg-top-23
             | Include a message for your seller. &nbsp;
-            = @product.user.full_name
+            = @listing.seller.first_name
             | &nbsp; !
           = text_area_tag "message"
     .col-md-12.left-container-content.submit-container
@@ -38,16 +45,16 @@ col-md-8.box-container.left-container
       .right-container-label
         | You are about to reserve the item:
       .right-container-content
-        h4= @product.title
+        h4= @listing.title
         .post-container
           | POSTED &nbsp;
-          b= @product.created_at.strftime("%^b. %e")
+          b= @listing.created_at.strftime("%^b. %e")
           | &nbsp; by &nbsp;
-          b= @product.user.full_name.upcase
+          b= @listing.seller.first_name.upcase
         .price-container
           | $
-          = @product.price
-        .product-image-container style="background-image: url('#{product_image.file}')"
+          = @listing.price
+        .product-image-container 
         .product-guarantee-container
           span.black-check-icon
           p.pull-left Buyer guarantee
@@ -56,36 +63,4 @@ col-md-8.box-container.left-container
           .list
         .location-container
           | Pick up location: &nbsp;
-          b= @product.address
-
-
-/ .col-md-12.text-center
-/   h1 Order Confirmation: Step 1
-/   .btn-group.btn-group-justified
-/     = link_to "Billing Details", "javascript:void(0);", class: "btn btn-success", disabled: "disabled"
-/     = link_to "Optional Info", "javascript:void(0);", class: "btn btn-default", disabled: "disabled"
-/ .col-md-12
-/   = render "purchase_product_list"
-/ .panel.panel-default
-/   .panel-heading
-/   .panel-body
-/ .col-md-12 style="padding-bottom: 50px;"
-/   .row
-/     = form_tag billing_path(@billing), method: "post", id: "payment-form", class: "pull-left", role: "form" do |f|
-/       = hidden_field_tag "product_id", @product.id, class: "disabled"
-/       .row
-/         .col-md-6
-/           .panel.panel-default
-/             .panel-heading
-/               | Add credit card
-/             .panel-body
-/               = render "credit_card_form"
-/         .col-md-6
-/           .panel.panel-default
-/             .panel-heading
-/               | Enter your billing address
-/             .panel-body
-/               = render "billing_address_form"
-/         .text-center
-/           = submit_tag "Continue", class: "btn btn-success btn-lg submit-purchase"
-
+          b= @listing.address

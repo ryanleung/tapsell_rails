@@ -1,3 +1,9 @@
+= content_for :javascript_contents do
+  = javascript_include_tag "purchases"
+
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "purchases"
+
 .col-md-5.no-pad.facebook-container
   = link_to "javascript:void(0);", class: "facebook-button" do
     span.fb-circle-icon

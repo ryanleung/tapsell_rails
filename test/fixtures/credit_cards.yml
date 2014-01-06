@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  braintree_token: MyString
+  ending_digits: 1
+  starting_digits: 1
+  card_type: MyString
+
+two:
+  braintree_token: MyString
+  ending_digits: 1
+  starting_digits: 1
+  card_type: MyString

@@ -1,3 +1,9 @@
+= content_for :javascript_contents do
+  = javascript_include_tag "purchases"
+
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "purchases"
+
 .col-md-5.no-pad.facebook-container
   = link_to "javascript:void(0);", class: "facebook-button" do
     span.fb-circle-icon
@@ -9,7 +15,7 @@
   .image-container.text-center
     = image_tag "/assets/vertical_list.png"
 .col-md-5.no-pad.form-authentication
-  = form_for(@user, url: new_user_path(@user), html: {class: "signup-form", role: "form", id: "registration-form", remote: true}) do |f|
+  = form_for(@user, url: users_path(@user), html: { :method => :post, class: "signup-form", role: "form", id: "registration-form", remote: true}) do |f|
     .row
       .form-title
         span.email-icon
@@ -23,9 +29,9 @@
           .col-md-12.form-group
             = f.text_field :last_name, placeholder:"Last Name", class: "form-control", :required => true
           .col-md-12.form-group
-            = f.email_field :email, :required => false, class: "form-control signup-email", placeholder: "Your Email", :required => true, autocomplete: "false"
+            = f.email_field :email, class: "form-control signup-email", placeholder: "Your Email", :required => true, autocomplete: "false"
             p.registration-email.hide
           .col-md-12.form-group
-            = f.password_field :password, :required => false, class: "form-control signup-password", placeholder: "Password", :required => true
+            = f.password_field :password, class: "form-control signup-password", placeholder: "Password", :required => true
           .col-md-12.form-group.text-center
             = f.submit "SIGN UP", class: "btn button-signup"

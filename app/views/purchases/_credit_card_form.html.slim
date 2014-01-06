@@ -1,0 +1,44 @@
+= content_for :javascript_contents do
+  = javascript_include_tag "purchases"
+
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "purchases"
+
+.col-md-12.select-payment-container
+  .form-container
+    .form-group
+      .row
+        .col-md-7
+          label Card Holder Name
+          = text_field_tag "billing[holder_name]", "", class: "form-control", placeholder: "Card Holdername", required: "true", autocomplete: "off"
+        .col-md-3
+          label Card Type
+          = select_tag "billing[card_type]", options_for_select(["Visa", "Master Card", "American Express"]), class: "form-control", placeholder: "Card Type", required: "true"
+    .form-group
+      .row
+        .col-lg-7
+          label Card Number
+          = text_field_tag :number, "", class: "form-control card-number", placeholder: "Card Number", maxlength: "20", required: "true", autocomplete: "off"
+        .col-lg-3
+          label Security Number
+          = text_field_tag :cvv, "", class: "form-control security-number", maxlength: "4", autocomplete: "off"
+    .form-group.no-marg
+      .row
+        .col-md-7
+          .row
+            .col-md-12
+              label.pull-left.wid-100p Expiration Date
+            .col-md-6
+              = select_tag :month, options_for_select(1..12), class: "form-control", placeholder: "month"
+            .col-md-6
+              = select_tag :year, options_for_select((Date.today.year).upto(10.years.from_now.year)), class: "form-control", required: "true"
+        .col-lg-3
+           .row
+            .col-md-12
+              label Zipcode
+              = text_field_tag "zipcode","", class: "form-control billing-zipcode", required: "true"
+= content_for :javascript_contents do
+  = javascript_include_tag "jquery.numeric.js", "https://js.braintreegateway.com/v1/braintree.js"
+javascript:
+  var braintree = Braintree.create("MIIBCgKCAQEAmh+E5b9C512QYL6GhAinciv6LcwlyR3Ccogs28Ljiw6J1j1fWxcDvgUUGXVnW2z8N26bhXq7NR8/422upNEWdioaK0s9Cuzjn+BW+UW+CnvHMgAMUfbSS1olsN5UMoOQ8UIC5K9GbBy4nfTou7AQ8H0wRZx9q9gP+DunqrKtok9DtodG8kEZICarH3WYC2MQVb11UAnWD/vs2/Q1C54+vekYiCpX22xdNYjwy2K6ytCwulPlzsOPvyEXApJ2hK+OyjHKZ6BkvCziN+z6zBk7F1d5ei3yWmJLyzcJsyFEwLI8hIgrva5pq9ussA+GM/vKWwq+CWIhFzkozXz6aa+55QIDAQAB");
+  braintree.onSubmitEncryptForm('payment-form');
