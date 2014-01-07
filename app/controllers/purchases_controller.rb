@@ -22,6 +22,7 @@ class PurchasesController < ApplicationController
     end    
   end
   
+  # Bit sloppy, should refactor this later to avoid repetitive code
   def create_transaction
     @listing = Listing.find(params[:id])
     @user = current_user
@@ -50,20 +51,17 @@ class PurchasesController < ApplicationController
     @credit_card = @user.credit_cards.build(credit_card_params)
     @credit_card.save
 
-    if params[:card_type] == "American Express"
-      first_four = params[:number].to_s[0..-12].to_i
-      last_four = params[:number].to_s.reverse[0..-12].reverse.to_i
-    else
-      first_four = params[:number].to_s[0..-13].to_i
-      last_four = params[:number].to_s.reverse[0..-13].reverse.to_i
-    end
+    first_four = params[:number].to_s[0..3].to_i
+    last_four = params[:number].to_s[-4..-1].to_i
 
     @credit_card.update_attribute(:starting_digits, first_four)
     @credit_card.update_attribute(:ending_digits, last_four)
+    
+    # Should potentially be modified to pull the values from Braintree server
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
     @user.update_attribute(:braintree_id, @user.id)
-    
-    # Need to extend this later so it only redirects if the purchase is successful
+  
+    # Need to extend this so it only redirects if the purchase is successful
     redirect_to purchase_confirmation_path
   end
 
