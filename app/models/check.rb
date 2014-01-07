@@ -1,4 +1,4 @@
-class CreditCard < ActiveRecord::Base
+class Check < ActiveRecord::Base
 
   # Relationships - Ordered Alphabetically
   # --------------------------------------

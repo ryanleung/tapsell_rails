@@ -23,6 +23,7 @@ class PurchasesController < ApplicationController
   end
   
   # Bit sloppy, should refactor this later to avoid repetitive code
+  # This should only be used if it's the first time a user is adding a credit card
   def create_transaction
     @listing = Listing.find(params[:id])
     @user = current_user

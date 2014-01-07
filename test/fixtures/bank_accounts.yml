@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  legal_first_name: MyString
+  legal_last_name: MyString
+  birth_day: 1
+  birth_month: 1
+  birth_year: 1
+  braintree_id: 1
+  ending_digits: 1
+
+two:
+  user_id: 1
+  legal_first_name: MyString
+  legal_last_name: MyString
+  birth_day: 1
+  birth_month: 1
+  birth_year: 1
+  braintree_id: 1
+  ending_digits: 1
