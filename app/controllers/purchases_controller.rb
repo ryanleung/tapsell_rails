@@ -25,18 +25,21 @@ class PurchasesController < ApplicationController
   def create_transaction
     @listing = Listing.find(params[:id])
     @user = current_user
+    @credit_card = CreditCard.new
+    
     result = Braintree::Transaction.sale(
     :amount => @listing.price,
     :credit_card => {
+      :token => @credit_card.id,
       :number => params[:number],
       :cvv => params[:cvv],
       :expiration_month => params[:exp_month],
       :expiration_year => params[:exp_year]
     },
     :customer => {
-      :email => @user.email.to_sym,
-      :first_name => @user.first_name.to_sym,
-      :last_name => @user.last_name.to_sym,
+      :email => @user.email,
+      :first_name => @user.first_name,
+      :last_name => @user.last_name,
       :id => @user.id
     },
     :options => {
@@ -47,13 +50,20 @@ class PurchasesController < ApplicationController
     @credit_card = @user.credit_cards.build(credit_card_params)
     @credit_card.save
 
-    first_four = params[:number].to_s[0..-13].to_i
-    last_four = params[:number].to_s[12..17].to_i
+    if params[:card_type] == "American Express"
+      first_four = params[:number].to_s[0..-12].to_i
+      last_four = params[:number].to_s.reverse[0..-12].reverse.to_i
+    else
+      first_four = params[:number].to_s[0..-13].to_i
+      last_four = params[:number].to_s.reverse[0..-13].reverse.to_i
+    end
+
     @credit_card.update_attribute(:starting_digits, first_four)
     @credit_card.update_attribute(:ending_digits, last_four)
-
-    # Todo - Add method for setting braintree token
-
+    @credit_card.update_attribute(:braintree_token, @credit_card.id)
+    @user.update_attribute(:braintree_id, @user.id)
+    
+    # Need to extend this later so it only redirects if the purchase is successful
     redirect_to purchase_confirmation_path
   end
 
