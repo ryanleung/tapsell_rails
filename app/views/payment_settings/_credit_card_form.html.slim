@@ -1,0 +1,39 @@
+= form_tag create_card_path, method: "post", id: "credit-card-payment-form", class: "col-lg-12", role: "form" do |f|
+  .form-group
+    .row
+      .col-lg-6
+        label Card Number
+        = text_field_tag :number, "", class: "form-control card-number", placeholder: "", maxlength: "20", required: true
+        label Expiration Date
+        .row
+          .col-lg-6
+            = select_tag :exp_month, options_for_select(1..12), class: "form-control credit-card-month", prompt: "MM", required: true
+          .col-lg-6
+            = select_tag :exp_year, options_for_select((Date.today.year).upto(10.years.from_now.year)), class: "form-control credit-card-year", prompt: "YYYY", required: true
+      .col-lg-6
+        label Card Type
+        .row
+          .col-lg-6
+            = select_tag :card_type, options_for_select(["Visa", "MasterCard", "Ameican Express"]), class: "form-control", required: true
+        label Security Number
+        .row
+          .col-lg-6
+            = text_field_tag "credit_card[cvv_number]", "", class: "form-control security-number", maxlength: "4", required: true
+      .col-lg-6 
+        label Zipcode
+        .row
+          .col-lg-6
+            = text_field_tag "credit_card[zipcode]", "", class: "form-control security-number", maxlength: "5", required: true
+  .pull-left.wid-100p
+    .row
+      .col-md-12
+        ul.list-inline.profile-tab-menu.pull-right
+          li.list-inline-item
+            = link_to "Cancel", "javascript:void(0);", class: "cancel-credit-card"
+          li.list-inline-item.add-card-button
+            = link_to "Add Card", "javascript:void(0);", class: "submit-credit-card-link orange"
+            = submit_tag "Add Card", class: "hide submit-credit-card"
+            input#reset-credit-card-form.hide type="reset"
+javascript:
+  var braintree = Braintree.create("MIIBCgKCAQEAmh+E5b9C512QYL6GhAinciv6LcwlyR3Ccogs28Ljiw6J1j1fWxcDvgUUGXVnW2z8N26bhXq7NR8/422upNEWdioaK0s9Cuzjn+BW+UW+CnvHMgAMUfbSS1olsN5UMoOQ8UIC5K9GbBy4nfTou7AQ8H0wRZx9q9gP+DunqrKtok9DtodG8kEZICarH3WYC2MQVb11UAnWD/vs2/Q1C54+vekYiCpX22xdNYjwy2K6ytCwulPlzsOPvyEXApJ2hK+OyjHKZ6BkvCziN+z6zBk7F1d5ei3yWmJLyzcJsyFEwLI8hIgrva5pq9ussA+GM/vKWwq+CWIhFzkozXz6aa+55QIDAQAB");
+  braintree.onSubmitEncryptForm('payment-form');

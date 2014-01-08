@@ -1,0 +1,44 @@
+.container-fluid.text-center.welcome-container
+  h1.no-marg
+    | Welcome back,&nbsp;
+    = current_user.first_name
+.container.marg-top-40.no-pad
+  .col-md-12
+    .row
+      .col-md-12
+        .row
+          .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.visible-md.visible-sm.visible-xs style="margin-bottom: 15px;"
+            = link_to "PROFILE", user_path, class: "btn"
+            = link_to "PAYMENT SETTINGS", payment_settings_path, class: "btn pros-link-active"
+          .col-lg-4.col-push-8.box-container
+            .row
+              .col-md-12.text-center.well-label-name
+                h2 Making Payments
+                ul.list-group
+                  = render "credit_card_list"
+              .col-md-12.text-center.well-label-name
+                h2 Receiving Payments
+                ul.list-group
+          .col-md-8.col-push-4.profile-right-container
+            .row
+              .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.hidden-md.hidden-sm.hidden-xs
+                = link_to "PROFILE", user_path, class: "btn"
+                = link_to "PAYMENT SETTINGS", "#", class: "btn pros-link-active"
+              .col-md-12.box-container.marg-top-30.no-pad
+                .row
+                  .col-md-12
+                    ul.list-inline.profile-tab-menu
+                      li.list-inline-item
+                        = link_to "MAKING PAYMENTS", "javascript:void(0);", class: "making-payment orange"
+                      li.list-inline-item
+                        = link_to "RECEIVING PAYMENTS", "javascript:void(0);", class: "receiving-payment"
+                  .col-md-12
+                    .row
+                      .making-payment-container.col-md-12
+                        = render "making_payments"
+                      .receiving-payment-container.col-md-12.hide
+                        = render "receiving_payments"
+= content_for :javascript_contents do
+  = javascript_include_tag "bank_accounts"
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "profile", "bank_accounts"

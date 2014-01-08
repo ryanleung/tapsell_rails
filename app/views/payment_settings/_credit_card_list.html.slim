@@ -1,0 +1,7 @@
+- @user.credit_cards.each do |credit_card|
+  li.list-group-item.payment-list
+    p
+      = credit_card.card_type
+      | &nbsp; ********
+      = credit_card.ending_digits
+      = link_to "", "#", class: "trash-icon pull-right", method: "delete"

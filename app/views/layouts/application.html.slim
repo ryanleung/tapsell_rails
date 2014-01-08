@@ -16,7 +16,7 @@ html
           i.glyphicon.glyphicon-home
         .navbar-header
           - if signed_in?
-            = link_to '#', class: "navbar-brand title-color col-md-12 no-pad" do
+            = link_to user_path(@user), class: "navbar-brand title-color col-md-12 no-pad" do
               = image_tag "/assets/logo.png", class: "col-md-12 no-pad"
           - else
             = link_to root_path, class: "navbar-brand title-color col-md-12 no-pad" do
@@ -44,9 +44,9 @@ html
                   span.cus-caret
                 ul.dropdown-menu role="menu" aria-labelledby="dlabel"
                   li
-                    = link_to "Profile", "javascript:void(0);"
+                    = link_to "Profile", user_path(@user)
                   li
-                    = link_to "Banks & Cards", "javascript:void(0);"
+                    = link_to "Payment Settings", payment_settings_path(@user)
                   li
                     = link_to "Get the iPhone app", "javascript:void(0);"
                   li

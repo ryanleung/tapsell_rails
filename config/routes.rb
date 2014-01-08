@@ -4,15 +4,22 @@ Tapsell::Application.routes.draw do
   # Web app routes
   ##################################
 
+  # Generic resources
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :listings
   
+  # Checkout process 
   get "purchases/listings/:id" => "purchases#new", as: 'new_purchase'
   post "purchases/listings/:id/" => "purchases#create_transaction", as: 'purchase'
   get "purchases/listings/:id/confirmation" => "purchases#purchase_confirmation", as: 'purchase_confirmation'
   
+  # Payment settings
+  get "users/:id/payment_settings" => "payment_settings#index", as: 'payment_settings'
+  post "users/:id/payment_settings" => "credit_cards#create_card", as: 'create_card'
+
+  # Authentication
   match '/sign-up', to: 'users#new', via: 'get'
   match 'sign-in', to: 'sessions#new', via: 'get'
   match '/sign-out', to: 'sessions#destroy', via: 'delete'

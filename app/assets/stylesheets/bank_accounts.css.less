@@ -1,0 +1,196 @@
+@import "global.css.less";
+
+.payment-list {
+	border: none;
+	background-color: @inactiveGrey;
+	margin-top: 3px;
+	p {
+		font-family: @futuraextended !important;
+		font-size: 18px;
+		color: @darkGrey;
+	}
+}
+
+.making-payment-container, .receiving-payment-content {
+	padding: 0 51px;
+	h1 {
+		margin-top: 0;
+		margin-bottom: 30px;
+		color: @darkGrey;
+		font-family: @caecilialight;
+	}
+	.payment-type-container {
+		float: left;
+		padding: 30px 0;
+		.number {
+			font-family: 'futuraextendedregular';
+			background-color: @grape;
+			color: white;
+			padding: 3px 11px;
+			float: left;
+			border-radius: 100%;
+			width: 35px;
+			height: 35px;
+			font-weight: 800;
+			font-size: 20px;
+		}
+		h4 {
+			float: left;
+			font-family: @futuraextended;
+			color: @mediumGrey;
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-top: 10px;
+		}
+		.choose-method {
+			border-radius: 0;
+			font-family: @futuraextended;
+			font-size: 16px;
+			margin-top: 0;
+		}
+		form {
+			padding: 0;
+			float: left;
+			label {
+				font-weight: 100 !important;
+				font-family: @futuraextended;
+				color: @darkGrey;
+				font-size: 18px;
+				margin: 25px 0 5px 0;
+			}
+			input, select {
+				width: 100%;
+				padding-top: 10px;
+				color: @darkGrey;
+				font-family: @futuraextended;
+				border-radius: 0;
+				font-size: 16px;
+			}
+			.profile-tab-menu {
+				padding: 0;
+				margin: 50px 0 0 0;
+				.add-card-button {
+					padding-right: 0;
+				}
+			}
+			.credit-card-month, .credit-card-year {
+				color: @mediumGrey;
+				option {
+					color: @darkGrey;
+				}
+			}
+		}
+	}
+	.making-payment-content, .receiving-payment-content {
+		padding: 0;
+		h3 {
+			color: @mediumGrey;
+			font-family: @futuraextended;
+			margin-bottom: 0;
+		}
+		form {
+			padding: 0;
+			float: left;
+			label {
+				font-weight: 100 !important;
+				font-family: @futuraextended;
+				color: @darkGrey;
+				font-size: 18px;
+				margin: 25px 0 15px 0;
+			}
+			input, select {
+				width: 100%;
+				padding-top: 5px;
+				color: @darkGrey;
+				font-family: @futuraextended;
+				border-radius: 0;
+			}
+			::-webkit-input-placeholder {
+				padding-top: 6px;
+				font-family: 'futuraextendedregular';
+				font-size: 16px;
+				color: #b6b1ad;
+			}
+			::-moz-input-placeholder {
+				padding-top: 6px;
+				font-family: 'futuraextendedregular';
+				font-size: 16px;
+				color: #b6b1ad;
+			}
+			:-moz-placeholder {
+				padding-top: 6px;
+				font-family: 'futuraextendedregular';
+				font-size: 16px;
+				color: #b6b1ad;
+			}
+			:-ms-input-placeholder {
+				padding-top: 6px;
+				font-family: 'futuraextendedregular';
+				font-size: 16px;
+				color: #b6b1ad;
+			}
+			.profile-tab-menu {
+				padding: 0;
+				margin: 30px 0 20px 0;
+				.add-card-button {
+					padding-right: 0;
+				}
+			}
+			.credit-card-month, .credit-card-year {
+				color: @mediumGrey;
+				option {
+					color: @darkGrey;
+				}
+			}
+		}
+	}
+}
+
+.receiving-payment-content {
+	float: left;
+	padding: 0 31px;
+}
+
+.primary {
+	background-color: @activeGrey;
+}
+
+input[type=date] {
+  text-transform: uppercase;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+::-webkit-input-placeholder {
+   color: @mediumGrey !important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: @mediumGrey !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: @mediumGrey !important;
+}
+
+:-ms-input-placeholder {
+   color: @mediumGrey !important;
+}
+
+.check-information {
+	margin-top: 52px;
+	p {
+		color: @darkGrey;
+		font-family: 'futuraextendedregular';
+		font-size: 16px;
+		&:last-child {
+			margin-top: 15px;
+		}
+	}
+	img {
+		width: 100%;
+	}
+}

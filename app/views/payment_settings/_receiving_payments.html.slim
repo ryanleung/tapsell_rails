@@ -1,0 +1,14 @@
+.receiving-payment-content
+  h1.col-md-12.no-pad > Add an account to receive payments.
+  .col-md-12.payment-type-container
+    span.number 1
+    h4.pull-left CHOOSE A PAYOUT METHOD
+    .row
+      .col-md-6
+        = select_tag "choose_method", options_for_select(["Check", "Bank Transfer"]), class: "choose-method pull-left form-control"
+.list
+.receiving-payment-content
+  .col-md-12.no-pad.check-container
+    = render "check_form"
+  .col-md-12.no-pad.bank-account-container.hide
+    = render "bank_account_form"
