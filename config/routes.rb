@@ -12,7 +12,7 @@ Tapsell::Application.routes.draw do
   
   # Checkout process 
   get "purchases/listings/:id" => "purchases#new", as: 'new_purchase'
-  post "purchases/listings/:id/" => "purchases#create_transaction", as: 'purchase'
+  post "purchases/listings/:id/" => "purchases#create_authorization", as: 'purchase'
   get "purchases/listings/:id/confirmation" => "purchases#purchase_confirmation", as: 'purchase_confirmation'
   
   # Payment settings

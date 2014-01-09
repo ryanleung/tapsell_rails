@@ -2,6 +2,7 @@ class ListingsController < ApplicationController
   before_action :signed_in_user, only: [:new, :create, :destroy]
 
   def new
+    @user = current_user
     @listing = Listing.new
   end
 

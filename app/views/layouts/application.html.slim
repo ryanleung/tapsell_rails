@@ -44,6 +44,8 @@ html
                   span.cus-caret
                 ul.dropdown-menu role="menu" aria-labelledby="dlabel"
                   li
+                    = link_to "Post Listing", new_listing_path
+                  li
                     = link_to "Profile", user_path(@user)
                   li
                     = link_to "Payment Settings", payment_settings_path(@user)

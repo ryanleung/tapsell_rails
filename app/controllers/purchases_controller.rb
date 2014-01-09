@@ -4,29 +4,30 @@ class PurchasesController < ApplicationController
     @listing = Listing.find(params[:id])
     if signed_in?
       render '_confirm_purchase'
-      @user = @current_user
+      @user = current_user
     else
       @user = User.new
       render '_sign_in_to_purchase'
     end
   end
 
-  def create_user
-    @user = User.new(user_params)
-    if @user.save
-      create_remember_token
-      sign_in @user
-      redirect_to new_purchase_path
-    else
-      render '_sign_in_to_purchase'
-    end    
-  end
-  
-  # Bit sloppy, should refactor this later to avoid repetitive code
-  # This should only be used if it's the first time a user is adding a credit card
-  def create_transaction
+  # Needs to be extended to deal with using existing cards
+  def create_authorization
     @listing = Listing.find(params[:id])
     @user = current_user
+    @seller = @listing.seller
+    if @user.credit_cards.nil? && @seller.bank_account.nil?
+      create_auth_first_card_no_merch
+    elsif !@user.credit_cards.nil? && @seller.bank_account.nil?
+      create_auth_add_card_no_merch
+    elsif @user.credit_cards.nil? && !@seller.bank_account.nil?
+      create_auth_first_card_with_merch
+    else
+      create_auth_add_card_with_merch
+    end
+  end
+
+  def create_auth_first_card_no_merch
     @credit_card = CreditCard.new
     
     result = Braintree::Transaction.sale(
@@ -66,15 +67,62 @@ class PurchasesController < ApplicationController
     redirect_to purchase_confirmation_path
   end
 
+  def create_auth_add_card_no_merch
+  end
+
+  def create_auth_first_card_with_merch
+    @credit_card = CreditCard.new
+    
+    result = Braintree::Transaction.create(
+    :amount => @listing.price,
+    :merchant_account_id => @seller.bank_account.id,
+    :credit_card => {
+      :token => @credit_card.id,
+      :number => params[:number],
+      :cvv => params[:cvv],
+      :expiration_month => params[:exp_month],
+      :expiration_year => params[:exp_year]
+    },
+    :customer => {
+      :email => @user.email,
+      :first_name => @user.first_name,
+      :last_name => @user.last_name,
+      :id => @user.id
+    },
+    :options => {
+      :submit_for_settlement => false,
+      :store_in_vault => true
+    }
+  )
+    @credit_card = @user.credit_cards.build(credit_card_params)
+    @credit_card.save
+
+    first_four = params[:number].to_s[0..3].to_i
+    last_four = params[:number].to_s[-4..-1].to_i
+
+    @credit_card.update_attribute(:starting_digits, first_four)
+    @credit_card.update_attribute(:ending_digits, last_four)
+    
+    @credit_card.update_attribute(:braintree_token, @credit_card.id)
+    @user.update_attribute(:braintree_id, @user.id)
+  
+    redirect_to purchase_confirmation_path
+  end
+
+  def create_auth_add_card_with_merch
+  end
+
+  def create_auth_existing_card_no_merch
+  end
+
+  def create_auth_existing_card_with_merch
+  end
+
   def purchase_confirmation
     @listing = Listing.find(params[:id])
   end
 
   private
-
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
-    end
 
     def credit_card_params
       params.permit(:exp_month, :exp_year, :card_type)

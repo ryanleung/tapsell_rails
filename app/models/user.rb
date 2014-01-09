@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	has_many :messages,
 	:through => :message_chains
   has_many :credit_cards
-  has_many :bank_accounts
+  has_one :bank_account
   has_many :checks
 
 	# Validations

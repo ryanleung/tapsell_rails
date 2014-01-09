@@ -17,7 +17,7 @@ col-md-8.box-container.left-container
       .col-md-12.select-payment-container
         .col-md-6.no-pad
           label.col-md-offset-4.pull-left Choose from your saved cards
-          = select_tag "choose_method", options_for_select(['Placeholder']), class: "payment-method form-control col-md-offset-4 pull-left", prompt: ""
+          = select_tag "choose_method", options_for_select(["Placeholder"]), class: "payment-method form-control col-md-offset-4 pull-left", prompt: ""
         .col-md-1.or
           | or
         .col-md-4.no-pad.text-left.add-new-card
