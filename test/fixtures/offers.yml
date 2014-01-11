@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  listing_id: 1
+  offer_amount: 1
+  accepted: false
+
+two:
+  listing_id: 1
+  offer_amount: 1
+  accepted: false

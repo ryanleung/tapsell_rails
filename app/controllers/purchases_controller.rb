@@ -12,6 +12,10 @@ class PurchasesController < ApplicationController
   end
 
   # Needs to be extended to deal with using existing cards
+  # Lots of repetitive code needs to be generalized
+  # Needs to be extended to work with offers instead of fixed prices
+  # Needs to be extended to handle primary cards
+
   def create_authorization
     @listing = Listing.find(params[:id])
     @user = current_user
@@ -68,6 +72,39 @@ class PurchasesController < ApplicationController
   end
 
   def create_auth_add_card_no_merch
+    @credit_card = CreditCard.new
+
+    # Not sure if this needs to be split up into separate create and update actions
+    result = Braintree::Transaction.sale(
+      :amount => @listing.price,
+      :credit_card => {
+        :token => @credit_card.id,
+        :number => params[:number],
+        :cvv => params[:cvv],
+        :expiration_month => params[:exp_month],
+        :expiration_year => params[:exp_year],
+      },
+      :customer => {
+        :id => @user.id
+      },
+      :options => {
+        :submit_for_settlement => false,
+        :store_in_vault => true
+      }
+    )
+
+    @credit_card = @user.credit_cards.build(credit_card_params)
+    @credit_card.save
+
+    first_four = params[:number].to_s[0..3].to_i
+    last_four = params[:number].to_s[-4..-1].to_i
+
+    @credit_card.update_attribute(:starting_digits, first_four)
+    @credit_card.update_attribute(:ending_digits, last_four)
+    
+    @credit_card.update_attribute(:braintree_token, @credit_card.id)
+  
+    redirect_to purchase_confirmation_path
   end
 
   def create_auth_first_card_with_merch
@@ -110,6 +147,37 @@ class PurchasesController < ApplicationController
   end
 
   def create_auth_add_card_with_merch
+    @credit_card = CreditCard.new
+
+    result = Braintree::Transaction.sale(
+      :amount => @listing.price,
+      :merchant_account_id => @seller.id,
+      :credit_card => {
+        :token => @credit_card.id,
+        :number => params[:number],
+        :cvv => params[:cvv],
+        :expiration_month => params[:exp_month],
+        :expiration_year => params[:exp_year],
+      },
+      :customer => {
+        :id => @user.id
+      },
+      :options => {
+        :submit_for_settlement => false,
+        :store_in_vault => true
+      }
+    )
+    
+    @credit_card = @user.credit_cards.build(credit_card_params)
+    @credit_card.save
+
+    first_four = params[:number].to_s[0..3].to_i
+    last_four = params[:number].to_s[-4..-1].to_i
+
+    @credit_card.update_attribute(:starting_digits, first_four)
+    @credit_card.update_attribute(:ending_digits, last_four)
+    
+    @credit_card.update_attribute(:braintree_token, @credit_card.id)
   end
 
   def create_auth_existing_card_no_merch

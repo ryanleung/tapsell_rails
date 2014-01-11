@@ -38,5 +38,6 @@ class BankAccountsController < ApplicationController
 
     def bank_account_params
       params.permit(:legal_first_name, :legal_last_name, :birth_day, :birth_month, :birth_year)
+    end
 
 end

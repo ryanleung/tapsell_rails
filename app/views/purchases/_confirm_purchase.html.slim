@@ -17,12 +17,12 @@ col-md-8.box-container.left-container
       .col-md-12.select-payment-container
         .col-md-6.no-pad
           label.col-md-offset-4.pull-left Choose from your saved cards
-          = select_tag "choose_method", options_for_select(["Placeholder"]), class: "payment-method form-control col-md-offset-4 pull-left", prompt: ""
+          = select_tag :chosen_card_id, options_for_select([["Placeholder"]]), class: "payment-method form-control col-md-offset-4 pull-left", prompt: ""
         .col-md-1.or
           | or
         .col-md-4.no-pad.text-left.add-new-card
-          = link_to "Add a new card", "javascript:void(0);", class: "aqua add-new-credit-card"
-          = link_to "Cancel add a new card", "javascript:void(0);", class: "red cancel-add-credit-card hide"
+          = link_to "Add New Card", "javascript:void(0);", class: "aqua add-new-credit-card"
+          = link_to "Cancel", "javascript:void(0);", class: "red cancel-add-credit-card hide"
       .col-md-12.select-payment-container.insert-credit-card-container.hide
         h3 ADD A NEW CREDITCARD
         = render "credit_card_form"
