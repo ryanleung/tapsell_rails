@@ -1,49 +1,52 @@
 = javascript_include_tag "landing_page"
 
-.container-fluid.main-image-container
-  .container
-    .row
+.container-fluid.main-image-container.pad-top-66.marg-top-15
       .col-sm-12
        .row
-        .col-sm-5.text-center
+        .col-sm-2.pad-bot-40.main-text
+        .col-md-4.text-center
           = image_tag "/assets/mobile.png", class: "col-xs-12"
-        .col-sm-7.pad-bot-66.main-text
-          h1.marg-top-0.intro Introducing Tapsell -
-          h1.no-marg.intro Your listings sold, in a week or less.
-          p.description Snap some pictures, add text, and post to Tapsell. Your listing will be pushed to Free & For slae and Craiglist, and incoming offer will be securely by credit cards.
+        .col-sm-4.pad-bot-66.main-text
+          h1.marg-top-30.intro Introducing Tapsell -
+          h1.marg-top-0.intro Your listings sold, in a week or less.
+          p.description.marg-top-25.intro Snap some pictures, add text, and post to Tapsell. Your listing will be pushed to Facebook and Craiglist, and incoming offers will be securely backed by credit cards.
           p.description It's your stuff tuned into cash, in just a few taps.
           p.description Oh, and the best apart? Our app is free.
-          .container-download-app
+          .container-download-app.marg-top-30.intro
             = link_to "javascript:void(0);" do
               = image_tag "/assets/app-icon.png"
-.container-fluid.bg-white
+        .col-sm-2.pad-bot-40.main-text
+
+.container-fluid.bg-white.pad-v-20
   .container.section
     .col-sm-12
       .row
         .col-sm-4.text-center.first-content-container
           .row
-            .first-content-image.col-sm-12
+            .first-content-image.col-sm-12.marg-top-35.intro
               = image_tag "/assets/mobile_sketch.png", class: "mobile"
-            .first-content-image.col-sm-12
+            .first-content-image.col-sm-12.marg-top-40.intro
               h3.text-center.col-sm-12 Post in 30 Seconds.
-              h4.text-center.col-sm-12 Our mobile app posts to facebook
-              h4.text-center.col-sm-12 Free & For Sale and Craiglist
+              h4.text-center.col-sm-12 Our mobile app posts to
+              h4.text-center.col-sm-12 Facebook and Craiglist
               h4.text-center.col-sm-12 with just a few taps.
         .col-sm-4.text-center.first-content-container
           .row
-            .first-content-image.col-sm-12
+            .first-content-image.col-sm-12.marg-top-40.intro
               = image_tag "/assets/checklist_sketch.png", class: "checklist"
+            .first-content-image.col-sm-12.marg-top-40.intro
             h3.text-center.col-sm-12 Filter Out Flakes.
-            h4.text-center.col-sm-12 Buyer back offers with credit
+            h4.text-center.col-sm-12 Buyers back offers with credit
             h4.text-center.col-sm-12 cards, eliminating flakes and
             h4.text-center.col-sm-12 having to read through emails.
         .col-sm-4.text-center.first-content-container
           .row
-            .first-content-image.col-sm-12
+            .first-content-image.col-sm-12.marg-top-0.intro
               = image_tag "/assets/lamp_sketch.png", class: "lamp"
-            h3.text-center.col-sm-12 Know You Buyer.
-            h4.text-center.col-sm-12 Profiles include reviews, real names,
-            h4.text-center.col-sm-12 and Facebook integration - so you
+            .first-content-image.col-sm-12.marg-top-40.intro
+            h3.text-center.col-sm-12 Know Your Buyer.
+            h4.text-center.col-sm-12 Profiles include reviews and
+            h4.text-center.col-sm-12 Facebook integration, so you
             h4.text-center.col-sm-12 always know who you're meeting.
 .container.section-2.text-center
   h1 How Tapsell works:
@@ -53,8 +56,8 @@
       .content-container
         h3.title 1. Create a free listing
         h3.title on Tapsell.
-        p.description.marg-top-15 Listing post to Free & For Sale and 
-        p.description Craiglist too, getting you in front of as 
+        p.description.marg-top-15 The listing will post to Free & For Sale
+        p.description and Craiglist too, getting you in front of as 
         p.description many buyers as possible. 
     .find-more-stuff-text
       .content-container
@@ -63,14 +66,14 @@
     .buyer-discover-text
       .content-container.pull-right
         h3.title 2. Buyers discover your items.
-        p.description Buyer are directed to your Tapsell page and 
+        p.description Buyers are directed to your Tapsell page and 
         p.description make offers backed by their credit cards. 
     .celebrate-text
       .content-container
         h3.title 4. Celebrate.
-        p.description Once you've exchanged the item
+        p.description Once you've exchanged the item,
         p.description we put a little (or a lot) more moolah in
-        p.description your packet via check or direct deposit. 
+        p.description your pocket via check or direct deposit. 
     .know-buyer-text
       .content-container.pull-right
         h3.title 3. Get to know your buyer.
@@ -81,5 +84,5 @@
 .container.section-3.text-center
   h1 Enjoy, worry-free.
   h4 Our team is available 24/7 to support every sale and ensure you have a satisfactory
-  h4 experiecnce -- we're happy to assist with you any questions you may have.
+  h4 experiecnce -- we're happy to assist you with any questions you may have.
   h4 We'd also love to hear about your experiences with selling stuff through Tapsell!
