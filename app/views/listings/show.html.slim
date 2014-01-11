@@ -42,7 +42,7 @@
           h3.text-center= @listing.seller.first_name
           .avatar-container.text-center
             = link_to "javascript:void(0);" do
-              - if @listing.seller.avatar_url.blank?
+              - if @listing.seller.image.nil?
                 = image_tag "/assets/no_images.png", class: "img-circle"
           .user-location-container
             h4.location.text-center
