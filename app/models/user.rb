@@ -15,12 +15,12 @@ class User < ActiveRecord::Base
 	has_many :selling_listings, :class_name => "Listing", :foreign_key => :seller_id
   has_many :buying_listings, :class_name => "Listing", :foreign_key => :buyer_id
   has_one :image
-	has_many :message_chains
-	has_many :messages,
-	:through => :message_chains
   has_many :credit_cards
   has_one :bank_account
   has_many :checks
+  # Use the method message_chains to get all message chains for user
+  has_many :seller_message_chains, :class_name => "MessageChain", :foreign_key => :seller_id
+  has_many :buyer_message_chains, :class_name => "MessageChain", :foreign_key => :buyer_id
 
 	# Validations
 	# -----------
@@ -96,6 +96,11 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  def message_chains
+    msg_chains = self.seller_message_chains + self.buyer_message_chains
+    return msg_chains.sort_by(&:updated_at)
   end
 
 	# Class Methods

@@ -97,10 +97,28 @@ ActiveRecord::Schema.define(version: 20140111070635) do
     t.datetime "updated_at"
   end
 
+
   create_table "offers", force: true do |t|
     t.integer  "listing_id"
     t.integer  "offer_amount"
     t.boolean  "accepted"
+  end
+
+  create_table "message_chains", force: true do |t|
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.integer  "listing_id"
+    t.boolean  "buyer_dirty",  default: false, null: false
+    t.boolean  "seller_dirty", default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.string   "content"
+    t.integer  "message_chain_id"
+    t.integer  "sender_id"
+    t.string   "type",             default: "default"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
