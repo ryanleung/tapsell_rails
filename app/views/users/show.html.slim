@@ -16,10 +16,10 @@
               .col-md-12.text-center.well-label-name
                 h2= "#{current_user.first_name} #{current_user.last_name}"
               .col-md-12.profile-live-view-image
-                - if current_user.avatar_url.blank?
+                - if current_user.image.nil?
                   .avatar-profile.img-circle style="background-image: url('/assets/no_avatar.png');"
                 - else
-                  .avatar-profile.img-circle style="background-image: url('#{current_user.avatar.url}');"
+                  .avatar-profile.img-circle style="background-image: url('#{current_user.image.url}');"
               .col-md-12.text-center.pad-location
                 .row
                   .col-md-12.text-center
