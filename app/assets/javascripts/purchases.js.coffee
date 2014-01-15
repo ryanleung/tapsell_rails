@@ -11,7 +11,7 @@ $(document).ready ->
     decimal: false
     negative: false
 
-  $(".add-new-credit-card").on "click", ->
+  $(".add-new-credit-card").click ->
     $(this).fadeOut("slow").addClass "hide"
     $(".insert-credit-card-container").fadeIn("slow").removeClass "hide"
     $(".cancel-add-credit-card").fadeIn("slow").removeClass "hide"
