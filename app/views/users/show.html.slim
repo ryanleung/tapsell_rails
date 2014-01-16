@@ -9,9 +9,9 @@
       .col-md-12
         .row
           .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.visible-md.visible-sm.visible-xs style="margin-bottom: 15px;"
-            = link_to "PROFILE", "#", class: "btn pros-link-active"
+            = link_to "PROFILE", "javascript:void(0);", class: "btn pros-link-active"
             = link_to "PAYMENT SETTINGS", payment_settings_path, class: "btn"
-          .col-lg-4.col-push-8.box-container
+          .col-lg-4.col-push-8.box-container.pad-bot-50
             .row
               .col-md-12.text-center.well-label-name
                 h2= "#{current_user.first_name} #{current_user.last_name}"
@@ -37,9 +37,9 @@
               .col-md-12.box-container.marg-top-30.no-pad
                 .row
                   .col-md-12
-                    ul.list-inline.profile-tab-menu                 
+                    ul.list-inline.profile-tab-menu
                       li.list-inline-item
-                        = link_to "EDIT PROFILE", "javascript:void(0);", class: "edit-form-link"    
+                        = link_to "EDIT PROFILE", "javascript:void(0);", class: "edit-form-link"
                       li.list-inline-item
                         = link_to "CHANGE PASSWORD", "javascript:void(0);", class: "change-pass-form-link"
                   .col-md-12
