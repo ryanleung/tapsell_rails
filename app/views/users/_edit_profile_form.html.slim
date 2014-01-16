@@ -4,39 +4,39 @@
     label.dark-grey About Me
     #profile-about-charnum.tab-content-item.border-medium
       = f.input :bio, input_html: {class: "form-control input-about", maxlength: "200"}, label: false
-      .col.md-12
+      .col-sm-12
         .row
-          .col-md-6
+          .col-sm-6
             .text-max
               | Maximum Character: 200
-          .col-md-6
+          .col-sm-6
             .text-remaining.pull-right
   .tab-content-item
-    .col-md-6.no-pad
+    .col-sm-6.no-pad
       .form-group
         label.dark-grey First Name
         - if current_user.first_name.nil?
           = f.input :first_name, :required => true, placeholder: "Conan", input_html: {class: "form-control input-full-name col-md-9"}, label: false
         - else
           = f.input :first_name, :required => true, input_html: {class: "form-control input-full-name col-md-9", value: current_user.first_name}, label: false
-    .col-md-6.no-pad
+    .col-sm-6.no-pad
       .form-group
         label.dark-grey Last Name
         - if current_user.last_name.nil?
           = f.input :last_name, :required => true, placeholder: "O'Brien", input_html: {class: "form-control input-full-name col-md-9"}, label: false
         - else
           = f.input :last_name, :required => true, input_html: {class: "form-control input-full-name col-md-9", value: current_user.last_name}, label: false
-    .col-md-6.no-pad
+    .col-sm-6.no-pad
       .form-group
         label.dark-grey Email
         - if current_user.email.nil?
-          = f.input :email, :required => true, placeholder: "conan@gmail.com", input_html: {class: "form-control input-full-name col-md-9"}, label: false
+          = f.input :email, :required => true, placeholder: "conan@gmail.com", input_html: {class: "form-control input col-md-9"}, label: false
         - else
-          = f.input :email, :required => true, input_html: {class: "form-control input-full-name col-md-9", value: current_user.email}, label: false
+          = f.input :email, :required => true, input_html: {class: "form-control input col-md-9", value: current_user.email}, label: false
 
   .pull-left.wid-100p
     .row
-      .col-md-12
+      .col-sm-12
         ul.list-inline.profile-tab-menu.pull-right
           li.list-inline-item
             = link_to "Cancel", "javascript:void(0);", class: "cancel-edit-profile"
