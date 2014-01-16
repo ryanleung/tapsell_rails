@@ -28,7 +28,7 @@ Tapsell::Application.routes.draw do
   # Static page routes
   ##################################
 
-  root 'static_pages#landing'
+  root :to => 'users#root_page_router'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'
   match '/jobs', to: 'static_pages#jobs', via: 'get'
