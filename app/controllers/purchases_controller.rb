@@ -187,6 +187,7 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_confirmation
+    @user = current_user
     @listing = Listing.find(params[:id])
   end
 

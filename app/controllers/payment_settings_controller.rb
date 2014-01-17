@@ -4,6 +4,7 @@ class PaymentSettingsController < ApplicationController
     @user = current_user
     @check = Check.new
     @bank_account = BankAccount.new
+    @address = Address.new
   end
 
 end

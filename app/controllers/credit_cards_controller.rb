@@ -10,13 +10,13 @@ class CreditCardsController < ApplicationController
     redirect_to payment_settings_path
   end
 
-
+  # Not working.  Need access to Braintree result to debug
   def create_first_card
     @user = current_user
     @credit_card = CreditCard.new
 
     result = Braintree::Customer.create(
-    :id => @user.id
+    :id => @user.id,
     :first_name => @user.first_name,
     :last_name => @user.last_name,
     :email => @user.email,
@@ -42,12 +42,14 @@ class CreditCardsController < ApplicationController
     @user.update_attribute(:braintree_id, @user.id)
   end
 
+  # Mostly working except for comment below
   def create_additional_card
     @user = current_user
     @credit_card = CreditCard.new
 
     result = Braintree::CreditCard.create(
       :customer_id => @user.id,
+      # This token isn't getting passed in for some reason
       :token => @credit_card.id,
       :number => params[:number],
       :expiration_month => params[:exp_month],

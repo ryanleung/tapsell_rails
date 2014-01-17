@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111070635) do
+ActiveRecord::Schema.define(version: 20140117131151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140111070635) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "check_id"
   end
 
   create_table "api_sessions", force: true do |t|
@@ -97,13 +98,6 @@ ActiveRecord::Schema.define(version: 20140111070635) do
     t.datetime "updated_at"
   end
 
-
-  create_table "offers", force: true do |t|
-    t.integer  "listing_id"
-    t.integer  "offer_amount"
-    t.boolean  "accepted"
-  end
-
   create_table "message_chains", force: true do |t|
     t.integer  "buyer_id"
     t.integer  "seller_id"
@@ -119,6 +113,14 @@ ActiveRecord::Schema.define(version: 20140111070635) do
     t.integer  "message_chain_id"
     t.integer  "sender_id"
     t.string   "type",             default: "default"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "offers", force: true do |t|
+    t.integer  "listing_id"
+    t.integer  "offer_amount"
+    t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

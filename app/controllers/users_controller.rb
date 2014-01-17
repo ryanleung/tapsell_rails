@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:show, :update]
 
   def root_page_router
-    
     if signed_in?
       @user = current_user
       render 'show'
