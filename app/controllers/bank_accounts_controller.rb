@@ -2,6 +2,9 @@ class BankAccountsController < ApplicationController
   
   def create
     @user = current_user
+    @address = Address.new
+    @address = @user.addresses.build(address_params)
+    @address.save
     @bank_account = BankAccount.new
     @bank_account = @user.bank_accounts.build(bank_account_params)
     @bank_account.save
@@ -13,10 +16,10 @@ class BankAccountsController < ApplicationController
       :email => @user.email,
       :date_of_birth => "1981-11-19",
       :address => {
-        :street_address => "111 Main St",
-        :locality => "Chicago",
-        :region => "IL",
-        :postal_code => "60622"
+        :street_address => params[:street_address],
+        :locality => params[:locality],
+        :region => params[:region],
+        :postal_code => params[:postal_code]
       }
     },
     :funding => {
@@ -38,6 +41,10 @@ class BankAccountsController < ApplicationController
 
     def bank_account_params
       params.permit(:legal_first_name, :legal_last_name, :birth_day, :birth_month, :birth_year)
+    end
+
+    def address_params
+      params.permit(:street_address, :extended_address, :locality, :region, :postal_code)
     end
 
 end

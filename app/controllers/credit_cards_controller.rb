@@ -10,7 +10,7 @@ class CreditCardsController < ApplicationController
     redirect_to payment_settings_path
   end
 
-  # Not working.  Need access to Braintree result to debug
+  # Not working.  Need access to Braintree result to debu
   def create_first_card
     @user = current_user
     @credit_card = CreditCard.new
