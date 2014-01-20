@@ -9,14 +9,14 @@ setPreviewImage = (watermarkfile, elem) ->
   elem.find(".product-live-view-image").html newImage
 
 $(document).ready ->
-  $("#product_address").geocomplete
-    details: "form"
-    map: ".map_canvas"
-    location: "SF"
-    mapOptions:
-      zoom: 100
-    markerOptions:
-      draggable: true
+  # $("#product_address").geocomplete
+  #   details: "form"
+  #   map: ".map_canvas"
+  #   location: "SF"
+  #   mapOptions:
+  #     zoom: 100
+  #   markerOptions:
+  #     draggable: true
 
   $("#product_images_attributes_0_file").bind "change", (evt) ->
     evt.preventDefault()

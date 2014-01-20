@@ -20,7 +20,7 @@
 			background-size: 100% auto;
 			margin: 0 auto;
 		}
-	}		
+	}
 }
 .welcome-container {
 	background-color: @aqua;
@@ -113,6 +113,14 @@
 
 .profile-right-container {
 	margin-left: 25px;
+	.profile-right-content {
+		height: 745px;
+		overflow: hidden;
+		.content-container {
+			overflow: hidden;
+			height: 653px;
+		}
+	}
 	.profile-tab-menu {
 		padding: 20px;
 		font-family: @futuraextended;
@@ -296,3 +304,38 @@
 	padding-bottom: 14%;
 }
 
+.edit-profile-container, .content-container, .edit-password-container {
+	position: absolute;
+	.transition;
+}
+
+.content-container {
+	margin-left: 0;
+	opacity: 1;
+}
+
+.edit-profile-container {
+	margin-left: 100%;
+	opacity: 0;
+}
+
+.edit-password-container {
+	margin-left: 200%;
+	opacity: 0;
+}
+
+.edit-profile-container-show {
+	opacity: 1 !important;
+	position: relative;
+	margin-left: 0;
+}
+
+.content-container-hide {
+	margin-left: -100%;
+	opacity: 0;
+}
+
+.edit-password-container-show {
+	margin-left: 0;
+	opacity: 1;
+}
