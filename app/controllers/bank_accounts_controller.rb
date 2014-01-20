@@ -1,5 +1,6 @@
 class BankAccountsController < ApplicationController
   
+  # Build and new might be redundant, test later with removing one or the other
   def create
     @user = current_user
     @address = Address.new

@@ -15,23 +15,24 @@ class PurchasesController < ApplicationController
   # Lots of repetitive code needs to be generalized
   # Needs to be extended to work with offers instead of fixed prices
   # Needs to be extended to handle primary cards
+  # Needs to be extended to handle selected payout methods
 
   def create_authorization
     @listing = Listing.find(params[:id])
     @user = current_user
     @seller = @listing.seller
     if @user.credit_cards.nil? && @seller.bank_account.nil?
-      create_auth_first_card_no_merch
+      first_card_no_merch
     elsif !@user.credit_cards.nil? && @seller.bank_account.nil?
-      create_auth_add_card_no_merch
+      add_card_no_merch
     elsif @user.credit_cards.nil? && !@seller.bank_account.nil?
-      create_auth_first_card_with_merch
+      first_card_with_merch
     else
-      create_auth_add_card_with_merch
+      add_card_with_merch
     end
   end
 
-  def create_auth_first_card_no_merch
+  def first_card_no_merch
     @credit_card = CreditCard.new
     
     result = Braintree::Transaction.sale(
@@ -71,7 +72,7 @@ class PurchasesController < ApplicationController
     redirect_to purchase_confirmation_path
   end
 
-  def create_auth_add_card_no_merch
+  def add_card_no_merch
     @credit_card = CreditCard.new
 
     # Not sure if this needs to be split up into separate create and update actions
@@ -107,7 +108,7 @@ class PurchasesController < ApplicationController
     redirect_to purchase_confirmation_path
   end
 
-  def create_auth_first_card_with_merch
+  def first_card_with_merch
     @credit_card = CreditCard.new
     
     result = Braintree::Transaction.create(
@@ -146,7 +147,7 @@ class PurchasesController < ApplicationController
     redirect_to purchase_confirmation_path
   end
 
-  def create_auth_add_card_with_merch
+  def add_card_with_merch
     @credit_card = CreditCard.new
 
     result = Braintree::Transaction.sale(
@@ -180,10 +181,10 @@ class PurchasesController < ApplicationController
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
   end
 
-  def create_auth_existing_card_no_merch
+  def existing_card_no_merch
   end
 
-  def create_auth_existing_card_with_merch
+  def existing_card_with_merch
   end
 
   def purchase_confirmation
