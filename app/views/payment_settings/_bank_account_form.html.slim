@@ -12,23 +12,55 @@
             = f.input :account_type, input_html: {class: "form-control", required: true}
       .col-md-12
         .row
-          .col-md-12
-            label Account Holder's Legal Name
-          .col-md-4
-            = text_field_tag "bank_account[first_name]", "",class: "form-control", required: true, placeholder: "First"
-          .col-md-4
-            = text_field_tag "bank_account[middle_name]", "",class: "form-control", required: true, placeholder: "Middle"
-          .col-md-4
-            = text_field_tag "bank_account[last_name]", "",class: "form-control", required: true, placeholder: "Last"
+          .col-md-12.no-pad
+            .col-md-6
+              .form-group
+                label Account Holder's Legal Name
+                = text_field_tag "legal_first_name", "",class: "form-control", required: true, placeholder: "First Name"
+            .col-md-6
+              .form-group
+                label
+                  | &nbsp;
+                = text_field_tag "legal_last_name", "",class: "form-control", required: true, placeholder: "Last Name"
+          .col-md-12.no-pad
+            .col-md-4
+              .form-group
+                label Birthday
+                = select_tag :birth_day, options_for_select(1..30), class: "form-control", prompt: "DD"
+            .col-md-4
+              .form-group
+                label
+                  | &nbsp;
+                = select_tag :birth_month, options_for_select(1..12), class: "form-control", prompt: "MM"
+            .col-md-4
+              .form-group
+                label
+                  | &nbsp;
+                = select_tag :birth_year, options_for_select((Date.today.year).upto(10.years.from_now.year)), class: "form-control", prompt: "YYYY", required: true
+          .col-md-7
+            .form-group
+              label Street Address
+              = text_field_tag "locality", "", class: "form-control", required: true
       .col-md-12
         .row
           .col-md-5
             .row
               // Revise these
               .col-md-12
-                = f.input :ending_digits, as: :string, input_html: {class: "form-control account-number", required: true}
+                .form-group
+                  label City
+                  = text_field_tag "city", "", class: "form-control", required: true
               .col-md-12
-                = f.input :ending_digits, as: :string, input_html: {class: "form-control routing-number", required: true}
+                .form-group
+                  label State
+                  = text_field_tag "region", "", class: "form-control", required: true
+              .col-md-12
+                .form-group
+                  label Zip Code
+                  = text_field_tag "postalcode", "", class: "form-control", required: true
+                / = f.input :ending_digits, as: :string, input_html: {class: "form-control account-number", required: true}
+              .col-md-12
+                / = f.input :ending_digits, as: :string, input_html: {class: "form-control routing-number", required: true}
           .col-md-7.check-information
             .row
               .col-md-12
@@ -40,20 +72,20 @@
                   | &nbsp; for a list af major bank routing numbers.
       .col-md-12
         .row
-          .col-md-5
-            label House Address
-
-          .col-md-3
-            label Apt./Suite No.
-            = text_field_tag "bank_account[suite_number]", "", class: "form-control"
+          .col-md-6
+            label Account Number
+            = text_field_tag "account_number", "", class: "form-control"
+          .col-md-6
+            label Routing Number
+            = text_field_tag "routing_number", "", class: "form-control"
       .col-md-12
         .row
           .col-md-4
           // Add back location fields here
           .col-md-4
-            
+
           .col-md-3
-            
+
         .row
           .col-md-12
             ul.list-inline.profile-tab-menu.pull-right
