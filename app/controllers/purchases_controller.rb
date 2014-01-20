@@ -17,21 +17,16 @@ class PurchasesController < ApplicationController
   # Needs to be extended to handle primary cards
   # Needs to be extended to handle selected payout methods
 
+  # Testing purposes only
   def create_authorization
     @listing = Listing.find(params[:id])
     @user = current_user
     @seller = @listing.seller
-    if @user.credit_cards.nil? && @seller.bank_account.nil?
-      first_card_no_merch
-    elsif !@user.credit_cards.nil? && @seller.bank_account.nil?
-      add_card_no_merch
-    elsif @user.credit_cards.nil? && !@seller.bank_account.nil?
-      first_card_with_merch
-    else
-      add_card_with_merch
-    end
+    
+    add_card_no_merch
   end
 
+  # Working except for cc token
   def first_card_no_merch
     @credit_card = CreditCard.new
     
@@ -64,14 +59,15 @@ class PurchasesController < ApplicationController
     @credit_card.update_attribute(:starting_digits, first_four)
     @credit_card.update_attribute(:ending_digits, last_four)
     
-    # Should potentially be modified to pull the values from Braintree server
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
     @user.update_attribute(:braintree_id, @user.id)
+    @user.update_attribute(:primary_card_id, @credit_card.id)
   
     # Need to extend this so it only redirects if the purchase is successful
     redirect_to purchase_confirmation_path
   end
 
+  # Not working
   def add_card_no_merch
     @credit_card = CreditCard.new
 
@@ -106,6 +102,9 @@ class PurchasesController < ApplicationController
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
   
     redirect_to purchase_confirmation_path
+  end
+
+  def existing_card_no_merch
   end
 
   def first_card_with_merch
@@ -143,6 +142,7 @@ class PurchasesController < ApplicationController
     
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
     @user.update_attribute(:braintree_id, @user.id)
+    @user.update_attribute(:primary_card_id, @credit_card.id)
   
     redirect_to purchase_confirmation_path
   end
@@ -179,9 +179,6 @@ class PurchasesController < ApplicationController
     @credit_card.update_attribute(:ending_digits, last_four)
     
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
-  end
-
-  def existing_card_no_merch
   end
 
   def existing_card_with_merch

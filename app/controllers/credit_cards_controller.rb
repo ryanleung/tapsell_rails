@@ -11,7 +11,7 @@ class CreditCardsController < ApplicationController
     redirect_to payment_settings_path
   end
 
-  # Working, except it isn't setting cc token
+  # Working, except for cc token
   def create_first_card
     @user = current_user
     @credit_card = CreditCard.new
@@ -44,7 +44,7 @@ class CreditCardsController < ApplicationController
     @user.update_attribute(:primary_card_id, @credit_card.id)
   end
 
-  # Working, except for setting cc token
+  # Working, except for cc token
   def create_additional_card
     @user = current_user
     @credit_card = CreditCard.new
