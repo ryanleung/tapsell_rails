@@ -17,7 +17,7 @@
         .col-xs-12.select-payment-container
           .col-xs-6.no-pad
             label.col-sm-offset-4.pull-left Choose from your saved cards
-            = select_tag :chosen_card_id, options_for_select([["Placeholder"]]), class: "payment-method form-control col-sm-offset-4 pull-left", prompt: ""
+            = select_tag :chosen_card_id, options_for_select(current_user.credit_cards.collect{ |card| ["#{card.card_type}" + " " + "#{card.ending_digits}", card.id] }), class: "payment-method form-control col-sm-offset-4 pull-left", prompt: " "
           .col-xs-1.or
             | or
           .col-xs-4.no-pad.text-left.add-new-card
