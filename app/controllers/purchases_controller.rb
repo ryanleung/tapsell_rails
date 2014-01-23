@@ -72,7 +72,36 @@ class PurchasesController < ApplicationController
     @credit_card = CreditCard.new
 
     # Not sure if this needs to be split up into separate create and update actions
-    result = Braintree::Transaction.sale(
+    #result = Braintree::Transaction.sale(
+    #  :amount => @listing.price,
+    #  :credit_card => {
+    #    :token => @credit_card.id,
+    #    :number => params[:number],
+    #    :cvv => params[:cvv],
+    #    :expiration_month => params[:exp_month],
+    #    :expiration_year => params[:exp_year],
+    #  },
+    #  :customer => {
+    #    :id => @user.id
+    #  },
+    #  :options => {
+    #    :submit_for_settlement => false,
+    #    :store_in_vault => true
+    #  }
+    #)
+
+    # This keeps failing and I don't know why
+    result = Braintree::CreditCard.create(
+      :customer_id => @user.id,
+      :number => params[:number],
+      :expiration_month => params[:exp_year],
+      :expiration_year => params[:exp_month]
+    )
+
+    transaction = result.success?
+
+    # This succeeds
+    result2 = Braintree::Transaction.sale(
       :amount => @listing.price,
       :credit_card => {
         :token => @credit_card.id,
@@ -80,26 +109,26 @@ class PurchasesController < ApplicationController
         :cvv => params[:cvv],
         :expiration_month => params[:exp_month],
         :expiration_year => params[:exp_year],
-      },
-      :customer => {
-        :id => @user.id
-      },
+        },
       :options => {
         :submit_for_settlement => false,
         :store_in_vault => true
       }
     )
 
-    @credit_card = @user.credit_cards.build(credit_card_params)
-    @credit_card.save
+    transaction2 = result2.success?
+
+
+    #@credit_card = @user.credit_cards.build(credit_card_params)
+    #@credit_card.save
 
     first_four = params[:number].to_s[0..3].to_i
     last_four = params[:number].to_s[-4..-1].to_i
 
-    @credit_card.update_attribute(:starting_digits, first_four)
-    @credit_card.update_attribute(:ending_digits, last_four)
+    #@credit_card.update_attribute(:starting_digits, first_four)
+    #@credit_card.update_attribute(:ending_digits, last_four)
     
-    @credit_card.update_attribute(:braintree_token, @credit_card.id)
+    #@credit_card.update_attribute(:braintree_token, @credit_card.id)
   
     redirect_to purchase_confirmation_path
   end
