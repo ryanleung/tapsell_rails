@@ -5,6 +5,7 @@ class PaymentSettingsController < ApplicationController
     @check = Check.new
     @bank_account = BankAccount.new
     @credit_cards = CreditCard.order("created_at desc")
+    @address = Address.new
   end
 
 end

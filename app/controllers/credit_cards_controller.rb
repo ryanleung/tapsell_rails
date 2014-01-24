@@ -1,8 +1,9 @@
 class CreditCardsController < ApplicationController
 
+  # Working
   def create_card
     @user = current_user
-    if @user.credit_cards.nil?
+    if @user.credit_cards.blank?
       create_first_card
     else
       create_additional_card
@@ -10,13 +11,13 @@ class CreditCardsController < ApplicationController
     redirect_to payment_settings_path
   end
 
-
+  # Working, except for cc token
   def create_first_card
     @user = current_user
     @credit_card = CreditCard.new
 
     result = Braintree::Customer.create(
-    :id => @user.id
+    :id => @user.id,
     :first_name => @user.first_name,
     :last_name => @user.last_name,
     :email => @user.email,
@@ -40,8 +41,10 @@ class CreditCardsController < ApplicationController
 
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
     @user.update_attribute(:braintree_id, @user.id)
+    @user.update_attribute(:primary_card_id, @credit_card.id)
   end
 
+  # Working, except for cc token
   def create_additional_card
     @user = current_user
     @credit_card = CreditCard.new

@@ -8,10 +8,10 @@
     .row
       .col-sm-12
         .row
-          .col-sm-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.visible-md.visible-sm.visible-xs style="margin-bottom: 15px;"
-            = link_to "PROFILE", "javascript:void(0);", class: "btn pros-link-active"
-            = link_to "PAYMENT SETTINGS", payment_settings_path, class: "btn"
-          .col-lg-4.col-push-8.box-container.pad-bot-50
+          .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.visible-md.visible-sm.visible-xs style="margin-bottom: 15px;"
+            = link_to "PROFILE", "#", class: "btn pros-link-active"
+            = link_to "PAYMENT SETTINGS", payment_settings_path(@user), class: "btn"
+          .col-lg-4.col-push-8.box-container
             .row
               .col-sm-12.text-center.well-label-name
                 h2= "#{current_user.first_name} #{current_user.last_name}"
@@ -33,8 +33,8 @@
             .row
               .col-sm-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.hidden-md.hidden-sm.hidden-xs
                 = link_to "PROFILE", "#", class: "btn pros-link-active"
-                = link_to "PAYMENT SETTINGS", payment_settings_path, class: "btn"
-              .col-sm-12.box-container.marg-top-30.no-pad.profile-right-content
+                = link_to "PAYMENT SETTINGS", payment_settings_path(@user), class: "btn"
+              .col-md-12.box-container.marg-top-30.no-pad
                 .row
                   .col-sm-12
                     ul.list-inline.profile-tab-menu
