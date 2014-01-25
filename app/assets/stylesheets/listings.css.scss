@@ -1,6 +1,8 @@
 @import "global.css";
 .header-title-container {
 	background-color: #ADCECD;
+	-webkit-box-shadow: inset 0 0 5px #618D8C;
+	-moz-box-shadow: inset 0 0 5px #618D8C;
 	box-shadow: inset 0 0 5px #618D8C;
 	h1 {
 		color: #fff;
@@ -8,6 +10,37 @@
 		font-weight: 100;
 		font-size: 48px;
 		margin-bottom: 25px;
+		margin-top: 45px;
+	}
+	.input-group {
+		width: 490px;
+		margin: 30px auto 40px auto;
+		#search {
+			height: 50px;
+			font-size: 18px;
+			border-right: none;
+		}
+		#search::-webkit-input-placeholder {
+			font-size: 18px;
+			line-height: 25px;
+			overflow: visible;
+			-webkit-font-shadow: inset 0 0 1px #fff;
+			font-shadow: inset 0 0 1px #fff;
+			color: #dedede !important;
+		}
+		.input-group-addon {
+			color: #dedede;
+			border-left: none;
+			background: #fff;
+			padding: 0;
+			.glyphicon-search {
+				padding: 0px 15px;
+				border-left: solid 1px #dedede;
+				height: 31px;
+				font-size: 28px;
+				margin-top: 1px;
+			}
+		}
 	}
 }
 
