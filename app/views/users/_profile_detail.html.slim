@@ -17,10 +17,5 @@
       - unless current_user.email.nil?
         p= current_user.email
     .col-sm-6.no-pad
-      label My Location
-      - location = current_user.location.try
-        unless location.nil?
-        p= location
-    .col-sm-6.no-pad
       label Phone number
       p= "Number goes here"

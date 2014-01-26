@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
+
+  before_filter :require_user
+
   def landing
   end
 
@@ -30,5 +33,9 @@ class StaticPagesController < ApplicationController
   end
 
   def buyer_guarantee
+  end
+
+  def require_user
+    @user = current_user
   end
 end

@@ -45,6 +45,8 @@ GEM
       uuidtools (~> 2.1)
     aws_cf_signer (0.1.2)
     bcrypt-ruby (3.0.1)
+    bootstrap-will_paginate (0.0.9)
+      will_paginate
     bootstrap3-rails (3.0.1)
       rails (~> 4.0.0)
     braintree (2.28.0)
@@ -175,6 +177,7 @@ GEM
       rack
       raindrops (~> 0.7)
     uuidtools (2.1.3)
+    will_paginate (3.0.4)
 
 PLATFORMS
   ruby
@@ -182,6 +185,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   bcrypt-ruby (~> 3.0.1)
+  bootstrap-will_paginate (= 0.0.9)
   bootstrap3-rails
   braintree
   carrierwave
@@ -203,3 +207,4 @@ DEPENDENCIES
   therubyracer
   uglifier (>= 1.3.0)
   unicorn
+  will_paginate (= 3.0.4)
