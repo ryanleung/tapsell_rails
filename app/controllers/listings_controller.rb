@@ -1,6 +1,8 @@
 class ListingsController < ApplicationController
   before_action :signed_in_user, only: [:new, :create, :destroy]
 
+  def index; end
+
   def new
     @user = current_user
     @listing = Listing.new
@@ -26,7 +28,7 @@ class ListingsController < ApplicationController
   end
 
 private
-  
+
   def listing_params
     params.require(:listing).permit(:title, :category, :info, :post_to_craigslist, :post_to_fb_timeline, :post_to_fb_timeline, :price)
   end

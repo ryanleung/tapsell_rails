@@ -1,17 +1,22 @@
 $(document).ready ->
-  $(".purchase-singin").click ->
-    $(".purchase-signin-form").removeClass("hide").fadeIn()
-    $(".purchase-signup-form").addClass("hide").fadeOut()
+  $(".purchase-signin").click ->
+    $(".purchase-signin-container").addClass "purchase-signin-container-show"
+    $(".purchase-signup-container").addClass "purchase-signup-container-hide"
+    $(".sign-up-footer").addClass "sign-up-footer-hide"
+    $(".sign-in-footer").addClass "sign-in-footer-show"
 
-  $(".purchase-singup").click ->
-    $(".purchase-signup-form").removeClass("hide").fadeIn()
-    $(".purchase-signin-form").addClass("hide").fadeOut()
+  $(".purchase-signup").click ->
+    $(".purchase-signin-container").removeClass "purchase-signin-container-show"
+    $(".purchase-signup-container").removeClass "purchase-signup-container-hide"
+    $(".sign-up-footer").removeClass "sign-up-footer-hide"
+    $(".sign-in-footer").removeClass "sign-in-footer-show"
+
 
   $(".security-number, .card-number, .house-number, .billing-zipcode").numeric
     decimal: false
     negative: false
 
-  $(".add-new-credit-card").on "click", ->
+  $(".add-new-credit-card").click ->
     $(this).fadeOut("slow").addClass "hide"
     $(".insert-credit-card-container").fadeIn("slow").removeClass "hide"
     $(".cancel-add-credit-card").fadeIn("slow").removeClass "hide"
@@ -21,15 +26,5 @@ $(document).ready ->
     $(".insert-credit-card-container").fadeOut("slow").addClass "hide"
     $(".add-new-credit-card").fadeIn("slow").removeClass "hide"
 
-  $(".purchase-singin").on "click", ->
-    $(".purchase-signin-container").fadeIn("slow").removeClass "hide"
-    $(".sign-in-footer").fadeIn("slow").removeClass "hide"
-    $(".purchase-signup-container").fadeOut("slow").addClass "hide"
-    $(".sign-up-footer").fadeOut("slow").addClass "hide"
 
-  $(".purchase-singup").on "click", ->
-    $(".purchase-signup-container").fadeIn("slow").removeClass "hide"
-    $(".sign-up-footer").fadeIn("slow").removeClass "hide"
-    $(".purchase-signin-container").fadeOut("slow").addClass "hide"
-    $(".sign-in-footer").fadeOut("slow").addClass "hide"
 

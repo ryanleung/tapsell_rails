@@ -15,23 +15,19 @@ class PurchasesController < ApplicationController
   # Lots of repetitive code needs to be generalized
   # Needs to be extended to work with offers instead of fixed prices
   # Needs to be extended to handle primary cards
+  # Needs to be extended to handle selected payout methods
 
+  # Testing purposes only
   def create_authorization
     @listing = Listing.find(params[:id])
     @user = current_user
     @seller = @listing.seller
-    if @user.credit_cards.nil? && @seller.bank_account.nil?
-      create_auth_first_card_no_merch
-    elsif !@user.credit_cards.nil? && @seller.bank_account.nil?
-      create_auth_add_card_no_merch
-    elsif @user.credit_cards.nil? && !@seller.bank_account.nil?
-      create_auth_first_card_with_merch
-    else
-      create_auth_add_card_with_merch
-    end
+    
+    add_card_no_merch
   end
 
-  def create_auth_first_card_no_merch
+  # Working except for cc token
+  def first_card_no_merch
     @credit_card = CreditCard.new
     
     result = Braintree::Transaction.sale(
@@ -63,19 +59,49 @@ class PurchasesController < ApplicationController
     @credit_card.update_attribute(:starting_digits, first_four)
     @credit_card.update_attribute(:ending_digits, last_four)
     
-    # Should potentially be modified to pull the values from Braintree server
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
     @user.update_attribute(:braintree_id, @user.id)
+    @user.update_attribute(:primary_card_id, @credit_card.id)
   
     # Need to extend this so it only redirects if the purchase is successful
     redirect_to purchase_confirmation_path
   end
 
-  def create_auth_add_card_no_merch
+  # Not working
+  def add_card_no_merch
     @credit_card = CreditCard.new
 
     # Not sure if this needs to be split up into separate create and update actions
-    result = Braintree::Transaction.sale(
+    #result = Braintree::Transaction.sale(
+    #  :amount => @listing.price,
+    #  :credit_card => {
+    #    :token => @credit_card.id,
+    #    :number => params[:number],
+    #    :cvv => params[:cvv],
+    #    :expiration_month => params[:exp_month],
+    #    :expiration_year => params[:exp_year],
+    #  },
+    #  :customer => {
+    #    :id => @user.id
+    #  },
+    #  :options => {
+    #    :submit_for_settlement => false,
+    #    :store_in_vault => true
+    #  }
+    #)
+
+    # This keeps failing and I don't know why
+    result = Braintree::CreditCard.create(
+      :customer_id => @user.id,
+      :number => params[:number],
+      :expiration_month => params[:exp_year],
+      :expiration_year => params[:exp_month]
+    )
+
+    transaction = result.success?
+
+    # This succeeds
+    result2 = Braintree::Transaction.sale(
       :amount => @listing.price,
       :credit_card => {
         :token => @credit_card.id,
@@ -83,31 +109,34 @@ class PurchasesController < ApplicationController
         :cvv => params[:cvv],
         :expiration_month => params[:exp_month],
         :expiration_year => params[:exp_year],
-      },
-      :customer => {
-        :id => @user.id
-      },
+        },
       :options => {
         :submit_for_settlement => false,
         :store_in_vault => true
       }
     )
 
-    @credit_card = @user.credit_cards.build(credit_card_params)
-    @credit_card.save
+    transaction2 = result2.success?
+
+
+    #@credit_card = @user.credit_cards.build(credit_card_params)
+    #@credit_card.save
 
     first_four = params[:number].to_s[0..3].to_i
     last_four = params[:number].to_s[-4..-1].to_i
 
-    @credit_card.update_attribute(:starting_digits, first_four)
-    @credit_card.update_attribute(:ending_digits, last_four)
+    #@credit_card.update_attribute(:starting_digits, first_four)
+    #@credit_card.update_attribute(:ending_digits, last_four)
     
-    @credit_card.update_attribute(:braintree_token, @credit_card.id)
+    #@credit_card.update_attribute(:braintree_token, @credit_card.id)
   
     redirect_to purchase_confirmation_path
   end
 
-  def create_auth_first_card_with_merch
+  def existing_card_no_merch
+  end
+
+  def first_card_with_merch
     @credit_card = CreditCard.new
     
     result = Braintree::Transaction.create(
@@ -142,11 +171,12 @@ class PurchasesController < ApplicationController
     
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
     @user.update_attribute(:braintree_id, @user.id)
+    @user.update_attribute(:primary_card_id, @credit_card.id)
   
     redirect_to purchase_confirmation_path
   end
 
-  def create_auth_add_card_with_merch
+  def add_card_with_merch
     @credit_card = CreditCard.new
 
     result = Braintree::Transaction.sale(
@@ -180,13 +210,11 @@ class PurchasesController < ApplicationController
     @credit_card.update_attribute(:braintree_token, @credit_card.id)
   end
 
-  def create_auth_existing_card_no_merch
-  end
-
-  def create_auth_existing_card_with_merch
+  def existing_card_with_merch
   end
 
   def purchase_confirmation
+    @user = current_user
     @listing = Listing.find(params[:id])
   end
 

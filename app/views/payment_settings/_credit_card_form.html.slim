@@ -13,13 +13,13 @@
       .col-lg-6
         label Card Type
         .row
-          .col-lg-6
-            = select_tag :card_type, options_for_select(["Visa", "MasterCard", "Ameican Express"]), class: "form-control", required: true
+          .col-sm-10
+            = select_tag :card_type, options_for_select(["Visa", "MasterCard", "Ameican Express"]), class: "form-control", required: true, prompt: "Choose from your saved cards"
         label Security Number
         .row
           .col-lg-6
             = text_field_tag "credit_card[cvv_number]", "", class: "form-control security-number", maxlength: "4", required: true
-      .col-lg-6 
+      .col-lg-6
         label Zipcode
         .row
           .col-lg-6

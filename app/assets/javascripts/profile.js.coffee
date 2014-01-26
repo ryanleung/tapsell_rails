@@ -9,26 +9,35 @@ setPreviewImage = (watermarkfile) ->
 
 $(document).ready ->
 
-  $(".content-container").removeClass "hide"
-  $(".edit-password-container, .edit-profile-container").addClass "hide"
+  # $(".content-container").removeClass "hide"
+  # $(".edit-password-container, .edit-profile-container").addClass "hide"
 
   $(".edit-form-link").bind "click", ->
     $(this).addClass "orange"
     $(".change-pass-form-link").removeClass "orange"
-    $(".edit-profile-container").removeClass("hide").fadeIn "slow"
-    $(".content-container, .edit-password-container").addClass "hide"
+    $(".edit-profile-container").addClass "edit-profile-container-show"
+    $(".content-container").addClass "content-container-hide"
+    $(".edit-password-container").removeClass "edit-password-container-show"
 
   $(".change-pass-form-link").bind "click", ->
     $(this).addClass "orange"
     $(".edit-form-link").removeClass "orange"
-    $(".edit-profile-container, .content-container").addClass "hide"
-    $(".edit-password-container").removeClass("hide").fadeIn "slow"
+    $(".edit-profile-container").removeClass "edit-profile-container-show"
+    $(".content-container").addClass "content-container-hide"
+    $(".edit-password-container").addClass "edit-password-container-show"
 
   $(".cancel-edit-profile").bind "click", ->
+    $(".edit-profile-container").removeClass "edit-profile-container-show"
     $("#edit-profile-form").resetlocal
     $(".edit-form-link, .change-pass-form-link").removeClass "orange"
-    $(".edit-profile-container, .edit-password-container").addClass "hide"
-    $(".content-container").removeClass("hide").fadeIn "slow"
+    $(".content-container").removeClass "content-container-hide"
+    # $(".edit-profile-container, .edit-password-container").addClass "hide"
+    # $(".content-container").removeClass("hide").fadeIn "slow"
+
+  $(".cancel-edit-password").bind "click", ->
+    $(".edit-password-container").removeClass "edit-password-container-show"
+    $(".edit-profile-container").removeClass "edit-profile-container-show"
+    $(".content-container").removeClass "content-container-hide"
 
   $(".submit-edit-profile-link").click ->
     $(".submit-edit-profile").click()

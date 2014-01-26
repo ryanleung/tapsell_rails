@@ -1,6 +1,7 @@
 @import "global.css.less";
 
 .left-container {
+	overflow: hidden;
 	.title-container {
 		.order-title {
 			font-size: 30px;
@@ -94,7 +95,7 @@
       		float: left;
       		width: 100%;
       		input {
-      			border: none;
+      			// border: none;
       			box-shadow: none;
       			background-color: none !important;
       		}
@@ -122,6 +123,7 @@
 						color: #fff;
 						border-radius: 2px;
 						padding: 3px 10px;
+						border: none;
 					}
       	}
       }
@@ -319,3 +321,32 @@ input:-webkit-autofill {
 	padding: 55px 0;
 	color: @darkGrey;
 }
+
+.purchase-signup-container, .purchase-signin-container, .sign-in-footer, .sign-up-footer {
+	.transition;
+}
+
+.purchase-signup-container, .sign-up-footer {
+	margin-left:0;
+	opacity: 1;
+}
+
+.purchase-signin-container, .sign-in-footer {
+	position: absolute;
+	margin-left: 200%;
+	opacity: 0;
+}
+
+.purchase-signin-container-show, .sign-in-footer-show {
+	position: relative;
+	margin-left: 0;
+	opacity: 1;
+}
+
+.purchase-signup-container-hide, .sign-up-footer-hide {
+	position: absolute;
+	margin-left: -200%;
+	opacity: 0;
+}
+
+

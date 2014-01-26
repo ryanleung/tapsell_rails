@@ -2,6 +2,15 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:show, :update]  
   before_action :correct_user, only: [:show, :update]
 
+  def root_page_router
+    if signed_in?
+      @user = current_user
+      render 'show'
+    else
+      render 'static_pages/landing'
+    end
+  end
+
   def new
   	@user = User.new
   end
