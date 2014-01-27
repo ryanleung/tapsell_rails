@@ -15,29 +15,27 @@ $(document).ready ->
   $(".edit-form-link").bind "click", ->
     $(this).addClass "orange"
     $(".change-pass-form-link").removeClass "orange"
-    $(".edit-profile-container").addClass "edit-profile-container-show"
-    $(".content-container").addClass "content-container-hide"
-    $(".edit-password-container").removeClass "edit-password-container-show"
+    $(".edit-profile-container").fadeIn("slow").removeClass "hide"
+    $(".content-container").addClass "hide"
+    $(".edit-password-container").addClass "hide"
 
   $(".change-pass-form-link").bind "click", ->
     $(this).addClass "orange"
     $(".edit-form-link").removeClass "orange"
-    $(".edit-profile-container").removeClass "edit-profile-container-show"
-    $(".content-container").addClass "content-container-hide"
-    $(".edit-password-container").addClass "edit-password-container-show"
+    $(".edit-profile-container").addClass "hide"
+    $(".content-container").addClass "hide"
+    $(".edit-password-container").fadeIn("slow").removeClass "hide"
 
   $(".cancel-edit-profile").bind "click", ->
-    $(".edit-profile-container").removeClass "edit-profile-container-show"
     $("#edit-profile-form").resetlocal
     $(".edit-form-link, .change-pass-form-link").removeClass "orange"
-    $(".content-container").removeClass "content-container-hide"
-    # $(".edit-profile-container, .edit-password-container").addClass "hide"
-    # $(".content-container").removeClass("hide").fadeIn "slow"
+    $(".edit-profile-container, .edit-password-container").addClass "hide"
+    $(".content-container").fadeIn("slow").removeClass "hide"
 
   $(".cancel-edit-password").bind "click", ->
-    $(".edit-password-container").removeClass "edit-password-container-show"
-    $(".edit-profile-container").removeClass "edit-profile-container-show"
-    $(".content-container").removeClass "content-container-hide"
+    $(".edit-password-container").addClass "hide"
+    $(".edit-profile-container").addClass "hide"
+    $(".content-container").fadeIn("slow").removeClass "hide"
 
   $(".submit-edit-profile-link").click ->
     $(".submit-edit-profile").click()
