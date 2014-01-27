@@ -79,20 +79,18 @@ html
               h4 Company
               ul.list-unstyled
                 li
-                  p = link_to "About", "javascript:void(0);"
+                  p = link_to "About", about_path
                 li
-                  p = link_to "Jobs", "javascript:void(0);"
-                li
-                  p = link_to "Blog", "javascript:void(0);"
+                  p = link_to "Blog", "http://blog.tapsell.co"
             .col-md-3
               h4 Support
               ul.list-unstyled
                 li
-                  p = link_to "Contact Us", "javascript:void(0);"
+                  p = mail_to "team@tapsell.co", "Contact"
                 li
                   p = link_to "FAQ", "javascript:void(0);"
                 li
-                  p = link_to "Buyer How-To", "javascript:void(0);"
+                  p = link_to "Buyer Guide", "javascript:void(0);"
             .col-md-3
               h4 Legal
               ul.list-unstyled

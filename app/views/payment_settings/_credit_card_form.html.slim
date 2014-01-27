@@ -3,7 +3,7 @@
     .row
       .col-lg-6
         label Card Number
-        = text_field_tag :number, "", class: "form-control card-number", placeholder: "", maxlength: "20", required: true
+        = text_field_tag :number, "", class: "form-control card-number", maxlength: "20", required: true
         label Expiration Date
         .row
           .col-lg-6
@@ -14,7 +14,7 @@
         label Card Type
         .row
           .col-sm-10
-            = select_tag :card_type, options_for_select(["Visa", "MasterCard", "Ameican Express"]), class: "form-control", required: true, prompt: "Choose from your saved cards"
+            = select_tag :card_type, options_for_select(["Visa", "MasterCard", "American Express"]), class: "form-control", required: true
         label Security Number
         .row
           .col-lg-6
