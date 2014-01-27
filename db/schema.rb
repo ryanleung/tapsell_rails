@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20140117131151) do
     t.string   "content"
     t.integer  "message_chain_id"
     t.integer  "sender_id"
-    t.string   "type",             default: "default"
+    t.string   "message_type",     default: "default"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

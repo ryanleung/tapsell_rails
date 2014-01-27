@@ -5,6 +5,7 @@ class Listing < ActiveRecord::Base
 	has_one :address
 	has_many :images
 	has_many :offers
+	has_many :message_chains
 	belongs_to :seller, :class_name => "User", :foreign_key => "seller_id"
 	belongs_to :buyer, :class_name => "User", :foreign_key => "buyer_id"
 

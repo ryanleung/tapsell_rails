@@ -20,4 +20,14 @@ class Message < ActiveRecord::Base
   validates_presence_of :message_chain,
                         :unless => Proc.new {|u| u.message_chain.nil? }
 
+  def api_hash
+    {
+      message_id: self.id,
+      sender_id: self.sender_id,
+      listing_id: self.message_chain.listing_id,
+      content: self.content,
+      type: self.message_type
+    }
+  end
+
 end

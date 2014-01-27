@@ -11,10 +11,18 @@ class Api::MessagesController < Api::ApiController
 
   def create
     msg_chain = MessageChain.send_message(@current_user.id, params[:listing_id], 
-            params[:msg_chain_id], params[:content], params[:type])
+            params[:content], params[:type])
     render json: {
       error: nil,
       data: msg_chain.api_hash(true)
+    }
+  end
+
+  def messages_in_chain
+    msg_chain = MessageChain.find_by_id(params[:msg_chain_id])
+    render json: {
+      error: nil,
+      data: msg_chain.messages.map { |m| m.api_hash }
     }
   end
 

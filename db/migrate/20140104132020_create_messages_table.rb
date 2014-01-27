@@ -4,7 +4,7 @@ class CreateMessagesTable < ActiveRecord::Migration
   		t.string :content
   		t.integer :message_chain_id
   		t.integer :sender_id
-  		t.string :type, :null => "default", :default => "default"
+  		t.string :message_type, :null => "default", :default => "default"
   		t.timestamps
   	end
 

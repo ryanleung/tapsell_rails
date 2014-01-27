@@ -56,6 +56,10 @@ Tapsell::Application.routes.draw do
     get 'listings' => 'listings#index'
     post 'listings' => 'listings#create'
     delete 'listings' => 'listings#destroy'
+    get 'messages' => 'messages#index'
+    post 'messages' => 'messsages#create'
+    get 'messages/:msg_chain_id/chain' => 'messages#messages_in_chain',
+      :msg_chain_id => /[\w.-]+/
   end
 
 
