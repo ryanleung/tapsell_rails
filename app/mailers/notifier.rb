@@ -22,4 +22,11 @@ class Notifier < ActionMailer::Base
     :subject => "Your listing was posted!")
   end
 
+  def send_offer_confirmation_email(user)
+    @user = user
+    mail(:to => @user.email,
+    :bcc => "team@tapsell.co",
+    :subject => "Offer confirmation")
+  end  
+
 end
