@@ -3,8 +3,8 @@ class PurchasesController < ApplicationController
   def new
     @listing = Listing.find(params[:id])
     if signed_in?
-      render '_confirm_purchase'
       @user = current_user
+      render '_confirm_purchase'
     else
       @user = User.new
       render '_sign_in_to_purchase'

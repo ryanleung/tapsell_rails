@@ -33,7 +33,13 @@
           = f.input :email, :required => true, placeholder: "conan@gmail.com", input_html: {class: "form-control input col-md-9"}, label: false
         - else
           = f.input :email, :required => true, input_html: {class: "form-control input col-md-9", value: current_user.email}, label: false
-
+    .col-sm-6.no-pad
+      .form-group
+        label.dark-grey Phone number
+        - if current_user.phone_number.nil?
+          = f.input :phone_number, :required => true, placeholder: "8581234567", input_html: {class: "form-control input col-md-9"}, label: false
+        - else
+          = f.input :phone_number, :required => true, input_html: {class: "form-control input col-md-9", value: current_user.phone_number}, label: false
   .pull-left.wid-100p
     .row
       .col-sm-12
@@ -41,5 +47,5 @@
           li.list-inline-item
             = link_to "Cancel", "javascript:void(0);", class: "cancel-edit-profile"
           li.list-inline-item
-            = link_to "Save Change", "javascript:void(0);", class: "submit-edit-profile-link orange"
-            = f.submit "Save Change", class: "hide submit-edit-profile"
+            = link_to "Save Changes", "javascript:void(0);", class: "submit-edit-profile-link orange"
+            = f.submit "Save Changes", class: "hide submit-edit-profile"

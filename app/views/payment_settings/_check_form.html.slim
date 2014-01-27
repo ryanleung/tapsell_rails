@@ -8,8 +8,8 @@
         .row
           .col-sm-6
             .form-group
-              label Name on Check
-              = text_field_tag "first_name", "", class: "form-control", required: true, placeholder: "First Name"
+              label Check Recipient First Name
+              = text_field_tag "first_name", "", class: "form-control", required: true
             .form-group
               label Street Address
               = text_field_tag "street_address", "", class: "form-control", required: true
@@ -21,16 +21,14 @@
               = text_field_tag "postal_code", "", class: "form-control", required: true
           .col-sm-6
             .form-group
-              label
-                | &nbsp;
-              = text_field_tag "last_name", "", class: "form-control", required: true, placeholder: "Last Name"
+              label Check Recipient Last Name
+              = text_field_tag "last_name", "", class: "form-control", required: true
             .form-group
               label Apartment Number
               = text_field_tag "extended_address", "", class: "form-control", required: true
             .form-group
               label State
               = text_field_tag "region", "", class: "form-control", required: true
-            / = f.input :first_name, input_html: {class: "form-control routing-number", required: true}, label: false
         .row
           .col-md-12
             ul.list-inline.profile-tab-menu.pull-right
