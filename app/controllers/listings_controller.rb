@@ -1,9 +1,9 @@
 class ListingsController < ApplicationController
   before_action :signed_in_user, only: [:new, :create, :destroy]
 
-  def index 
+  def index
     @user = current_user
-    @listings = Listing.paginate(:page => params[:page], :per_page => 20)
+    @listings = Listing.paginate(:page => params[:page], :per_page => 5)
   end
 
   def new
