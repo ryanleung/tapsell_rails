@@ -15,7 +15,7 @@
   .image-container.text-center
     = image_tag "/assets/vertical_list.png"
 .col-md-5.no-pad.form-authentication
-  = form_for(:session, :url => sessions_path, html: {class: "signin-form", role: "form", remote: true}) do |f|
+  = form_for(:session, :url => sessions_path, html: {class: "signin-form", role: "form"}) do |f|
     .row
       .form-title
         span.email-icon
