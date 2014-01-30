@@ -5,4 +5,5 @@ class ApplicationController < ActionController::Base
 
   # Make Sessions helper functions availabe in all controllers
   include SessionsHelper
+
 end
