@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
 
   def index
     @user = current_user
-    @listings = Listing.paginate(:page => params[:page], :per_page => 5)
+    @listings = Listing.all
   end
 
   def new
