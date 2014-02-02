@@ -287,7 +287,7 @@ a {
 
 // START NAVBAR
 .navbar-header {
-	width: 260px;
+	margin-top: 13px;
 	margin-left: 1% !important;
 	position: absolute;
 	z-index: 1;
@@ -296,18 +296,21 @@ a {
 .navbar-brand {
 	img {
 		float: left;
-		width: 100%;
 	}
 }
 
 .location-label {
-	padding-top: 24px;
+	padding-top: 1px;
 	margin-left: 10px;
 }
 
-.pin-image { width: 14px !important; }
+.pin-image {
+	width: 14px !important;
+	margin-top: -1px;
+}
+
 .nav-location-container {
-	padding-top: 21px;
+	padding: 13px 0 0 30px;
 	font-family: @caecilialight;
 	p {
 		margin-left: 8px;
@@ -316,16 +319,12 @@ a {
 	}
 }
 
-.navbar-nav {
-	margin-left: 24%;
-}
-
 .dropdown-menu {
 	border-radius: 0;
 	li{
 		text-align: right;
 		a {
-			font-family: @futuralight;
+			font-family: @futuraextended;
 			font-size: 16px;
 			letter-spacing: 1px;
 			&:hover {
@@ -432,6 +431,17 @@ a {
 	font-weight: normal;
 }
 
+.button-post {
+	background-color: #63a8b7;
+	padding: 10px 30px !important;
+	font-size: 18px;
+	font-family: @futuraextended;
+	color: #fff !important;
+	&:hover {
+		background-color: #468391 !important;
+	}
+}
+
 .box-container {
 	background-color: #fff;
 	border: 1px solid #DADADA;
@@ -503,12 +513,45 @@ a {
 	background-position: inherit;
 }
 
-.navbar-right {
-	li {
+.main-navbar-collapse {
+	padding-bottom: 15px;
+	.location-container {
+		margin-left: 225px;
+		margin-top: 3px;
+	}
+	.message-icon-container {
 		a {
-			color: @aqua !important;
-			font-family: @futuraextended;
+			margin-top: 8px;
+			border-right: solid #dedede 3px;
+			padding-right: 30px;
 		}
+	}
+	.post-button-container {
+		padding-left: 30px;
+		.button-post {
+			margin-top: 13px;
+			box-shadow: 0 0 3px #666;
+		}
+	}
+}
+
+.navbar-right {
+	.dropdown {
+		.navbar-dropdown-first {
+			padding-top: 17px;
+			padding-bottom: 12px;
+			&:focus, &:active {
+				background-color: #fff;
+				box-shadow: none;
+			}
+			p {
+				font-family: @caeciliabold;
+				font-size: 16px;
+				margin-top: 8px
+			}
+		}
+	}
+	li {
 		.sign-up {
 			background-color: @grape;
 			color: #fff !important;
@@ -532,7 +575,7 @@ a {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-	background-color: @lightGrey;
+	background-color: #fff;
 }
 
 .main-navbar {
@@ -633,12 +676,7 @@ input, select {
 
 @media (min-width: 1201px) {
 	.navbar-header {
-		width: 260px;
-	}
-
-
-	.navbar-nav {
-		margin-left: 25% !important;
+		// width: 260px;
 	}
 
 	.navbar-right {
@@ -658,11 +696,9 @@ input, select {
 
 @media (min-width: 1024px) and (max-width: 1200px){
 	.navbar-header {
-		width: 260px;
+		// width: 260px;
 	}
-	.navbar-nav {
-		margin-left: 30% !important;
-	}
+
 	.navbar-right {
 		margin-left: 0;
 	}
@@ -678,10 +714,7 @@ input, select {
 
 @media (min-width: 992px) and (max-width: 1024px){
 	.navbar-header {
-		width: 260px;
-	}
-	.navbar-nav {
-		margin-left: 30% !important;
+		// width: 260px;
 	}
 	.navbar-right {
 		margin-left: 0;
@@ -698,11 +731,9 @@ input, select {
 
 @media (min-width: 772px) and (max-width: 992px){
 	.navbar-header {
-		width: 260px;
+		// width: 260px;
 	}
-	.navbar-nav {
-		margin-left: 40%;
-	}
+
 	.navbar-right {
 		margin-left: 0;
 	}
@@ -718,11 +749,9 @@ input, select {
 
 @media (max-width: 772px){
 	.navbar-header {
-		width: 260px;
+		// width: 260px;
 	}
-	.navbar-nav {
-		margin-left: 40%;
-	}
+
 	.navbar-right {
 		margin-left: 0;
 	}
@@ -747,13 +776,9 @@ input, select {
 		box-shadow: 0 0 2px #ccc;
 	}
 	.navbar-header {
-		width: 200px;
+		margin-top: 5px;
 	}
-	.navbar-nav {
-		margin-left: 83%;
-		margin-top: 0;
-		margin-bottom: 0;
-	}
+
 	.navbar-right {
 		margin-left: 0;
 	}
@@ -767,6 +792,9 @@ input, select {
 	}
 	.main-navbar-collapse {
 		padding-bottom: 15px;
+		.location-container {
+			margin-left: 175px;
+		}
 	}
 	#credit-card-payment-form {
 		width: 100%;

@@ -16,26 +16,24 @@ html
           i.glyphicon.glyphicon-home
         .navbar-header
           - if signed_in?
-            = link_to user_path(@user), class: "navbar-brand title-color col-md-12 no-pad" do
-              = image_tag "/assets/logo.png", class: "col-md-12 no-pad"
+            = link_to user_path(@user), class: "navbar-brand title-color no-pad" do
+              = image_tag "/assets/new_logo.png", class: "no-pad"
           - else
-            = link_to root_path, class: "navbar-brand title-color col-md-12 no-pad" do
-              = image_tag "/assets/logo.png", class: "col-md-12 no-pad"
-        .collapse.navbar-collapse.main-navbar-collapse.col-xs-12
+            = link_to root_path, class: "navbar-brand title-color no-pad" do
+              = image_tag "/assets/new_logo.png", class: "no-pad"
           - if signed_in?
-            ul.nav.navbar-nav
-              li
-                p.pull-left.nav-location-container
-                  = image_tag "/assets/pin.png", class: "pin-image"
-                  - location = current_user.location.try
-                    unless location.nil?
-                    p.pull-left.location-label locality
-                  - if location.nil?
-                    p.pull-left.location-label UC Davis
+            .pull-left.nav-location-container
+              = image_tag "/assets/pin.png", class: "pin-image pull-left"
+              - location = current_user.location.try
+                unless location.nil?
+                p.pull-left.location-label locality
+              - if location.nil?
+                p.pull-left.location-label UC Davis
+        #collapse.collapse.navbar-collapse.main-navbar-collapse.col-xs-10.pull-right
           ul.nav.navbar-nav.navbar-right.text-right.pull-right style="padding: 3px 0"
             - if signed_in?
               li.dropdown
-                = link_to "javascript:void(0);", class: "navbar-dropdown-first title-color", "data-toggle"=> "dropdown", "data-target"=>"#" do
+                = link_to "javascript:void(0);", class: "navbar-dropdown-first", "data-toggle"=> "dropdown", "data-target"=>"#" do
                   - if current_user.image.nil?
                     .navbar-avatar.img-circle style= "background-image: url('assets/no_image.png')"
                   - else
@@ -53,6 +51,10 @@ html
                     = link_to "Get the iPhone app", "javascript:void(0);"
                   li
                     = link_to "Log Out", '/sign-out', method: :delete
+              li.message-icon-container= link_to "javascript:void(0);" do
+                = image_tag "/assets/message-icon.png"
+              li.post-button-container= link_to "ADD LISTING", "javascript:void(0);", class: "button-post"
+
             - else
               li
                 = link_to "LOG IN", "/sign-in", class: "sign-in"
