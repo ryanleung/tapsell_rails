@@ -38,7 +38,7 @@
 			.col-xs-6.col-md-3.mix.book.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
 					h5.col-xs-12.no-pad= listing.title.titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), class: "col-xs-12 no-pad"
+					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing),class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
 					.col-xs-6.no-pad
@@ -49,7 +49,7 @@
 			.col-xs-6.col-md-3.mix.fashion.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
 					h5.col-xs-12.no-pad= listing.title.titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), class: "col-xs-12 no-pad"
+					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
 					.col-xs-6.no-pad
@@ -60,7 +60,7 @@
 			.col-xs-6.col-md-3.mix.electronic.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
 					h5.col-xs-12.no-pad= listing.title.titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), class: "col-xs-12 no-pad"
+					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
 					.col-xs-6.no-pad
@@ -71,7 +71,7 @@
 			.col-xs-6.col-md-3.mix.beauty.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
 					h5.col-xs-12.no-pad= listing.title.titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), class: "col-xs-12 no-pad"
+					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
 					.col-xs-6.no-pad
@@ -82,7 +82,7 @@
 			.col-xs-6.col-md-3.mix.home.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
 					h5.col-xs-12.no-pad= listing.title.titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), class: "col-xs-12 no-pad"
+					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
 					.col-xs-6.no-pad
@@ -93,7 +93,7 @@
 			.col-xs-6.col-md-3.mix.hobbies.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
 					h5.col-xs-12.no-pad= listing.title.titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), class: "col-xs-12 no-pad"
+					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
 					.col-xs-6.no-pad
