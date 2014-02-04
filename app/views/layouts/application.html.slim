@@ -16,10 +16,10 @@ html
           i.glyphicon.glyphicon-home
         .navbar-header
           - if signed_in?
-            = link_to user_path(@user), class: "navbar-brand title-color no-pad" do
+            = link_to listings_path, class: "navbar-brand title-color no-pad" do
               = image_tag "/assets/new_logo.png", class: "no-pad"
           - else
-            = link_to root_path, class: "navbar-brand title-color no-pad" do
+            = link_to listings_path, class: "navbar-brand title-color no-pad" do
               = image_tag "/assets/new_logo.png", class: "no-pad"
           - if signed_in?
             .pull-left.nav-location-container
@@ -42,19 +42,19 @@ html
                   span.cus-caret
                 ul.dropdown-menu role="menu" aria-labelledby="dlabel"
                   li
-                    = link_to "Post Listing", new_listing_path
+                    = link_to "Dashboard", new_listing_path
                   li
                     = link_to "Profile", user_path(@user)
                   li
-                    = link_to "Payment Settings", payment_settings_path(@user)
+                    = link_to "My Listings", "javascript:void(0);"
                   li
-                    = link_to "Get the iPhone app", "javascript:void(0);"
+                    = link_to "Settings", payment_settings_path(@user)
                   li
                     = link_to "Log Out", '/sign-out', method: :delete
               li.message-icon-container= link_to "javascript:void(0);" do
                 = image_tag "/assets/message-icon.png"
                 .badge.pull-right 4
-              li.post-button-container= link_to "ADD LISTING", "javascript:void(0);", class: "button-post"
+              li.post-button-container= link_to "NEW LISTING", new_listing_path, class: "button-post"
 
             - else
               li
