@@ -13,16 +13,16 @@
 				= link_to "All", "javascript:void(0);", class: "all-link"
 			li.filter data-filter="book"
 				= link_to "Books", "javascript:void(0);", class: "book-link"
-			li.filter data-filter="fashion"
+			li.filter data-filter="apparel"
 				= link_to "Apparel & Fashion", "javascript:void(0);", class: "fashion-link"
 			li.filter data-filter="electronic"
 				= link_to "Electronics", "javascript:void(0);", class: "electronic-link"
-			li.filter data-filter="beauty"
-				= link_to "Healthy & Beauty", "javascript:void(0);", class: "beauty-link"
 			li.filter data-filter="home"
-				= link_to "Home", "javascript:void(0);", class: "home-link"
-			li.filter data-filter="hobbies"
-				= link_to "Interest & Hobbies", "javascript:void(0);", class: "hobby-link"
+				= link_to "Home", "javascript:void(0);", class: "beauty-link"
+			li.filter data-filter="ticket"
+				= link_to "Tickets", "javascript:void(0);", class: "home-link"
+			li.filter data-filter="other"
+				= link_to "Others", "javascript:void(0);", class: "hobby-link"
 			.dropdown.pull-right
 				= link_to "javascript:void(0);", data: {toggle: "dropdown"}
 					| SORT BY
@@ -45,8 +45,8 @@
 						.price.pull-right
 							| $
 							= listing.price.to_i
-		- if listing.category.eql?("apparel_fashion")
-			.col-xs-6.col-md-3.mix.fashion.animated.fadeInUp
+		- if listing.category.eql?("apparel")
+			.col-xs-6.col-md-3.mix.apparel.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
 					h5.col-xs-12.no-pad= listing.title.titleize
 					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
@@ -67,17 +67,6 @@
 						.price.pull-right
 							| $
 							= listing.price.to_i
-		- if listing.category.eql?("healthy_beauty")
-			.col-xs-6.col-md-3.mix.beauty.animated.fadeInUp
-				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= listing.title.titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
-					.col-xs-6.no-pad
-						.time-post.pull-left= time_ago_in_words(listing.created_at)
-					.col-xs-6.no-pad
-						.price.pull-right
-							| $
-							= listing.price.to_i
 		- if listing.category.eql?("home")
 			.col-xs-6.col-md-3.mix.home.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
@@ -89,8 +78,19 @@
 						.price.pull-right
 							| $
 							= listing.price.to_i
-		- if listing.category.eql?("interest_hobby")
-			.col-xs-6.col-md-3.mix.hobbies.animated.fadeInUp
+		- if listing.category.eql?("ticket")
+			.col-xs-6.col-md-3.mix.ticket.animated.fadeInUp
+				.col-xs-12.col-md-12.thumbnail
+					h5.col-xs-12.no-pad= listing.title.titleize
+					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
+					.col-xs-6.no-pad
+						.time-post.pull-left= time_ago_in_words(listing.created_at)
+					.col-xs-6.no-pad
+						.price.pull-right
+							| $
+							= listing.price.to_i
+		- if listing.category.eql?("other")
+			.col-xs-6.col-md-3.mix.other.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
 					h5.col-xs-12.no-pad= listing.title.titleize
 					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
