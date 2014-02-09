@@ -2,6 +2,7 @@
   h1.no-marg
     | Welcome back,&nbsp;
     = current_user.first_name
+= render "layouts/navigation"
 .container.marg-top-40.no-pad style="padding-left:20px;"
   .col-md-12
     .row
@@ -21,10 +22,7 @@
                 ul.list-group
           .col-md-8.col-push-4.profile-right-container
             .row
-              .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.hidden-md.hidden-sm.hidden-xs
-                = link_to "PROFILE", user_path, class: "btn"
-                = link_to "PAYMENT SETTINGS", payment_settings_path(@user), class: "btn pros-link-active"
-              .col-md-12.box-container.marg-top-30.no-pad
+              .col-md-12.box-container.no-pad
                 .row
                   .col-md-12
                     ul.list-inline.profile-tab-menu

@@ -4,11 +4,16 @@
       .panel-heading
         | Describe your item
       .panel-body
-        = f.input :title, input_html: { class: "form-control product-title", :maxlength => 150 }, required: true
-        #product-title-charnum
-        = f.input :category, input_html: { class: "form-control" }
-        = f.input :price, as: :string, input_html: { class: "form-control product-price", maxlength: 4 }
-        = f.input :info, input_html: { class: "form-control product-description", :maxlength => 5000 }
+        .form-group
+          = f.input :title, input_html: { class: "form-control product-title", :maxlength => 150 }, required: true
+          #product-title-charnum
+        .form-group
+          label Category
+          = f.select :category, options_for_select(categories), {},{ class: "form-control", prompt: "Choose Category" }
+        .form-group
+          = f.input :price, as: :string, input_html: { class: "form-control product-price", maxlength: 4 }
+        .form-group
+          = f.input :info, input_html: { class: "form-control product-description", :maxlength => 5000 }
         #product-description-charnum
     .panel.panel-default.marg-top-30
       .panel-heading
