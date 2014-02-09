@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
 
   def api_hash
   	{
+      user_id: self.id,
   		first_name: self.first_name,
   		last_name: self.last_name,
   		avatar_url: self.image.try(:image).try(:url),

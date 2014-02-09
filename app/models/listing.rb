@@ -24,7 +24,7 @@ class Listing < ActiveRecord::Base
 		end
 		{
 			listing_id: self.id,
-			seller_id: self.seller_id,
+			seller: self.seller.api_hash,
 			# address: self.address.nil? ? nil : self.address.api_hash,
 			title: self.title,
 			category: self.category,

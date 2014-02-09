@@ -23,7 +23,7 @@ class Message < ActiveRecord::Base
   def api_hash
     {
       message_id: self.id,
-      sender_id: self.sender_id,
+      sender: self.sender.api_hash,
       listing_id: self.message_chain.listing_id,
       content: self.content,
       type: self.message_type

@@ -22,7 +22,7 @@ class Api::MessagesController < Api::ApiController
     msg_chain = MessageChain.find_by_id(params[:msg_chain_id])
     render json: {
       error: nil,
-      data: msg_chain.messages.map { |m| m.api_hash }
+      data: msg_chain.api_hash(true)
     }
   end
 

@@ -35,8 +35,8 @@ class MessageChain < ActiveRecord::Base
     {
       msg_chain_id: self.id,
       listing: self.listing,
-      seller: self.seller,
-      buyer: self.buyer,
+      seller: self.seller.api_hash,
+      buyer: self.buyer.api_hash,
       seller_dirty: self.seller_dirty,
       buyer_dirty: self.buyer_dirty,
       messages: messages.map { |m| m.api_hash }
