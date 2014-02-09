@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128070136) do
+ActiveRecord::Schema.define(version: 20140201093124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140128070136) do
     t.integer  "birth_day"
     t.integer  "birth_month"
     t.integer  "birth_year"
-    t.integer  "braintree_id"
+    t.integer  "stripe_id"
     t.integer  "ending_digits"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140128070136) do
   end
 
   create_table "credit_cards", force: true do |t|
-    t.string   "braintree_token"
+    t.string   "stripe_id"
     t.integer  "ending_digits"
     t.integer  "starting_digits"
     t.string   "card_type"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20140128070136) do
     t.text     "content"
     t.integer  "message_chain_id"
     t.integer  "sender_id"
-    t.string   "message_type",     default: "default"
+    t.string   "type",             default: "default"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140128070136) do
     t.string   "last_name"
     t.integer  "rating"
     t.text     "bio"
+    t.text     "avatar_url"
     t.string   "password_hash"
     t.string   "email"
     t.string   "location"
@@ -141,7 +142,7 @@ ActiveRecord::Schema.define(version: 20140128070136) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.integer  "primary_card_id"
-    t.integer  "braintree_id"
+    t.integer  "stripe_id"
     t.integer  "primary_bank_id"
     t.integer  "primary_check_id"
     t.integer  "default_payout_type"

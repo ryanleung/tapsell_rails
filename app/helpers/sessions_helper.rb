@@ -25,7 +25,6 @@ module SessionsHelper
     redirect_to(root_url) unless current_user?(@user)
   end
   
-
   def signed_in?
   	!current_user.nil?
   end
@@ -33,7 +32,6 @@ module SessionsHelper
   def signed_in_user
     redirect_to '/sign-in', notice: "Please sign in." unless signed_in?
   end
-
 
   def sign_out
     self.current_user = nil
