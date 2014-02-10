@@ -8,6 +8,7 @@ class PurchasesController < ApplicationController
     else
       @user = User.new
       render '_sign_in_to_purchase'
+      store_location
     end
   end
 

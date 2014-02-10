@@ -25,7 +25,7 @@ Tapsell::Application.routes.draw do
 
   # Authentication
   match '/sign-up', to: 'users#new', via: 'get'
-  match 'sign-in', to: 'sessions#new', via: 'get'
+  match 'sign-in', to: 'sessions#new', via: 'get', as: 'sign_in'
   match '/sign-out', to: 'sessions#destroy', via: 'delete'
   
   ##################################
