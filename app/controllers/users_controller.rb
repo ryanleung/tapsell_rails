@@ -26,10 +26,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      store_location
       create_remember_token
       sign_in @user
       flash[:success] = "Welcome to Tapsell!"
-      redirect_to @user
+      redirect_back_or @user
     else
       render 'new'
   	end
