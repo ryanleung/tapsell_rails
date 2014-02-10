@@ -20,6 +20,8 @@ Tapsell::Application.routes.draw do
   post "users/:id/payment_settings" => "credit_cards#create_card", as: 'create_card'
   post "users/:id/payment_settings" => "checks#create", as: 'create_check'
 
+  # View public profiles
+  get "users/:id/view" => "users#show_public", as: 'public_profile'
 
   # Authentication
   match '/sign-up', to: 'users#new', via: 'get'

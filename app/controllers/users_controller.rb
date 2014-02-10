@@ -18,6 +18,11 @@ class UsersController < ApplicationController
   def show
   end
 
+  def show_public
+    @user = current_user
+    @seller = User.find(params[:id])
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save

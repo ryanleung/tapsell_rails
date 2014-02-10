@@ -39,7 +39,7 @@
         .right-container-content
           h3.text-center= @listing.seller.first_name
           .avatar-container.text-center
-            = link_to "javascript:void(0);" do
+            = link_to public_profile_path(@listing.seller.id) do
               - if @listing.seller.image.nil?
                 = image_tag "/assets/no_images.png", class: "img-circle"
           .user-location-container
