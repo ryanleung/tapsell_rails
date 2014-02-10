@@ -23,6 +23,9 @@ Tapsell::Application.routes.draw do
   # View public profiles
   get "users/:id/view" => "users#show_public", as: 'public_profile'
 
+  # View my listings
+  get "users/:id/listings" => "listings#show_my_listings", as: 'my_listings'
+
   # Authentication
   match '/sign-up', to: 'users#new', via: 'get'
   match 'sign-in', to: 'sessions#new', via: 'get', as: 'sign_in'
