@@ -1,5 +1,8 @@
 $(document).ready ->
-	$("#container-listing").mixitup()
+	$("#container-listing").mixitup
+		effects: [null],
+		animateGridList: true
+
 	$(".pagination ul").addClass "pagination"
 
 	$(".all-link").click ->
