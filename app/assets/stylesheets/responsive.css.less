@@ -1,3 +1,22 @@
+@import "mixins";
+@media (max-width: 1999px) {
+
+	.show-public-container {
+		.information-container {
+			.avatar {
+				left: 15%;
+				.size(230px, 230px) !important;
+				position: absolute;
+				margin-top: -77px !important;
+			}
+			.description {
+
+			}
+		}
+	}
+
+}
+
 @media (max-width: 991px) {
 	.navigation-container {
 		h4 {
@@ -5,6 +24,126 @@
 		}
 		.dropdown {
 			float: left !important;
+		}
+	}
+
+	.show-public-container {
+		.information-container {
+			.avatar {
+				left: 15% !important;
+				.size(180px, 180px) !important;
+				position: absolute;
+				margin-top: -77px !important;
+			}
+			.description {
+				font-size: 17px !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 771px) {
+	.show-public-container {
+		margin-top: 73px;
+		.information-container {
+			.avatar {
+				left: 10% !important;
+				.size(180px, 180px) !important;
+				position: absolute;
+				margin-top: -77px !important;
+			}
+			.description {
+				font-size: 17px !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.show-public-container {
+		margin-top: 58px;
+		.information-container {
+			.avatar {
+				left: 10% !important;
+				.size(180px, 180px) !important;
+				position: absolute;
+				margin-top: -77px !important;
+			}
+			.description {
+				font-size: 17px !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 697px) {
+	.show-public-container {
+		margin-top: 58px;
+		.name-container {
+			background-color: @aqua;
+			.ver-pad(0, 15px);
+			.box-shadow();
+			.name {
+				font-size: 32px !important;
+			}
+			h4 {
+				margin-top: 15px;
+				font-family: @futuraextended !important;
+				color: white ;
+				font-size: 16px !important;
+				.pin {
+					width: 12px;
+					margin-top: -5px;
+					margin-right: 5px;
+				}
+			}
+		}
+		.information-container {
+			.avatar {
+				left: 10% !important;
+				.size(150px, 150px) !important;
+				position: absolute;
+				margin-top: -77px !important;
+			}
+			.description {
+				font-size: 17px !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 635px) {
+	.show-public-container {
+		margin-top: 58px;
+		.name-container {
+			background-color: @aqua;
+			.ver-pad(0, 15px);
+			.box-shadow();
+			.name {
+				font-size: 32px !important;
+			}
+			h4 {
+				margin-top: 15px;
+				font-family: @futuraextended !important;
+				color: white ;
+				font-size: 14px !important;
+				.pin {
+					width: 12px;
+					margin-top: -5px;
+					margin-right: 5px;
+				}
+			}
+		}
+		.information-container {
+			.avatar {
+				left: 10% !important;
+				.size(150px, 150px) !important;
+				position: absolute;
+				margin-top: -77px !important;
+			}
+			.description {
+				font-size: 13px !important;
+			}
 		}
 	}
 }

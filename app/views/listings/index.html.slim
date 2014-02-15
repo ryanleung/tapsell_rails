@@ -37,7 +37,7 @@
 		- if listing.category.eql?("book")
 			.col-xs-6.col-md-3.mix.book.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= listing.title.titleize
+					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
 					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing),class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
@@ -48,7 +48,7 @@
 		- if listing.category.eql?("apparel")
 			.col-xs-6.col-md-3.mix.apparel.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= listing.title.titleize
+					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
 					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
@@ -59,7 +59,7 @@
 		- if listing.category.eql?("electronic")
 			.col-xs-6.col-md-3.mix.electronic.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= listing.title.titleize
+					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
 					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
@@ -70,7 +70,7 @@
 		- if listing.category.eql?("home")
 			.col-xs-6.col-md-3.mix.home.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= listing.title.titleize
+					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
 					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
@@ -81,7 +81,7 @@
 		- if listing.category.eql?("ticket")
 			.col-xs-6.col-md-3.mix.ticket.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= listing.title.titleize
+					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
 					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
@@ -92,7 +92,7 @@
 		- if listing.category.eql?("other")
 			.col-xs-6.col-md-3.mix.other.animated.fadeInUp
 				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= listing.title.titleize
+					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
 					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
 					.col-xs-6.no-pad
 						.time-post.pull-left= time_ago_in_words(listing.created_at)
