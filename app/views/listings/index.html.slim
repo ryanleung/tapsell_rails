@@ -9,97 +9,37 @@
 	.container
 		h4 BROWSE
 		ul.nav.nav-pills
-			li.filter data-filter="all"
-				= link_to "All", "javascript:void(0);", class: "all-link"
-			li.filter data-filter="book"
-				= link_to "Books", "javascript:void(0);", class: "book-link"
-			li.filter data-filter="apparel"
-				= link_to "Apparel & Fashion", "javascript:void(0);", class: "fashion-link"
-			li.filter data-filter="electronic"
-				= link_to "Electronics", "javascript:void(0);", class: "electronic-link"
-			li.filter data-filter="home"
-				= link_to "Home", "javascript:void(0);", class: "beauty-link"
-			li.filter data-filter="ticket"
-				= link_to "Tickets", "javascript:void(0);", class: "home-link"
-			li.filter data-filter="other"
-				= link_to "Others", "javascript:void(0);", class: "hobby-link"
+			li.all-items.active
+				= link_to "All", all_listings_path, class: "all-link filter-category", remote: true
+			li.book-items
+				= link_to "Books", book_listings_path, class: "book-link filter-category", remote: true
+			li.apparel-items
+				= link_to "Apparel & Fashion", apparel_listings_path, class: "apparel-link filter-category", remote: true
+			li.electronic-items
+				= link_to "Electronics", electronic_listings_path, class: "electronic-link filter-category", remote: true
+			li.home-items
+				= link_to "Home", home_listings_path, class: "home-link filter-category", remote: true
+			li.ticket-items
+				= link_to "Tickets", ticket_listings_path, class: "ticket-link filter-category", remote: true
+			li.other-items
+				= link_to "Others", other_listings_path, class: "other-link filter-category", remote: true
 			.dropdown.pull-right
 				= link_to "javascript:void(0);", data: {toggle: "dropdown"}
 					| SORT BY
 					span.glyphicon.glyphicon-play
 				ul.dropdown-menu role="menu" aria-labelledby="dlabel"
-					li.filter data-filter="newest"
-						= link_to "Newest Listing", "javascript:void(0);", class: "newest-link"
-					li.filter data-filter="oldest"
-						= link_to "Oldest Listing", "javascript:void(0);", class: "oldest-link"
+					li.newest.active
+						= link_to "Newest Listing", newest_listings_path, class: "newest-link filter-category", remote: true
+					li.oldest
+						= link_to "Oldest Listing", oldest_listings_path, class: "oldest-link filter-category", remote: true
+					li.low-price
+						= link_to "Low Price", "javascript:void(0);", class: "low-price-link filter-category"
+					li.high-price
+						= link_to "High Price", "javascript:void(0);", class: "high-price-link filter-category"
+#loader-container.text-center.col-xs-12.animated.fadeInDown.hide
+	i.fa.fa-refresh.fa-spin.fa-5x
 #container-listing.container.listing-container
-	- @listings.each do |listing|
-		- if listing.category.eql?("book")
-			.col-xs-6.col-md-3.mix.book.animated.fadeInUp
-				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing),class: "col-xs-12 no-pad"
-					.col-xs-6.no-pad
-						.time-post.pull-left= time_ago_in_words(listing.created_at)
-					.col-xs-6.no-pad
-						.price.pull-right
-							| $
-							= listing.price.to_i
-		- if listing.category.eql?("apparel")
-			.col-xs-6.col-md-3.mix.apparel.animated.fadeInUp
-				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
-					.col-xs-6.no-pad
-						.time-post.pull-left= time_ago_in_words(listing.created_at)
-					.col-xs-6.no-pad
-						.price.pull-right
-							| $
-							= listing.price.to_i
-		- if listing.category.eql?("electronic")
-			.col-xs-6.col-md-3.mix.electronic.animated.fadeInUp
-				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
-					.col-xs-6.no-pad
-						.time-post.pull-left= time_ago_in_words(listing.created_at)
-					.col-xs-6.no-pad
-						.price.pull-right
-							| $
-							= listing.price.to_i
-		- if listing.category.eql?("home")
-			.col-xs-6.col-md-3.mix.home.animated.fadeInUp
-				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
-					.col-xs-6.no-pad
-						.time-post.pull-left= time_ago_in_words(listing.created_at)
-					.col-xs-6.no-pad
-						.price.pull-right
-							| $
-							= listing.price.to_i
-		- if listing.category.eql?("ticket")
-			.col-xs-6.col-md-3.mix.ticket.animated.fadeInUp
-				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
-					.col-xs-6.no-pad
-						.time-post.pull-left= time_ago_in_words(listing.created_at)
-					.col-xs-6.no-pad
-						.price.pull-right
-							| $
-							= listing.price.to_i
-		- if listing.category.eql?("other")
-			.col-xs-6.col-md-3.mix.other.animated.fadeInUp
-				.col-xs-12.col-md-12.thumbnail
-					h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
-					= link_to image_tag('/assets/no_images.png', class: "col-xs-12 no-pad"), listing_path(listing), class: "col-xs-12 no-pad"
-					.col-xs-6.no-pad
-						.time-post.pull-left= time_ago_in_words(listing.created_at)
-					.col-xs-6.no-pad
-						.price.pull-right
-							| $
-							= listing.price.to_i
+	= render "listing_items"
 #all-paginate.col-xs-12.text-center.animated.fadeInUp
 	ul.pagination= will_paginate all
 #book-paginate.col-xs-12.text-center.animated.fadeInUp.hide
@@ -116,4 +56,4 @@
 	ul.pagination= will_paginate hobbies
 
 
-= javascript_include_tag "jquery.mixitup", "listings"
+= javascript_include_tag "listings", "jquery.tinysort.min"
