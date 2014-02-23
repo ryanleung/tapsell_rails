@@ -10,11 +10,11 @@
 				</div>
 				<div class="col-xs-8">
 					<h1 class="name">
-					Ryan Leung
+					<%= "#{@seller.first_name} #{@seller.last_name}" %>
 					</h1>
 					<h4>
 						<%= image_tag "/assets/pin-white.png", class: "pin" %>
-						SAN FRANSISCO, CA -
+						UC Davis - 
 						<b>98%</b>
 						POSITIVE REVIEW
 					</h4>
@@ -29,7 +29,7 @@
 				</div>
 				<div class="col-xs-8">
 					<h4 class="description">
-						Hi, my name is Ryan. I am using Tapsell because I programmed it. I guess it’s a cool app too, so I’m using it for that reason as well. I have many things to sell. They are all very cool things so buy them please. Other notes, I’m a friendly guy and am willing to be friends with you if you want.
+						<%= @seller.bio %>
 					</h4>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 
 		<div class="col-xs-12 listing-container">
 			<div class="container animated fadeIn">
-				<% seller_listings.each do |listing| %>
+				<% @seller.selling_listings.each do |listing| %>
 					<div class="col-xs-6 col-md-3">
 						<div class="col-xs-12 col-md-12 thumbnail">
 							<h5 class="col-xs-12 no-pad">
