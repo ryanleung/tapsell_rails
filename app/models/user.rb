@@ -163,8 +163,6 @@ class User < ActiveRecord::Base
   # --------------------------
   # protected
 
-  # What are protected instance methods?
-
 	# Private instance methods
 	# ------------------------
 	private

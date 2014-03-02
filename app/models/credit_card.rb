@@ -42,22 +42,14 @@ class CreditCard < ActiveRecord::Base
         }
       )
     rescue Braintree::ValidationsFailed => vf
-      return render status: 500, json: {
-        error: "Braintree Validation Error: #{vf}"
-      }
+      raise "Braintree Validation Error: #{vf}"
     rescue Braintree::UnexpectedError => ue
-      return render status: 500, json: {
-        error: "Braintree UnexpectedError: #{ue}"
-      }
+      raise "Braintree UnexpectedError: #{ue}"
     rescue Braintree::NotFoundError => nfe
-      return render status: 500, json: {
-        error: "Braintree NotFoundError: #{nfe}"
-      }
+      raise "Braintree NotFoundError: #{nfe}"
     end
     unless bt_result.is_a?(Braintree::SuccessfulResult)
-      return render status: 500, json: {
-        error: "Braintree Error: #{bt_result.errors}"
-      }
+      raise "Braintree Error: #{bt_result.errors}"
     end
 
     credit_card = CreditCard.find_or_create_from_braintree_credit_card(
