@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201093124) do
+ActiveRecord::Schema.define(version: 20140128070136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20140201093124) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "check_id"
   end
 
   create_table "api_sessions", force: true do |t|
@@ -36,40 +35,6 @@ ActiveRecord::Schema.define(version: 20140201093124) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "bank_accounts", force: true do |t|
-    t.integer  "user_id"
-    t.string   "legal_first_name"
-    t.string   "legal_last_name"
-    t.integer  "birth_day"
-    t.integer  "birth_month"
-    t.integer  "birth_year"
-    t.integer  "stripe_id"
-    t.integer  "ending_digits"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "account_type"
-  end
-
-  create_table "checks", force: true do |t|
-    t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "credit_cards", force: true do |t|
-    t.string   "stripe_id"
-    t.integer  "ending_digits"
-    t.integer  "starting_digits"
-    t.string   "card_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "exp_month"
-    t.integer  "exp_year"
-    t.integer  "user_id"
   end
 
   create_table "images", force: true do |t|
@@ -112,18 +77,9 @@ ActiveRecord::Schema.define(version: 20140201093124) do
     t.text     "content"
     t.integer  "message_chain_id"
     t.integer  "sender_id"
-    t.string   "type",             default: "default"
+    t.string   "message_type",     default: "default"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "offers", force: true do |t|
-    t.integer  "listing_id"
-    t.integer  "offer_amount"
-    t.boolean  "accepted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -131,7 +87,6 @@ ActiveRecord::Schema.define(version: 20140201093124) do
     t.string   "last_name"
     t.integer  "rating"
     t.text     "bio"
-    t.text     "avatar_url"
     t.string   "password_hash"
     t.string   "email"
     t.string   "location"
@@ -141,11 +96,6 @@ ActiveRecord::Schema.define(version: 20140201093124) do
     t.string   "remember_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.integer  "primary_card_id"
-    t.integer  "stripe_id"
-    t.integer  "primary_bank_id"
-    t.integer  "primary_check_id"
-    t.integer  "default_payout_type"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

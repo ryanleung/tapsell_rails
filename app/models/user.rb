@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
   has_one :image
   has_many :credit_cards
   has_one :bank_account
-  has_many :checks
-  has_many :offers
+  has_many :selling_offers, :class_name => "Offer", :foreigh_key => :seller_id
+  has_many :buying_offers, :class_name => "Offer", :foreigh_key => :buyer_id
   # Use the method message_chains to get all message chains for user
   has_many :seller_message_chains, :class_name => "MessageChain", :foreign_key => :seller_id
   has_many :buyer_message_chains, :class_name => "MessageChain", :foreign_key => :buyer_id
@@ -103,6 +103,31 @@ class User < ActiveRecord::Base
   def message_chains
     msg_chains = self.seller_message_chains + self.buyer_message_chains
     return msg_chains.sort_by(&:updated_at)
+  end
+
+  # Payments
+  # ---------------------------
+
+  # If one does not exist already, create and save a braintree customer id for
+  # this [rails/AR] customer via a server-to-server Braintree API call. Return
+  # the found or created braintree id, which is a string.
+  def find_or_create_braintree_customer_id
+    unless self.braintree_customer_id
+      bt_result = Braintree::Customer.create(
+        first_name: self.first_name,
+        last_name: self.last_name,
+        email: self.email
+      )
+      if bt_result.success?
+        self.braintree_customer_id = bt_result.customer.id
+        # We want to make this method as transactional (with respect to
+        # Braintree) as we reasonably can, so we save! here.
+        self.save!
+      else
+        raise "Braintree errors: #{result.errors}"
+      end
+    end
+    self.braintree_customer_id
   end
 
 	# Class Methods

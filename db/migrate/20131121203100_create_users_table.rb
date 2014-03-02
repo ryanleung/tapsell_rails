@@ -9,6 +9,9 @@ class CreateUsersTable < ActiveRecord::Migration
 			t.string :email
 			t.string :location
 			t.string :phone_number
+			t.decimal :credit
+			t.integer :braintree_customer_id
+			t.integer :braintree_merchant_id
 			t.timestamps
 		end
 	end
