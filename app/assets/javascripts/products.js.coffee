@@ -49,3 +49,34 @@ $(document).ready ->
     alert "Positive integers only"
     @value = ""
     @focus()
+
+  $(".craigslist-link").click ->
+    $(this).addClass "hide"
+    $(".craigslist-active").removeClass "hide"
+    $(".check-craigslist").removeClass "hide"
+
+  $(".craigslist-active").click ->
+    $(this).addClass "hide"
+    $(".craigslist-link").removeClass "hide"
+    $(".check-craigslist").addClass "hide"
+
+  $(".facebook-link").click ->
+    $(this).addClass "hide"
+    $(".facebook-active").removeClass "hide"
+    $(".check-facebook-group").removeClass "hide"
+
+  $(".facebook-active").click ->
+    $(this).addClass "hide"
+    $(".facebook-link").removeClass "hide"
+    $(".check-facebook-group").addClass "hide"
+
+  $(".facebook-timeline-link").click ->
+    $(this).addClass "hide"
+    $(".facebook-timeline-active").removeClass "hide"
+    $(".check-facebook-timeline").removeClass "hide"
+
+  $(".facebook-timeline-active").click ->
+    $(this).addClass "hide"
+    $(".facebook-timeline-link").removeClass "hide"
+    $(".check-facebook-timeline").addClass "hide"
+

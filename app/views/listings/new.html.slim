@@ -1,31 +1,91 @@
 .container.bg-gray style="padding-bottom: 50px; padding-top:90px"
-  = simple_form_for @listing, html: { role: "form", class: "col-lg-12" } do |f|
-    .panel.panel-default
-      .panel-heading
-        | Describe your item
-      .panel-body
-        .form-group
-          = f.input :title, input_html: { class: "form-control product-title", :maxlength => 150 }, required: true
-          #product-title-charnum
-        .form-group
-          label Category
-          = f.select :category, options_for_select(categories), {},{ class: "form-control", prompt: "Choose Category" }
-        .form-group
-          = f.input :price, as: :string, input_html: { class: "form-control product-price", maxlength: 4 }
-        .form-group
-          = f.input :info, input_html: { class: "form-control product-description", :maxlength => 5000 }
-        #product-description-charnum
-    .panel.panel-default.marg-top-30
-      .panel-heading
-        | Add some photos
-    .panel.panel-default.marg-top-30
-      .panel-heading
-        | Where should the buyer meet you?
-    .panel.panel-default.marg-top-30
-      .panel-heading
-        | Where else do you want to post the item
-      = f.submit "Create Listing", class: "btn btn-success pull-right", "data-disabled"=>"please wait"
+  = simple_form_for @listing, html: { role: "form", class: "col-xs-12" } do |f|
+    .col-xs-12.box-container.pull-left
+      .col-xs-12.header-box-container
+        .row
+          = image_tag "/assets/tapsell-first-icon.png", class: "icon-post pull-left"
+          h3.pull-left Let's start with a little background information
+      .col-xs-12.box-container-content.pull-left
+        .form-group.col-xs-12.pull-left
+          label.col-xs-12.col-md-2
+            | Title
+            span *
+          .col-xs-12.col-md-7
+            = text_field_tag "listing[title]", "", class: "form-control product-title", :maxlength => 150, required: true
+            #product-title-charnum
+        .form-group.col-xs-12.pull-left
+          label.col-xs-12.col-md-2
+            | Category
+            span *
+          .col-xs-12.col-md-7
+            = f.select :category, options_for_select(categories), {},{ class: "form-control", prompt: "Choose Category" }
+        .form-group.col-xs-12.pull-left
+          label.col-xs-12.col-md-2
+            | Price
+            span *
+          .col-xs-12.col-md-7
+            = text_field_tag "listing[price]", "", class: "form-control product-price", maxlength: "4"
+        .form-group.col-xs-12.pull-left
+          label.col-xs-12.col-md-2
+            | Description
+            span *
+          .col-xs-12.col-md-7
+            = text_area_tag "listing[info]", "", class: "form-control product-description", maxlength: "5000", style: "width: 85%;"
+            #product-description-charnum
+
+    .col-xs-12.box-container.pull-left
+      .col-xs-12.header-box-container
+        .row
+          = image_tag "/assets/tapsell-second-icon.png", class: "icon-post pull-left"
+          h3.pull-left Add some photos and - the more merrier!
+      .col-xs-12.box-container-content.pull-left
+        .row
+          .col-xs-3
+            .image-container.text-center.col-xs-12
+              = link_to "javascript:void(0);", class: "add-image" do
+                = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
+          .col-xs-3
+            .image-container.text-center.col-xs-12
+              = link_to "javascript:void(0);", class: "add-image" do
+                = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
+          .col-xs-3
+            .image-container.text-center.col-xs-12
+              = link_to "javascript:void(0);", class: "add-image" do
+                = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
+          .col-xs-3
+            .image-container.text-center.col-xs-12
+              = link_to "javascript:void(0);", class: "add-image" do
+                = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
+
+    .col-xs-12.box-container.pull-left
+      .col-xs-12.header-box-container
+        .row
+          = image_tag "/assets/tapsell-third-icon.png", class: "icon-post pull-left"
+          h3.pull-left Where else would you like post your item? Again the more the merrier!
+      .col-xs-12.box-container-content.pull-left
+        .row
+          .col-xs-4.text-center
+            .check-container.col-xs-12
+              = image_tag "/assets/tapsell-check-icon.png", class: "check-craigslist hide animated fadeInUp"
+            .button-container
+              = link_to "CRAIGSLIST", "javascript:void(0);", class: "btn craigslist-link col-xs-12 animated fadeInUp"
+              = link_to "CRAIGSLIST", "javascript:void(0);", class: "btn craigslist-active active col-xs-12 hide animated fadeInUp"
+          .col-xs-4.text-center
+            .check-container.col-xs-12
+              = image_tag "/assets/tapsell-check-icon.png", class: "check-facebook-group hide animated fadeInUp"
+            .button-container
+              = link_to "FACEBOOK FREE & FOR SALE", "javascript:void(0);", class: "btn facebook-link col-xs-12 animated fadeInUp"
+              = link_to "FACEBOOK FREE & FOR SALE", "javascript:void(0);", class: "btn hide facebook-active active col-xs-12 animated fadeInUp"
+          .col-xs-4.text-center
+            .check-container.col-xs-12
+              = image_tag "/assets/tapsell-check-icon.png", class: "check-facebook-timeline hide animated fadeInUp"
+            .button-container
+              = link_to "FACEBOOK TIMELINE", "javascript:void(0);", class: "btn facebook-timeline-link col-xs-12 animated fadeInUp"
+              = link_to "FACEBOOK TIMELINE", "javascript:void(0);", class: "btn hide facebook-timeline-active active col-xs-12 animated fadeInUp"
+
+    .col-xs-12.text-center.submit-container
+      = f.submit "Create my listing", class: "btn submit-btn", "data-disabled"=>"please wait ..."
 = content_for :javascript_contents do
-  = javascript_include_tag "jquery.numeric.js", "products", "character_cowndown"
+  = javascript_include_tag "jquery.numeric.js", "products"
 = content_for :stylesheet_contents do
   = stylesheet_link_tag "products"
