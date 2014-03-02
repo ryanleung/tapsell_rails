@@ -57,6 +57,7 @@ class ListingsController < ApplicationController
   def new
     @user = current_user
     @listing = Listing.new
+    4.times { @listing.images.build }
   end
 
   def create

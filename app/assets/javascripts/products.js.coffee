@@ -6,7 +6,7 @@ setPreviewImage = (watermarkfile, elem) ->
     newImage.src = evt.target.result
 
   reader.readAsDataURL watermarkfile
-  elem.find(".product-live-view-image").html newImage
+  elem.parent().html newImage
 
 $(document).ready ->
   # $("#product_address").geocomplete
@@ -17,6 +17,10 @@ $(document).ready ->
   #     zoom: 100
   #   markerOptions:
   #     draggable: true
+
+  $(".add-image-field").change (evt) ->
+    alert(1)
+    setPreviewImage evt.target.files[0], $(this).next()
 
   $("#product_images_attributes_0_file").bind "change", (evt) ->
     evt.preventDefault()
@@ -79,4 +83,9 @@ $(document).ready ->
     $(this).addClass "hide"
     $(".facebook-timeline-link").removeClass "hide"
     $(".check-facebook-timeline").addClass "hide"
+
+  $('#link_add').click()
+  $('#link_add').click()
+  $('#link_add').click()
+  $('#link_add').click()
 

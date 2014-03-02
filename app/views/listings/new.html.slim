@@ -1,5 +1,5 @@
 .container.bg-gray style="padding-bottom: 50px; padding-top:90px"
-  = simple_form_for @listing, html: { role: "form", class: "col-xs-12" } do |f|
+  = simple_nested_form_for @listing, html: { role: "form", class: "col-xs-12" } do |f|
     .col-xs-12.box-container.pull-left
       .col-xs-12.header-box-container
         .row
@@ -40,22 +40,26 @@
           h3.pull-left Add some photos and - the more merrier!
       .col-xs-12.box-container-content.pull-left
         .row
+        - f.fields_for :images do |image|
           .col-xs-3
             .image-container.text-center.col-xs-12
-              = link_to "javascript:void(0);", class: "add-image" do
+              = image.file_field :image, class: 'hide add-image-field'
+              = link_to "javascript:void(0);", class: "add-image", onclick: '$(this).prev().click();' do
                 = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
-          .col-xs-3
-            .image-container.text-center.col-xs-12
-              = link_to "javascript:void(0);", class: "add-image" do
-                = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
-          .col-xs-3
-            .image-container.text-center.col-xs-12
-              = link_to "javascript:void(0);", class: "add-image" do
-                = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
-          .col-xs-3
-            .image-container.text-center.col-xs-12
-              = link_to "javascript:void(0);", class: "add-image" do
-                = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
+          / .col-xs-3
+          /   .image-container.text-center.col-xs-12
+          /     = link_to "javascript:void(0);", class: "add-image" do
+          /       = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
+          / .col-xs-3
+          /   .image-container.text-center.col-xs-12
+          /     = link_to "javascript:void(0);", class: "add-image" do
+          /       = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
+          / .col-xs-3
+          /   .image-container.text-center.col-xs-12
+          /     = link_to "javascript:void(0);", class: "add-image" do
+          /       = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
+
+        = f.link_to_add "Add a task", :images, id: 'link_add', class: 'hide'
 
     .col-xs-12.box-container.pull-left
       .col-xs-12.header-box-container
@@ -89,3 +93,32 @@
   = javascript_include_tag "jquery.numeric.js", "products"
 = content_for :stylesheet_contents do
   = stylesheet_link_tag "products"
+
+javascript:
+  var setPreviewImage = function(watermarkfile, elem, event) {
+    var newImage, reader;
+    reader = new FileReader();
+    newImage = new Image();
+    reader.onload = function(evt) {
+      newImage.src = evt.target.result;
+
+      // condition
+      if (newImage.height == newImage.width) {
+        return elem.parent().html(newImage);
+      } else {
+        alert('Image height and width should be same')
+        event.preventDefault();
+      }
+      // end condition
+    };
+    reader.readAsDataURL(watermarkfile);
+
+
+
+  };
+
+  $(document).ready(function(){
+    $(".add-image-field").change(function(evt) {
+      setPreviewImage(evt.target.files[0], $(this).next(), evt);
+    });
+  });
