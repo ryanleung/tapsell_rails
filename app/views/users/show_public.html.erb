@@ -14,7 +14,7 @@
 					</h1>
 					<h4>
 						<%= image_tag "/assets/pin-white.png", class: "pin" %>
-						UC Davis - 
+						UC Davis -
 						<b>98%</b>
 						POSITIVE REVIEW
 					</h4>
@@ -41,7 +41,7 @@
 					<div class="col-xs-6 col-md-3">
 						<div class="col-xs-12 col-md-12 thumbnail">
 							<h5 class="col-xs-12 no-pad">
-								<%= truncate(listing.title, length: 30).titleize %>
+								<%= truncate(listing.title.to_s, length: 30).titleize %>
 							</h5>
 							<%= link_to image_tag('/assets/no_images.png', class: 'col-xs-12 no-pad'), listing_path(listing), class: 'col-xs-12 no-pad' %>
 							<div class="col-xs-6 no-pad">
