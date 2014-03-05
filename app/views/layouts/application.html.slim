@@ -24,8 +24,7 @@ html
           - if signed_in?
             .pull-left.nav-location-container
               = image_tag "/assets/pin.png", class: "pin-image pull-left"
-              - location = current_user.location.try
-                unless location.nil?
+              - location = current_user.location
                 p.pull-left.location-label locality
               - if location.nil?
                 p.pull-left.location-label UC Davis
