@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128070136) do
+ActiveRecord::Schema.define(version: 20140301070138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20140128070136) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "credit_cards", force: true do |t|
+    t.integer  "user_id"
+    t.string   "braintree_token"
+    t.integer  "address_id"
+    t.string   "cardholder_name"
+    t.string   "last_4",           limit: 4
+    t.string   "card_type"
+    t.string   "expiration_month", limit: 2
+    t.string   "expiration_year",  limit: 4
+    t.boolean  "is_default",                 default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
 
   create_table "images", force: true do |t|
     t.string   "title"
@@ -82,6 +98,19 @@ ActiveRecord::Schema.define(version: 20140128070136) do
     t.datetime "updated_at"
   end
 
+  create_table "offers", force: true do |t|
+    t.integer  "seller_id"
+    t.integer  "listing_id"
+    t.integer  "buyer_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "offers", ["buyer_id"], name: "index_offers_on_buyer_id", using: :btree
+  add_index "offers", ["listing_id"], name: "index_offers_on_listing_id", using: :btree
+  add_index "offers", ["seller_id"], name: "index_offers_on_seller_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -91,6 +120,9 @@ ActiveRecord::Schema.define(version: 20140128070136) do
     t.string   "email"
     t.string   "location"
     t.string   "phone_number"
+    t.decimal  "credit"
+    t.integer  "braintree_customer_id"
+    t.integer  "braintree_merchant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"

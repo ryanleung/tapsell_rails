@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
   has_one :image
   has_many :credit_cards
   has_one :bank_account
-  has_many :selling_offers, :class_name => "Offer", :foreigh_key => :seller_id
-  has_many :buying_offers, :class_name => "Offer", :foreigh_key => :buyer_id
+  has_many :selling_offers, :class_name => "Offer", :foreign_key => :seller_id
+  has_many :buying_offers, :class_name => "Offer", :foreign_key => :buyer_id
   # Use the method message_chains to get all message chains for user
   has_many :seller_message_chains, :class_name => "MessageChain", :foreign_key => :seller_id
   has_many :buyer_message_chains, :class_name => "MessageChain", :foreign_key => :buyer_id
