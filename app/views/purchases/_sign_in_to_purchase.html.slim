@@ -44,7 +44,7 @@
             b= @listing.seller.first_name.upcase
           .price-container
             | $
-            = @listing.price
+            = @listing.price.to_i
           .product-guarantee-container
             span.black-check-icon
             p.pull-left Buyer guarantee

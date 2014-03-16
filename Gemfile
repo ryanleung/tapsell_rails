@@ -81,6 +81,9 @@ gem 'bootstrap-will_paginate', '0.0.9'
 # Gems Font Icon
 gem "font-awesome-rails"
 
+# Nested form
+gem 'nested_form'
+
 group :production do
   gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
   gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
