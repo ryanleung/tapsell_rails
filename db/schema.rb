@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301070138) do
+ActiveRecord::Schema.define(version: 20140311070138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,18 @@ ActiveRecord::Schema.define(version: 20140301070138) do
     t.datetime "updated_at"
   end
 
+  create_table "merchant_accounts", force: true do |t|
+    t.integer  "user_id"
+    t.string   "braintree_token"
+    t.integer  "address_id"
+    t.string   "last_4",          limit: 4
+    t.boolean  "is_default",                default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "merchant_accounts", ["user_id"], name: "index_merchant_accounts_on_user_id", using: :btree
+
   create_table "message_chains", force: true do |t|
     t.integer  "buyer_id"
     t.integer  "seller_id"
@@ -122,7 +134,8 @@ ActiveRecord::Schema.define(version: 20140301070138) do
     t.string   "phone_number"
     t.decimal  "credit"
     t.integer  "braintree_customer_id"
-    t.integer  "braintree_merchant_id"
+    t.string   "braintree_merchant_id"
+    t.string   "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"

@@ -11,7 +11,7 @@ class CreateUsersTable < ActiveRecord::Migration
 			t.string :phone_number
 			t.decimal :credit
 			t.integer :braintree_customer_id
-			t.integer :braintree_merchant_id
+			t.string :date_of_birth
 			t.timestamps
 		end
 	end

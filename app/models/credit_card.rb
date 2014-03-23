@@ -39,12 +39,15 @@ class CreditCard < ActiveRecord::Base
         expiration_year: enc_cc_year,
         billing_address: {
           postal_code: enc_postal_code
-        }
+        },
+        options: {
+          fail_on_duplicate_payment_method: true
+        },
       )
     rescue Braintree::ValidationsFailed => vf
       raise "Braintree Validation Error: #{vf}"
     rescue Braintree::UnexpectedError => ue
-      raise "Braintree UnexpectedError: #{ue}"
+      raiase "Braintree UnexpectedError: #{ue}"
     rescue Braintree::NotFoundError => nfe
       raise "Braintree NotFoundError: #{nfe}"
     end
@@ -53,7 +56,7 @@ class CreditCard < ActiveRecord::Base
     end
 
     credit_card = CreditCard.find_or_create_from_braintree_credit_card(
-      user, bt_result.credit_card)
+      user.id, bt_result.credit_card)
 
     credit_card
   end
