@@ -24,10 +24,28 @@
                 .row
                   .col-sm-12.text-center
                     - location = current_user.location
-                      h4.left-location
-                        = image_tag "/assets/pin.png", class: "pin-image"
-                        | &nbsp;
+                    h4.left-location
+                      = image_tag "/assets/pin.png", class: "pin-image"
+                      | &nbsp;
+                      - if location
                         = location
+                      - else
+                        | Location
+              .col-xs-12.text-center.left-button-container
+                .row
+                  .col-xs-12
+                    ul
+                      li
+                        = link_to "javascript:void(0);" do
+                          = image_tag "/assets/camera-icon.png", class: "camera-icon"
+                          | &nbsp;
+                          | upload new photo
+                      li
+                        = link_to "javascript:void(0);" do
+                          = image_tag "/assets/fb-icon.png", class: "fb-icon"
+                          | &nbsp;
+                          | disconnect facebook
+
           .col-sm-8.col-push-4.profile-right-container
             .row
               .col-sm-12.box-container.no-pad.profile-right-content

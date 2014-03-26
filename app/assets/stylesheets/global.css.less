@@ -224,32 +224,65 @@ a {
 				display: inline-block;
 				background-position: 0 150%;
 				background-color: #f6f6f6 !important;
+				overflow: hidden;
+
+
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					bottom: -4px;
+					width: 100%;
+					background-color: @orange;
+					height: 4px;
+					-webkit-transition: all .25s ease;
+				   	-moz-transition: all .25s ease;
+				    	-ms-transition: all .25s ease;
+				     	-o-transition: all .25s ease;
+				        	transition: all .25s ease;
+				}
 				&:hover {
-					background-color: none !important;
-					background-image: url('/assets/nav-border.png');
+					// background-image: url('/assets/nav-border.png');
 					background-repeat: repeat-x;
 					background-position: 100% 100%;
 					color: @orange !important;
 					background-color: #f6f6f6 !important;
+					&:after {
+						content: "";
+						display: block;
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						background-color: @orange;
+						height: 4px;
+					}
 				}
 			}
 		}
 	}
 	.active {
 		a {
-			background-color: none !important;
 			background-image: url('/assets/nav-border.png');
 			background-repeat: repeat-x;
 			background-position: 100% 100%;
 			color: @orange !important;
 			background-color: none !important;
+			&:after {
+				content: "";
+				display: block;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				background-color: @orange;
+				height: 4px;
+			}
 		}
 	}
 }
 
 // START NAVBAR
 .navbar-header {
-	margin-top: 13px;
+	margin-top: 5px;
 	margin-left: 1% !important;
 	position: absolute;
 	z-index: 1;
