@@ -39,13 +39,12 @@ ActiveRecord::Schema.define(version: 20140311070138) do
 
   create_table "credit_cards", force: true do |t|
     t.integer  "user_id"
-    t.string   "braintree_token"
+    t.string   "stripe_id"
     t.integer  "address_id"
-    t.string   "cardholder_name"
     t.string   "last_4",           limit: 4
     t.string   "card_type"
-    t.string   "expiration_month", limit: 2
-    t.string   "expiration_year",  limit: 4
+    t.integer  "expiration_month", limit: 2
+    t.integer  "expiration_year"
     t.boolean  "is_default",                 default: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -79,18 +78,6 @@ ActiveRecord::Schema.define(version: 20140311070138) do
     t.datetime "updated_at"
   end
 
-  create_table "merchant_accounts", force: true do |t|
-    t.integer  "user_id"
-    t.string   "braintree_token"
-    t.integer  "address_id"
-    t.string   "last_4",          limit: 4
-    t.boolean  "is_default",                default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "merchant_accounts", ["user_id"], name: "index_merchant_accounts_on_user_id", using: :btree
-
   create_table "message_chains", force: true do |t|
     t.integer  "buyer_id"
     t.integer  "seller_id"
@@ -123,6 +110,17 @@ ActiveRecord::Schema.define(version: 20140311070138) do
   add_index "offers", ["listing_id"], name: "index_offers_on_listing_id", using: :btree
   add_index "offers", ["seller_id"], name: "index_offers_on_seller_id", using: :btree
 
+  create_table "recipients", force: true do |t|
+    t.integer  "user_id"
+    t.string   "stripe_id"
+    t.string   "last_4",     limit: 4
+    t.boolean  "is_default",           default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recipients", ["user_id"], name: "index_recipients_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -133,8 +131,7 @@ ActiveRecord::Schema.define(version: 20140311070138) do
     t.string   "location"
     t.string   "phone_number"
     t.decimal  "credit"
-    t.integer  "braintree_customer_id"
-    t.string   "braintree_merchant_id"
+    t.string   "stripe_customer_id"
     t.string   "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"

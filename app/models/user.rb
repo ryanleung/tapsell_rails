@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_one :image
   has_one :address
   has_many :credit_cards
-  has_many :merchant_accounts
+  has_many :recipients
   has_many :offers_as_seller, :class_name => "Offer", :foreign_key => :seller_id
   has_many :offers_as_buyer, :class_name => "Offer", :foreign_key => :buyer_id
   # Use the method message_chains to get all message chains for user
@@ -109,26 +109,22 @@ class User < ActiveRecord::Base
   # Payments
   # ---------------------------
 
-  # If one does not exist already, create and save a braintree customer id for
-  # this [rails/AR] customer via a server-to-server Braintree API call. Return
-  # the found or created braintree id, which is a string.
-  def find_or_create_braintree_customer_id
-    unless self.braintree_customer_id
-      bt_result = Braintree::Customer.create(
-        first_name: self.first_name,
-        last_name: self.last_name,
-        email: self.email
-      )
-      if bt_result.success?
-        self.braintree_customer_id = bt_result.customer.id
-        # We want to make this method as transactional (with respect to
-        # Braintree) as we reasonably can, so we save! here.
-        self.save!
-      else
-        raise "Braintree errors: #{bt_result.errors}"
+  # If one does not exist already, create and save a stripe customer id for
+  # this [rails/AR] customer via a server-to-server Stripe API call. Return
+  # the found or created stripe id, which is a string.
+  def find_or_create_stripe_customer_id
+    unless self.stripe_customer_id
+      begin
+        st_result = Stripe::Customer.create(
+          email: self.email
+        )
+      rescue => e
+        raise "Stripe errors: #{e.message}"
       end
+      self.stripe_customer_id = st_result.id
+      self.save!
     end
-    self.braintree_customer_id
+    self.stripe_customer_id
   end
 
 	# Class Methods

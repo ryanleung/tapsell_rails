@@ -71,8 +71,8 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'cloudinary'
 
-# Use Braintree for payment processing
-gem 'braintree'
+# Use Stripe for payment processing
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # Gems for pagination
 gem 'will_paginate', '3.0.4'
