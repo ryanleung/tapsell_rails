@@ -67,7 +67,7 @@ class MerchantAccount < ActiveRecord::Base
     unless ma.nil?
       if user_id
         if user_id != ma.user_id
-          raise "Braintree CC token already associated with user: #{user_id}"
+          raise "Braintree MA token already associated with user: #{user_id}"
         end
       end
       return ma

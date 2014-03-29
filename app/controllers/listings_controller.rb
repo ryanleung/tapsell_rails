@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = current_user.selling_listings.build(listing_params)
+    @listing = current_user.listings_as_seller.build(listing_params)
     if @listing.save
       flash[:success] = "Listing created!"
       redirect_to root_url

@@ -12,17 +12,17 @@ class User < ActiveRecord::Base
 	# Relationships - Ordered Alphabetically
 	# --------------------------------------
 
-	has_many :selling_listings, :class_name => "Listing", :foreign_key => :seller_id
-  has_many :buying_listings, :class_name => "Listing", :foreign_key => :buyer_id
+	has_many :listings_as_seller, :class_name => "Listing", :foreign_key => :seller_id
+  has_many :listings_as_buyer, :class_name => "Listing", :foreign_key => :buyer_id
   has_one :image
   has_one :address
   has_many :credit_cards
   has_many :merchant_accounts
-  has_many :selling_offers, :class_name => "Offer", :foreign_key => :seller_id
-  has_many :buying_offers, :class_name => "Offer", :foreign_key => :buyer_id
+  has_many :offers_as_seller, :class_name => "Offer", :foreign_key => :seller_id
+  has_many :offers_as_buyer, :class_name => "Offer", :foreign_key => :buyer_id
   # Use the method message_chains to get all message chains for user
-  has_many :seller_message_chains, :class_name => "MessageChain", :foreign_key => :seller_id
-  has_many :buyer_message_chains, :class_name => "MessageChain", :foreign_key => :buyer_id
+  has_many :message_chains_as_seller, :class_name => "MessageChain", :foreign_key => :seller_id
+  has_many :message_chains_as_buyer, :class_name => "MessageChain", :foreign_key => :buyer_id
 
 	# Validations
 	# -----------
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   end
 
   def message_chains
-    msg_chains = self.seller_message_chains + self.buyer_message_chains
+    msg_chains = self.message_chains_as_seller + self.message_chains_as_buyer
     return msg_chains.sort_by(&:updated_at)
   end
 

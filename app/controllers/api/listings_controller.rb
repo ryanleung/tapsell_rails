@@ -6,7 +6,7 @@ class Api::ListingsController < Api::ApiController
 	def index
 		render json: {
 			error: nil,
-			data: @current_user.selling_listings.map{ |l| l.api_hash }
+			data: @current_user.listings_as_seller.map{ |l| l.api_hash }
 		}
 	end
 
