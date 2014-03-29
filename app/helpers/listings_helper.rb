@@ -1,7 +1,7 @@
 module ListingsHelper
 
 	def categories
-		["Books", "Apparel", "Electronics", "Home", "Ticket", "Other"]
+		["Books", "Apparel", "Electronics", "Home", "Tickets", "Other"]
 	end
 
 	def all

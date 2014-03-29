@@ -38,8 +38,8 @@
             = link_to "High Price", "javascript:void(0);", class: "high-price-link filter-category"
 #loader-container.text-center.col-xs-12.animated.fadeInDown.hide
   i.fa.fa-refresh.fa-spin.fa-5x
-#container-listing.listing-container.col-xs-12
-  .container
+.container.no-pad
+  #container-listing.listing-container.col-xs-12
     = render "listing_items"
 #all-paginate.col-xs-12.text-center.animated.fadeInUp
   ul.pagination= will_paginate all
