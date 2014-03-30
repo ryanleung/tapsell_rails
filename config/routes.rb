@@ -1,5 +1,6 @@
 Tapsell::Application.routes.draw do
 
+  get "dashboard/show"
   ##################################
   # Web app routes
   ##################################
@@ -38,6 +39,9 @@ Tapsell::Application.routes.draw do
 
   # View my listings
   get "users/:id/listings" => "listings#show_my_listings", as: 'my_listings'
+
+  # View user dashboard
+  get "users/:id/dashboard" => "dashboard#show", as: 'dashboard'
 
   # Authentication
   match '/sign-up', to: 'users#new', via: 'get'
