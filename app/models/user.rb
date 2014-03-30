@@ -127,6 +127,30 @@ class User < ActiveRecord::Base
     self.stripe_customer_id
   end
 
+  def default_credit_card
+    return nil if self.credit_cards.empty?
+
+    self.credit_cards.each do |c|
+      if c.is_default?
+        return c
+      end
+    end
+
+    return nil
+  end
+
+  def default_recipient
+    return nil if self.recipients.empty?
+
+    self.recipients.each do |r|
+      if r.is_default?
+        return r
+      end
+    end
+
+    return nil
+  end
+
 	# Class Methods
 	# -------------
 

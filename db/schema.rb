@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20140311070138) do
     t.integer  "seller_id"
     t.integer  "listing_id"
     t.integer  "buyer_id"
+    t.integer  "credit_card_id"
+    t.decimal  "price"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -61,6 +61,7 @@ class Recipient < ActiveRecord::Base
       user_id: user_id,
       stripe_id: stripe_id,
       last_4: st_recipient.active_account.last4,
+      is_default: true,
     )
   end
 

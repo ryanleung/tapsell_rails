@@ -4,6 +4,7 @@ class CreditCard < ActiveRecord::Base
   # -------------
   belongs_to :address #, :with_deleted => true
   belongs_to :user
+  has_many :offers
 
   # has_many :offers
 
@@ -18,11 +19,11 @@ class CreditCard < ActiveRecord::Base
                       :with => /\d{4}/,
                       :message => "must be 4 digits"
   validates_format_of :expiration_month,
-                      :with => /\d{2}/,
-                      :message => "must be 2 digits"
+                      :with => /\d{1,2}/,
+                      :message => "must be 1 or 2 digits"
   validates_format_of :expiration_year,
-                      :with => /\d{4}/,
-                      :message => "must be 4 digits"
+                      :with => /\d{2,4}/,
+                      :message => "must be 2 or 4 digits"
 
   # Class Methods
   # -------------
@@ -81,7 +82,8 @@ class CreditCard < ActiveRecord::Base
       last_4: st_credit_card.last4,
       card_type: st_credit_card.type,
       expiration_month: st_credit_card.exp_month,
-      expiration_year: st_credit_card.exp_year
+      expiration_year: st_credit_card.exp_year,
+      is_default: true,
     )
   end
 end
