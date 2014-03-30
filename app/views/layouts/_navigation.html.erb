@@ -2,7 +2,7 @@
 	<div class="container navigation-child-container">
 		<ul class="nav nav-pills">
 			<li class="<%= controller_name.eql?('dashboard') ? "active" : "" %>">
-				<%= link_to "DASHBOARD", "javascript:void(0);", class: "nav-link" %>
+				<%= link_to "DASHBOARD", dashboard_path(current_user.id), class: "nav-link" %>
 			</li>
 			<li class="<%= controller_name.eql?('messages') ? "active" : "" %>">
 				<%= link_to "INBOX", "javascript:void(0);", class: "nav-link" %>
