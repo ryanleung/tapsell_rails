@@ -4,7 +4,7 @@ html
     title Tapsell
     = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
-    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
+    / = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
     / = javascript_include_tag "jquery.geocomplete"
     = yield :javascript_contents
     = yield :stylesheet_contents
@@ -24,8 +24,7 @@ html
           - if signed_in?
             .pull-left.nav-location-container
               = image_tag "/assets/pin.png", class: "pin-image pull-left"
-              - location = current_user.location.try
-                unless location.nil?
+              - location = current_user.location
                 p.pull-left.location-label locality
               - if location.nil?
                 p.pull-left.location-label UC Davis
@@ -42,7 +41,7 @@ html
                   span.cus-caret
                 ul.dropdown-menu role="menu" aria-labelledby="dlabel"
                   li
-                    = link_to "Dashboard", new_listing_path
+                    = link_to "Dashboard", "javascript:void(0);"
                   li
                     = link_to "Profile", user_path(@user)
                   li

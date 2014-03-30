@@ -5,7 +5,7 @@
     .col-md-12.title-container
       span.green-check-icon
       h1.order-title
-        | Congratulations, 
+        | Congratulations,
         = current_user.first_name
         | .  Your offer has been been placed.
     .col-md-12.content-section
@@ -14,7 +14,7 @@
     .col-md-12.left-container-content.pull-left
       .offer-confirmation
         span.black-check-icon
-        p We've sent you an email confirmation of this offer.  
+        p We've sent you an email confirmation of this offer.
         .list
     .col-md-12.text-center.order-footer
       .row
@@ -43,7 +43,7 @@
             b= @listing.seller.first_name.upcase
           .price-container
             | $
-            = @listing.price
+            = @listing.price.to_i
           .product-guarantee-container
             span.black-check-icon
             p.pull-left Covered by Tapsell Buyer Guarantee
@@ -51,5 +51,5 @@
             .list
             .list
           .location-container
-            | Pick up location: 
+            | Pick up location:
             b= "UC Davis"

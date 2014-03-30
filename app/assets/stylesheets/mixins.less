@@ -1,0 +1,67 @@
+@darkBlue : #1A3F66;
+@darkBlueMore : #123657;
+@darkPurple : #562372;
+@blurBlue : #7598B3;
+@blurPurple : #9375B3;
+@red: #BB3232;
+
+
+// PRIMARY COLOR PALLETE
+@aqua: #A7CBC9;
+@orange: #EA7A58;
+@grape: #5B4E62;
+// END PRIMARY COLOR PALLETE
+
+// SECONDARY COLOR PALLETE
+@darkGrey: #57535A;
+@lightGrey: #F6F6F6;
+@tinyGrey: #dddddd;
+@activeGrey: #f3f3f3;
+@inactiveGrey: #f8f8f8;
+@mediumGrey: #B6B1AD;
+@mediumlightGrey: #f9f9f9;
+@rose: #CB4944;
+// END SECONDARY COLOR PALLETE
+
+// START COLOR
+.whitesmoke { color: whitesmoke; }
+.dark-grey { color: @darkGrey !important; }
+.orange { color: @orange !important; }
+.aqua { color: @aqua !important; }
+.red { color: @red !important }
+// END COLOR
+
+// START FONT
+@caeciliabold: 'caecilia_lt_std75_bold';
+@caecilialight: 'caecilia_lt_std45_light';
+@caeciliaroman: 'caecilia_lt_std55_roman';
+@futuraextended: 'futuraextendedregular';
+@futuralight: 'futuralightregular';
+// END FONT
+
+
+.ver-pad(@top, @bottom) {
+	padding-top: @top;
+	padding-bottom: @bottom;
+}
+
+.size(@width, @height) {
+	width: @width;
+	height: @height;
+}
+
+.box-shadow(...) {
+	-webkit-box-shadow: 0 2px 2px #fff;
+	-moz-box-shadow: 0 2px 2px #fff;
+	-ms-box-shadow: 0 2px 2px #fff;
+	-opera-box-shadow: 0 2px 2px #fff;
+	box-shadow: 0 2px 2px #fff;
+}
+
+.border-radius(...) {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+}

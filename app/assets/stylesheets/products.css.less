@@ -1,4 +1,5 @@
 @import "global.css.less";
+@import "mixins.less";
 .product-live-view-image {
 	img {
 		width: 125px;
@@ -251,4 +252,128 @@
 
 .comments_tree .comment.highlighted {
 	border: none !important;
+}
+
+.box-container {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border: 1px solid #e9e9e9;
+	.header-box-container {
+		border-bottom: 1px solid #e9e9e9;
+		float: left;
+		img {
+			width: 27px;
+		}
+		h3 {
+			font-size: 21px;
+			margin: 0;
+			padding-left: 20px;
+			padding-bottom: 20px;
+			padding-top: 4px;
+			color: #5b4e62;
+		}
+	}
+	.box-container-content {
+		padding: 20px 35px 0 35px;
+		.form-group {
+			padding: 15px 0;
+			input {
+				padding-top: 8px;
+				padding-bottom: 8px;
+				font-weight: 100 !important;
+				font-family: @futuraextended;
+				color: #cccbcc;
+				height: auto !important;
+			}
+			select {
+				padding-top: 8px !important;
+				padding-bottom: 8px !important;
+			}
+			label {
+				font-family: @futuraextended;
+				font-size: 18px;
+				font-weight: 100 !important;
+				color: #7c7c7c;
+				padding-top: 7px;
+			}
+			textarea {
+				border: 1px solid #ccc;
+				.border-radius(0);
+				.box-shadow(none);
+			}
+		}
+		.image-container {
+			background-color: #D7D7D7;
+			padding: 0px;
+			height: 215px;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+			.add-image {
+				position: absolute;
+				height: 50px;
+				margin: 36% auto;
+				width: 100%;
+				left: 0;
+				img {
+					width: 48px;
+					height: 48px;
+				}
+				&:hover {
+					transform: rotate(90deg);
+					-ms-transform: rotate(90deg); /* IE 9 */
+					-webkit-transform: rotate(90deg); /* Opera, Chrome, and Safari */
+				}
+			}
+		}
+		.check-container {
+			min-height: 40px;
+		}
+		.button-container {
+			.btn {
+				.border-radius(0);
+				font-family: @futuraextended;
+				color: #c7c7c7;
+				border: 1px solid #e9e9e9;
+				padding: 8px 0;
+				font-size: 16px;
+				margin-top: 20px;
+				&:hover {
+					background-color: @orange;
+					color: white;
+					border: 1px solid #c7c7c7;
+				}
+			}
+			.active {
+				background-color: @orange;
+				color: white;
+				border: 1px solid #c7c7c7;
+				.box-shadow(0);
+			}
+		}
+	}
+}
+
+.submit-container {
+	.btn {
+		background-color: #accecc;
+		background-image: image-url("/assets/tapsell-layer-button.png");
+		background-repeat: no-repeat;
+		background-position: top center;
+		width: 250px;
+		background-size: 100% 32px;
+		font-family: @futuraextended;
+		font-size: 24px;
+		color: white;
+		padding: 11px 0;
+		-webkit-border-radius: 10px !important;
+		-moz-border-radius: 10px !important;
+		-ms-border-radius: 10px !important;
+		-o-border-radius: 10px !important;
+		border-radius: 10px !important;
+		.box-shadow(0 2px 10px #ccc);
+	}
 }

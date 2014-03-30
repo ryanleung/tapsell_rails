@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 20140311070138) do
     t.text     "bio"
     t.string   "password_hash"
     t.string   "email"
-    t.string   "location"
+    t.string   "location",               default: "UC Davis"
     t.string   "phone_number"
     t.decimal  "credit"
     t.string   "stripe_customer_id"

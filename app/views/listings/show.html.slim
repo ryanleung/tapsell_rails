@@ -20,7 +20,7 @@
         .right-container-content
           .price-container.price-product-container
             | $
-            = @listing.price
+            = @listing.price.to_i
           .button-product-container
             - if @listing.seller.eql?(current_user)
                 = link_to "MAKE OFFER", "javascript:void(0);", class: "btn", disabled: true
@@ -39,9 +39,9 @@
         .right-container-content
           h3.text-center= @listing.seller.first_name
           .avatar-container.text-center
-            = link_to "javascript:void(0);" do
+            = link_to public_profile_path(@listing.seller.id) do
               - if @listing.seller.image.nil?
-                = image_tag "/assets/no_images.png", class: "img-circle"
+                = image_tag "/assets/no_image.png", class: "img-circle"
           .user-location-container
             h4.location.text-center
               = image_tag "/assets/pin.png"

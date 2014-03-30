@@ -1,0 +1,47 @@
+@import "mixins";
+
+.show-public-container {
+	// width: 616px;
+	.name-container {
+		// float: left;
+		background-color: @aqua;
+		.ver-pad(0, 15px);
+		.box-shadow();
+		.name {
+			color: white;
+			margin-top: 23px;
+		}
+		h4 {
+			margin-top: 15px;
+			font-family: @futuraextended !important;
+			color: white ;
+			.pin {
+				width: 12px;
+				margin-top: -5px;
+				margin-right: 5px;
+			}
+		}
+	}
+	.information-container {
+		.ver-pad(0, 15px);
+		background-color: @tinyGrey;
+		.box-shadow();
+		.avatar {
+			left: 20%;
+			.size(263px, 263px);
+			position: absolute;
+			margin-top: -96px;
+		}
+		.description {
+			font-family: @futuraextended !important;
+			min-height: 100px;
+			line-height: 25px;
+			font-weight: 100;
+			font-size: 21px;
+			color: @darkGrey;
+			margin-top: 30px;
+			margin-bottom: 50px;
+			text-align: justify;
+		}
+	}
+}

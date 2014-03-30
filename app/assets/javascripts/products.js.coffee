@@ -6,7 +6,7 @@ setPreviewImage = (watermarkfile, elem) ->
     newImage.src = evt.target.result
 
   reader.readAsDataURL watermarkfile
-  elem.find(".product-live-view-image").html newImage
+  elem.parent().html newImage
 
 $(document).ready ->
   # $("#product_address").geocomplete
@@ -17,6 +17,10 @@ $(document).ready ->
   #     zoom: 100
   #   markerOptions:
   #     draggable: true
+
+  $(".add-image-field").change (evt) ->
+    alert(1)
+    setPreviewImage evt.target.files[0], $(this).next()
 
   $("#product_images_attributes_0_file").bind "change", (evt) ->
     evt.preventDefault()
@@ -49,3 +53,39 @@ $(document).ready ->
     alert "Positive integers only"
     @value = ""
     @focus()
+
+  $(".craigslist-link").click ->
+    $(this).addClass "hide"
+    $(".craigslist-active").removeClass "hide"
+    $(".check-craigslist").removeClass "hide"
+
+  $(".craigslist-active").click ->
+    $(this).addClass "hide"
+    $(".craigslist-link").removeClass "hide"
+    $(".check-craigslist").addClass "hide"
+
+  $(".facebook-link").click ->
+    $(this).addClass "hide"
+    $(".facebook-active").removeClass "hide"
+    $(".check-facebook-group").removeClass "hide"
+
+  $(".facebook-active").click ->
+    $(this).addClass "hide"
+    $(".facebook-link").removeClass "hide"
+    $(".check-facebook-group").addClass "hide"
+
+  $(".facebook-timeline-link").click ->
+    $(this).addClass "hide"
+    $(".facebook-timeline-active").removeClass "hide"
+    $(".check-facebook-timeline").removeClass "hide"
+
+  $(".facebook-timeline-active").click ->
+    $(this).addClass "hide"
+    $(".facebook-timeline-link").removeClass "hide"
+    $(".check-facebook-timeline").addClass "hide"
+
+  $('#link_add').click()
+  $('#link_add').click()
+  $('#link_add').click()
+  $('#link_add').click()
+
