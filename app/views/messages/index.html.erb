@@ -1,0 +1,144 @@
+<%= content_for :stylesheet_contents do %>
+	<%= stylesheet_link_tag "messages" %>
+<% end %>
+<div class="col-xs-12 message-container no-pad">
+	<div class="message-header col-xs-12 text-center">
+		<div class="center-block">
+			<%= image_tag "tapsell_sun.png", class: "pull-left" %>
+			<h1 class="pull-left">
+			75
+			<sup>o</sup>
+			F and sunny in San Francisco!
+			</h1>
+		</div>
+	</div><!-- end of message-header -->
+
+	<div class="message-body col-xs-12">
+		<div class="container">
+			<div class="message-box col-xs-12 no-pad">
+				<div class="message-heading col-xs-12">
+					<div class="col-xs-4 left-heading">
+						<ul class="col-xs-12 list-inline">
+							<li class="list-inline-item">View:</li>
+							<li class="list-inline-item">
+								<%= link_to "All", "javascript:void(0);" %>
+							</li>
+							<li class="list-inline-item">
+								<%= link_to "All", "javascript:void(0);" %>
+							</li>
+							<li class="list-inline-item">
+								<%= link_to "All", "javascript:void(0);", class: "no-dash" %>
+							</li>
+						</ul>
+						<form role="form" class="col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+								  <span class="input-group-addon">
+								  	<i class="glyphicon glyphicon-search"></i>
+								  </span>
+								  <input type="text" class="form-control" placeholder="Search Message ">
+								</div>
+							</div>
+						</form>
+					</div><!-- end of left-heading -->
+
+					<div class="col-xs-8 right-heading">
+						<h1>
+							Conversation with
+							<%= current_user.first_name.titleize %>
+						</h1>
+					</div><!-- end of right-heading -->
+				</div><!-- end of message-heading -->
+
+				<div class="message-content col-xs-12 no-pad">
+					<div class="message-content-left col-xs-4 no-pad">
+						<%- 6.times do %>
+							<%= link_to "javascript:void(0);", class: "message-user-list col-xs-12" do %>
+								<div class="col-xs-12 message-user-content">
+									<div class="col-xs-4 no-pad">
+										<%= image_tag "tapsell_big_circle_dot.png", class: "pull-left dot" %>
+										<%= image_tag "no_image.png", class: "pull-left img-circle img-responsive avatar" %>
+									</div>
+									<div class="col-xs-8 no-pad">
+										<div class="col-xs-12 no-pad message-info">
+											<div class="pull-left">
+												<%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
+											</div>
+											<div class="pull-right">
+												<%= time_ago_in_words(current_user.created_at) %>
+											</div>
+										</div>
+										<div class="col-xs-12 no-pad message-preview">
+											<p>
+												Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a...
+											</p>
+										</div>
+									</div>
+								</div> <!-- end of message-user-content -->
+							<% end %> <!-- end of link -->
+						<% end %>
+					</div><!-- end of content-left -->
+					<div class="message-content-right col-xs-8">
+						<div class="col-xs-12 message-item-container">
+							<div class="col-xs-12">
+								<div class="message-item col-xs-12 col-md-9 seller">
+									<span>
+										<%= image_tag "tapsell_arrow_left.png" %>
+									</span>
+									<p>
+										Hi Jacqueline, I’m available to meet anytime Tuesday through
+										Thursday. Preferably between noon and 5pm. Let me know!
+									</p>
+								</div>
+							</div>
+							<div class="col-xs-12">
+								<div class="message-item col-xs-12 col-md-9 buyer pull-right">
+									<span>
+										<%= image_tag "tapsell_arrow_right.png" %>
+									</span>
+									<p>
+										Hi Jacqueline, I’m available to meet anytime Tuesday through
+										Thursday. Preferably between noon and 5pm. Let me know!
+									</p>
+								</div>
+								<div class="col-xs-12 col-md-9 pull-right no-pad">
+									<p class="text-right time">Sent @ 12:30 AM</p>
+								</div>
+							</div>
+							<div class="col-xs-12">
+								<div class="message-item col-xs-12 col-md-9 seller">
+									<span>
+										<%= image_tag "tapsell_arrow_left.png" %>
+									</span>
+									<p>
+										Hi Jacqueline, I’m available to meet anytime Tuesday through
+										Thursday. Preferably between noon and 5pm. Let me know!
+									</p>
+								</div>
+								<div class="col-xs-12 col-md-9 pull-left no-pad">
+									<p class="text-right time">Sent @ 12:30 AM</p>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="message-input-container col-xs-12">
+							<div class="col-xs-12 message-input-content">
+								<div class="col-xs-10 no-pad">
+									<textarea class="col-xs-12" placeholder="Type and hit enter to reply"></textarea>
+								</div>
+								<div class="pull-right">
+									<%= image_tag "no_image.png", class: "avatar img-responsive img-circle" %>
+								</div>
+							</div>
+							<div class="col-xs-12 no-pad text-right">
+								<%= link_to "SEND", "javascript:void(0);", class: "btn send-btn" %>
+							</div>
+						</div>
+					</div>
+				</div><!-- end of message-content -->
+
+			</div>
+		</div>
+	</div><!-- end of message-body -->
+</div>

@@ -11,27 +11,27 @@ class ListingsController < ApplicationController
   end
 
   def book_listings
-    order_by_category("book")
+    order_by_category("Books")
   end
 
   def apparel_listings
-    order_by_category("apparel")
+    order_by_category("Apparel")
   end
 
   def electronic_listings
-    order_by_category("electronic")
+    order_by_category("Electronics")
   end
 
   def home_listings
-    order_by_category("home")
+    order_by_category("Home")
   end
 
   def ticket_listings
-    order_by_category("ticket")
+    order_by_category("Tickets")
   end
 
   def other_listings
-    order_by_category("other")
+    order_by_category("Other")
   end
 
   def newest_listings
