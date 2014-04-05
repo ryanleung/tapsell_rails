@@ -16,6 +16,9 @@ Tapsell::Application.routes.draw do
   post "purchases/listings/:id/" => "purchases#create_authorization", as: 'purchase'
   get "purchases/listings/:id/confirmation" => "purchases#purchase_confirmation", as: 'purchase_confirmation'
 
+  # View messags
+  get "users/:id/message" => "messages#index", as: 'messages'
+  
   # Listings
   get "newest_listings" => "listings#newest_listings", as: 'newest_listings'
   get "oldest_listings" => "listings#oldest_listings", as: 'oldest_listings'
