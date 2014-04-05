@@ -1,0 +1,203 @@
+@import "global.css";
+@import "mixins";
+
+.message-container {
+	.message-header {
+		background-color: @aqua;
+		padding: 80px 0 83px 0;
+		.center-block {
+			width: 57%;
+
+			@media (max-width: 767px) {
+				width: 80%;
+			}
+			img {
+				margin-top: 10px;
+				margin-right: 25px;
+			}
+			h1 {
+				font-family: @futuraextended;
+				color: white;
+				font-size: 43px;
+			}
+		}
+	}
+	.message-body {
+		padding-top: 40px;
+		padding-bottom: 40px;
+		.message-box {
+			background-color: #fff;
+			border: 1px solid #ccc;
+			.message-heading {
+				padding-top: 10px;
+				font-family: @futuraextended;
+				border-bottom: 1px solid #ddd;
+				.left-heading {
+					padding-right: 0;
+					padding-left: 0;
+					&::after {
+						content: "";
+						height: 70px;
+						display: block;
+						border-right: 1px solid #ccc;
+						margin-right: 5px;
+					}
+					ul {
+						li {
+							a {
+								color: #3e3e3e;
+
+								&::after {
+									content: "-";
+									position: relative;
+									top: 0;
+									margin-left: 15px;
+									color: #3e3e3e;
+								}
+								&:hover {
+									text-decoration: none;
+									&::after {
+										text-decoration: none;
+									}
+								}
+							}
+							.no-dash {
+								&::after {
+									content: "";
+								}
+							}
+						}
+					}
+					.input-group-addon {
+						background-color: #fff;
+						-webkit-border-radius: 0;
+						-moz-border-radius: 0;
+						-o-border-radius: 0;
+						border-radius: 0;
+					}
+					input {
+						width: 95%;
+					}
+				}
+				.right-heading {
+					h1 {
+						color: #3e3e3e;
+					}
+				}
+			}
+			.message-content {
+				.message-content-left {
+					height: 605px;
+					overflow: hidden;
+					border-right: 1px solid #ccc;
+
+					.message-user-list {
+						padding: 0 15px;
+						&:hover {
+							background-color: #f0f0f0;
+						}
+						.message-user-content {
+							padding: 15px 15px;
+							border-bottom: 1px solid #efefef;
+							font-family: @futuraextended;
+							color: #3e3e3e;
+
+							.dot {
+								margin-top: 25px;
+								margin-right: 20px;
+							}
+							.avatar {
+								width: 62px;
+							}
+							p {
+								margin-top: 10px;
+								margin-bottom: 0;
+								font-family: @futuraextended;
+							}
+						}
+					}
+				}
+				.message-content-right {
+					padding-top: 15px;
+					padding-bottom: 0;
+					padding-right: 0;
+					padding-left: 0;
+					.message-item-container {
+						height: 412px;
+						overflow: hidden;
+						padding: 20px;
+						.time {
+							font-family: @futuraextended;
+							font-size: 12px;
+							margin-top: -10px;
+							color: #575757;
+						}
+						.message-item {
+							padding: 20px;
+							margin-bottom: 15px;
+							border-radius: 5px;
+							border: 2px solid #d2d2d2;
+							p {
+								font-family: @futuraextended;
+								color: #575757;
+								margin-bottom: 0;
+								font-size: 16px;
+							}
+						}
+						.seller {
+							background-color: #eaf1f4;
+							span {
+								position: absolute;
+								margin-left: -20px;
+								left: 0;
+							}
+						}
+						.buyer {
+							background-color: #effae8;
+							span {
+								position: absolute;
+								right: 0;
+								margin-right: -19px;
+							}
+						}
+					}
+					.message-input-container {
+						background-color: #f6f6f6;
+						border-top: #d2d2d2 1px solid;
+						padding: 15px;
+						height: 178px;
+						.message-input-content {
+							border: #d2d2d2 1px solid;
+							background-color: #fff;
+							padding: 15px;
+							textarea {
+								border: none;
+								resize: none;
+								height: 69px;
+								font-family: @futuraextended;
+								font-size: 16px;
+								padding: 0;
+								-webkit-box-shadow: none !important;
+								box-shadow: none !important;
+								color: #555555;
+								&:focus, &:active {
+									outline: none;
+								}
+							}
+							.avatar {
+								width: 62px;
+							}
+						}
+						.send-btn {
+							color: white;
+							padding: 5px 30px;
+							background-color: @orange;
+							margin-top: 15px;
+							font-family: @futuraextended;
+						}
+					}
+				}
+			}
+		}
+	}
+}

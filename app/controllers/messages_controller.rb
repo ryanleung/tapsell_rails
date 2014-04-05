@@ -1,4 +1,4 @@
-class Messages < ApplicationController
+class MessagesController < ApplicationController
   before_action :signed_in_user, only: [:index, :create, :show, :destroy]
 
   def index
@@ -7,7 +7,7 @@ class Messages < ApplicationController
   end
 
   def create
-    @msg_chain = MessageChain.send_message(@current_user.id, params[:listing_id], 
+    @msg_chain = MessageChain.send_message(@current_user.id, params[:listing_id],
             params[:content], params[:type])
   end
 
@@ -17,5 +17,5 @@ class Messages < ApplicationController
   def show
     @msg_chain = MessageChain.find_by_id(params[:msg_chain_id])
   end
-  
+
 end
