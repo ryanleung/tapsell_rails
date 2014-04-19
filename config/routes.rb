@@ -20,6 +20,7 @@ Tapsell::Application.routes.draw do
   get "users/:id/message" => "messages#index", as: 'messages'
   
   # Listings
+  get "listings/:id/confirm" => "listings#confirm_listing", as: 'confirm_listing'
   get "newest_listings" => "listings#newest_listings", as: 'newest_listings'
   get "oldest_listings" => "listings#oldest_listings", as: 'oldest_listings'
   get "low_price_listings" => "listings#low_price_listings", as: 'low_price_listings'
