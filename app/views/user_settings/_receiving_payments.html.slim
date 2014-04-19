@@ -8,7 +8,4 @@
         = select_tag "choose_method", options_for_select(["Check", "Bank Transfer"]), class: "choose-method pull-left form-control"
 .list
 .receiving-payment-content
-  .col-md-12.no-pad.check-container
-    = render "check_form"
   .col-md-12.no-pad.bank-account-container.hide
-    = render "bank_account_form"
