@@ -1,1 +1,48 @@
-Show my listings placeholder
+<div class="col-xs-12 top-banner">
+	<div class="container">
+		<div class="center-block content">
+			<%= image_tag image_url("tapsell_sun.png") %>
+			<span class="feature">
+				21 <sup>o</sup>F and sunny in San Diego!
+			</span>
+		</div>
+	</div>
+</div>
+
+<%= render "listings/listing_navigation" %>
+
+<div class="col-xs-12 mylisting-container">
+	<div class="container">
+		<div class="content box-container col-xs-12">
+			<div class="heading col-xs-12">
+				<span class="title pull-left">
+					Your Active Listings
+				</span>
+				<%= link_to "POST A NEW LISTING", new_listing_path, class: "btn btn-default new-listing-btn pull-right" %>
+			</div>
+			<%- 7.times do %>
+				<div class="item col-xs-12">
+					<span class="edit pull-left">
+						<%= link_to "javascript:void(0);" do %>
+							<i class="glyphicon glyphicon-pencil"></i>
+						<% end %>
+					</span>
+					<div class="image pull-left">
+						<%= image_tag image_url("bg_landing.jpg"), class: "img-responsive" %>
+					</div>
+					<div class="information">
+						<p class="info-title">
+							Open-faced ricotta scramble
+						</p>
+						<p class="info-description">
+							Open-faced ricotta scramble
+						</p>
+					</div>
+					<div class="price pull-right">
+						$8
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<div class="col-xs-12">
+	<div class="container navigation-child-container">
+		<ul class="nav nav-pills">
+			<li class="<%= controller_name.eql?('dashboard') ? "active" : "" %>">
+				<%= link_to "DASHBOARD", dashboard_path(current_user.id), class: "nav-link" %>
+			</li>
+			<li class="<%= controller_name.eql?('messages') ? "active" : "" %>">
+				<%= link_to "INBOX", messages_path(current_user.id), class: "nav-link" %>
+			</li>
+			<li class="<%= controller_name.eql?('listings') ? "active" : "" %>">
+				<%= link_to "MY LISTINGS", my_listings_path(@user), class: "nav-link" %>
+			</li>
+			<li class="<%= controller_name.eql?('users') ? "active" : "" %>">
+				<%= link_to "PROFILE", user_path(current_user.id), class: "nav-link" %>
+			</li>
+			<li class="<%= controller_name.eql?('payment_settings') ? "active" : "" %>">
+				<%= link_to "SETTINGS", payment_settings_path(@user), class: "nav-link" %>
+			</li>
+		</ul>
+	</div>
+</div>
