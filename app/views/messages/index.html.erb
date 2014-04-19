@@ -122,19 +122,20 @@
 
 						</div>
 
-						<div class="message-input-container col-xs-12">
+						<%= form_tag @msg_chain, url: create_message_path, class: "message-input-container col-xs-12", method: "post", remote: true do %>
 							<div class="col-xs-12 message-input-content">
 								<div class="col-xs-10 no-pad">
-									<textarea class="col-xs-12" placeholder="Type and hit enter to reply"></textarea>
+									<%= text_area_tag :content, "", class: "col-xs-12", placeholader: "Type and hit aneter to reply" %>
 								</div>
 								<div class="pull-right">
-									<%= image_tag "no_image.png", class: "avatar img-responsive img-circle" %>
+									<%= image_tag image_url("no_image.png"), class: "avatar img-responsive img-circle" %>
+									<%= lsdfdlsjhfs %>
 								</div>
 							</div>
 							<div class="col-xs-12 no-pad text-right">
 								<%= link_to "SEND", "javascript:void(0);", class: "btn send-btn" %>
 							</div>
-						</div>
+						<% end %>
 					</div>
 				</div><!-- end of message-content -->
 

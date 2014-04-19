@@ -611,6 +611,14 @@ a {
 	background-color: #474747;
 	color: #fff;
 	padding-bottom: 60px;
+	.content {
+		width: 80%;
+		.item-container {
+			@media(max-width: 767px) {
+				text-align: center;
+			}
+		}
+	}
 	.list-unstyled {
 		li {
 			p {
@@ -620,7 +628,7 @@ a {
 					font-family: "futuraextendedregular";
 					color: #fff;
 					font-weight: 100;
-					font-size: 18px;
+					font-size: 16px;
 				}
 			}
 		}
@@ -628,6 +636,7 @@ a {
 	h4 {
 		margin-bottom: 30px;
 		margin-top: 60px;
+		font-size: 18px;
 	}
 	.footer-app-icon {
 		width: 50%;
@@ -637,6 +646,16 @@ a {
 		p {
 			font-family: "futuraextendedregular";
 			margin-bottom: 5px;
+		}
+	}
+	.copyright {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding:0;
+		p {
+			color: #fff;
+			font-family: "futuraextendedregular";
 		}
 	}
 }
