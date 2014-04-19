@@ -64,7 +64,7 @@ class ListingsController < ApplicationController
     @listing = current_user.listings_as_seller.build(listing_params)
     if @listing.save
       flash[:success] = "Listing created!"
-      redirect_to root_url
+      redirect_to confirm_listing_path(@listing)
     else
       flash[:notice] = "There was a problem creating the listing, try again."
       redirect_to new_listing_path
@@ -72,6 +72,11 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @listing = Listing.find(params[:id])
+  end
+
+  def confirm_listing
     @user = current_user
     @listing = Listing.find(params[:id])
   end
