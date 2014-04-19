@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
   def index
     @user = current_user
     order_listings("created_at DESC")
+    @search_listings = Listing.search(params[:search])
   end
 
   def all_listings
