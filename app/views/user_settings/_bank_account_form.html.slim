@@ -3,7 +3,7 @@
   h4.pull-left ACCOUNT INFORMATION
 .col-md-12.payment-type-container.pad-top-0
   // Need to update this object and path
-  = simple_form_for(@bank_account, :url => payment_settings_path, :html => { :method => :post, class: "col-lg-12", role: "form"}) do |f|
+  = simple_form_for(@bank_account, :url => user_settings_path, :html => { :method => :post, class: "col-lg-12", role: "form"}) do |f|
     = f.input :user_id, as: :hidden, input_html: {value: current_user.id}
     .row
       .col-md-12

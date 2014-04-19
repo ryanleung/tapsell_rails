@@ -47,7 +47,7 @@ html
                   li
                     = link_to "My Listings", "javascript:void(0);"
                   li
-                    = link_to "Settings", payment_settings_path(@user)
+                    = link_to "Settings", user_settings_path(@user)
                   li
                     = link_to "Log Out", '/sign-out', method: :delete
               li.message-icon-container= link_to "javascript:void(0);" do

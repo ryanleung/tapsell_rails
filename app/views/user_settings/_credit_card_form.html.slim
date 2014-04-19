@@ -18,12 +18,12 @@
         label Security Number
         .row
           .col-lg-6
-            = text_field_tag "credit_card[cvv_number]", "", class: "form-control security-number", maxlength: "4", required: true
+            = text_field_tag :cvv_number, "", class: "form-control security-number", maxlength: "4", required: true
       .col-lg-6
         label Zipcode
         .row
           .col-lg-6
-            = text_field_tag "credit_card[zipcode]", "", class: "form-control security-number", maxlength: "5", required: true
+            = text_field_tag :zipcode, "", class: "form-control security-number", maxlength: "5", required: true
   .pull-left.wid-100p
     .row
       .col-md-12
@@ -31,9 +31,5 @@
           li.list-inline-item
             = link_to "Cancel", "javascript:void(0);", class: "cancel-credit-card"
           li.list-inline-item.add-card-button
-            = link_to "Add Card", "javascript:void(0);", class: "submit-credit-card-link orange"
-            = submit_tag "Add Card", class: "hide submit-credit-card"
+            = submit_tag "Add Card", class: "submit-credit-card-link orange"
             input#reset-credit-card-form.hide type="reset"
-javascript:
-  var braintree = Braintree.create("MIIBCgKCAQEAmh+E5b9C512QYL6GhAinciv6LcwlyR3Ccogs28Ljiw6J1j1fWxcDvgUUGXVnW2z8N26bhXq7NR8/422upNEWdioaK0s9Cuzjn+BW+UW+CnvHMgAMUfbSS1olsN5UMoOQ8UIC5K9GbBy4nfTou7AQ8H0wRZx9q9gP+DunqrKtok9DtodG8kEZICarH3WYC2MQVb11UAnWD/vs2/Q1C54+vekYiCpX22xdNYjwy2K6ytCwulPlzsOPvyEXApJ2hK+OyjHKZ6BkvCziN+z6zBk7F1d5ei3yWmJLyzcJsyFEwLI8hIgrva5pq9ussA+GM/vKWwq+CWIhFzkozXz6aa+55QIDAQAB");
-  braintree.onSubmitEncryptForm('payment-form');

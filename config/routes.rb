@@ -33,9 +33,8 @@ Tapsell::Application.routes.draw do
   get "other_listings" => "listings#other_listings", as: 'other_listings'
 
   # Payment settings
-  get "users/:id/payment_settings" => "payment_settings#index", as: 'payment_settings'
-  post "users/:id/payment_settings" => "credit_cards#create_card", as: 'create_card'
-  post "users/:id/payment_settings" => "checks#create", as: 'create_check'
+  get "users/:id/user_settings" => "user_settings#index", as: 'user_settings'
+  post "users/:id/user_settings" => "credit_cards#create_card", as: 'create_card'
 
   # View public profiles
   get "users/:id/view" => "users#show_public", as: 'public_profile'
