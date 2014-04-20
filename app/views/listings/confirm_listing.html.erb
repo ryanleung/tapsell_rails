@@ -1,1 +1,118 @@
-Confirmation placeholder
+<%= content_for :stylesheet_contents do %>
+  <%= stylesheet_link_tag "purchases", "products" %>
+<% end %>
+
+<div class="col-xs-12 top-banner top-listing-notification">
+  <div class="container">
+    <div class="center-block content">
+      <section class="text-center col-xs-12 notif-title">
+        <h1>Congratulations</h1>
+        <p>Your item was successfully listed.</p>
+        <div class="col-xs-12 text-center share-container">
+          <p class="pull-left">
+            SHARE IT
+          </p>
+          <%= image_tag image_url("tapsell_share_icon.png"), class: "share-icon pull-left" %>
+          <input type="text" placeholder="http://www.tapsell.co" class="pull-left">
+          <%= link_to "", "javascript:void(0);", class: "button-social facebook" %>
+          <%= link_to "", "javascript:void(0);", class: "button-social twitter" %>
+          <%= link_to "", "javascript:void(0);", class: "button-social pinterest" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <div class="container">
+    <div class="container text-center notification">
+      <p class="first-content">
+        <%= image_tag image_url("tapsell_pentung.png") %>
+        Oops! You still need to add a bank account to receive payments.
+        <%= link_to "Add now", "javascript:void(0);" %>
+      </p>
+      <p class="second-content">
+        We'll notify you when the item sells. Please note that it takes time for listings to appear on sites like Craiglist.
+        <p>
+          Allow up to 24 hours for your item to show up on other sites.
+        </p>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <div class="container">
+    <div class="col-xs-8 box-container left-container">
+      <div class="title-container">
+        <h1 class="order-title product-title">
+          Listing Title
+        </h1>
+        <div class="sub-product-title">
+          POSTED &nbsp;
+          <b>14 Jan 2014</b>
+          &nbsp; by &nbsp;
+          <b>Username</b>
+        </div>
+      </div>
+      <div class="col-xs-12 content-section no-bg">
+        <div class="row">
+          <%= render "listings/listing_details" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="row">
+        <div class="col-xs-11 box-container right-container no-pad">
+          <div class="right-container-content">
+            <div class="price-container price-product-container">
+              $8
+              <div class="button-product-container">
+                <%= link_to "MAKE AN OFFER", new_purchase_path, class: "btn", disabled: false %>
+              </div>
+            </div>
+            <div class="product-guarantee-container pad-v-20">
+              <span class="black-check-icon">
+              </span>
+              <p class="pull-left">Buyer guarantee</p>
+            </div>
+            <div class="list-container">
+              <div class="list"></div>
+              <div class="list"></div>
+            </div>
+            <div class="location-container">
+              Pick up location: &nbsp;
+              <b> Location </b>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-11 box-container right-container no-pad">
+          <div class="right-container-content">
+            <h3 class="text-center">
+              <%= "User Name" %>
+            </h3>
+            <div class="avatar-container text-center">
+              <%= link_to "javascript:void(0);" do %>
+                <% image_tag image_url("no_image.png"), class: "img-circle"  %>
+              <% end %>
+            </div>
+            <div class="user-location-container">
+              <h4 class="location text-center">
+                <%= image_tag image_url("pin.png") %>
+                <%= location = "UC San Diego" %>
+              </h4>
+            </div>
+            <div class="list-container">
+              <div class="list"></div>
+              <div class="list"></div>
+            </div>
+            <div class="review-container">
+              <h3 class="text-center">
+                <%= image_tag image_url("green-like.png") %>
+                POSITIVE REVIEW
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
