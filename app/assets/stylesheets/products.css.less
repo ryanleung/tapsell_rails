@@ -114,18 +114,18 @@
 			input {
 				border-left: none;
 			}
-			.button-product-container {
-				float: left;
-				width: 100%;
-				padding: 0 0 10px 0;
-				margin-top: 10px;
-				.btn {
-					background-color: @aqua;
-					font-family: @futuraextended;
-					font-size: 26px;
-					color: white;
-					padding: 3px 12px;
-				}
+		}
+		.button-product-container {
+			float: left;
+			width: 100%;
+			padding: 0 0 10px 0;
+			margin-top: 10px;
+			.btn {
+				background-color: @aqua;
+				font-family: @futuraextended;
+				font-size: 26px;
+				color: white;
+				padding: 3px 12px;
 			}
 		}
 	}
@@ -389,5 +389,86 @@
 		-o-border-radius: 10px !important;
 		border-radius: 10px !important;
 		.box-shadow(0 2px 10px #ccc);
+	}
+}
+
+.notification {
+	padding: 50px;
+
+	img {
+		width: 36px;
+		margin-right: 10px;
+	}
+	p {
+		font-family: @futuraextended;
+		font-size: 22px;
+	}
+
+	a {
+		font-size: 18px;
+		text-decoration: underline;
+	}
+
+	.first-content {
+		color: #554170;
+	}
+}
+
+.top-listing-notification {
+	padding-top: 25px;
+	padding-bottom: 40px;
+	height: auto;
+	.notif-title {
+		color: #fff;
+		h1 {
+			font-size: 48px;
+		}
+		p {
+			font-size: 24px;
+			margin: 30px auto;
+		}
+		.share-container {
+			p {
+				font-family: @futuraextended;
+				color: #fff;
+				font-size: 18px;
+				margin-top: 5px;
+			}
+			.share-icon {
+				margin: 2px 5px 0 5px;
+				width: 36px;
+			}
+			input {
+				width: 175px;
+				-webkit-border-radius: 0;
+				-moz-border-radius: 0;
+				-o-border-radius: 0;
+				border-radius: 0;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 5px;
+			}
+
+			.button-social {
+				float: left;
+				height: 36px;
+				margin-left: 10px;
+				background-image: image-url("tapsell_social_button.png");
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+			.facebook {
+				background-position: 0 0;
+				width: 135px;
+			}
+			.twitter {
+				background-position: -143px 0;
+				width: 109px;
+			}
+			.pinterest {
+				background-position: -261px 0;
+				width: 130px;
+			}
+		}
 	}
 }
