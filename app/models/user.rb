@@ -12,7 +12,10 @@ class User < ActiveRecord::Base
 	# Relationships - Ordered Alphabetically
 	# --------------------------------------
 
-	has_many :listings_as_seller, :class_name => "Listing", :foreign_key => :seller_id
+	# Ryan, you should check this
+  has_many :reviews_as_seller, :class_name => "Review", :foreign_key => :seller_id
+  has_many :reviews_as_buyer, :class_name => "Review", :foreign_key => :buyer_id
+  has_many :listings_as_seller, :class_name => "Listing", :foreign_key => :seller_id
   has_many :listings_as_buyer, :class_name => "Listing", :foreign_key => :buyer_id
   has_one :image
   has_one :address
@@ -150,6 +153,23 @@ class User < ActiveRecord::Base
 
     return nil
   end
+
+  # Reviews
+  # ---------------------------
+
+  def pos_reviews
+    User.find_by_id(id).reviews_as_seller.sum(:positive)
+  end
+
+  def total_reviews
+    User.find_by_id(id).reviews_as_seller.count
+  end
+
+  # This may automatically round the answer - need to check
+  def percent_pos_reviews
+    (pos_reviews * 100.0) / (total_reviews * 100.0)
+  end
+
 
 	# Class Methods
 	# -------------

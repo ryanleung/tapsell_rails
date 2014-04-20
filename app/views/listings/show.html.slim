@@ -45,15 +45,17 @@
           .user-location-container
             h4.location.text-center
               = image_tag "/assets/pin.png"
-              = location = "UC Davis"
+              = location = "UC San Diego"
 
           .list-container
             .list
             .list
           .review-container
             h3.text-center
-              = image_tag "/assets/green-like.png"
-              | 98% POSITIVE REVIEWS &nbsp;
+              - if @user.reviews_as_seller.present?
+                = image_tag "/assets/green-like.png"
+                = @user.percent_pos_reviews 
+                | % POSITIVE REVIEWS &nbsp;
 
 = content_for :javascript_contents do
   = javascript_include_tag "products"
