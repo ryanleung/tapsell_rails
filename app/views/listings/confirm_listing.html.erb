@@ -6,17 +6,8 @@
   <div class="container">
     <div class="center-block content">
       <section class="text-center col-xs-12 notif-title">
-        <h1>Congratulations</h1>
-        <p>Your item was successfully listed.</p>
-        <div class="col-xs-12 text-center share-container">
-          <p class="pull-left">
-            SHARE IT
-          </p>
-          <%= image_tag image_url("tapsell_share_icon.png"), class: "share-icon pull-left" %>
-          <input type="text" placeholder="http://www.tapsell.co" class="pull-left">
-          <%= link_to "", "javascript:void(0);", class: "button-social facebook" %>
-          <%= link_to "", "javascript:void(0);", class: "button-social twitter" %>
-          <%= link_to "", "javascript:void(0);", class: "button-social pinterest" %>
+        <h1>Congratulations!</h1>
+        <p>We'll notify you when the item sells. Please note that it takes up to 24 hours for listings to appear on sites like Craiglist.</p>
         </div>
       </section>
     </div>
@@ -24,16 +15,6 @@
 </div>
 <div class="col-xs-12">
   <div class="container">
-    <div class="container text-center notification">
-      <p class="first-content">
-        <%= image_tag image_url("tapsell_pentung.png") %>
-        Oops! You still need to add a bank account to receive payments.
-        <%= link_to "Add now", "javascript:void(0);" %>
-      </p>
-      <p class="second-content">
-        We'll notify you when the item sells. Please note that it takes time for listings to appear on sites like Craiglist.
-        <p>
-          Allow up to 24 hours for your item to show up on other sites.
         </p>
       </p>
     </div>
@@ -44,13 +25,13 @@
     <div class="col-xs-8 box-container left-container">
       <div class="title-container">
         <h1 class="order-title product-title">
-          Listing Title
+          <%= @listing.title %>
         </h1>
         <div class="sub-product-title">
           POSTED &nbsp;
-          <b>14 Jan 2014</b>
+          <b> <%= @listing.created_at.strftime("%^b. %e") %> </b>
           &nbsp; by &nbsp;
-          <b>Username</b>
+          <b> <%= @user.first_name.upcase %> </b>
         </div>
       </div>
       <div class="col-xs-12 content-section no-bg">
@@ -66,7 +47,7 @@
             <div class="price-container price-product-container">
               $8
               <div class="button-product-container">
-                <%= link_to "MAKE AN OFFER", new_purchase_path, class: "btn", disabled: false %>
+                <%= link_to "MAKE AN OFFER", "javascript:void(0);", class: "btn", disabled: true %>
               </div>
             </div>
             <div class="product-guarantee-container pad-v-20">
@@ -79,15 +60,15 @@
               <div class="list"></div>
             </div>
             <div class="location-container">
-              Pick up location: &nbsp;
-              <b> Location </b>
+              Pick up location:
+              UC San Diego
             </div>
           </div>
         </div>
         <div class="col-xs-11 box-container right-container no-pad">
           <div class="right-container-content">
             <h3 class="text-center">
-              <%= "User Name" %>
+              <%= @user.first_name %>
             </h3>
             <div class="avatar-container text-center">
               <%= link_to "javascript:void(0);" do %>
@@ -106,8 +87,11 @@
             </div>
             <div class="review-container">
               <h3 class="text-center">
+                <% if @user.reviews_as_seller.present? %>
                 <%= image_tag image_url("green-like.png") %>
-                POSITIVE REVIEW
+                <%= @user.percent_pos_reviews %>
+                POSITIVE REVIEWS
+                <% end %>
               </h3>
             </div>
           </div>
