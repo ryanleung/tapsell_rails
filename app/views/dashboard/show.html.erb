@@ -1,0 +1,211 @@
+<%= content_for :stylesheet_contents do  %>
+  <%= stylesheet_link_tag "profile" %>
+<% end %>
+
+<div class="container-fluid text-center welcome-container">
+	<h1 class="no-marg">
+		Welcome
+	</h1>
+</div>
+
+<%= render "layouts/navigation" %>
+
+<div class="container marg-top-40 no-pad">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-xs-12 col-md-4 box-container">
+						<div class="row">
+							<div class="col-xs-12 text-center well-label">
+								<h2>
+									<%= "#{current_user.first_name} #{current_user.last_name}" %>
+								</h2>
+							</div>
+							<div class="col-xs-12 profile-live-view-image">
+								<%- if current_user.image.nil?  %>
+									<div class="avatar-profile img-circle" style="background-image: url(<%= image_url('no_avatar.png')%>)"></div>
+								<%- else %>
+									<div class="avatar-profile img-circle" style="background-image: url(#{image_url(current_user.image)})"></div>
+								<% end %>
+							</div>
+							<div class="col-xs-12 text-center pad-location">
+								<div class="row">
+									<div class="col-xs-12 text-center">
+										<h4 class="left-location">
+											<%= image_tag image_url('pin.png'), class: "pin-image" %>
+											&nbsp;
+											<%- if current_user.location %>
+												<%= current_user.location %>
+											<%- else %>
+												Location
+											<% end %>
+
+										</h4>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 text-center left-button-container">
+								<div class="row">
+									<div class="col-xs-12">
+										<ul>
+											<li>
+												<%= link_to "javascript:void(0);" do %>
+													<%= image_tag image_url("camera-icon.png"), class: "camera-icon" %>
+													&nbsp; upload new photo
+												<% end %>
+											</li>
+											<li>
+												<%= link_to "javascript:void(0);" do %>
+													<%= image_tag image_url("fb-icon.png"), class: "fb-icon" %>
+													&nbsp; connect facebook
+												<% end %>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div> <!-- end button container -->
+						</div>
+					</div> <!-- end left container -->
+					<div class="col-xs-12 col-md-8 profile-right-container">
+						<div class="col-xs-12 box-container no-pad profile-right-content dashboard-show">
+							<div class="row">
+								<div class="col-xs-12">
+										<div class="section-container col-xs-12 no-pad pull-left">
+											<div class="heading col-xs-12">
+												<h3 class="pull-left">
+													Recent Messages
+												</h3>
+											</div>
+											<div class="content col-xs-12">
+												<div class="dot pull-left">
+													<%= image_tag image_url("tapsell_big_circle_dot.png") %>
+												</div>
+												<div class="information pull-left">
+													<p class="name"><%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
+													</p>
+													<p class="date">
+													<%= Time.now.strftime("%H:%M %p") %>
+													</p>
+												</div>
+												<div class="message pull-left">
+													<p>
+														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
+													</p>
+												</div>
+
+											</div> <!-- end content -->
+											<div class="content col-xs-12">
+												<div class="dot pull-left">
+													<%= image_tag image_url("tapsell_big_circle_dot.png") %>
+												</div>
+												<div class="information pull-left">
+													<p class="name"><%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
+													</p>
+													<p class="date">
+													<%= Time.now.strftime("%H:%M %p") %>
+													</p>
+												</div>
+												<div class="message pull-left">
+													<p>
+														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
+													</p>
+												</div>
+
+											</div> <!-- end content -->
+											<div class="content col-xs-12 unread">
+												<div class="dot pull-left">
+													<%= image_tag image_url("tapsell_chart_icon.png"), class: "chart-icon" %>
+												</div>
+												<div class="information pull-left">
+													<p class="name"><%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
+													</p>
+													<p class="date">
+													<%= Time.now.strftime("%H:%M %p") %>
+													</p>
+												</div>
+												<div class="message pull-left">
+													<p>
+														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
+													</p>
+												</div>
+
+											</div> <!-- end content -->
+											<div class="content col-xs-12 unread">
+												<div class="dot pull-left">
+													<%= image_tag image_url("tapsell-check-sketch-icon.png"), class: "sketch-icon" %>
+												</div>
+												<div class="information pull-left">
+													<p class="name"><%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
+													</p>
+													<p class="date">
+													<%= Time.now.strftime("%H:%M %p") %>
+													</p>
+												</div>
+												<div class="message pull-left">
+													<p>
+														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
+													</p>
+												</div>
+
+											</div> <!-- end content -->
+											<div class="footer-content text-right col-xs-12">
+												<%= link_to "javascript:void(0);" do %>
+													Go to Inbox
+													<%= image_tag image_url("tapsell_right_aqua_long_arrow.png"), class: "arrow-icon" %>
+												<% end %>
+											</div>
+										</div> <!-- end section-container -->
+
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 box-container no-pad profile-right-content dashboard-show">
+							<div class="row">
+								<div class="col-xs-12">
+										<div class="section-container col-xs-12 no-pad pull-left">
+											<div class="heading col-xs-12">
+												<h3 class="pull-left">
+													Your Active Listings
+												</h3>
+												<%= link_to "POST A NEW LISTING", "javascript:void(0);", class: "pull-right btn btn-default" %>
+											</div>
+											<% 5.times do %>
+											<div class="content col-xs-12">
+												<div class="image pull-left img-responsive">
+													<%= image_tag image_url("bg_landing.jpg") %>
+												</div>
+												<div class="message pull-left listing-message">
+													<h4>
+														Open-faced ricotta scramble
+													</h4>
+													<p class="listing-content">
+														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
+													</p>
+												</div>
+												<div class="price pull-left">
+													<p>$8</p>
+												</div>
+												<div class="edit pull-right">
+													<span class="glyphicon glyphicon-pencil"></span>
+												</div>
+
+											</div> <!-- end content -->
+											<% end %>
+											<div class="footer-content text-right col-xs-12">
+												<%= link_to "javascript:void(0);" do %>
+													View All Listings
+													<%= image_tag image_url("tapsell_right_aqua_long_arrow.png"), class: "arrow-icon" %>
+												<% end %>
+											</div>
+										</div> <!-- end section-container -->
+
+								</div>
+							</div>
+						</div>
+					</div> <!-- end right container -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
