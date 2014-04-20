@@ -19,13 +19,17 @@
       .col-xs-11.box-container.right-container.no-pad
         .right-container-content
           .price-container.price-product-container
-            | $
-            = @listing.price.to_i
-          .button-product-container
-            - if @listing.seller.eql?(current_user)
-                = link_to "MAKE OFFER", "javascript:void(0);", class: "btn", disabled: true
-            - else
-                = link_to "MAKE OFFER", new_purchase_path, class: "btn", disabled: false
+            form.center-block role="form"
+              .form-group
+                .input-group.input-group-lg
+                  span.input-group-addon $
+                  input.form-control
+                .button-product-container
+
+                  - if @listing.seller.eql?(current_user)
+                      = link_to "MAKE AN OFFER", "javascript:void(0);", class: "btn col-xs-12", disabled: true
+                  - else
+                      = link_to "MAKE AN OFFER", new_purchase_path, class: "btn col-xs-12", disabled: false
           .product-guarantee-container.pad-v-20
             span.black-check-icon
             p.pull-left Buyer guarantee
