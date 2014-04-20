@@ -1,10 +1,16 @@
 .col-xs-12.header-title-container
   .container.text-center
     h1 Get your browse on !
+    = form_tag search_listings_path, :method => "get"
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil
+    
     .input-group
       input#search.form-control type="text" placeholder="Looking for something ?"
       span.input-group-addon
         i.glyphicon.glyphicon-search
+
+
 .col-xs-12.navigation-container
   .container
     h4 BROWSE

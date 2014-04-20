@@ -13,11 +13,8 @@ class Listing < ActiveRecord::Base
 
 	
   def self.search(search)
-	  if search
-	    find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
-	  else
-	    find(:all)
-	  end
+	  results = find(:all, :order => 'created_at DESC', :conditions => ['title LIKE ? or info LIKE ?', "%#{search}%", "%#{search}%"])
+	  return results
 	end
 
 
