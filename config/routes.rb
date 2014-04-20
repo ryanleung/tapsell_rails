@@ -5,12 +5,6 @@ Tapsell::Application.routes.draw do
   # Web app routes
   ##################################
 
-  # Generic resources
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :password_resets
-  resources :listings
-
   # Checkout process
   get "purchases/listings/:id" => "purchases#new", as: 'new_purchase'
   post "purchases/listings/:id/" => "purchases#create_authorization", as: 'purchase'
@@ -20,6 +14,7 @@ Tapsell::Application.routes.draw do
   get "users/:id/message" => "messages#index", as: 'messages'
   
   # Listings
+  get "listings/search" => "listings#search_listings", as: 'search_listings'
   get "listings/:id/confirm" => "listings#confirm_listing", as: 'confirm_listing'
   get "newest_listings" => "listings#newest_listings", as: 'newest_listings'
   get "oldest_listings" => "listings#oldest_listings", as: 'oldest_listings'
@@ -50,6 +45,12 @@ Tapsell::Application.routes.draw do
   match '/sign-up', to: 'users#new', via: 'get'
   match 'sign-in', to: 'sessions#new', via: 'get', as: 'sign_in'
   match '/sign-out', to: 'sessions#destroy', via: 'delete'
+
+  # Generic resources
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
+  resources :listings
 
   ##################################
   # Static page routes

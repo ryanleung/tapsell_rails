@@ -3,7 +3,24 @@ class ListingsController < ApplicationController
 
   def index
     @user = current_user
-    order_listings("created_at DESC")
+
+    # TODO: HACK, can't figure out how to redirect,
+    # look at search_listings
+    if session[:is_search].present?
+      @listings = session[:search_listing_ids].empty? ? Listing.none : Listing.where(id: session[:search_listing_ids]).order("created_at DESC")
+    else
+      order_listings("created_at DESC")
+    end
+
+    # clear session
+    session.delete(:is_search)
+    session.delete(:search_listing_ids)
+  end
+
+  def search_listings
+    session[:is_search] = true
+    session[:search_listing_ids] = Listing.search(params[:search]).collect(&:id)
+    redirect_to :action => :index
   end
 
   def all_listings
