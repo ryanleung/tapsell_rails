@@ -56,9 +56,9 @@
             .list
           .review-container
             h3.text-center
-              - if @user.reviews_as_seller.present?
+              - if @listing.seller.reviews_as_seller.present?
                 = image_tag "/assets/green-like.png"
-                = @user.percent_pos_reviews 
+                = @listing.seller.percent_pos_reviews 
                 | % POSITIVE REVIEWS &nbsp;
 
 = content_for :javascript_contents do
