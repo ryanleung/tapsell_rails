@@ -22,7 +22,7 @@ html
               = image_tag "/assets/pin.png", class: "pin-image pull-left"
               - location = current_user.location
               - if location.nil?
-                p.pull-left.location-label UC Davis
+                p.pull-left.location-label UC San Diego
               - else
                 p.pull-left.location-label= location
         - else
@@ -42,13 +42,13 @@ html
                   span.cus-caret
                 ul.dropdown-menu role="menu" aria-labelledby="dlabel"
                   li
-                    = link_to "Dashboard", "javascript:void(0);"
+                    = link_to "Dashboard", dashboard_path(current_user.id)
                   li
-                    = link_to "Profile", user_path(@user)
+                    = link_to "Profile", user_path(current_user.id)
                   li
-                    = link_to "My Listings", "javascript:void(0);"
+                    = link_to "My Listings", my_listings_path(current_user.id)
                   li
-                    = link_to "Settings", user_settings_path(@user)
+                    = link_to "Settings", user_settings_path(current_user.id)
                   li
                     = link_to "Log Out", '/sign-out', method: :delete
               li.message-icon-container= link_to "javascript:void(0);" do
