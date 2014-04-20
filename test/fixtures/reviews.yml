@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  buyer_id: 1
+  seller_id: 1
+  receiver_id: 1
+  positive: false
+
+two:
+  buyer_id: 1
+  seller_id: 1
+  receiver_id: 1
+  positive: false
