@@ -20,7 +20,7 @@
 				</span>
 				<%= link_to "POST A NEW LISTING", new_listing_path, class: "btn btn-default new-listing-btn pull-right" %>
 			</div>
-			<%- 7.times do %>
+			<%- for @listing in @listings %>
 				<div class="item col-xs-12">
 					<span class="edit pull-left">
 						<%= link_to "javascript:void(0);" do %>
@@ -32,14 +32,14 @@
 					</div>
 					<div class="information">
 						<p class="info-title">
-							Open-faced ricotta scramble
+							<%= @listing.title %>
 						</p>
 						<p class="info-description">
-							Open-faced ricotta scramble
+							<%= @listing.info %>
 						</p>
 					</div>
 					<div class="price pull-right">
-						$8
+						<%= "#{number_to_currency(@listing.price)}" %>
 					</div>
 				</div>
 			<% end %>
