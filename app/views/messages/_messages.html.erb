@@ -1,0 +1,26 @@
+<%- for @message in @current_msg_chain.messages %>
+  <div class="col-xs-12">
+    <% if @current_user == @message.sender %>
+      <div class="message-item col-xs-12 col-md-9 seller">
+          <span>
+            <%= image_tag "tapsell_arrow_left.png" %>
+          </span>
+        <p>
+          <%= @message.content %>
+        </p>
+      </div>
+    <% else %>
+      <div class="message-item col-xs-12 col-md-9 buyer pull-right">
+        <span>
+          <%= image_tag "tapsell_arrow_right.png" %>
+        </span>
+        <p>
+          <%= @message.content %>
+        </p>
+      </div>
+    <% end %>
+    <div class="col-xs-12 col-md-9 pull-left no-pad">
+      <p class="text-right time">Sent @ 12:30 AM</p>
+    </div>
+  </div>
+<% end %>

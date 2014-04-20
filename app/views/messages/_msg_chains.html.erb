@@ -1,0 +1,25 @@
+<%- for @msg_chain in @msg_chains %>
+  <%= link_to update_msg_chain_path(:msg_chain => @msg_chain), :remote => true, :class => "message-user-list col-xs-12" do %>
+    <div class="col-xs-12 message-user-content">
+      <div class="col-xs-4 no-pad">
+        <%= image_tag "tapsell_big_circle_dot.png", class: "pull-left dot" %>
+        <%= image_tag "no_image.png", class: "pull-left img-circle img-responsive avatar" %>
+      </div>
+      <div class="col-xs-8 no-pad">
+        <div class="col-xs-12 no-pad message-info">
+          <div class="pull-left">
+            <%= @msg_chain.seller.first_name.titleize + " " + @msg_chain.seller.last_name.titleize %>
+          </div>
+          <div class="pull-right">
+            <%= time_ago_in_words(@msg_chain.updated_at) %>
+          </div>
+        </div>
+        <div class="col-xs-12 no-pad message-preview">
+          <p>
+            <%= @msg_chain.most_recent_message.content %>
+          </p>
+        </div>
+      </div>
+    </div> <!-- end of message-user-content -->
+  <% end %> <!-- end of link -->
+<% end %>

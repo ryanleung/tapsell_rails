@@ -1,1 +1,12 @@
-Show my listings placeholder
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <ul>
+      <% for @listing in @listings %>
+        <li><%= @listing.title %></li>
+      <% end %>
+  </body>
+</html>
