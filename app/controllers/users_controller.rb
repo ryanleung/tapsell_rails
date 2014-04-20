@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def root_page_router
     if signed_in?
       @user = current_user
-      render 'show'
+      render 'dashboard/show'
     else
       render 'static_pages/landing'
     end
