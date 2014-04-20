@@ -11,6 +11,13 @@ class Listing < ActiveRecord::Base
 
 	accepts_nested_attributes_for :images
 
+	
+  def self.search(search)
+	  results = find(:all, :order => 'created_at DESC', :conditions => ['title LIKE ? or info LIKE ?', "%#{search}%", "%#{search}%"])
+	  return results
+	end
+
+
 	# Validations
 	# -----------
 
