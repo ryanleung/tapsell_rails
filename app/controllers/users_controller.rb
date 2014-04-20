@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def root_page_router
     if signed_in?
       @user = current_user
-      render 'dashboard/show'
+      render 'listings/index'
     else
       render 'static_pages/landing'
     end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       create_remember_token
       sign_in @user
       flash[:success] = "Welcome to Tapsell!"
-      redirect_back_or @user
+      redirect_back_or dashboard_path(current_user.id)
     else
       render 'new'
   	end
