@@ -12,6 +12,8 @@ Tapsell::Application.routes.draw do
 
   # View messags
   get "users/:id/message" => "messages#index", as: 'messages'
+  get "update_msg_chain" => "messages#update_msg_chain", as: 'update_msg_chain'
+  post "users/:id/message" => "messages#create", as: 'new_message'
   
   # Listings
   get "listings/search" => "listings#search_listings", as: 'search_listings'

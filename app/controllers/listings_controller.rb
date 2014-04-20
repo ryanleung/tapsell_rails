@@ -69,6 +69,7 @@ class ListingsController < ApplicationController
 
   def show_my_listings
     @user = current_user
+    @listings = @user.listings_as_seller
   end
 
   def new

@@ -9,11 +9,15 @@ class MessageChain < ActiveRecord::Base
   # This method will create the message chain if it doesn't exist yet,
   # or append a message to an existing chain.
   # If the msg_chain doesn't exist, it means the sender is the buyer.
-  def self.send_message(sender_id, listing_id, content, message_type)
+  def self.send_message(sender_id, listing_id, content, message_type, msg_chain_id)
     seller_id = Listing.find_by_id(listing_id).seller_id
 
     # find out if message chain exists
-    msg_chain = MessageChain.find_by(:listing_id => listing_id, :seller_id => seller_id)
+    if msg_chain_id.present?
+      msg_chain = MessageChain.find(msg_chain_id)
+    else
+      msg_chain = MessageChain.find_by(:listing_id => listing_id, :seller_id => seller_id)
+    end
 
     if msg_chain.nil?
       # handle case if msg_chain does not exist yet
@@ -49,6 +53,7 @@ class MessageChain < ActiveRecord::Base
     end
     new_msg = Message.create(:content => content, :message_chain => self, :message_type => message_type, :sender_id => sender_id)
     self.messages.push(new_msg)
+    touch
   end
 
   def most_recent_message
