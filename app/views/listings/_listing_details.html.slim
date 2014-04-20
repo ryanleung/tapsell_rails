@@ -5,10 +5,20 @@
     .col-xs-10.pad-right-0
       #carousel-example-generic.carousel.slide
         .carousel-inner
+          .item.active style=("background-image: url(#{image_url('bg_landing.jpg')});")
+          .item style=("background-image: url(#{image_url('bg_landing.jpg')});")
+          .item style=("background-image: url(#{image_url('bg_landing.jpg')});")
     .col-xs-2.text-right.pad-left-0
       ol.carousel-indicator.list-inline
+        li data-target="#carousel-example-generic" data-slide-to="0" class="active"
 .col-xs-12.product-description
   = @listing.info
+
+javascript:
+  $(document).ready(function(){
+    $(".carousel").carousel();
+  });
+
 - if session[:sosmed_type]
   = render "home/modal_verify"
   javascript:
