@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def root_page_router
     if signed_in?
       @user = current_user
-      render 'listings/index'
+      redirect_to dashboard_path(current_user.id)
     else
       render 'static_pages/landing'
     end
