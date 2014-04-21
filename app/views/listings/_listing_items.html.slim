@@ -5,6 +5,7 @@
 			= link_to image_tag('/assets/no_image.png', class: "col-xs-12 no-pad"), listing_path(listing),class: "col-xs-12 no-pad"
 			.col-xs-6.no-pad
 				.time-post.pull-left= time_ago_in_words(listing.created_at)
+				ago
 			.col-xs-6.no-pad
 				.price.pull-right class="price-#{listing.price.to_i}" id="#{listing.price.to_i}"
 					| $

@@ -42,6 +42,8 @@ html
                   span.cus-caret
                 ul.dropdown-menu role="menu" aria-labelledby="dlabel"
                   li
+                    = link_to "Browse", listings_path
+                  li
                     = link_to "Dashboard", dashboard_path(current_user.id)
                   li
                     = link_to "Profile", user_path(current_user.id)

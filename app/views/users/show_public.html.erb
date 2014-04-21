@@ -15,8 +15,8 @@
 					<h4>
 						<%= image_tag "/assets/pin-white.png", class: "pin" %>
 						UC San Diego 
-						<% if @user.reviews_as_seller.present? %>
-						<%= @user.percent_pos_reviews %>
+						<% if @seller.reviews_as_seller.present? %>
+						<%= @seller.percent_pos_reviews %>
 						% POSITIVE REVIEWS
 						<% else %>
 
