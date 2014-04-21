@@ -77,80 +77,9 @@
 													Recent Messages
 												</h3>
 											</div>
-											<div class="content col-xs-12">
-												<div class="dot pull-left">
-													<%= image_tag image_url("tapsell_big_circle_dot.png") %>
-												</div>
-												<div class="information pull-left">
-													<p class="name"><%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
-													</p>
-													<p class="date">
-													<%= Time.now.strftime("%H:%M %p") %>
-													</p>
-												</div>
-												<div class="message pull-left">
-													<p>
-														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
-													</p>
-												</div>
-
-											</div> <!-- end content -->
-											<div class="content col-xs-12">
-												<div class="dot pull-left">
-													<%= image_tag image_url("tapsell_big_circle_dot.png") %>
-												</div>
-												<div class="information pull-left">
-													<p class="name"><%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
-													</p>
-													<p class="date">
-													<%= Time.now.strftime("%H:%M %p") %>
-													</p>
-												</div>
-												<div class="message pull-left">
-													<p>
-														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
-													</p>
-												</div>
-
-											</div> <!-- end content -->
-											<div class="content col-xs-12 unread">
-												<div class="dot pull-left">
-													<%= image_tag image_url("tapsell_chart_icon.png"), class: "chart-icon" %>
-												</div>
-												<div class="information pull-left">
-													<p class="name"><%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
-													</p>
-													<p class="date">
-													<%= Time.now.strftime("%H:%M %p") %>
-													</p>
-												</div>
-												<div class="message pull-left">
-													<p>
-														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
-													</p>
-												</div>
-
-											</div> <!-- end content -->
-											<div class="content col-xs-12 unread">
-												<div class="dot pull-left">
-													<%= image_tag image_url("tapsell-check-sketch-icon.png"), class: "sketch-icon" %>
-												</div>
-												<div class="information pull-left">
-													<p class="name"><%= current_user.first_name.titleize + " " + current_user.last_name.titleize %>
-													</p>
-													<p class="date">
-													<%= Time.now.strftime("%H:%M %p") %>
-													</p>
-												</div>
-												<div class="message pull-left">
-													<p>
-														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
-													</p>
-												</div>
-
-											</div> <!-- end content -->
+												<%= render "recent_messages" %>
 											<div class="footer-content text-right col-xs-12">
-												<%= link_to "javascript:void(0);" do %>
+												<%= link_to messages_path(current_user.id) do %>
 													Go to Inbox
 													<%= image_tag image_url("tapsell_right_aqua_long_arrow.png"), class: "arrow-icon" %>
 												<% end %>
@@ -168,32 +97,11 @@
 												<h3 class="pull-left">
 													Your Active Listings
 												</h3>
-												<%= link_to "POST A NEW LISTING", "javascript:void(0);", class: "pull-right btn btn-default" %>
+												<%= link_to "POST A NEW LISTING", new_listing_path(current_user.id), class: "pull-right btn btn-default" %>
 											</div>
-											<% 5.times do %>
-											<div class="content col-xs-12">
-												<div class="image pull-left img-responsive">
-													<%= image_tag image_url("bg_landing.jpg") %>
-												</div>
-												<div class="message pull-left listing-message">
-													<h4>
-														Open-faced ricotta scramble
-													</h4>
-													<p class="listing-content">
-														Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam.
-													</p>
-												</div>
-												<div class="price pull-left">
-													<p>$8</p>
-												</div>
-												<div class="edit pull-right">
-													<span class="glyphicon glyphicon-pencil"></span>
-												</div>
-
-											</div> <!-- end content -->
-											<% end %>
+											<%= render "active_listings" %>
 											<div class="footer-content text-right col-xs-12">
-												<%= link_to "javascript:void(0);" do %>
+												<%= link_to my_listings_path(current_user.id) do %>
 													View All Listings
 													<%= image_tag image_url("tapsell_right_aqua_long_arrow.png"), class: "arrow-icon" %>
 												<% end %>

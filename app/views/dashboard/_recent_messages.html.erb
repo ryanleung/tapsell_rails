@@ -1,0 +1,22 @@
+<%- for @msg_chain in @recent_msg_chains %>
+  <%= link_to messages_path(current_user.id), :class => "content col-xs-12" do %>
+    <!-- TODO:HACK, move styling to css -->
+    <div class="content col-xs-12" style="color:#3e3e3e">
+      <div class="dot pull-left">
+        <%= image_tag image_url("tapsell_big_circle_dot.png") %>
+      </div>
+      <div class="information pull-left">
+        <p class="name"><%= @msg_chain.most_recent_message.sender.first_name.titleize + " " + @msg_chain.most_recent_message.sender.last_name.titleize %>
+        </p>
+        <p class="date">
+        <%= time_ago_in_words(@msg_chain.updated_at) %>
+        </p>
+      </div>
+      <div class="message pull-left">
+        <p>
+          <%= @msg_chain.most_recent_message.content %>
+        </p>
+      </div>
+    </div> <!-- end content -->
+  <% end %>
+<% end %>

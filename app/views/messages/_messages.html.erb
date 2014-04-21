@@ -20,7 +20,7 @@
       </div>
     <% end %>
     <div class="col-xs-12 col-md-9 pull-left no-pad">
-      <p class="text-right time">Sent @ 12:30 AM</p>
+      <p class="text-right time"><%= time_ago_in_words(@message.created_at) %></p>
     </div>
   </div>
 <% end %>
