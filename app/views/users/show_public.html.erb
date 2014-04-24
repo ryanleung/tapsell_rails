@@ -14,9 +14,13 @@
 					</h1>
 					<h4>
 						<%= image_tag "/assets/pin-white.png", class: "pin" %>
-						UC Davis -
-						<b>98%</b>
-						POSITIVE REVIEW
+						UC San Diego 
+						<% if @seller.reviews_as_seller.present? %>
+						<%= @seller.percent_pos_reviews %>
+						% POSITIVE REVIEWS
+						<% else %>
+
+						<% end %>
 					</h4>
 				</div>
 			</div>
@@ -37,7 +41,7 @@
 
 		<div class="col-xs-12 listing-container">
 			<div class="container animated fadeIn">
-				<% @seller.selling_listings.each do |listing| %>
+				<% @seller.listings_as_seller.each do |listing| %>
 					<div class="col-xs-6 col-md-3">
 						<div class="col-xs-12 col-md-12 thumbnail">
 							<h5 class="col-xs-12 no-pad">
