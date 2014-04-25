@@ -1,3 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).ready ->
+  $(".message-item-container").scrollTop($(".message-item-container")[0].scrollHeight)
+
+  $(".message-user-list").click ->
+    $(".message-item-container").scrollTop($(".message-item-container")[0].scrollHeight)

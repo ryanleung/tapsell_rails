@@ -1,12 +1,12 @@
 = content_for :javascript_contents do
-  = javascript_include_tag "purchases"
+  = javascript_include_tag "offers"
 
 = content_for :stylesheet_contents do
-  = stylesheet_link_tag "purchases"
+  = stylesheet_link_tag "offers"
 
 .container.marg-top-125
   .col-xs-8.box-container.left-container
-    = form_tag purchase_path, method: "post", id: "payment-form", class: "pull-left", role: "form" do |f|
+    = form_tag offer_path, method: "post", id: "payment-form", class: "pull-left", role: "form" do |f|
       .col-xs-12.title-container
         h1 > Confirm your offer.
       .col-xs-12.content-section
@@ -17,7 +17,7 @@
         .col-xs-12.select-payment-container
           .col-xs-6.no-pad
             label.col-sm-offset-4.pull-left Choose from your saved cards
-            = select_tag :chosen_card_id, options_for_select(current_user.credit_cards.collect{ |card| ["#{card.card_type}" + " " + "#{card.ending_digits}", card.id] }), class: "payment-method form-control col-sm-offset-4 pull-left", prompt: " "
+            = select_tag :chosen_card_id, options_for_select(current_user.credit_cards.collect{ |card| ["#{card.card_type}" + " " + "#{card.last_4}", card.id] }), class: "payment-method form-control col-sm-offset-4 pull-left", prompt: " "
           .col-xs-1.or
             | or
           .col-xs-4.no-pad.text-left.add-new-card
@@ -52,8 +52,7 @@
             | &nbsp; by &nbsp;
             b= @listing.seller.first_name.upcase
           .price-container
-            | $
-            = @listing.price.to_i
+            = number_to_currency(@offer_price)
           .product-image-container
           .product-guarantee-container
             span.black-check-icon
