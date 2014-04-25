@@ -37,7 +37,7 @@ html
                   - if current_user.image.nil?
                     .navbar-avatar.img-circle style= "background-image: url('assets/no_image.png')"
                   - else
-                    .navbar-avatar.img-circle style= "background-image: url('#{current_user.image.url}')"
+                    .navbar-avatar.img-circle style= "background-image: url('#{current_user.image.image.url}')"
                   p.pull-left= current_user.first_name
                   span.cus-caret
                 ul.dropdown-menu role="menu" aria-labelledby="dlabel"
