@@ -30,12 +30,14 @@
           h3 OPTIONAL INFORMATION
           .form-container
             label.marg-top-23
-              | Include a message for your seller. &nbsp;
+              | Include a message for your seller, &nbsp;
               = @listing.seller.first_name
               | &nbsp; !
             = text_area_tag "message"
       .col-xs-12.left-container-content.submit-container
         .form-group
+          = hidden_field_tag :offer_price, @offer_price
+          = hidden_field_tag :listing_id, @listing.id
           = submit_tag "FINISH AND MAKE OFFER", class: "btn btn-warning"
 
 
