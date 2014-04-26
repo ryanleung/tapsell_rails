@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def root_page_router
     if signed_in?
       @user = current_user
-      render 'listings/index'
+      redirect_to dashboard_path(current_user.id)
     else
       render 'static_pages/landing'
     end
@@ -43,6 +43,16 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'show'
+    end
+  end
+
+  def new_photo
+    img = Image.new(:image => params[:image])
+    current_user.image = img
+    if current_user.save
+      redirect_to current_user
+    else
+      redirect_to current_user
     end
   end
 

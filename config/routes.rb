@@ -37,6 +37,9 @@ Tapsell::Application.routes.draw do
   # View public profiles
   get "users/:id/view" => "users#show_public", as: 'public_profile'
 
+  # Upload new user photo
+  post "users/:id/photo" => "users#new_photo", as: 'new_user_photo'
+
   # View my listings
   get "users/:id/listings" => "listings#show_my_listings", as: 'my_listings'
 

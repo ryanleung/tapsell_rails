@@ -19,7 +19,7 @@
                 - if current_user.image.nil?
                   .avatar-profile.img-circle style="background-image: url('/assets/no_avatar.png');"
                 - else
-                  .avatar-profile.img-circle style="background-image: url('#{current_user.image.url}');"
+                  .avatar-profile.img-circle style="background-image: url('#{current_user.image.image.url}');"
               .col-sm-12.text-center.pad-location
                 .row
                   .col-sm-12.text-center
@@ -36,10 +36,10 @@
                   .col-xs-12
                     ul
                       li
-                        = link_to "javascript:void(0);" do
+                        = form_tag new_user_photo_path, :method => :post, :multipart => true do
                           = image_tag "/assets/camera-icon.png", class: "camera-icon"
-                          | &nbsp;
-                          | upload new photo
+                          = file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg'
+                          = submit_tag 'upload new photo'
                       li
                         = link_to "javascript:void(0);" do
                           = image_tag "/assets/fb-icon.png", class: "fb-icon"
