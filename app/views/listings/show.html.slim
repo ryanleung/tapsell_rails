@@ -5,6 +5,8 @@
   .col-xs-8.box-container.left-container
     .col-xs-12.title-container
       h1.order-title.product-title
+        = number_to_currency(@listing.price, :locale => 'en_us', :precision => 0)
+        | &nbsp;
         = @listing.title
       .sub-product-title
         | POSTED &nbsp;
@@ -38,7 +40,7 @@
             .list
           .location-container
             | Pick up location: &nbsp;
-            b= @listing.address
+              UC San Diego
       .col-xs-11.box-container.right-container.no-pad
         .right-container-content
           h3.text-center= @listing.seller.first_name
