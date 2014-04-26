@@ -28,7 +28,9 @@ class CreditCard < ActiveRecord::Base
   # Class Methods
   # -------------
 
-  # enc_cc_number => string
+  #TODO: MOVE THIS!!!!!!!!
+  Stripe.api_key = "sk_test_I44IlUxXmgOwyYPfcafWPKKg"
+  # enc_cc_number, cvc => string
   # enc_cc_month, enc_cc_year => integer
   def self.create_cc(user, enc_cc_number, enc_cc_month, enc_cc_year, cvc)
     begin

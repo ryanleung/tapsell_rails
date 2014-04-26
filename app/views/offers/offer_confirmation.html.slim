@@ -1,5 +1,5 @@
 = content_for :stylesheet_contents do
-  = stylesheet_link_tag "purchases"
+  = stylesheet_link_tag "offers"
 .container.marg-top-125
   .col-md-8.box-container.left-container
     .col-md-12.title-container
@@ -43,7 +43,7 @@
             b= @listing.seller.first_name.upcase
           .price-container
             | $
-            = @listing.price.to_i
+            = @offer.price.to_i
           .product-guarantee-container
             span.black-check-icon
             p.pull-left Covered by Tapsell Buyer Guarantee

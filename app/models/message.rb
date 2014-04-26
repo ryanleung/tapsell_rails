@@ -3,6 +3,10 @@ class Message < ActiveRecord::Base
   belongs_to :message_chain
   belongs_to :sender, :class_name => "User", :foreign_key => "sender_id"
 
+  # Types of messages, offer having the option to accept or decline
+  TYPE_OFFER = "offer"
+  TYPE_DEFAULT = "default"
+
   # Validations
   # -----------
 

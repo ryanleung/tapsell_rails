@@ -1,5 +1,5 @@
 <%- for @message in @current_msg_chain.messages %>
-  <div class="col-xs-12">
+  <div class="col-xs-12" style="overflow">
     <% if @current_user == @message.sender %>
       <div class="message-item col-xs-12 col-md-9 seller">
           <span>
