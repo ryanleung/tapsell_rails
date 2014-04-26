@@ -7,6 +7,7 @@ class CreateOffersTable < ActiveRecord::Migration
       t.integer :credit_card_id
       t.decimal :price
       t.string :status
+      t.integer :message_chain_id
       t.timestamps
     end
 

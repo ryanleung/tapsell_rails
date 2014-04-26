@@ -44,9 +44,11 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:offer_id])
     @listing = @offer.listing
 
-    # create message to seller
-    msg_chain = MessageChain.send_message(current_user.id, @listing.id, params[:message].present? ? params[:message] : "Can I Haz?" , Message::TYPE_OFFER, nil)
-    hello = 1
+    # create offer message to seller, then add additional message
+    MessageChain.send_message(current_user.id, @listing.id, "#{current_user.first_name} has offered #{ActionController::Base.helpers.number_to_currency(@offer.price)} for your listing, #{@listing.title}" , Message::TYPE_OFFER, nil, @offer)
+    if params[:message].present?
+      MessageChain.send_message(current_user.id, @listing.id, params[:message], Message::TYPE_DEFAULT, nil, nil)
+    end
   end
   
 end

@@ -1,4 +1,6 @@
 <h1>
-  Conversation with
-  <%= @current_msg_chain.seller.first_name %>
+  <% if @current_msg_chain.present? %>
+    Conversation with
+    <%= @current_msg_chain.seller.first_name %>
+  <% end %>
 </h1>
