@@ -43,7 +43,7 @@
         - f.fields_for :images do |image|
           .col-xs-3
             .image-container.text-center.col-xs-12
-              = image.file_field :image, class: 'add-image-field'
+              = image.file_field :image, class: 'add-image-field hide'
               = link_to "javascript:void(0);", class: "add-image", onclick: '$(this).prev().click();' do
                 = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
 

@@ -22,12 +22,16 @@
 									<%= "#{current_user.first_name} #{current_user.last_name}" %>
 								</h2>
 							</div>
+							<%= form_tag new_user_photo_path, :method => :post, :multipart => true do %>
 							<div class="col-xs-12 profile-live-view-image">
 								<%- if current_user.image.nil?  %>
 									<div class="avatar-profile img-circle" style="background-image: url(<%= image_url('no_avatar.png')%>)"></div>
 								<%- else %>
 									<div class="avatar-profile img-circle" style="background-image: url(<%= current_user.image.image.url %>)"></div>
 								<% end %>
+							</div>
+							<div class="submit-photo-container hide text-center">
+								<%= submit_tag 'upload new photo', class: "submit-photo" %>
 							</div>
 							<div class="col-xs-12 text-center pad-location">
 								<div class="row">
@@ -50,11 +54,12 @@
 									<div class="col-xs-12">
 										<ul>
 											<li>
-												<%= form_tag new_user_photo_path, :method => :post, :multipart => true do %>
-													<%= image_tag image_url("camera-icon.png"), class: "camera-icon" %>
-													<%= file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg' %>
-													<%= submit_tag 'upload new photo' %>
-												<% end %>
+													<%= link_to "javascript:void(0);", class: "link-upload-image" do %>
+														<%= image_tag(image_url("camera-icon.png"), class: "camera-icon") %>
+														UPLOAD NEW PHOTO
+													<% end %>
+													<%= file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg', class: "input-photo hide" %>
+							<% end %>
 											</li>
 											<li>
 												<%= link_to "javascript:void(0);" do %>
@@ -118,3 +123,7 @@
 		</div>
 	</div>
 </div>
+
+<%= content_for :javascript_contents do  %>
+  <%= javascript_include_tag "dashboard" %>
+<% end %>
