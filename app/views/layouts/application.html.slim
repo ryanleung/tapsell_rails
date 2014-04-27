@@ -54,8 +54,7 @@ html
                   li
                     = link_to "Log Out", '/sign-out', method: :delete
               li.message-icon-container= link_to "javascript:void(0);" do
-                = image_tag "/assets/message-icon.png"
-                .badge.pull-right 4
+                = image_tag "/assets/message-icon.png" 
               li.post-button-container= link_to "NEW LISTING", new_listing_path, class: "button-post"
 
             - else
