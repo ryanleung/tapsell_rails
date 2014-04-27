@@ -46,6 +46,8 @@ html
                   li
                     = link_to "Dashboard", dashboard_path(current_user.id)
                   li
+                    = link_to "Inbox", messages_path(current_user.id)
+                  li
                     = link_to "Profile", user_path(current_user.id)
                   li
                     = link_to "My Listings", my_listings_path(current_user.id)
@@ -53,8 +55,6 @@ html
                     = link_to "Settings", user_settings_path(current_user.id)
                   li
                     = link_to "Log Out", '/sign-out', method: :delete
-              li.message-icon-container= link_to "javascript:void(0);" do
-                = image_tag "/assets/message-icon.png" 
               li.post-button-container= link_to "NEW LISTING", new_listing_path, class: "button-post"
 
             - else

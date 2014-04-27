@@ -51,7 +51,6 @@
 										<ul>
 											<li>
 												<%= form_tag new_user_photo_path, :method => :post, :multipart => true do %>
-													<%= image_tag image_url("camera-icon.png"), class: "camera-icon" %>
 													<%= file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg' %>
 													<%= submit_tag 'upload new photo' %>
 												<% end %>

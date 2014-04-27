@@ -11,7 +11,7 @@
         h1 > Confirm your offer.
       .col-xs-12.content-section
         p.content-section-title What happens when I make an offer?
-        p The seller will have 24 hours to approve the sale, and your card won't be charged unless the seller approves. All purchases are covered by Tapsell Buyer Guarantee: if the items aren't as described, or the seller isn't being responsive, just let us know within 7 days for a full refund.
+        p The seller has 24 hours to accept the offer, and your card won't be charged unless the seller accepts. All purchases are covered by the Tapsell Buyer Guarantee: if the items aren't as described, or the seller isn't being responsive, just let us know within 3 days for a full refund..
       .col-xs-12.left-container-content
         h3 PAYMENT METHOD
         .col-xs-12.select-payment-container
@@ -32,7 +32,7 @@
             label.marg-top-23
               | Include a message for your seller, &nbsp;
               = @listing.seller.first_name
-              | &nbsp; !
+              | !
             = text_area_tag "message"
       .col-xs-12.left-container-content.submit-container
         .form-group
@@ -45,7 +45,7 @@
     .row
       .col-xs-11.box-container.right-container.no-pad
         .right-container-label
-          | You are about to reserve the item:
+          | You are about to make an offer for:
         .right-container-content
           h4= @listing.title
           .post-container
@@ -54,7 +54,7 @@
             | &nbsp; by &nbsp;
             b= @listing.seller.first_name.upcase
           .price-container
-            = number_to_currency(@offer_price)
+            = number_to_currency(@offer_price, :locale => 'en_us', :precision => 0)
           .product-image-container
             -if @listing.images.present?
               =image_tag image_url(@listing.images[0].image.url), class: "product-image-container"
@@ -68,4 +68,4 @@
             .list
           .location-container
             | Pick up location: &nbsp;
-            b= @listing.address
+            b= "UC San Diego"

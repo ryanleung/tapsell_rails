@@ -39,7 +39,7 @@
                         = form_tag new_user_photo_path, :method => :post, :multipart => true do
                           = image_tag "/assets/camera-icon.png", class: "camera-icon"
                           = file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg'
-                          = submit_tag 'upload new photo'
+                          = submit_tag 'Upload new photo'
                       li
                         = link_to "javascript:void(0);" do
                           = image_tag "/assets/fb-icon.png", class: "fb-icon"
@@ -54,8 +54,6 @@
                     ul.list-inline.profile-tab-menu
                       li.list-inline-item
                         = link_to "EDIT PROFILE", "javascript:void(0);", class: "edit-form-link"
-                      li.list-inline-item
-                        = link_to "CHANGE PASSWORD", "javascript:void(0);", class: "change-pass-form-link"
                   .col-sm-12
                     .row
                       .content-container.col-sm-12.no-pad.pull-left
