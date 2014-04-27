@@ -25,6 +25,7 @@
     <div class="col-xs-8 box-container left-container">
       <div class="title-container">
         <h1 class="order-title product-title">
+          <%= number_to_currency(@listing.price, :locale => 'en_us', :precision => 0) %>
           <%= @listing.title %>
         </h1>
         <div class="sub-product-title">
@@ -45,7 +46,6 @@
         <div class="col-xs-11 box-container right-container no-pad">
           <div class="right-container-content">
             <div class="price-container price-product-container">
-              $8
               <div class="button-product-container">
                 <%= link_to "MAKE AN OFFER", "javascript:void(0);", class: "btn", disabled: true %>
               </div>
