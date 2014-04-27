@@ -2,14 +2,24 @@
   <%= link_to my_listings_path(current_user.id), :class => "content col-xs-12" do %>
     <div class="content col-xs-12" style="color: #3e3e3e">
       <div class="image pull-left img-responsive">
-        <%= image_tag image_url("bg_landing.jpg") %>
+        <% if @listing.images.present? %>
+          <%= image_tag image_url(@listing.images[0].image.url) %>
+        <% else %>
+          <%= image_tag image_url("no_pic.jpg") %>
+        <% end %>
       </div>
       <div class="message pull-left listing-message">
         <h4>
           <%= @listing.title %>
         </h4>
         <p class="listing-content">
-          <%= @listing.info %>
+          <% if @listing.info.present? %>
+            <% if @listing.info.length > 100 %>
+              <%= @listing.info[1...100] + "..." %>
+            <% else %>
+              <%= @listing.info %>
+            <% end %>
+          <% end %>
         </p>
       </div>
       <div class="price pull-left">

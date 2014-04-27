@@ -89,7 +89,6 @@ class ListingsController < ApplicationController
         @listing.images.push(img)
       end
     end
-    debugger
     if @listing.save
       flash[:success] = "Listing created!"
       redirect_to confirm_listing_path(@listing)

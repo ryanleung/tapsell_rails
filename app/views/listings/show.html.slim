@@ -48,6 +48,8 @@
             = link_to public_profile_path(@listing.seller.id) do
               - if @listing.seller.image.nil?
                 = image_tag "/assets/no_image.png", class: "img-circle"
+              - else
+                = image_tag @listing.seller.image.image.url, class: "img-circle"
           .user-location-container
             h4.location.text-center
               = image_tag "/assets/pin.png"
