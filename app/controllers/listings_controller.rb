@@ -80,6 +80,16 @@ class ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings_as_seller.build(listing_params)
+
+    # TODO: another sad hack :-(. Images parsing
+    images_hash = params["listing"]["images_attributes"]
+    if images_hash.present?
+      images_hash.values.each do |image|
+        img = Image.new(image)
+        @listing.images.push(img)
+      end
+    end
+    debugger
     if @listing.save
       flash[:success] = "Listing created!"
       redirect_to confirm_listing_path(@listing)

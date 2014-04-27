@@ -2,7 +2,10 @@
 	.col-xs-6.col-md-3.listing-item data-price="#{listing.price.to_i}"
 		.col-xs-12.col-md-12.thumbnail
 			h5.col-xs-12.no-pad= truncate(listing.title, length: 30).titleize
-			= link_to image_tag('/assets/no_image.png', class: "col-xs-12 no-pad"), listing_path(listing),class: "col-xs-12 no-pad"
+			- if listing.images.present?
+				= link_to image_tag(listing.images[0].image.url, class: "col-xs-12 no-pad"), listing_path(listing),class: "col-xs-12 no-pad"
+			- else
+				= link_to image_tag('no_pic.jpg', class: "col-xs-12 no-pad"), listing_path(listing),class: "col-xs-12 no-pad"
 			.col-xs-6.no-pad
 				.time-post.pull-left= time_ago_in_words(listing.created_at)
 				ago

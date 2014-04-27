@@ -43,21 +43,9 @@
         - f.fields_for :images do |image|
           .col-xs-3
             .image-container.text-center.col-xs-12
-              = image.file_field :image, class: 'hide add-image-field'
+              = image.file_field :image, class: 'add-image-field'
               = link_to "javascript:void(0);", class: "add-image", onclick: '$(this).prev().click();' do
                 = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
-          / .col-xs-3
-          /   .image-container.text-center.col-xs-12
-          /     = link_to "javascript:void(0);", class: "add-image" do
-          /       = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
-          / .col-xs-3
-          /   .image-container.text-center.col-xs-12
-          /     = link_to "javascript:void(0);", class: "add-image" do
-          /       = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
-          / .col-xs-3
-          /   .image-container.text-center.col-xs-12
-          /     = link_to "javascript:void(0);", class: "add-image" do
-          /       = image_tag "/assets/tapsell-plus-icon.png", class: "animated pulse"
 
         = f.link_to_add "Add a task", :images, id: 'link_add', class: 'hide'
 
@@ -102,19 +90,8 @@ javascript:
     reader.onload = function(evt) {
       newImage.src = evt.target.result;
 
-      // condition
-      if (newImage.height == newImage.width) {
-        return elem.parent().html(newImage);
-      } else {
-        alert('Image height and width should be same')
-        event.preventDefault();
-      }
-      // end condition
     };
     reader.readAsDataURL(watermarkfile);
-
-
-
   };
 
   $(document).ready(function(){
