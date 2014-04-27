@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
 
   def create
     @msg_chain = MessageChain.send_message(@current_user.id, params[:listing_id],
-            params[:content], nil, params[:msg_chain_id])
+            params[:content], nil, params[:msg_chain_id], nil)
     redirect_to action: 'index'
   end
 

@@ -2,18 +2,18 @@
   <%- for @message in @current_msg_chain.messages %>
     <div class="col-xs-12" style="overflow">
       <% if @current_user == @message.sender %>
-        <div class="message-item col-xs-12 col-md-9 seller">
+        <div class="message-item col-xs-12 col-md-9 buyer pull-right">
             <span>
-              <%= image_tag "tapsell_arrow_left.png" %>
+              <%= image_tag "tapsell_arrow_right.png" %>
             </span>
           <p>
             <%= @message.content %>
           </p>
         </div>
       <% else %>
-        <div class="message-item col-xs-12 col-md-9 buyer pull-right">
+        <div class="message-item col-xs-12 col-md-9 seller">
           <span>
-            <%= image_tag "tapsell_arrow_right.png" %>
+            <%= image_tag "tapsell_arrow_left.png" %>
           </span>
           <p>
             <%= @message.content %>

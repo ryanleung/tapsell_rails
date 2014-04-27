@@ -1,6 +1,11 @@
 <h1>
   <% if @current_msg_chain.present? %>
     Conversation with
-    <%= @current_msg_chain.seller.first_name %>
+    <% if @current_msg_chain.seller == current_user %>
+      <% @other_user = @current_msg_chain.buyer %>
+    <% else %>
+      <% @other_user = @current_msg_chain.seller %>
+    <% end %>
+    <%= @other_user.first_name %>
   <% end %>
 </h1>
