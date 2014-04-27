@@ -1,0 +1,21 @@
+<%= form_tag messages_path(current_user), :method => :post do %>
+  <div class="col-xs-12 message-input-content">
+    <div class="col-xs-10 no-pad">
+      <textarea class="col-xs-12" name="content" placeholder="Type and hit enter to reply"></textarea>
+    </div>
+    <div class="pull-right">
+      <% if current_user.image.present? %>
+        <%= image_tag current_user.image.image.url, class: "avatar img-responsive img-circle" %>
+      <% else %>
+        <%= image_tag "no_image.png", class: "avatar img-responsive img-circle" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-12 no-pad text-right btn send-btn">
+    <% if @current_msg_chain.present? %>
+      <%= hidden_field_tag :listing_id, @current_msg_chain.listing_id %>
+      <%= hidden_field_tag :msg_chain_id, @current_msg_chain.id %>
+    <% end %>
+    <%= submit_tag "Submit Message" %>
+  </div>
+<% end %>

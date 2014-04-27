@@ -59,24 +59,8 @@
 						<div class="col-xs-12 message-item-container" id="message-item-container">
 							<%= render "messages" %>
 						</div>
-						<div class="message-input-container col-xs-12">
-							<%= form_tag messages_path, :method => :post do %>
-								<div class="col-xs-12 message-input-content">
-									<div class="col-xs-10 no-pad">
-										<textarea class="col-xs-12" name="content" placeholder="Type and hit enter to reply"></textarea>
-									</div>
-									<div class="pull-right">
-										<%= image_tag "no_image.png", class: "avatar img-responsive img-circle" %>
-									</div>
-								</div>
-								<div class="col-xs-12 no-pad text-right btn send-btn">
-									<% if @msg_chain.present? %>
-										<%= hidden_field_tag :listing_id, @msg_chain.listing_id %>
-										<%= hidden_field_tag :msg_chain_id, @msg_chain.id %>
-									<% end %>
-									<%= submit_tag "Submit Message" %>
-								</div>
-							<% end %>
+						<div class="message-input-container col-xs-12" id="message-create-container">
+							<%= render "message_create" %>
 						</div>
 					</div>
 				</div><!-- end of message-content -->
