@@ -29,14 +29,14 @@
 					</span>
 					<div class="image pull-left">
 						<% if @listing.images.present? %>
-							<%= image_tag image_url(@listing.images[0].image.url), class: "img-responsive" %>
+							<%= link_to image_tag(image_url(@listing.images[0].image.url), class: "img-responsive"), listing_path(@listing.id) %>
 						<% else %>
 							<%= image_tag image_url("no_pic.jpg"), class: "img-responsive" %>
 						<% end %>
 					</div>
 					<div class="information">
 						<p class="info-title">
-							<%= @listing.title %>
+							<%= link_to @listing.title, listing_path(@listing.id) %>
 						</p>
 						<p class="info-description">
 							<%= @listing.info %>
@@ -50,3 +50,5 @@
 		</div>
 	</div>
 </div>
+
+

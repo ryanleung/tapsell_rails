@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420083551) do
+ActiveRecord::Schema.define(version: 20140421040457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 20140420083551) do
     t.integer  "buyer_id"
     t.integer  "seller_id"
     t.integer  "listing_id"
-    t.integer  "offer_id"
     t.boolean  "buyer_dirty",  default: false, null: false
     t.boolean  "seller_dirty", default: false, null: false
     t.datetime "created_at"
@@ -105,7 +104,6 @@ ActiveRecord::Schema.define(version: 20140420083551) do
     t.integer  "credit_card_id"
     t.decimal  "price"
     t.string   "status"
-    t.integer  "message_chain_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -151,6 +149,7 @@ ActiveRecord::Schema.define(version: 20140420083551) do
     t.string   "remember_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "image"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
