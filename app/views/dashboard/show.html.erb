@@ -26,7 +26,7 @@
 								<%- if current_user.image.nil?  %>
 									<div class="avatar-profile img-circle" style="background-image: url(<%= image_url('no_avatar.png')%>)"></div>
 								<%- else %>
-									<div class="avatar-profile img-circle" style="background-image: url(#{image_url(current_user.image)})"></div>
+									<div class="avatar-profile img-circle" style="background-image: url(<%= current_user.image.image.url %>)"></div>
 								<% end %>
 							</div>
 							<div class="col-xs-12 text-center pad-location">
@@ -50,9 +50,10 @@
 									<div class="col-xs-12">
 										<ul>
 											<li>
-												<%= link_to "javascript:void(0);" do %>
+												<%= form_tag new_user_photo_path, :method => :post, :multipart => true do %>
 													<%= image_tag image_url("camera-icon.png"), class: "camera-icon" %>
-													&nbsp; upload new photo
+													<%= file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg' %>
+													<%= submit_tag 'upload new photo' %>
 												<% end %>
 											</li>
 											<li>

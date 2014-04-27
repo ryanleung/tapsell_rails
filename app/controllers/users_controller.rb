@@ -46,6 +46,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def new_photo
+    img = Image.new(:image => params[:image])
+    current_user.image = img
+    if current_user.save
+      redirect_to current_user
+    else
+      redirect_to current_user
+    end
+  end
+
 private
 
   def user_params
