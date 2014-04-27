@@ -34,7 +34,7 @@ a:hover {
 
 .container {
 	position: relative;
-	margin-top: 15em;
+	/*margin-top: 15em;*/
 }
 
 .container > header,
