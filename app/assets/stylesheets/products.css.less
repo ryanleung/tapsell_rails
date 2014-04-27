@@ -11,8 +11,8 @@
 }
 
 .center-background {
-	background-size: cover;
-	background-position: center top;
+	background-size: 100%;
+	background-position: center;
 }
 
 .image-navigation {
@@ -29,13 +29,14 @@
 .carousel-inner {
 	.item {
 		width: 100%;
-		height: 350px;
+		height: 406px;
 		.center-background;
 	}
 }
 
 .left-container {
 	.title-container{
+		margin: 0;
 		.product-title {
 			font-family: @caeciliaroman !important;
 		}
@@ -112,6 +113,8 @@
 				color: @orange;
 			}
 			input {
+				border-left: none;
+				border: 1px solid #ccc;
 				border-left: none;
 			}
 		}

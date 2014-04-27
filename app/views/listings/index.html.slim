@@ -1,14 +1,13 @@
 .col-xs-12.header-title-container
   .container.text-center
     h1 Get your browse on !
-    = form_tag search_listings_path, :method => "get"
-    = text_field_tag :search, params[:search]
-    = submit_tag "Search", :name => nil
-    
-    .input-group
-      input#search.form-control type="text" placeholder="Looking for something ?"
-      span.input-group-addon
-        i.glyphicon.glyphicon-search
+
+    = form_tag search_listings_path, :method => "get", role: "form", html: {class: "col-xs-12"}
+      .input-group
+        = text_field_tag :search, params[:search], class: "form-control", placeholder: "Looking for something"
+        .input-group-btn
+          button.btn.btn-default type="submit" name=""
+            i.glyphicon.glyphicon-search
 
 
 .col-xs-12.navigation-container
@@ -44,9 +43,10 @@
             = link_to "High Price", "javascript:void(0);", class: "high-price-link filter-category"
 #loader-container.text-center.col-xs-12.animated.fadeInDown.hide
   i.fa.fa-refresh.fa-spin.fa-5x
-.container.no-pad
-  #container-listing.listing-container.col-xs-12
-    = render "listing_items"
+.col-xs-12
+  .container.no-pad
+    #container-listing.listing-container.col-xs-12
+      = render "listing_items"
 #all-paginate.col-xs-12.text-center.animated.fadeInUp
   ul.pagination= will_paginate all
 #book-paginate.col-xs-12.text-center.animated.fadeInUp.hide

@@ -21,17 +21,16 @@
       .col-xs-11.box-container.right-container.no-pad
         .right-container-content
           .price-container.price-product-container
-            = form_tag new_offer_path, :method => "get"
-              form.center-block role="form"
-                .form-group
-                  .input-group.input-group-lg
-                    span.input-group-addon $
-                    = text_field_tag :offer_price
-                  .button-product-container
-                    - if @listing.seller.eql?(current_user)
-                        = link_to "MAKE AN OFFER", "javascript:void(0);", class: "btn col-xs-12", disabled: true
-                    - else
-                      = submit_tag "MAKE AN OFFER", class: "btn col-xs-12"
+            = form_tag new_offer_path, :method => "get", html: {role: "form", class: "center-block"}
+              .form-group
+                .input-group.input-group-lg
+                  span.input-group-addon $
+                  = text_field_tag :offer_price, "", class: "form-control"
+                .button-product-container
+                  - if @listing.seller.eql?(current_user)
+                    = link_to "MAKE AN OFFER", "javascript:void(0);", class: "btn col-xs-12", disabled: true
+                  - else
+                    = submit_tag "MAKE AN OFFER", class: "btn col-xs-12"
           .product-guarantee-container.pad-v-20
             span.black-check-icon
             p.pull-left Buyer guarantee
@@ -62,7 +61,7 @@
             h3.text-center
               - if @listing.seller.reviews_as_seller.present?
                 = image_tag "/assets/green-like.png"
-                = @listing.seller.percent_pos_reviews 
+                = @listing.seller.percent_pos_reviews
                 | % POSITIVE REVIEWS &nbsp;
 
 = content_for :javascript_contents do

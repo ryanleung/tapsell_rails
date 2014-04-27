@@ -1,11 +1,11 @@
 $(document).ready ->
-	$(".routing-number, .account-number").numeric
-	  decimal: false
-	  negative: false
-	, ->
-	  alert "Positive integers only"
-	  @value = ""
-	  @focus()
+	# $(".routing-number, .account-number").numeric
+	#   decimal: false
+	#   negative: false
+	# , ->
+	#   alert "Positive integers only"
+	#   @value = ""
+	#   @focus()
 
 	$(".submit-credit-card-link").click ->
 		$(".submit-credit-card").click()

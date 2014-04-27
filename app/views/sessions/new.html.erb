@@ -4,32 +4,41 @@
 <% end %>
 <div class="col-xs-12">
   <div class="container">
+    <div class="title-container">
+      <h1 class="login-title text-center">Hey there, welcome back!</h1>
+      <div class="facebook-container text-center">
+        <%= link_to "javascript:void(0);", class: "btn btn-primary" do %>
+          <i class="fa fa-facebook-square"></i>
+          <span class="text-button">Sign in with Facebook</span>
+        <% end %>
+      </div>
+    </div>
+    <div class="center-block list-container">
+      <div class="list"></div>
+    </div>
     <div class="registration-container center-block">
-
       <%= form_for(:session, url: sessions_path, html: {class: "col-xs-12", role: "form"}) do |f| %>
         <div class="form-group">
-          <%= f.label :email %>
-          <%= f.text_field :email, class: "form-control" %>
+          <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: "form-control password-input" %>
+          <%= f.password_field :password, class: "form-control password-input", placeholder: "Password" %>
         </div>
 
-        <div class="form-group">
-          <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+        <div class="form-group text-center">
+          <%= f.submit "LOG IN", class: "btn btn-large btn-primary" %>
         </div>
 
-        <div class="col-xs-12 shared-container">
+        <!-- <div class="col-xs-12 shared-container">
           <%# Get rid of hardcoding later %>
           <div class="col-xs-6 text-left no-pad">
-            New user? <%= link_to "Sign up now!", '/sign-up' %>
+            New user? <%#= link_to "Sign up now!", '/sign-up' %>
           </div>
           <div class="col-xs-6 text-right no-pad">
-            <%= link_to "Forgot your password?", new_password_reset_path %>
+            <%#= link_to "Forgot your password?", new_password_reset_path %>
           </div>
-        </div>
+        </div> -->
 
       <% end %>
 

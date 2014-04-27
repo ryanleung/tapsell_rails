@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:show, :update]  
+  before_action :signed_in_user, only: [:show, :update]
   before_action :correct_user, only: [:show, :update]
 
   def root_page_router
@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       @user = current_user
       redirect_to dashboard_path(current_user.id)
     else
-      render 'static_pages/landing'
+      render 'static_pages/landing', layout: 'landing'
     end
   end
 
