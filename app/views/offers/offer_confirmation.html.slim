@@ -7,7 +7,7 @@
       h1.order-title
         | Congratulations,
         = current_user.first_name
-        | .  Your offer has been been placed.
+        | .  Your offer has been placed.
     .col-md-12.content-section
       p.text-center Allow up to 24 hours for seller to respond to your offer.
       p.text-center.dark-grey Your card won't be charged unless they accept.
@@ -44,6 +44,11 @@
           .price-container
             | $
             = @offer.price.to_i
+          .product-image-container
+            -if @listing.images.present?
+              =image_tag image_url(@listing.images[0].image.url), class: "product-image-container"
+            -else
+              =image_tag image_url("no_pic.jpg"), class: "product-image-container"
           .product-guarantee-container
             span.black-check-icon
             p.pull-left Covered by Tapsell Buyer Guarantee
