@@ -12,6 +12,7 @@ class CreateMessagesTable < ActiveRecord::Migration
   		t.integer :buyer_id
   		t.integer :seller_id
   		t.integer :listing_id
+      t.integer :offer_id
   		t.boolean :buyer_dirty, :null => false, :default => false
   		t.boolean :seller_dirty, :null => false, :default => false
   		t.timestamps

@@ -1,26 +1,35 @@
-<%- for @message in @current_msg_chain.messages %>
-  <div class="col-xs-12">
-    <% if @current_user == @message.sender %>
-      <div class="message-item col-xs-12 col-md-9 seller">
+<% if @current_msg_chain.present? %>
+  <%- for @message in @current_msg_chain.messages %>
+    <div class="col-xs-12" style="overflow">
+      <% if @current_user == @message.sender %>
+        <div class="message-item col-xs-12 col-md-9 seller">
+            <span>
+              <%= image_tag "tapsell_arrow_left.png" %>
+            </span>
+          <p>
+            <%= @message.content %>
+          </p>
+        </div>
+      <% else %>
+        <div class="message-item col-xs-12 col-md-9 buyer pull-right">
           <span>
-            <%= image_tag "tapsell_arrow_left.png" %>
+            <%= image_tag "tapsell_arrow_right.png" %>
           </span>
-        <p>
-          <%= @message.content %>
-        </p>
+          <p>
+            <%= @message.content %>
+            <% if @message.message_type == Message::TYPE_OFFER %>
+              <ul>
+                <li><%= link_to "LISTING", listing_path(@current_msg_chain.listing) %></li>
+                <li><%= link_to "ACCEPT", accept_offer_message_path(@message.id) %></li>
+                <li><%= link_to "DECLINE", decline_offer_message_path(@message.id) %></li>
+              </ul>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+      <div class="col-xs-12 col-md-9 pull-left no-pad">
+        <p class="text-right time"><%= time_ago_in_words(@message.created_at) %></p>
       </div>
-    <% else %>
-      <div class="message-item col-xs-12 col-md-9 buyer pull-right">
-        <span>
-          <%= image_tag "tapsell_arrow_right.png" %>
-        </span>
-        <p>
-          <%= @message.content %>
-        </p>
-      </div>
-    <% end %>
-    <div class="col-xs-12 col-md-9 pull-left no-pad">
-      <p class="text-right time"><%= time_ago_in_words(@message.created_at) %></p>
     </div>
-  </div>
+  <% end %>
 <% end %>

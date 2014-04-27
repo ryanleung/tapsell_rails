@@ -20,8 +20,8 @@ namespace :load_db do
 		CreditCard.create_cc(User.find(1), "4242424242424242", 05, 2018, 678)
 		CreditCard.create_cc(User.find(2), "4012888888881881", 8, 2018, 678)
 
-		MessageChain.send_message(User.find_by_email("wtfff@wtf.com").id, Listing.last.id, "hello there", nil)
-		MessageChain.send_message(User.last.id, Listing.find(1).id, "whatsup", nil)
+		MessageChain.send_message(User.find_by_email("wtfff@wtf.com").id, Listing.last.id, "hello there", nil, nil, nil)
+		MessageChain.send_message(User.last.id, Listing.find(1).id, "whatsup", nil, nil, nil)
 
 	end
 end

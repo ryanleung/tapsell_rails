@@ -1,3 +1,6 @@
+<%= content_for :javascript_contents do %>
+	<%= javascript_include_tag "messages" %>
+<% end %>
 <%= content_for :stylesheet_contents do %>
 	<%= stylesheet_link_tag "messages" %>
 <% end %>
@@ -66,8 +69,10 @@
 									</div>
 								</div>
 								<div class="col-xs-12 no-pad text-right btn send-btn">
-									<%= hidden_field_tag :listing_id, @msg_chain.listing_id %>
-									<%= hidden_field_tag :msg_chain_id, @msg_chain.id %>
+									<% if @msg_chain.present? %>
+										<%= hidden_field_tag :listing_id, @msg_chain.listing_id %>
+										<%= hidden_field_tag :msg_chain_id, @msg_chain.id %>
+									<% end %>
 									<%= submit_tag "Submit Message" %>
 								</div>
 							<% end %>

@@ -28,4 +28,15 @@ class MessagesController < ApplicationController
     @msg_chain = MessageChain.find_by_id(params[:msg_chain_id])
   end
 
+  def accept_offer_message
+    message = Message.find(params[:id].to_i)
+    # accept
+  end
+
+  def decline_offer_message
+    message = Message.find(params[:id].to_i)
+    offer = message.message_chain.offer
+    offer.cancel
+  end
+
 end

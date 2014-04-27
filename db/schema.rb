@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140420083551) do
     t.integer  "buyer_id"
     t.integer  "seller_id"
     t.integer  "listing_id"
+    t.integer  "offer_id"
     t.boolean  "buyer_dirty",  default: false, null: false
     t.boolean  "seller_dirty", default: false, null: false
     t.datetime "created_at"
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(version: 20140420083551) do
     t.integer  "credit_card_id"
     t.decimal  "price"
     t.string   "status"
+    t.integer  "message_chain_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

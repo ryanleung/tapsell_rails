@@ -1,0 +1,41 @@
+= content_for :javascript_contents do
+  = javascript_include_tag "offers"
+
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "offers"
+
+.col-md-12.select-payment-container
+  .form-container
+    .form-group
+      .row
+        .col-md-7
+          label Card Holder Name
+          = text_field_tag :cc_billing_name, "", class: "form-control", placeholder: "Card Holdername", autocomplete: "off"
+        .col-md-3
+          label Card Type
+          = select_tag :card_type, options_for_select(["Visa", "MasterCard", "American Express"]), class: "form-control", placeholder: "Card Type"
+    .form-group
+      .row
+        .col-lg-7
+          label Card Number
+          = text_field_tag :number, "", class: "form-control card-number", placeholder: "Card Number", maxlength: "20", autocomplete: "off"
+        .col-lg-3
+          label Security Number
+          = text_field_tag :cvc, "", class: "form-control security-number", maxlength: "4", autocomplete: "off"
+    .form-group.no-marg
+      .row
+        .col-md-7
+          .row
+            .col-md-12
+              label.pull-left.wid-100p Expiration Date
+            .col-md-6
+              = select_tag :exp_month, options_for_select(1..12), class: "form-control", placeholder: "month"
+            .col-md-6
+              = select_tag :exp_year, options_for_select((Date.today.year).upto(10.years.from_now.year)), class: "form-control", required: "true"
+        .col-lg-3
+           .row
+            .col-md-12
+              label Zipcode
+              = text_field_tag "zipcode","", class: "form-control billing-zipcode"
+= content_for :javascript_contents do
+  = javascript_include_tag "jquery.numeric.js", "https://js.braintreegateway.com/v1/braintree.js"

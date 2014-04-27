@@ -7,6 +7,7 @@ class Offer < ActiveRecord::Base
   STATUS_TRANSACTION_FAILED = "transaction failed"
 
   belongs_to :listing
+  belongs_to :message_chain
   belongs_to :seller, :class_name => "User", :foreign_key => "seller_id"
   belongs_to :buyer, :class_name => "User", :foreign_key => "buyer_id"
   belongs_to :credit_card
@@ -82,6 +83,8 @@ class Offer < ActiveRecord::Base
   end
 
   def cancel
+    self.status = STATUS_DENIED
+    save
   end
 
 end
