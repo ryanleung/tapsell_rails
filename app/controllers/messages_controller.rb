@@ -29,14 +29,19 @@ class MessagesController < ApplicationController
   end
 
   def accept_offer_message
-    message = Message.find(params[:id].to_i)
-    # accept
+    message_chain = Message.find(params[:id].to_i).message_chain
+    MessageChain.send_message(current_user.id, message_chain.listing, "#{message_chain.seller.first_name} has accepted your offer!", Message::TYPE_DEFAULT,
+      message_chain.id, message_chain.offer)
+    redirect_to action: 'index'
   end
 
   def decline_offer_message
-    message = Message.find(params[:id].to_i)
-    offer = message.message_chain.offer
+    message_chain = Message.find(params[:id].to_i).message_chain
+    offer = message_chain.offer
     offer.cancel
+    MessageChain.send_message(current_user.id, message_chain.listing, "#{message_chain.seller.first_name} has declined your offer.", Message::TYPE_DEFAULT,
+      message_chain.id, message_chain.offer)
+    redirect_to action: 'index'
   end
 
 end

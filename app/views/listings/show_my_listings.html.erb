@@ -28,7 +28,11 @@
 						<% end %>
 					</span>
 					<div class="image pull-left">
-						<%= image_tag image_url("bg_landing.jpg"), class: "img-responsive" %>
+						<% if @listing.images.present? %>
+							<%= image_tag image_url(@listing.images[0].image.url), class: "img-responsive" %>
+						<% else %>
+							<%= image_tag image_url("no_pic.jpg"), class: "img-responsive" %>
+						<% end %>
 					</div>
 					<div class="information">
 						<p class="info-title">
