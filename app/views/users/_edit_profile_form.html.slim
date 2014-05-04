@@ -33,13 +33,6 @@
           = f.input :email, :required => true, placeholder: "conan@gmail.com", input_html: {class: "form-control input col-md-9"}, label: false
         - else
           = f.input :email, :required => true, input_html: {class: "form-control input col-md-9", value: current_user.email}, label: false
-    .col-sm-6.no-pad
-      .form-group
-        label.dark-grey Phone number
-        - if current_user.phone_number.nil?
-          = f.input :phone_number, :required => true, placeholder: "8581234567", input_html: {class: "form-control input col-md-9"}, label: false
-        - else
-          = f.input :phone_number, :required => true, input_html: {class: "form-control input col-md-9", value: current_user.phone_number}, label: false
   .pull-left.wid-100p
     .row
       .col-sm-12
