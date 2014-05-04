@@ -43,7 +43,7 @@
 						</p>
 					</div>
 					<div class="price pull-right">
-						<%= "#{number_to_currency(@listing.price)}" %>
+						<%= number_to_currency(@listing.price, :locale => 'en_us', :precision => 0) %>
 					</div>
 				</div>
 			<% end %>
