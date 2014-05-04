@@ -1,5 +1,8 @@
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "listings"
+
 .container.bg-gray style="padding-bottom: 50px; padding-top:90px"
-  = simple_nested_form_for @listing, html: { role: "form", class: "col-xs-12" } do |f|
+  = simple_nested_form_for @listing, html: { role: "form", class: "col-xs-12 new-listing" } do |f|
     .col-xs-12.box-container.pull-left
       .col-xs-12.header-box-container
         .row
