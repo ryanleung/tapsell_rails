@@ -1,3 +1,6 @@
+@import "lesshat";
+@import "mixins";
+
 .registration-container {
 	width: 60%;
 	padding: 30px;
@@ -41,6 +44,38 @@
 		.password-input {
 			font-size: 24px;
 			padding-top: 3px;
+		}
+	}
+}
+
+.forgot-password-container {
+	min-height: 639px;
+	text-align: center;
+	background-color: #fff;
+	z-index: -1;
+	form {
+		width: 60%;
+		.title {
+			margin-top: 115px;
+			h1 {
+				color: @orange;
+				font-size: 36px;
+				font-weight: 600;
+				margin-bottom: 30px;
+			}
+			h3 {
+				color: #999;
+				font-weight: 100;
+				font-size: 25px;
+				line-height: 35px;
+			}
+		}
+		input {
+			width: 100%;
+			margin: 40px 0;
+		}
+		button {
+			width: 50%;
 		}
 	}
 }
