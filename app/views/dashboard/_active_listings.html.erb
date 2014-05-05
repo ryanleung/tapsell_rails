@@ -23,7 +23,7 @@
         </p>
       </div>
       <div class="price pull-left">
-        <p><%= number_to_currency(@listing.price) %></p>
+        <p><%= number_to_currency(@listing.price, :locale => 'en_us', :precision => 0) %></p>
       </div>
 <!--       <div class="edit pull-right">
         <span class="glyphicon glyphicon-pencil"></span>

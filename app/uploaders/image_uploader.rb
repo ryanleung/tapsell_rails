@@ -4,6 +4,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 	process :convert => 'png'
 	process :tags => ['post_image']
+	process :resize_to_limit => [500, nil]
 
 	version :standard do
 		process :resize_to_fill => [100, 150, :north]

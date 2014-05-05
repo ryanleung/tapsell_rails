@@ -9,7 +9,7 @@ gem 'thin'
 gem 'rails', '4.0.0'
 
 # Use postgres as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.17.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -44,6 +44,7 @@ gem 'slim-rails'
 
 # Use Bootstrap for styling
 gem 'bootstrap3-rails'
+gem "twitter-bootstrap-rails"
 
 #
 gem 'less-rails'
