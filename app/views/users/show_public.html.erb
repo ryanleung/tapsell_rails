@@ -52,9 +52,15 @@
 								<%= truncate(listing.title.html_safe, length: 30).titleize %>
 							</h5>
 							<% if listing.images.present? %>
-								<%= link_to image_tag(listing.images[0].image.url, class: 'col-xs-12 no-pad'), listing_path(listing), class: 'col-xs-12 no-pad' %>
+								<%= link_to listing_path(listing), class: 'col-xs-12 no-pad' do %>
+									<div class="image-container" style="background-image: url('<%=image_url(listing.images[0].image.url)%>')"></div>
+									
+								<% end %>
 							<% else %>
-								<%= link_to image_tag('/assets/no_pic.jpg', class: 'col-xs-12 no-pad'), listing_path(listing), class: 'col-xs-12 no-pad' %>
+								<%= link_to listing_path(listing), class: 'col-xs-12 no-pad' do %>
+									<div class="image-container" style="background-image: url('<%= image_url("no_pic.jpg") %>')"></div>
+									
+								<% end %>
 							<% end %>
 							<div class="col-xs-6 no-pad">
 								<div class="time-post pull-left">
