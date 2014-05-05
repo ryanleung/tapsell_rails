@@ -44,6 +44,7 @@ gem 'slim-rails'
 
 # Use Bootstrap for styling
 gem 'bootstrap3-rails'
+gem "twitter-bootstrap-rails"
 
 #
 gem 'less-rails'

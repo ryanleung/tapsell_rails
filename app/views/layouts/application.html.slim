@@ -10,6 +10,7 @@ html
     = yield :stylesheet_contents
     = csrf_meta_tags
   body
+    = bootstrap_flash
     .nav.navbar-default.container-fluid.no-marg.main-navbar.bg-white role="navigation"
       .container.marg-top-0
         = link_to "javascript:void(0);", "data-toggle"=>"collapse", "data-target"=>".main-navbar-collapse", class: "navbar-toggle"
