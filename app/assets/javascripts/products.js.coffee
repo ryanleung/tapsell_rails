@@ -1,4 +1,3 @@
-
 setPreviewImage = (watermarkfile, elem) ->
   reader = new FileReader()
   newImage = new Image()
@@ -19,10 +18,9 @@ $(document).ready ->
   #     draggable: true
 
   $(".add-image-field").change (evt) ->
-    alert(1)
     setPreviewImage evt.target.files[0], $(this).next()
 
-  $("#product_images_attributes_0_file").bind "change", (evt) ->
+  $(".add-image-field").bind "change", (evt) ->
     evt.preventDefault()
     files = evt.target.files
     setPreviewImage files[0], $(this).parent().parent()
@@ -46,7 +44,7 @@ $(document).ready ->
   $(".carousel").carousel ->
     interval: 0
 
-  $(".product-price").numeric
+  $(".product-price, .numeric").numeric
     decimal: false
     negative: false
   , ->
