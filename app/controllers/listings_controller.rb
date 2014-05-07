@@ -114,11 +114,11 @@ class ListingsController < ApplicationController
 private
 
   def order_listings(sort_detail)
-    @listings = Listing.order(sort_detail).page(params[:page])
+    @listings = Listing.order(sort_detail).page(params[:page]).limit(28)
   end
 
   def order_by_category(name)
-    @listings = Listing.where(category: name).order("created_at DESC").page(params[:page])
+    @listings = Listing.where(category: name).order("created_at DESC").page(params[:page]).limit(28)
   end
 
   def listing_params
