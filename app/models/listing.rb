@@ -1,4 +1,8 @@
 class Listing < ActiveRecord::Base
+
+  STATUS_ACTIVE = "active"
+  STATUS_REMOVED = "removed"
+  STATUS_PURCHASED = "purchased"
 	# Relationships - Ordered Alphabetically
 	# --------------------------------------
 

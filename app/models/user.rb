@@ -170,6 +170,19 @@ class User < ActiveRecord::Base
     (pos_reviews * 100.0) / (total_reviews * 100.0)
   end
 
+  # Listings
+  # --------------------------
+
+  def active_listings_as_seller
+    active_listings = []
+    listings_as_seller.order("created_at DESC").each do |l|
+      if l.status == Listing::STATUS_ACTIVE || l.status == nil
+        active_listings << l
+      end
+    end
+
+    return active_listings
+  end
 
 	# Class Methods
 	# -------------
