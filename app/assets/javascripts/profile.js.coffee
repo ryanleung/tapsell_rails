@@ -14,9 +14,16 @@ $(document).ready ->
 
   $(".edit-form-link").bind "click", ->
     $(this).addClass "orange"
-    $(".change-pass-form-link").removeClass "orange"
+    $(".change-pass-form-link, .show-form-link").removeClass "orange"
     $(".edit-profile-container").fadeIn("slow").removeClass "hide"
     $(".content-container").addClass "hide"
+    $(".edit-password-container").addClass "hide"
+
+  $(".show-form-link").bind "click", ->
+    $(this).addClass "orange"
+    $(".change-pass-form-link, .edit-form-link").removeClass "orange"
+    $(".edit-profile-container").addClass "hide"
+    $(".content-container").fadeIn("slow").removeClass "hide"
     $(".edit-password-container").addClass "hide"
 
   $(".change-pass-form-link").bind "click", ->

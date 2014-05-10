@@ -5,31 +5,31 @@ module ListingsHelper
 	end
 
 	def all
-		@listings.paginate(:page => params[:page], :per_page => 20)
+		@listings.paginate(:page => params[:page], :per_page => 28)
 	end
 
 	def books
-		paginate_category("Books", 20)
+		paginate_category("Books", 28)
 	end
 
 	def fashions
-		paginate_category("Apparel", 20)
+		paginate_category("Apparel", 28)
 	end
 
 	def electronics
-		paginate_category("Electronics", 20)
+		paginate_category("Electronics", 28)
 	end
 
 	def beauties
-		paginate_category("Home", 20)
+		paginate_category("Home", 28)
 	end
 
 	def home
-		paginate_category("Tickets", 20)
+		paginate_category("Tickets", 28)
 	end
 
 	def hobbies
-		paginate_category("Other", 20)
+		paginate_category("Other", 28)
 	end
 
 	def paginate_category(name, number)
