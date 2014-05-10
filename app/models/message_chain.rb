@@ -59,8 +59,12 @@ class MessageChain < ActiveRecord::Base
     end
     new_msg = Message.create(:content => content, :message_chain => self, :message_type => message_type, :sender_id => sender_id)
     self.messages.push(new_msg)
-    self.seller_dirty = true
-    self.buyer_dirty = true
+    # TODO: there are better ways to find out dirty than always these if statements
+    if self.seller_id == sender_id
+      self.buyer_dirty = true
+    else
+      self.seller_dirty = true
+    end
     save!
     touch
   end
