@@ -59,6 +59,9 @@ class MessageChain < ActiveRecord::Base
     end
     new_msg = Message.create(:content => content, :message_chain => self, :message_type => message_type, :sender_id => sender_id)
     self.messages.push(new_msg)
+    self.seller_dirty = true
+    self.buyer_dirty = true
+    save!
     touch
   end
 

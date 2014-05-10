@@ -9,10 +9,19 @@ class MessagesController < ApplicationController
   end
 
   def update_msg_chain
+    # TODO: so friggen hackish...
     @current_user = current_user
     @current_msg_chain = MessageChain.find(params[:msg_chain])
     ordered_message_chains = @current_user.message_chains.sort_by &:updated_at
     @msg_chains = ordered_message_chains.reverse
+
+    # mark the currently clicked message chain as read/clean
+    if @current_msg_chain.seller == current_user
+      @current_msg_chain.seller_dirty = false
+    else
+      @current_msg_chain.buyer_dirty = false
+    end
+    @current_msg_chain.save!
   end
 
   def create

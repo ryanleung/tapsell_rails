@@ -2,12 +2,16 @@
   <%= link_to update_msg_chain_path(:msg_chain => @msg_chain), :remote => true, :class => "message-user-list col-xs-12" do %>
     <% if @msg_chain.seller == current_user %>
       <% @other_user = @msg_chain.buyer %>
+      <% @dirty_flag = @msg_chain.seller_dirty %>
     <% else %>
       <% @other_user = @msg_chain.seller %>
+      <% @dirty_flag = @msg_chain.buyer_dirty %>
     <% end %>
     <div class="col-xs-12 message-user-content">
       <div class="col-xs-4 no-pad">
-        <%= image_tag "tapsell_big_circle_dot.png", class: "pull-left dot" %>
+        <% if @dirty_flag == true %>
+          <%= image_tag "tapsell_big_circle_dot.png", class: "pull-left dot" %>
+        <% end %>
         <% if @other_user.image.present? %>
           <%= image_tag @other_user.image.image.url, class: "pull-left img-circle img-responsive avatar" %>
         <% else %>
