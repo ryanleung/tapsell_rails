@@ -239,6 +239,27 @@
 			display: table;
 			height: 225px;
 			overflow: hidden;
+			-webkit-transition: all .5s ease;
+			   -moz-transition: all .5s ease;
+			    -ms-transition: all .5s ease;
+			     -o-transition: all .5s ease;
+			        transition: all .5s ease;
+
+			.list-right {
+				display: none;
+				width: 10px;
+				position: absolute;
+				background-color: @orange;
+				right: 0;
+				height: 100%;
+				margin-top: -17px;
+			}
+			&:hover {
+				.list-right {
+					display: block;
+				}
+
+			}
 			.edit {
 				margin-right: 10px;
 				font-size: 20px;
