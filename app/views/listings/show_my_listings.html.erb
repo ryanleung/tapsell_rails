@@ -23,11 +23,12 @@
 			<%- for @listing in @listings %>
 				<div class="item col-xs-12">
 					<span class="edit pull-left">
-						<%= link_to "javascript:void(0);" do %>
-							<i class="glyphicon glyphicon-pencil"></i>
+						<%= link_to "javascript:void(0);", class: "edit-btn pull-left" do %>
+							<!-- <i class="glyphicon glyphicon-pencil"></i> -->
+							<%= image_tag image_url("pencil.png") %>
 						<% end %>
 						&emsp;
-						<%= link_to "javascript:void(0);" do %>
+						<%= link_to "javascript:void(0);", class: "pull-left" do %>
 							<i class="glyphicon trash-icon"></i>
 						<% end %>
 					</span>
@@ -46,7 +47,7 @@
 							<%= @listing.info %>
 						</p>
 					</div>
-					<div class="price pull-right">
+					<div class="price">
 						<%= number_to_currency(@listing.price, :locale => 'en_us', :precision => 0) %>
 					</div>
 				</div>
