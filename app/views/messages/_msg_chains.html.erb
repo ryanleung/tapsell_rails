@@ -13,7 +13,7 @@
           <%= image_tag "tapsell_big_circle_dot.png", class: "pull-left dot" %>
         <% end %>
         <% if @other_user.image.present? %>
-          <%= image_tag @other_user.image.image.url, class: "pull-left img-circle img-responsive avatar" %>
+          <%= image_tag @other_user.image.image.thumbnail.url, class: "pull-left img-circle img-responsive avatar" %>
         <% else %>
           <%= image_tag "no_image.png", class: "pull-left img-circle img-responsive avatar" %>
         <% end %>

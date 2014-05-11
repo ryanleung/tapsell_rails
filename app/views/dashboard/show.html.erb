@@ -26,7 +26,7 @@
 								<%- if current_user.image.nil?  %>
 									<div class="avatar-profile img-circle" style="background-image: url(<%= image_url('no_avatar.png')%>)"></div>
 								<%- else %>
-									<div class="avatar-profile img-circle" style="background-image: url(<%= current_user.image.image.url %>)"></div>
+									<div class="avatar-profile img-circle" style="background-image: url(<%= current_user.image.image.square.url %>)"></div>
 								<% end %>
 							</div>
 							<div class="col-xs-12 text-center pad-location">

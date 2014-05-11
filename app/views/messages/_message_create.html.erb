@@ -5,7 +5,7 @@
     </div>
     <div class="pull-right">
       <% if current_user.image.present? %>
-        <%= image_tag current_user.image.image.url, class: "avatar img-responsive img-circle" %>
+        <%= image_tag current_user.image.image.thumbnail.url, class: "avatar img-responsive img-circle" %>
       <% else %>
         <%= image_tag "no_image.png", class: "avatar img-responsive img-circle" %>
       <% end %>

@@ -30,7 +30,7 @@
 			<div class="container">
 				<div class="col-xs-4">
 					<% if @seller.image.present? %>
-						<%= image_tag @seller.image.image.url, class: "img-circle avatar" %>
+						<%= image_tag @seller.image.image.square.url, class: "img-circle avatar" %>
 					<% else %>
 						<%= image_tag "/assets/no_image.png", class: "img-circle avatar" %>
 					<% end %>
