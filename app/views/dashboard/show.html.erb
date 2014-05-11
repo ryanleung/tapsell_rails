@@ -4,7 +4,7 @@
 
 <div class="container-fluid text-center welcome-container">
 	<h1 class="no-marg">
-		Welcome
+		<%= @greeting %>
 	</h1>
 </div>
 
@@ -52,7 +52,7 @@
 											<li>
 												<%= form_tag new_user_photo_path, :method => :post, :multipart => true do %>
 													<%= file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg' %>
-													<%= submit_tag 'upload new photo' %>
+													<%= submit_tag 'Upload new photo' %>
 												<% end %>
 											</li>
 											<li>
