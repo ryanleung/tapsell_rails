@@ -18,7 +18,7 @@ html
         - if signed_in?
           .navbar-header style=("margin-top: 13px;")
             = link_to listings_path, class: "navbar-brand title-color no-pad" do
-              = image_tag "/assets/new_logo.png", class: "no-pad"
+              = image_tag "/assets/Logo_v1_orange.png", class: "no-pad"
             .pull-left.nav-location-container
               = image_tag "/assets/pin.png", class: "pin-image pull-left"
               - location = current_user.location
@@ -29,7 +29,7 @@ html
         - else
           .navbar-header
             = link_to listings_path, class: "navbar-brand title-color no-pad" do
-              = image_tag "/assets/new_logo.png", class: "no-pad"
+              = image_tag "/assets/Logo_v1_orange.png", class: "no-pad"
         #collapse.collapse.navbar-collapse.main-navbar-collapse.col-xs-10.pull-right
           ul.nav.navbar-nav.navbar-right.text-right.pull-right style="padding: 3px 0"
             - if signed_in?
