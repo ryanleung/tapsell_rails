@@ -70,6 +70,7 @@ class ListingsController < ApplicationController
   def show_my_listings
     @current_user = current_user
     @listings = @current_user.active_listings_as_seller
+    @greeting = Greeting.random_greeting
   end
 
   def new

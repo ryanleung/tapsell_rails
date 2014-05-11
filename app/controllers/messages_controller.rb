@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
     ordered_message_chains = @current_user.message_chains.sort_by &:updated_at
     @msg_chains = ordered_message_chains.reverse
     @current_msg_chain = @msg_chains[0]
+    @greeting = Greeting.random_greeting
   end
 
   def update_msg_chain
