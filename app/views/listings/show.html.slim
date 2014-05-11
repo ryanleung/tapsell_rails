@@ -50,7 +50,7 @@
               - if @listing.seller.image.nil?
                 = image_tag "/assets/no_image.png", class: "img-circle"
               - else
-                = image_tag @listing.seller.image.image.url, class: "img-circle"
+                = image_tag @listing.seller.image.image.square.url, class: "img-circle"
           .user-location-container
             h4.location.text-center
               = image_tag "/assets/pin.png"
