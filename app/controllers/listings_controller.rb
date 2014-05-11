@@ -95,7 +95,7 @@ class ListingsController < ApplicationController
       flash[:success] = "Listing created!"
       redirect_to confirm_listing_path(@listing)
     else
-      flash[:notice] = "There was a problem creating the listing, try again. Errors: #{@listing.errors.full_messages.join(', ')}"
+      flash[:notice] = "Oops!  There was a problem creating the listing, please try again.  #{@listing.errors.full_messages.join(', ')}"
       redirect_to new_listing_path
     end
   end

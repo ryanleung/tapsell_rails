@@ -28,11 +28,11 @@ class Listing < ActiveRecord::Base
 	validates :seller_id,
 				:presence => true
 	validates :title,
-				:presence => { message: "is not set" }
+				:presence => { message: "is missing" }
 	validates :price,
-				:presence => { message: "is not set" }
+				:presence => { message: "is missing" }
 	validates :info,
-				:presence => { message: "is not set" }
+				:presence => { message: "is missing" }
 
 	def api_hash
 		images = []
