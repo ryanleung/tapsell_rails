@@ -5,4 +5,9 @@ class CreditCardsController < ApplicationController
       redirect_to user_settings_path
     end
   end
+
+  def destroy
+    CreditCard.destroy(params[:id])
+    redirect_to user_settings_path
+  end
 end

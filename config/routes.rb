@@ -60,6 +60,7 @@ Tapsell::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :listings
+  resources :credit_cards
 
   ##################################
   # Static page routes
