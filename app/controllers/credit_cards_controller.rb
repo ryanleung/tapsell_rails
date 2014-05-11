@@ -7,7 +7,15 @@ class CreditCardsController < ApplicationController
   end
 
   def destroy
-    CreditCard.destroy(params[:id])
+    begin
+      CreditCard.delete_cc(CreditCard.find(params[:id]))
+    rescue
+      flash[:notice] = "Error: Credit card could not be deleted."
+      redirect_to user_settings_path
+      return
+    end
+
+    flash[:success] = "Credit card successfully deleted"
     redirect_to user_settings_path
   end
 end
