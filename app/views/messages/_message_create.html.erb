@@ -1,7 +1,7 @@
 <%= form_tag messages_path(current_user), :method => :post do %>
   <div class="col-xs-12 message-input-content">
     <div class="col-xs-10 no-pad">
-      <textarea class="col-xs-12" name="content" placeholder="Type your message here"></textarea>
+      <textarea class="col-xs-12" name="content" placeholder="Type your message here" required oninvalid="this.setCustomValidity(' ')" onchange="this.setCustomValidity('')"></textarea>
     </div>
     <div class="pull-right">
       <% if current_user.image.present? %>
