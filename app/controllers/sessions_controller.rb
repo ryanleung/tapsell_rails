@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_back_or dashboard_path(current_user.id)
     else
-      flash[:notice] = 'Invalid email/password combination'
+      flash[:notice] = 'That email / password combination is invalid, please try again.'
       render 'new'
     end	
   end
