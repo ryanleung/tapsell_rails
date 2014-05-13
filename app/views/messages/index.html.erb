@@ -2,18 +2,14 @@
 	<%= javascript_include_tag "messages" %>
 <% end %>
 <%= content_for :stylesheet_contents do %>
-	<%= stylesheet_link_tag "messages" %>
+	<%= stylesheet_link_tag "messages", "listings" %>
 <% end %>
 <div class="col-xs-12 message-container no-pad">
 	<div class="message-header col-xs-12 text-center">
-		<div class="center-block">
-			<%= image_tag "tapsell_sun.png", class: "pull-left" %>
-			<h1 class="pull-left">
-			75
-			<sup>o</sup>
-			F and sunny in San Francisco!
-			</h1>
-		</div>
+		<h1>
+			<%= image_tag image_url("tapsell_sun.png") %>
+			21 <sup>o</sup>F and sunny in San Diego!
+		</h1>
 	</div><!-- end of message-header -->
 
 	<%= render "layouts/navigation" %>

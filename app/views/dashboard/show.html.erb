@@ -2,9 +2,10 @@
   <%= stylesheet_link_tag "profile" %>
 <% end %>
 
-<div class="container-fluid text-center welcome-container">
-	<h1 class="no-marg">
-		Welcome
+<div class="col-xs-12 text-center welcome-container no-pad">
+	<h1>
+		Welcome back,&nbsp;
+    <%= current_user.first_name%>
 	</h1>
 </div>
 
