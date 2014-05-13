@@ -1,9 +1,8 @@
 <div class="col-xs-12 top-banner">
 	<div class="container">
 		<div class="center-block content">
-			<%= image_tag image_url("tapsell_sun.png") %>
 			<span class="feature">
-				21 <sup>o</sup>F and sunny in San Diego!
+				<%= @greeting %>
 			</span>
 		</div>
 	</div>
@@ -22,9 +21,15 @@
 			</div>
 			<%- for @listing in @listings %>
 				<div class="item col-xs-12">
+					<span class="list-right animated fadeInRight"></span>
 					<span class="edit pull-left">
-						<%= link_to "javascript:void(0);" do %>
-							<i class="glyphicon glyphicon-pencil"></i>
+						<%= link_to "javascript:void(0);", class: "edit-btn pull-left" do %>
+							<!-- <i class="glyphicon glyphicon-pencil"></i> -->
+							<%= image_tag image_url("pencil.png") %>
+						<% end %>
+						&emsp;
+						<%= link_to listing_path(@listing.id), :confirm => "Are you sure you want to delete this listing?", :method => :delete do %>
+							<i class="glyphicon trash-icon"></i>
 						<% end %>
 					</span>
 					<div class="image pull-left">
@@ -42,8 +47,8 @@
 							<%= @listing.info %>
 						</p>
 					</div>
-					<div class="price pull-right">
-						<%= "#{number_to_currency(@listing.price)}" %>
+					<div class="price">
+						<%= number_to_currency(@listing.price, :locale => 'en_us', :precision => 0) %>
 					</div>
 				</div>
 			<% end %>

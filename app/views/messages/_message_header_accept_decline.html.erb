@@ -1,0 +1,25 @@
+<div class="col-xs-7 right-heading" id="message-header">
+	<h4 class="title">
+		Clone made an offer of
+		<span class="price">$39.00</span>
+		for
+		<span class="subject">FIFTY SHADES OF GREY</span> 
+	</h4>
+	<p class="col-xs-12 no-pad second-title">
+		<span class="pull-left">YOU HAVE</span>
+		<span class="pull-left time">13hr 43min</span>
+		<span class="pull-left">LEFT TO:</span>
+		<span class="pull-left btn-content">
+			<%= link_to "javascript:void(0);", class: "btn btn-accept text-center" do %>
+				<i class="pull-left"></i>
+				ACCEPT
+			<% end %>
+			<%= link_to "javascript:void(0);", class: "btn btn-decline text-center" do %>
+				<i class="pull-left"></i>
+				DECLINE
+			<% end %>
+		</span>
+	</p>
+
+	<%#= render "message_header" %>
+</div><!-- end of right-heading -->
