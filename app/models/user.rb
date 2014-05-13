@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
                       :unless => Proc.new {|u| u.last_name.blank?}
 
   validates_length_of :bio,
-                      :maximum => 150,
+                      :maximum => 400,
                       :unless => Proc.new {|u| u.bio.blank?}
 
 	# Callbacks
