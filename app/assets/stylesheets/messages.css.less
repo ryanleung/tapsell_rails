@@ -1,9 +1,10 @@
 @import "global.css";
 @import "mixins";
+@import "lesshat";
 
 .message-container {
 	.message-header {
-		background-color: @aqua;
+		background-color: #c9dfde;
 		padding: 80px 0 83px 0;
 		.center-block {
 			width: 57%;
@@ -39,10 +40,11 @@
 						content: "";
 						height: 70px;
 						display: block;
-						border-right: 1px solid #ccc;
-						margin-right: 5px;
+						border-right: 5px solid @orange;
+						margin-right: 0;
 					}
 					ul {
+						margin-bottom: 3px;
 						li {
 							a {
 								color: #3e3e3e;
@@ -68,20 +70,110 @@
 							}
 						}
 					}
-					.input-group-addon {
-						background-color: #fff;
-						-webkit-border-radius: 0;
-						-moz-border-radius: 0;
-						-o-border-radius: 0;
-						border-radius: 0;
-					}
-					input {
-						width: 95%;
+					.search-input-group {
+						border: 1px solid #ccc;
+						.input-group-addon {
+							border: none;
+							padding: 8px 13px;
+							background-color: #fff;
+							-webkit-border-radius: 0;
+							-moz-border-radius: 0;
+							-o-border-radius: 0;
+							border-radius: 0;
+							img {
+								width: 21px;
+								margin-top: -5px;
+							}
+						}
+						input {
+							padding: 16px 15px;
+							width: 95%;
+							.box-shadow(none);
+							border: none;
+							border-left: 1px solid #ccc;
+							height: 17px;
+							margin-top: 4px;
+						}
+
 					}
 				}
 				.right-heading {
 					h1 {
 						color: #3e3e3e;
+					}
+					.title {
+						color: #696969;
+						font-size: medium;
+					}
+					.price {
+						color: @orange;
+					} 
+					.subject, .second-title {
+						font-family: @futuraextended;
+					}
+					.subject {
+						color: #3e3e3e;
+					}
+					.second-title {
+						color: #696969;
+						font-size: 12px;
+						margin-bottom: 0;
+						margin-top: -3px;
+						padding-top: 4px !important;
+					}
+					.time {
+						margin: 0 5px;
+					}
+					.time-accept {
+						color: @orange;
+						font-family: @futuraextended;
+					}
+					.img-accept, .img-decline {
+						margin-right: 5px;
+						font-family: @futuraextended;
+						color: #97c96b;
+						img {
+							width: 21px;
+							margin-top: -2px;
+							margin-right: 5px;
+						}
+					}
+					.img-decline {
+						color: #ff6a6b;
+					}
+					.btn-content {
+						margin-top: -7px;
+						margin-left: 10px;
+						.btn {
+							padding: 4px 15px 2px 15px;
+							.border-radius(0); 
+							font-family: @futuraextended;
+							i {
+								width: 16px;
+								height: 18px;
+								margin-right: 5px;
+								background-size: 100%;
+								background-repeat: no-repeat;
+								background-position: center;
+							}
+						}
+						.btn-accept {
+							color: #97c96b;
+							border: 1px solid #97c96b;
+							i {
+								background-image: image-url("tapsell-accept.png");
+							}
+						}
+
+						.btn-decline {
+							margin-left: 10px;
+							color: #ff6a6b;
+							border: 1px solid #ff6a6b;
+							i {
+								background-image: image-url("tapsell-decline.png");
+							}
+						}
+						
 					}
 				}
 			}
@@ -189,8 +281,10 @@
 							}
 						}
 						.send-btn {
+							.border-radius(5px) !important;
+							width: auto;
 							color: white;
-							padding: 5px 30px;
+							padding: 7px 30px;
 							background-color: @orange;
 							margin-top: 15px;
 							font-family: @futuraextended;

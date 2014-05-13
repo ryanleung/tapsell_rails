@@ -73,7 +73,6 @@ $(document).ready ->
     if len > max
       $(".text-max").text " you have reached the limit"
       $(".text-max").css("color", "red")
-      alert("Hey !!! you can't type more word cause you have reached the limit.")
       len - 1
       $(".submit-edit-profile").removeClass "hide"
       $(".submit-edit-profile-link").addClass "hide"
