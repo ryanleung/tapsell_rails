@@ -35,7 +35,7 @@
 					</span>
 					<div class="image pull-left">
 						<% if @listing.images.present? %>
-							<%= link_to image_tag(image_url(@listing.images[0].image.url), class: "img-responsive"), listing_path(@listing.id) %>
+							<%= link_to "", listing_path(@listing.id), class: "thumb-listing", style: "background-image: url('#{image_url(@listing.images[0].image)}'); -webkit-border-radius: 20px !important; border-radius: 20px !important"  %>
 						<% else %>
 							<%= image_tag image_url("no_pic.jpg"), class: "img-responsive" %>
 						<% end %>

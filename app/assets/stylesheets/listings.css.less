@@ -211,7 +211,7 @@
 	.content {
 		padding-left: 0;
 		padding-right: 0;
-		margin-bottom: 0;
+		margin-bottom: 50px;
 		.heading {
 			margin-bottom: 30px;
 			padding-left: 30px;
@@ -244,7 +244,9 @@
 			    -ms-transition: all .5s ease;
 			     -o-transition: all .5s ease;
 			        transition: all .5s ease;
-
+			&:last-child {
+				border-bottom: none;
+			}
 			.list-right {
 				display: none;
 				width: 10px;
@@ -274,6 +276,17 @@
 				img {
 					width: 25px;
 					height: 25px;
+				}
+			}
+			.image {
+				.thumb-listing {
+					width: 290px;
+					height: 190px;
+					float: left;
+					background-position: center;
+					background-size: cover;
+					background-repeat: no-repeat;
+					.border-radius(20px) !important;
 				}
 			}
 			img {
@@ -314,6 +327,8 @@
 						font-size: 18px;
 						margin: 20px 0;
 					}
+
+					a {color: #5b4e62;}
 				}
 				.info-description {
 					font-family: "futuraextendedregular";
