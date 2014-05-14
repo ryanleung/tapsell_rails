@@ -3,23 +3,40 @@
 .col-xs-12
   .row
     .col-xs-10.pad-right-0
-      #carousel-example-generic.carousel.slide
+      #carousel-example-generic.carousel.slide data-ride=("carousel")
         .carousel-inner
           - if @listing.images.present?
-            .item.active style=("background-image: url(#{image_url(@listing.images[0].image.url)});")
-            - for @image in @listing.images.drop(1)
-              .item style=("background-image: url(#{image_url(@image.image.url)});")
+            - @listing.images.each_with_index do |listing, index|
+              - if index.eql?(0)
+                .item.active
+                  = image_tag image_url(listing.image), class: "listing-image"
+              - else
+                .item
+                  = image_tag image_url(listing.image), class: "listing-image"
           - else
             .item.active style=("background-image: url(#{image_url('no_pic.jpg')});")
     .col-xs-2.text-right.pad-left-0
-      ol.carousel-indicator.list-inline
-        li data-target="#carousel-example-generic" data-slide-to="0" class="active"
+      ol.carousel-indicators
+        - @listing.images.each_with_index do |listing, index|
+          - if index.eql?(0)
+            li data-target="#carousel-example-generic" data-slide-to="#{index}" class=" thumb-slider active" style=("background-image: url(#{image_url(listing.image)});")
+          - else
+            li.thumb-slider data-target="#carousel-example-generic" data-slide-to="#{index}" style=("background-image: url(#{image_url(listing.image)});")
 .col-xs-12.product-description
   = @listing.info
 
 javascript:
   $(document).ready(function(){
     $(".carousel").carousel();
+
+    imageWidth = $(".listing-image").width();
+    imageHeight = $(".listing-image").height();
+    if(imageHeight >= imageWidth) {
+      $(".listing-image").addClass("vertical-image");
+    }
+    else if(imageWidth >= imageHeight) {
+      $(".listing-image").css("width", "400px");
+    }
   });
 
 - if session[:sosmed_type]
