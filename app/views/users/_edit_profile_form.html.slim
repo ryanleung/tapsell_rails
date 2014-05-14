@@ -3,7 +3,7 @@
   .form-group
     label.dark-grey About Me
     #profile-about-charnum.tab-content-item.border-medium
-      = f.input :bio, input_html: {class: "form-control input-about", maxlength: "400"}, label: false
+      = f.input :bio, input_html: {class: "form-control input-about", maxlength: "401"}, label: false
       .col-sm-12
         .row
           .col-sm-6
@@ -40,5 +40,6 @@
           li.list-inline-item
             = link_to "Cancel", "javascript:void(0);", class: "cancel-edit-profile"
           li.list-inline-item
+            = link_to "Save Changes", "javascript:void(0);", class: "submit-edit-profile hide"
             = link_to "Save Changes", "javascript:void(0);", class: "submit-edit-profile-link orange"
             = f.submit "Save Changes", class: "hide submit-edit-profile"

@@ -219,7 +219,7 @@
 			.title {
 				color: #3e3e3e;
 				font-family: "caecilia_lt_std75_bold";
-				font-size: 18px;
+				font-size: 28px;
 				margin-top: 3px;
 			}
 			.new-listing-btn {
@@ -237,12 +237,43 @@
 			// height: 225px;
 			padding: 17px 30px;
 			display: table;
+			height: 225px;
+			overflow: hidden;
+			-webkit-transition: all .5s ease;
+			   -moz-transition: all .5s ease;
+			    -ms-transition: all .5s ease;
+			     -o-transition: all .5s ease;
+			        transition: all .5s ease;
+
+			.list-right {
+				display: none;
+				width: 10px;
+				position: absolute;
+				background-color: @orange;
+				right: 0;
+				height: 100%;
+				margin-top: -17px;
+			}
+			&:hover {
+				.list-right {
+					display: block;
+				}
+
+			}
 			.edit {
-				margin-right: 30px;
+				margin-right: 10px;
 				font-size: 20px;
 				margin-top: 85px;
+				width: 10%;
 				a {
 					color: #b6b1ad;
+				}
+			}
+			.edit-btn {
+				margin-right: 10px;
+				img {
+					width: 25px;
+					height: 25px;
 				}
 			}
 			img {
@@ -268,7 +299,7 @@
 			.information {
 				float: left;
 				padding-left: 30px;
-				width: 40%;
+				width: 52%;
 				.info-title {
 					font-family: "futuraextendedregular";
 					font-size: 32px;
@@ -285,8 +316,8 @@
 					}
 				}
 				.info-description {
-					font-family: "futuralightregular";
-					font-size: 21px;
+					font-family: "futuraextendedregular";
+					font-size: 14px;
 					color: #3e3e3e;
 					letter-spacing: 1px;
 					@media(max-width: 991px) {
@@ -295,12 +326,14 @@
 				}
 			}
 			.price {
-				width: 20%;
+				width: 10%;
 				text-align: center;
-				margin: 36px 0;
-				font-size: 56px;
+				font-size: 42px;
 				color: #e67c51;
 				font-family: "futuraextendedregular";
+				vertical-align: middle;
+				display: table-cell;
+
 				@media(max-width: 991px) {
 					font-size: 48px;
 					margin: 36px 0;
