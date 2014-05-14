@@ -9,7 +9,7 @@
         = current_user.first_name
         | .  Your offer has been placed.
     .col-md-12.content-section
-      p.text-center Allow up to 24 hours for seller to respond to your offer.
+      p.text-center Allow up to 24 hours for the seller to respond.
       p.text-center.dark-grey Your card won't be charged unless they accept.
     .col-md-12.left-container-content.pull-left
       .offer-confirmation
@@ -26,7 +26,7 @@
         .col-sm-2.text-center.no-pad
           = image_tag "/assets/vertical_list.png"
         .col-sm-5.text-left.no-pad
-          = link_to "Go to my account", user_path(current_user.id), class: "link-to-account"
+          = link_to "Go to my account", dashboard_path(current_user.id), class: "link-to-account"
     .col-sm-12.text-center.last-content
       | Thanks for using Tapsell. You rock.
   .col-md-4
@@ -51,10 +51,10 @@
               =image_tag image_url("no_pic.jpg"), class: "product-image-container"
           .product-guarantee-container
             span.black-check-icon
-            p.pull-left Covered by Tapsell Buyer Guarantee
+            p.pull-left Tapsell Buyer Guarantee
           .list-container
             .list
             .list
           .location-container
-            | Pick up location:
-            b= "UC San Diego"
+            | Pick up location: 
+            = "UC San Diego"

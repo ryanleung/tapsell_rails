@@ -26,7 +26,7 @@
                 .form-group
                   .input-group.input-group-lg
                     span.input-group-addon $
-                    = text_field_tag :offer_price, "", class: "form-control numeric", maxlength: "4"
+                    = text_field_tag :offer_price, "", class: "form-control numeric", maxlength: "4", required: true
                     span.input-group-addon.last-addon .00
                   .button-product-container
                     - if @listing.seller.eql?(current_user)
@@ -35,12 +35,12 @@
                       = submit_tag "MAKE AN OFFER", class: "btn col-xs-12"
           .product-guarantee-container.pad-v-20
             span.black-check-icon
-            p.pull-left Buyer guarantee
+            p.pull-left Tapsell Buyer Guarantee
           .list-container
             .list
             .list
           .location-container
-            | Pick up location: &nbsp;
+            | Pick up location: 
               UC San Diego
       .col-xs-11.box-container.right-container.no-pad
         .right-container-content
@@ -50,7 +50,7 @@
               - if @listing.seller.image.nil?
                 = image_tag "/assets/no_image.png", class: "img-circle"
               - else
-                = image_tag @listing.seller.image.image.url, class: "img-circle"
+                = image_tag @listing.seller.image.image.square.url, class: "img-circle"
           .user-location-container
             h4.location.text-center
               = image_tag "/assets/pin.png"

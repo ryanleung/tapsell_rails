@@ -9,8 +9,8 @@
     .form-group
       .row
         .col-md-7
-          label Card Holder Name
-          = text_field_tag :cc_billing_name, "", class: "form-control", placeholder: "Card Holdername", autocomplete: "off"
+          label Cardholder Name
+          = text_field_tag :cc_billing_name, "", class: "form-control", autocomplete: "off"
         .col-md-3
           label Card Type
           = select_tag :card_type, options_for_select(["Visa", "MasterCard", "American Express"]), class: "form-control", placeholder: "Card Type"
@@ -18,7 +18,7 @@
       .row
         .col-lg-7
           label Card Number
-          = text_field_tag :number, "", class: "form-control card-number", placeholder: "Card Number", maxlength: "20", autocomplete: "off"
+          = text_field_tag :number, "", class: "form-control card-number", maxlength: "20", autocomplete: "off"
         .col-lg-3
           label Security Number
           = text_field_tag :cvc, "", class: "form-control security-number", maxlength: "4", autocomplete: "off"

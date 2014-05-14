@@ -73,7 +73,7 @@
             <div class="avatar-container text-center">
               <%= link_to "javascript:void(0);" do %>
                 <% if current_user.image.present? %>
-                  <% image_tag image_url(current_user.image.image.url), class: "img-circle" %>
+                  <% image_tag image_url(current_user.image.image.square.url), class: "img-circle" %>
                 <% else %>
                   <% image_tag image_url('/assets/no_image.png'), class: "img-circle" %>
                 <% end %>

@@ -68,16 +68,21 @@ $(document).ready ->
       setPreviewImage files[0]
 
   $(".input-about").keyup ->
-    max = 200
+    max = 400
     len = $(this).val().length
     if len > max
       $(".text-max").text " you have reached the limit"
       $(".text-max").css("color", "red")
+      len - 1
+      $(".submit-edit-profile").removeClass "hide"
+      $(".submit-edit-profile-link").addClass "hide"
     else
-      $(".text-max").text "Maximum Character: 200"
+      $(".text-max").text "Maximum Character: 400"
       char = max - len
       $(".text-remaining").text char
       $(".text-max").addClass("dark-grey")
+      $(".submit-edit-profile").addClass "hide"
+      $(".submit-edit-profile-link").removeClass "hide"
 
   $(".input-about").blur ->
     $(".text-remaining").empty

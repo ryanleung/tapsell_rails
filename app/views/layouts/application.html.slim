@@ -18,7 +18,7 @@ html
         - if signed_in?
           .navbar-header style=("margin-top: 13px;")
             = link_to listings_path, class: "navbar-brand title-color no-pad" do
-              = image_tag "/assets/new_logo.png", class: "no-pad"
+              = image_tag "/assets/Logo_v1_orange.png", class: "no-pad"
             .pull-left.nav-location-container
               = image_tag "/assets/pin.png", class: "pin-image pull-left"
               - location = current_user.location
@@ -29,7 +29,7 @@ html
         - else
           .navbar-header
             = link_to listings_path, class: "navbar-brand title-color no-pad" do
-              = image_tag "/assets/new_logo.png", class: "no-pad"
+              = image_tag "/assets/Logo_v1_orange.png", class: "no-pad"
         #collapse.collapse.navbar-collapse.main-navbar-collapse.col-xs-10.pull-right
           ul.nav.navbar-nav.navbar-right.text-right.pull-right style="padding: 3px 0"
             - if signed_in?
@@ -38,7 +38,7 @@ html
                   - if current_user.image.nil?
                     .navbar-avatar.img-circle style= "background-image: url('/assets/no_image.png')"
                   - else
-                    .navbar-avatar.img-circle style= "background-image: url('#{current_user.image.image.url}')"
+                    .navbar-avatar.img-circle style= "background-image: url('#{current_user.image.image.thumbnail.url}')"
                   p.pull-left= current_user.first_name
                   span.cus-caret
                 ul.dropdown-menu role="menu" aria-labelledby="dlabel"
@@ -56,6 +56,10 @@ html
                     = link_to "Settings", user_settings_path(current_user.id)
                   li
                     = link_to "Log Out", '/sign-out', method: :delete
+              li.message-icon-container= link_to messages_path(current_user.id) do
+                = image_tag "/assets/message-icon.png"
+                .badge.pull-right
+                  =current_user.unread_message_chain_count if current_user.unread_message_chain_count > 0
               li.post-button-container= link_to "NEW LISTING", new_listing_path, class: "button-post"
 
             - else

@@ -6,6 +6,7 @@ class Message < ActiveRecord::Base
   # Types of messages, offer having the option to accept or decline
   TYPE_OFFER = "offer"
   TYPE_DEFAULT = "default"
+  TYPE_LISTING_REMOVED = "listing_removed"
 
   # Validations
   # -----------

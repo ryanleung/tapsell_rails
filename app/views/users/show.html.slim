@@ -1,7 +1,6 @@
 .col-xs-12.text-center.welcome-container.no-pad
   h1
-    | Welcome back,&nbsp;
-    = current_user.first_name
+    = @greeting
 = render "layouts/navigation"
 .container.marg-top-40.no-pad
   .col-sm-12
@@ -19,7 +18,7 @@
                 - if current_user.image.nil?
                   .avatar-profile.img-circle style="background-image: url('/assets/no_avatar.png');"
                 - else
-                  .avatar-profile.img-circle style="background-image: url('#{current_user.image.image.url}');"
+                  .avatar-profile.img-circle style="background-image: url('#{current_user.image.image.square.url}');"
               .col-sm-12.text-center.pad-location
                 .row
                   .col-sm-12.text-center
@@ -37,7 +36,6 @@
                     ul
                       li
                         = form_tag new_user_photo_path, :method => :post, :multipart => true do
-                          = image_tag "/assets/camera-icon.png", class: "camera-icon"
                           = file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg'
                           = submit_tag 'Upload new photo'
                       li
