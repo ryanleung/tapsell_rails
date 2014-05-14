@@ -104,9 +104,25 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+  # Messages
+  # ------------------------
+
   def message_chains
     msg_chains = self.message_chains_as_seller + self.message_chains_as_buyer
     return msg_chains.sort_by(&:updated_at)
+  end
+
+  def unread_message_chain_count
+    count = 0
+    message_chains.each do |m|
+      if m.seller == self
+        count = count + 1 if m.seller_dirty
+      else
+        count = count + 1 if m.buyer_dirty
+      end
+    end
+
+    count
   end
 
   # Payments
@@ -170,6 +186,19 @@ class User < ActiveRecord::Base
     (pos_reviews * 100.0) / (total_reviews * 100.0)
   end
 
+  # Listings
+  # --------------------------
+
+  def active_listings_as_seller
+    active_listings = []
+    listings_as_seller.order("created_at DESC").each do |l|
+      if l.status == Listing::STATUS_ACTIVE || l.status == nil
+        active_listings << l
+      end
+    end
+
+    return active_listings
+  end
 
 	# Class Methods
 	# -------------

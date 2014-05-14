@@ -1,4 +1,8 @@
 class Listing < ActiveRecord::Base
+
+  STATUS_ACTIVE = "active"
+  STATUS_REMOVED = "removed"
+  STATUS_PURCHASED = "purchased"
 	# Relationships - Ordered Alphabetically
 	# --------------------------------------
 
@@ -13,7 +17,7 @@ class Listing < ActiveRecord::Base
 
 	
   def self.search(search)
-	  results = find(:all, :order => 'created_at DESC', :conditions => ['title LIKE ? or info LIKE ?', "%#{search}%", "%#{search}%"])
+	  results = find(:all, :order => 'created_at DESC', :conditions => ['title ILIKE ? or info ILIKE ?', "%#{search}%", "%#{search}%"])
 	  return results
 	end
 
@@ -24,11 +28,11 @@ class Listing < ActiveRecord::Base
 	validates :seller_id,
 				:presence => true
 	validates :title,
-				:presence => { message: "is not set" }
+				:presence => { message: "is missing" }
 	validates :price,
-				:presence => { message: "is not set" }
+				:presence => { message: "is missing" }
 	validates :info,
-				:presence => { message: "is not set" }
+				:presence => { message: "is missing" }
 
 	def api_hash
 		images = []

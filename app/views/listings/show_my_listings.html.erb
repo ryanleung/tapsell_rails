@@ -1,9 +1,8 @@
 <div class="col-xs-12 top-banner">
 	<div class="container">
 		<div class="center-block content">
-			<%= image_tag image_url("tapsell_sun.png") %>
 			<span class="feature">
-				21 <sup>o</sup>F and sunny in San Diego!
+				<%= @greeting %>
 			</span>
 		</div>
 	</div>
@@ -29,7 +28,7 @@
 							<%= image_tag image_url("pencil.png") %>
 						<% end %>
 						&emsp;
-						<%= link_to "javascript:void(0);", class: "pull-left" do %>
+						<%= link_to listing_path(@listing.id), :confirm => "Are you sure you want to delete this listing?", :method => :delete do %>
 							<i class="glyphicon trash-icon"></i>
 						<% end %>
 					</span>

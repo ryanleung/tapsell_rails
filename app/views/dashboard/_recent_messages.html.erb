@@ -2,9 +2,16 @@
   <%= link_to messages_path(current_user.id), :class => "content col-xs-12" do %>
     <!-- TODO:HACK, move styling to css -->
     <div class="content col-xs-12" style="color:#3e3e3e">
-      <div class="dot pull-left">
-        <%= image_tag image_url("tapsell_big_circle_dot.png") %>
-      </div>
+      <% if @msg_chain.seller == current_user %>
+        <% @dirty_flag = @msg_chain.seller_dirty %>
+      <% else %>
+        <% @dirty_flag = @msg_chain.buyer_dirty %>
+      <% end %>
+      <% if @dirty_flag == true %>
+        <div class="dot pull-left">
+          <%= image_tag image_url("tapsell_big_circle_dot.png") %>
+        </div>
+      <% end %>
       <div class="information pull-left">
         <p class="name"><%= @msg_chain.most_recent_message.sender.first_name.titleize + " " + @msg_chain.most_recent_message.sender.last_name.titleize %>
         </p>

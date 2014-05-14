@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @greeting = Greeting.random_greeting
   end
 
   def show_public
