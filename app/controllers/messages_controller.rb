@@ -59,7 +59,7 @@ class MessagesController < ApplicationController
   end
 
   def decline_offer_message
-    message_chain = Message.find_by_id(params[:id].to_i)
+    message_chain = MessageChain.find_by_id(params[:id].to_i)
     offer = message_chain.offer
     offer.cancel
     MessageChain.send_message(current_user.id, message_chain.listing, "#{message_chain.seller.first_name} has declined your offer.", Message::TYPE_DEFAULT,
