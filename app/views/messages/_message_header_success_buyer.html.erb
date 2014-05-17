@@ -1,11 +1,11 @@
 <div class="col-xs-7 right-heading" id="message-header">
 	<h4 class="title">
 		Yay +1 win! Enjoy your
-		<span class="subject orange">IKEA Sofa Taupe Leather</span>
+		<span class="subject orange"><%= link_to @current_msg_chain.offer.listing.title, listing_path(@current_msg_chain.listing) %></span>
 	</h4>
 	<h4 class="title">
 		Your scored this at your offer of
-		<span>$50.00.</span>
+		<span><%= number_to_currency(@current_msg_chain.offer.price, :locale => 'en_us', :precision => 0) %>.</span>
 	</h4>
 
 	<%#= render "message_header" %>
