@@ -65,9 +65,9 @@
                 = image_tag "/assets/green-like.png"
                 = @listing.seller.percent_pos_reviews 
                 | % POSITIVE REVIEWS &nbsp;
-                = link_to "javascript:void(0);", class: "btn listing-message-btn" do
-                  | MESSAGE &nbsp;
-                  = @listing.seller.first_name.upcase
+              = link_to "javascript:void(0);", class: "btn listing-message-btn" do
+                | MESSAGE &nbsp;
+                = @listing.seller.first_name.upcase
 
 = content_for :javascript_contents do
   = javascript_include_tag "products"
