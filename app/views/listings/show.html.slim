@@ -3,7 +3,7 @@
 
 .container.marg-top-125
   .col-xs-8.box-container.left-container
-    .col-xs-12.title-container
+    .col-xs-12.listing-title-container.title-container
       h1.order-title.product-title
         = number_to_currency(@listing.price, :locale => 'en_us', :precision => 0)
         | &nbsp;
@@ -65,6 +65,9 @@
                 = image_tag "/assets/green-like.png"
                 = @listing.seller.percent_pos_reviews 
                 | % POSITIVE REVIEWS &nbsp;
+                = link_to "javascript:void(0);", class: "btn listing-message-btn" do
+                  | MESSAGE &nbsp;
+                  = @listing.seller.first_name.upcase
 
 = content_for :javascript_contents do
   = javascript_include_tag "products"
