@@ -42,6 +42,7 @@ class OffersController < ApplicationController
     end
     flash.delete(:notice)
     redirect_to offer_confirmation_path({:offer_id => @offer.id, :message => params[:message]})
+    # TODO should the email to the seller go here?
     # Notifier.send_offer_received_email(@user).deliver
     Notifier.send_offer_confirmation_email(@user).deliver
   end
