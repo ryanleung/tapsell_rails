@@ -13,6 +13,7 @@ class OffersController < ApplicationController
   end
 
   def create_authorization
+    @user = current_user
     credit_card = nil
     # if there is a chosen card id, use that
     if params[:chosen_card_id].present?
@@ -41,6 +42,8 @@ class OffersController < ApplicationController
     end
     flash.delete(:notice)
     redirect_to offer_confirmation_path({:offer_id => @offer.id, :message => params[:message]})
+    # Notifier.send_offer_received_email(@user).deliver
+    Notifier.send_offer_confirmation_email(@user).deliver
   end
 
   def offer_confirmation
