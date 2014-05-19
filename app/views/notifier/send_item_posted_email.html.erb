@@ -1,1 +1,15 @@
-Send item posted email placeholder
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p> Hi <%= @user.first_name %>, </p>
+    <p> Your item posting was successful! </p>
+    <p> Here’s the link: </p>
+    <p> <%= "https://tapsell.co/listings/#{@user.listings_as_seller.last.id}" %> </p>
+    <p> Happy selling, </p>
+    <p> Team Tapsell </p>
+    <a href="http://www.tapsell.co">Visit the Tapsell website</a>
+  </body>
+</html>

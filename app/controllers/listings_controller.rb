@@ -80,6 +80,7 @@ class ListingsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @listing = current_user.listings_as_seller.build(listing_params)
     @listing.status = Listing::STATUS_ACTIVE
 
@@ -94,6 +95,7 @@ class ListingsController < ApplicationController
     if @listing.save
       flash[:success] = "Listing created!"
       redirect_to confirm_listing_path(@listing)
+      Notifier.send_item_posted_email(@user).deliver
     else
       flash[:notice] = "Oops!  There was a problem creating the listing, please try again.  #{@listing.errors.full_messages.join(', ')}"
       redirect_to new_listing_path

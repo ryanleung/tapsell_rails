@@ -68,6 +68,7 @@ Tapsell::Application.routes.draw do
 
   root :to => 'listings#index'
   match '/about', to: 'static_pages#about', via: 'get'
+  match '/launch', to: 'static_pages#launch', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'
   match '/jobs', to: 'static_pages#jobs', via: 'get'
   match '/blog', to: 'static_pages#blog', via: 'get'
