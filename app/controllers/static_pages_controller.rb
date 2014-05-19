@@ -23,6 +23,9 @@ class StaticPagesController < ApplicationController
   def launch
   end
 
+  def launch_confirmation
+  end
+
   def faq
   end
 
