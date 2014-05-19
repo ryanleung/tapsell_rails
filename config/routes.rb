@@ -67,10 +67,9 @@ Tapsell::Application.routes.draw do
   # Static page routes
   ##################################
 
-  root :to => 'static_pages#launch'
+  root :to => 'marketing_emails#launch'
   match '/about', to: 'static_pages#about', via: 'get'
-  match '/launch', to: 'static_pages#launch', via: 'get'
-  match '/launch', to: 'static_pages#launch_confirmation', via: 'get'
+  match '/launch', to: 'marketing_emails#launch', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'
   match '/jobs', to: 'static_pages#jobs', via: 'get'
   match '/blog', to: 'static_pages#blog', via: 'get'
