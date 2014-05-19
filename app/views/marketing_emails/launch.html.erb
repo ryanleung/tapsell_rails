@@ -1,11 +1,170 @@
-<h1> New launch placeholder </h1>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tapsell Launches @ UCSD</title>
+</head>
 
-  <%= form_tag marketing_email_path, :method => :post, class: "center-block" do %>
-    <div class="form-group text-center col-xs-12">
-      <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Type your email address here" %>
+<body>
+<style type="text/css" media="all">
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic);
+</style>
+
+<style>
+/* Reset body padding and margins */
+body
+{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Make Header Sticky */
+#header_container
+{
+    background: #FFFFFF !important;
+    border: 0px solid #666 !important;
+    height: 70px !important;
+    left: 0 !important;
+    position: fixed !important;
+    width: 100% !important;
+    top: 0 !important;
+  padding-top: 35px !important;
+}
+
+#header_container 
+      { 
+        position:fixed !important;
+        top:0px !important;
+        left:0px !important;
+        z-index:1000 !important;
+       }
+
+ #header{
+      z-index:1001 !important;
+      }
+    
+#header
+{
+    line-height: 60px !important;
+    margin: 10 auto !important;
+    width: 940px !important;
+    font-size: 26px !important;
+    color: #f5f5f5 !important;
+    line-height: 28px !important;
+    margin-bottom: 14px !important;
+  align: center !important;
+  margin: 0 auto !important;
+}
+
+/* CSS for the content of page. I am giving top and bottom 
+   padding of 80px to make sure the header and footer 
+   do not overlap the content. */
+#container
+{
+    margin: 0 auto !important;
+    overflow: auto !important;
+    padding: 80px 0 !important;
+    width: 940px !important;
+}
+
+#content
+{
+  padding-top: 20px !important;
+}
+
+#bbq {
+background-image: url(assets/BBQBackground.png);
+}
+
+</style>
+
+
+<!-- BEGIN: Sticky Header -->
+<div id="header_container">
+    <div id="header" style="text-align: center !important;">
+        <table width="100%">
+        <tr>
+        <td width="50%" style="text-align: left !important;">
+        <img src="assets/Tapsell_Logo.png" height="60%" width="auto"/>
+        </td>
+        <td width="50%" style="text-align: right; !important">
+        <a href="#anchor" style="text-decoration: none !important; color: #9c9c9 !important;"><p style="font-family: Helvetica, Arial, sans-serif !important; color: #9C9C9C !important; font-size: 0.5em !important; -webkit-font-smoothing: antialiased !important; "></p></a>
+        </td>
+        </tr>
+        </table>
     </div>
-    <div class="actions text-center">
-      <button type="submit" class="btn button-orange btn-lg" data-disabled="Sending ...">RSVP</button>
-    </div>
-  <% end %>
 </div>
+<!-- END: Sticky Header -->
+<div id="container">
+
+  <!--First section of content-->
+    <div id="content" style="padding-top: 10% !important; padding-bottom: 12% !important;">
+    <table width="100%" style="padding-top: 10% !important;">
+    <tr>
+    <td width="40%" style="text-align: right !important;">
+    <p style="font-family: 'Arvo', Helvetica, Arial, sans-serif !important; color: #878787 !important; font-size: 2.4em !important; -webkit-font-smoothing: antialiased !important;">
+       Introducing the new way to buy and sell stuff at UCSD.
+    </p>
+    <p style="font-family: Helvetica, Arial, sans-serif !important; color: #878787 !important; font-size: 1.2em !important; letter-spacing: 0.05em !important; -webkit-font-smoothing: antialiased !important;">
+    More visual, more efficient, more secure.
+    </p>
+    </td>
+    <td width="60%" style="text-align: left !important;">
+    <img src="assets/Main_Image.png" width="100%" height="auto"/>
+    </td>
+    </tr>
+    </table>
+    </div>
+    </div>
+    
+    
+    <!--Second section of content-->
+        <div id="bbq" style="width: 100% !important;">
+        <div style="width: 940px !important; margin: 0 auto !important;">
+        
+    <table width="100%" cellspacing="50" style="padding-top: 5% !important; padding-bottom: 5% !important;">
+    <tr>
+    <td width="55%" style="text-align: right !important;">
+    <p style="font-family: 'Arvo', Helvetica, Arial, sans-serif !important; color: #FFFFFF !important; font-size: 1.8em !important; -webkit-font-smoothing: antialiased !important;">
+       <a name="anchor"><img src="assets/PhilsLogo.png" width="80%" height="auto"/><br/><br/></a>
+       In celebration of our launch into UCSD, we're treating you all to free Phil's BBQ.
+       <br/><br/>
+       Pretty sweet.     
+    </p>
+    </td>
+    <td width="45%" style="text-align: left !important; border: 3px solid #FFFFFF !important; padding: 20px !important;">
+        <p style="font-family: Helvetica, Arial, sans-serif !important; color: #FFFFFF !important; font-size: 1.0em !important; letter-spacing: 0.08em !important; -webkit-font-smoothing: antialiased !important;">
+    <strong>JOIN US FOR OUR LAUNCH EVENT</strong>
+    <br/><br/>
+    TUESDAY, MAY 27TH<br/>
+    @ LIBRARY WALK<br/>
+    8AM TO 5PM    
+
+
+    </p>    </td>
+    </tr>
+    </table>
+    </div>
+    </div>
+    
+    
+    <!--Footer-->
+    <div style="width: 940px !important; margin: 0 auto !important; padding-top: 10px !important; padding-bottom: 10px !important;">
+            <table width="100%">
+        <tr>
+        <td width="50%" style="text-align: left !important;">
+                <p style="font-family: 'Arvo', Helvetica, Arial, sans-serif !important; color: #9c9c9c !important; font-size: 1.0em !important; -webkit-font-smoothing: antialiased !important;">&#9825;, TEAM @ TAPSELL</p>
+        </td>
+        <td width="50%" style="text-align: right; !important">
+        <p style="font-family: 'Arvo', Helvetica, Arial, sans-serif !important; color: #9c9c9c !important; font-size: 1.0em !important; -webkit-font-smoothing: antialiased !important;">COPYRIGHT &copy; 2014 TAPSELL</p>
+        </td> 
+        </tr>
+        </table>
+    </div>
+    
+    
+    
+</div>
+
+</body>
+</html>

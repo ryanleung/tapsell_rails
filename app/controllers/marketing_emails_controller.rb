@@ -1,6 +1,7 @@
 class MarketingEmailsController < ApplicationController
   
   def launch
+  render :layout => false
   end
 
   def create
