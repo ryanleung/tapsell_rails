@@ -63,6 +63,9 @@ Tapsell::Application.routes.draw do
   resources :listings
   resources :credit_cards
 
+  # Post marketing emaisl
+  post "/" => "marketing_emails#create", as: 'marketing_email'
+
   ##################################
   # Static page routes
   ##################################
