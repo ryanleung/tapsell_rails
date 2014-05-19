@@ -37,7 +37,7 @@
 					</div>
 					<div class="information">
 						<p class="info-title">
-							<%= link_to @listing.title, listing_path(@listing.id) %>
+							<%= link_to @listing.title.titleize, listing_path(@listing.id) %>
 						</p>
 						<p class="info-description">
 							<%= @listing.info %>

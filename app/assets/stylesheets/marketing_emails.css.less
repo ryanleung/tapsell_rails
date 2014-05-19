@@ -1,0 +1,101 @@
+@import "mixins";
+@import "lesshat";
+
+.marketing-logo {
+	img {
+		width: 175px;
+		margin: 30px 0;
+	}
+}
+
+.brand-message {
+	font-family: @futuraextended;
+	font-size: 18px;
+	text-transform: uppercase;
+	vertical-align: bottom;
+	display: table-cell;
+	height: 81px;
+	color: #afaaaa;
+}
+
+.main-container {
+	padding: 100px 0;
+	.desc-tag {
+		color: #868686;
+		.content {
+			height: 324px;
+			display: table-cell;
+			text-align: right;
+			vertical-align: middle;
+			width: 600px;
+			.desc-main {
+				margin-top: 10px;
+			}
+			.desc-small {
+				font-family: @futuraextended;
+				margin-top: 24px;
+				font-size: 18px;
+			}
+		}
+	}
+} 
+
+.specific-content {
+	height: 588px;
+	background-size: 100%;
+	.content {
+		height: 588px;
+		display: table-cell;
+		text-align: right;
+		vertical-align: middle;
+		width: 600px;
+		color: #fff;
+		img {
+			margin-bottom: 40px;
+			width: 312px;
+		}
+		.desc-main {
+			margin-top: 10px;
+		}
+		.desc-small {
+			font-family: @futuraextended;
+			margin-top: 24px;
+			font-size: 18px;
+		}
+		.form-container {
+			background-color: rgba(0, 0, 0, 0.3);
+			border: 2px solid #fff;
+			padding: 25px 0;
+			.title {
+				margin-bottom: 25px;
+				margin-top: 0;
+			}
+			.title, .subtitle {
+				font-family: @futuraextended;
+				text-transform: uppercase;
+				color: white;
+				font-size: 24px;
+			}
+			.subtitle {
+				margin-top: 0;
+				padding-left: 25px;
+			}
+			input {
+				margin: 20px auto 0 auto;
+				height: 45px;
+			}
+			.button-purple {
+				font-family: @futuraextended;
+				background-color: #5b4e62;
+				color: #fff;
+				width: 85%;
+				.border-radius(50px);
+			}
+		}
+	}
+}
+
+.marketing-footer {
+	color: #837777;
+	padding: 20px 0;
+}
