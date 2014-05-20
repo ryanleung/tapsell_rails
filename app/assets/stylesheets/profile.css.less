@@ -1,4 +1,10 @@
 @import "global.css.less";
+
+.listing-title-container {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
+
 .profile-content-container {
 }
 .edit-profile, .edit-password-profile, .save-profile { margin-right: 10px; }
@@ -26,15 +32,23 @@
 }
 
 .welcome-container {
-	background-color: @aqua;
-	// margin-top: 65px;
+	background-color: #c9dfde;
+	padding: 0;
+	height: 240px;
+	overflow: hidden;
+	display: table;
 	h1 {
 		font-family: @futuraextended;
-		letter-spacing: 6px;
-		color: #fff;
-		padding: 70px 0;
-		font-size: 63px;
-		font-weight: 100;
+		color: white;
+		padding: 0; 
+		font-size: 43px;
+		text-align: center;
+		display: table-cell;
+		vertical-align: middle;
+		img {
+			// margin-top: 10px;
+			margin-right: 25px;
+		}
 	}
 }
 
@@ -200,6 +214,7 @@
 					}
 					.listing-content {
 						font-size: 14px;
+						width: 90%;
 					}
 					&.listing-message {
 						width: 50%;
@@ -342,8 +357,8 @@
 		font-family: @futuraextended;
 		color: @darkGrey;
 	}
-	.text-max { margin-left: 13px; }
-	.text-remaining { margin-right: 13px; }
+	.text-max { margin-left: 0; margin-top: -18px; }
+	.text-remaining { margin-right: 13px; margin-top: -18px; }
 }
 
 .forgot-password {

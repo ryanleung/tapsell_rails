@@ -88,4 +88,16 @@ class CreditCard < ActiveRecord::Base
       is_default: true,
     )
   end
+
+  def self.delete_cc(cc)
+    begin
+      CreditCard.transaction do
+        customer = Stripe::Customer.retrieve(cc.user.stripe_customer_id)
+        customer.cards.retrieve(cc.stripe_id).delete()
+        CreditCard.destroy(cc.id)
+      end
+    rescue => e
+      raise "Deleting cc error: #{e.message}"
+    end
+  end
 end

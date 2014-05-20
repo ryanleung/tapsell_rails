@@ -28,9 +28,15 @@
 
 .carousel-inner {
 	.item {
-		width: 100%;
-		height: 350px;
-		.center-background;
+		width: 97%;
+		height: 420px;
+		.listing-image {
+			margin: 0 auto;
+		}
+		.vertical-image {
+			height: 100%;
+			width: auto; 
+		}
 	}
 }
 
@@ -96,7 +102,20 @@
 	}
 }
 
-
+.input-group-addon {
+	border-radius: 0;
+	background-color: transparent;
+	border-right: none;
+	font-size: 24px;
+	padding: 5px 15px;
+	color: @orange;
+}
+.last-addon {
+	border-right: 1px solid #ccc;
+	background-color: @orange;
+	color: #fff;
+	border-left: none;
+}
 .right-container-content {
 	.price-product-container {
 		font-size: 36px !important;
@@ -110,6 +129,12 @@
 				font-size: 24px;
 				padding: 5px 15px;
 				color: @orange;
+			}
+			.last-addon {
+				border-right: 1px solid #ccc;
+				background-color: @orange;
+				color: #fff;
+				border-left: none;
 			}
 			input {
 				border-left: none;
@@ -471,4 +496,29 @@
 			}
 		}
 	}
+}
+
+.carousel-indicators {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	left: auto;
+	top: 0;
+	.thumb-slider {
+		width: 100px;
+		height: 100px;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		position: relative;
+		.border-radius(0);
+	}
+}
+
+.listing-message-btn {
+	background-color: @orange;
+	font-family: @futuraextended;
+	font-size: 21px;
+	color: white;
+	padding: 8px 19px;
 }

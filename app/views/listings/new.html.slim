@@ -1,5 +1,8 @@
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "listings"
+
 .container.bg-gray style="padding-bottom: 50px; padding-top:90px"
-  = simple_nested_form_for @listing, html: { role: "form", class: "col-xs-12" } do |f|
+  = simple_nested_form_for @listing, html: { role: "form", class: "col-xs-12 new-listing" } do |f|
     .col-xs-12.box-container.pull-left
       .col-xs-12.header-box-container
         .row
@@ -23,8 +26,11 @@
           label.col-xs-12.col-md-2
             | Price
             span *
-          .col-xs-12.col-md-7
+          .input-group.col-xs-12.col-md-4 style="padding-left: 15px;"
+            span.input-group-addon $
             = text_field_tag "listing[price]", "", class: "form-control product-price", maxlength: "4"
+            span.input-group-addon.last-addon .00
+          .col-xs-12.col-md-7
         .form-group.col-xs-12.pull-left
           label.col-xs-12.col-md-2
             | Description

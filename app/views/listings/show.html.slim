@@ -3,7 +3,7 @@
 
 .container.marg-top-125
   .col-xs-8.box-container.left-container
-    .col-xs-12.title-container
+    .col-xs-12.listing-title-container.title-container
       h1.order-title.product-title
         = number_to_currency(@listing.price, :locale => 'en_us', :precision => 0)
         | &nbsp;
@@ -13,7 +13,7 @@
         b= @listing.created_at.strftime("%^b. %e")
         | &nbsp; by &nbsp;
         b= @listing.seller.first_name.upcase
-    .col-xs-12.content-section.no-bg
+    .col-xs-12.content-section.no-bg.pad-right-0
       .row
         = render "listing_details"
   .col-xs-4
@@ -26,7 +26,8 @@
                 .form-group
                   .input-group.input-group-lg
                     span.input-group-addon $
-                    = text_field_tag :offer_price
+                    = text_field_tag :offer_price, "", class: "form-control numeric", maxlength: "4", required: true
+                    span.input-group-addon.last-addon .00
                   .button-product-container
                     - if @listing.seller.eql?(current_user)
                         = link_to "MAKE AN OFFER", "javascript:void(0);", class: "btn col-xs-12", disabled: true
@@ -34,12 +35,12 @@
                       = submit_tag "MAKE AN OFFER", class: "btn col-xs-12"
           .product-guarantee-container.pad-v-20
             span.black-check-icon
-            p.pull-left Buyer guarantee
+            p.pull-left Tapsell Buyer Guarantee
           .list-container
             .list
             .list
           .location-container
-            | Pick up location: &nbsp;
+            | Pick up location: 
               UC San Diego
       .col-xs-11.box-container.right-container.no-pad
         .right-container-content
@@ -49,7 +50,7 @@
               - if @listing.seller.image.nil?
                 = image_tag "/assets/no_image.png", class: "img-circle"
               - else
-                = image_tag @listing.seller.image.image.url, class: "img-circle"
+                = image_tag @listing.seller.image.image.square.url, class: "img-circle"
           .user-location-container
             h4.location.text-center
               = image_tag "/assets/pin.png"
@@ -64,6 +65,9 @@
                 = image_tag "/assets/green-like.png"
                 = @listing.seller.percent_pos_reviews 
                 | % POSITIVE REVIEWS &nbsp;
+              = link_to "javascript:void(0);", class: "btn listing-message-btn" do
+                | MESSAGE &nbsp;
+                = @listing.seller.first_name.upcase
 
 = content_for :javascript_contents do
   = javascript_include_tag "products"

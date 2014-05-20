@@ -1,11 +1,11 @@
 <%= form_tag messages_path(current_user), :method => :post do %>
   <div class="col-xs-12 message-input-content">
     <div class="col-xs-10 no-pad">
-      <textarea class="col-xs-12" name="content" placeholder="Type and hit enter to reply"></textarea>
+      <textarea class="col-xs-12" name="content" placeholder="Type your message here" required oninvalid="this.setCustomValidity(' ')" onchange="this.setCustomValidity('')"></textarea>
     </div>
     <div class="pull-right">
       <% if current_user.image.present? %>
-        <%= image_tag current_user.image.image.url, class: "avatar img-responsive img-circle" %>
+        <%= image_tag current_user.image.image.thumbnail.url, class: "avatar img-responsive img-circle" %>
       <% else %>
         <%= image_tag "no_image.png", class: "avatar img-responsive img-circle" %>
       <% end %>

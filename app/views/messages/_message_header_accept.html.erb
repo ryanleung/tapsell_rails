@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 <div class="col-xs-7 right-heading" id="message-header">
 	<h4 class="title">
 		<span class="time-accept">2 days, 16 days</span>
 		left to meet with
 		<span class="name">Vincent</span>
+=======
+<div class="col-xs-10 right-heading" id="message-header">
+	<h4 class="title">
+		<span class="time-accept">2 days, 23 hours</span>
+		left to meet with
+		<span class="name"><%= @current_msg_chain.seller.first_name.titleize %></span>
+>>>>>>> c9efa0f5dfb4d48c381d8b7f986e19497143f67b
 		and complete transaction 
 	</h4>
 	<h4 class="title">
@@ -10,9 +18,15 @@
 			<%= image_tag image_url("tapsell-accept.png"), class: "pull-left" %>
 			<span class="pull-left">ACCEPTED</span>
 		</span>
+<<<<<<< HEAD
 		<span class="pull-left listing-name">- "IKEA Sofa Taupe Leather" @ </span>
 		<!-- <span class="pull-left listing-name">"<%#= @listing.name.titleize %>" @ </span> -->
 		<span> &nbsp; $50.00.</span>
+=======
+		<span class="pull-left listing-name">- <%= @current_msg_chain.listing.title.titleize %> @ </span>
+		<!-- <span class="pull-left listing-name">"<%#= @listing.name.titleize %>" @ </span> -->
+		<span> &nbsp; <%= number_to_currency(@current_msg_chain.offer.price, :locale => 'en_us', :precision => 0) %>.</span>
+>>>>>>> c9efa0f5dfb4d48c381d8b7f986e19497143f67b
 	</h4>
 
 	<%#= render "message_header" %>

@@ -17,13 +17,6 @@
           </span>
           <p>
             <%= @message.content %>
-            <% if @message.message_type == Message::TYPE_OFFER %>
-              <ul>
-                <li><%= link_to "LISTING", listing_path(@current_msg_chain.listing) %></li>
-                <li><%= link_to "ACCEPT", accept_offer_message_path(@message.id) %></li>
-                <li><%= link_to "DECLINE", decline_offer_message_path(@message.id) %></li>
-              </ul>
-            <% end %>
           </p>
         </div>
       <% end %>

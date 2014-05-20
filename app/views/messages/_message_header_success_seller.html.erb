@@ -1,9 +1,15 @@
 <div class="col-xs-7 right-heading" id="message-header">
 	<h4 class="title">
 		Congratulations! You earned 
+<<<<<<< HEAD
 		<span class="price">$39.00</span>
 		for your team
 		<span class="subject">FIFTY SHADES OF GREY</span> 
+=======
+		<span class="price"><%= number_to_currency(@current_msg_chain.offer.price, :locale => 'en_us', :precision => 0) %></span>
+		for your team
+		<span class="subject"><%= link_to @current_msg_chain.offer.listing.title, listing_path(@current_msg_chain.listing) %></span> 
+>>>>>>> c9efa0f5dfb4d48c381d8b7f986e19497143f67b
 	</h4>
 	<%#= render "message_header" %>
 </div><!-- end of right-heading -->

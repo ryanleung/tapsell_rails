@@ -1,5 +1,6 @@
 Tapsell::Application.routes.draw do
 
+  get "marketing_emails/create"
   get "dashboard/show"
   ##################################
   # Web app routes
@@ -60,13 +61,18 @@ Tapsell::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :listings
+  resources :credit_cards
+
+  # Post marketing emaisl
+  post "/" => "marketing_emails#create", as: 'marketing_email'
 
   ##################################
   # Static page routes
   ##################################
 
-  root :to => 'users#root_page_router'
+  root :to => 'marketing_emails#launch'
   match '/about', to: 'static_pages#about', via: 'get'
+  match '/launch', to: 'marketing_emails#launch', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'
   match '/jobs', to: 'static_pages#jobs', via: 'get'
   match '/blog', to: 'static_pages#blog', via: 'get'

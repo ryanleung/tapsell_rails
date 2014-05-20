@@ -1,7 +1,6 @@
-.container-fluid.text-center.welcome-container
-  h1.no-marg
-    | Welcome back,&nbsp;
-    = current_user.first_name
+.col-xs-12.text-center.welcome-container.no-pad
+  h1
+    = @greeting
 = render "layouts/navigation"
 .container.marg-top-40.no-pad style="padding-left:20px;"
   .col-md-12

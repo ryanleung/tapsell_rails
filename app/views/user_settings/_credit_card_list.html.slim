@@ -4,4 +4,4 @@
       = credit_card.card_type
       | &nbsp; ********
       = credit_card.last_4
-      = link_to "", "#", class: "trash-icon pull-right", method: "delete"
+      = link_to "", credit_card_path(credit_card.id), :confirm => "Are you sure you want to delete this credit card?", :class => "trash-icon pull-right", :method => :delete

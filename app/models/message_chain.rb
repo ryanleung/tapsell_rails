@@ -17,14 +17,18 @@ class MessageChain < ActiveRecord::Base
     if msg_chain_id.present?
       msg_chain = MessageChain.find(msg_chain_id)
     else
-      msg_chain = MessageChain.find_by(:listing_id => listing_id, :seller_id => seller_id)
+      # TODO: This flow might not even be needed. The invariant is that the message chain
+      # id will always be present when a seller is talking to a buyer. Another invariant
+      # is that only the buyer can initiate messages. A user cannot (at least for now) just
+      # send messages without a listing attached to it. Therefore, we can just check
+      # if the msg_chain_id is present? and if it isn't, then we create one.
+      msg_chain = MessageChain.find_by(:listing_id => listing_id, :seller_id => seller_id, :buyer_id => sender_id)
     end
 
     if msg_chain.nil?
       # handle case if msg_chain does not exist yet
       # the sender must be a seller if nil
       msg_chain = MessageChain.create(:listing_id => listing_id, :seller_id => seller_id, :buyer_id => sender_id, :offer => offer)
-      a = 1
     end
 
     msg_chain.build_and_append_message(sender_id, content, message_type)
@@ -55,6 +59,13 @@ class MessageChain < ActiveRecord::Base
     end
     new_msg = Message.create(:content => content, :message_chain => self, :message_type => message_type, :sender_id => sender_id)
     self.messages.push(new_msg)
+    # TODO: there are better ways to find out dirty than always these if statements
+    if self.seller_id == sender_id
+      self.buyer_dirty = true
+    else
+      self.seller_dirty = true
+    end
+    save!
     touch
   end
 

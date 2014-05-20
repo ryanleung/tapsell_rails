@@ -20,6 +20,12 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+  def launch
+  end
+
+  def launch_confirmation
+  end
+
   def faq
   end
 

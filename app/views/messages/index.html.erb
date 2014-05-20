@@ -2,10 +2,11 @@
 	<%= javascript_include_tag "messages" %>
 <% end %>
 <%= content_for :stylesheet_contents do %>
-	<%= stylesheet_link_tag "messages" %>
+	<%= stylesheet_link_tag "messages", "listings" %>
 <% end %>
 <div class="col-xs-12 message-container no-pad">
 	<div class="message-header col-xs-12 text-center">
+<<<<<<< HEAD
 		<div class="center-block">
 			<h1 class="no-marg text-center">
 				<%= image_tag image_url("tapsell_sun.png"), class: "", style: "margin-top: -9px;" %>
@@ -13,6 +14,11 @@
 			<%#= @greeting %>
 			</h1>
 		</div>
+=======
+		<h1>
+			<%= @greeting %>
+		</h1>
+>>>>>>> c9efa0f5dfb4d48c381d8b7f986e19497143f67b
 	</div><!-- end of message-header -->
 
 	<%= render "layouts/navigation" %>
@@ -33,6 +39,7 @@
 								<%= link_to "Pending", "javascript:void(0);", class: "no-dash" %>
 							</li>
 						</ul>
+<<<<<<< HEAD
 						<form role="form" class="col-xs-12" style="width: 99%; padding-left: 0;">
 							<div class="form-group" style="margin-bottom: 0;">
 								<div class="input-group search-input-group">
@@ -40,6 +47,12 @@
 								  	<%= image_tag image_url("tapsell-search.png") %>
 								  </span>
 								  <input type="text" class="form-control input-lg" placeholder="Search Message">
+=======
+						<form role="form" class="col-xs-12">
+							<div class="form-group">
+								<div class="input-group">
+
+>>>>>>> c9efa0f5dfb4d48c381d8b7f986e19497143f67b
 								</div>
 							</div>
 						</form>

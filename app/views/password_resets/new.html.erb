@@ -1,7 +1,19 @@
-<%= form_tag password_resets_path, :method => :post do %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email] %>
-  </div>
-  <div class="actions"><%= submit_tag "Reset Password" %></div>
+<%= content_for :stylesheet_contents do %>
+	<%= stylesheet_link_tag "sessions" %>
 <% end %>
+<div class="col-xs-12 forgot-password-container">
+	<%= form_tag password_resets_path, :method => :post, class: "center-block" do %>
+	  <div class="title col-xs-12">
+	  	<h1>Oops - forgot something?</h1>
+	  	<h3>
+	  		No worries, just let us know the email you signed up with and we'll get you back to Tapsell in no time.
+	  	</h3>
+	  </div>
+	  <div class="form-group text-center col-xs-12">
+	    <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Type your email address here" %>
+	  </div>
+	  <div class="actions text-center">
+	  	<button type="submit" class="btn button-orange btn-lg" data-disabled="Sending ...">SEND ME AN EMAIL</button>
+	  </div>
+	<% end %>
+</div>

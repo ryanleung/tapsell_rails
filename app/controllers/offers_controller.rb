@@ -13,6 +13,7 @@ class OffersController < ApplicationController
   end
 
   def create_authorization
+    @user = current_user
     credit_card = nil
     # if there is a chosen card id, use that
     if params[:chosen_card_id].present?
@@ -25,6 +26,7 @@ class OffersController < ApplicationController
         # TODO:HACK, find better way to reset
         @listing = Listing.find(params[:listing_id].to_i)
         @offer_price = params[:offer_price].to_f
+        flash[:notice] = 'There was a problem creating the offer.  Please double-check your credit card information and try again.'
         render '_confirm_offer'
         return
       end
@@ -35,9 +37,14 @@ class OffersController < ApplicationController
       # TODO:HACK, find better way to reset
       @listing = Listing.find(params[:listing_id].to_i)
       @offer_price = params[:offer_price].to_f
+      flash[:notice] = 'There was a problem creating the offer.  Please double-check your credit card information and try again.'
       render '_confirm_offer'
     end
+    flash.delete(:notice)
     redirect_to offer_confirmation_path({:offer_id => @offer.id, :message => params[:message]})
+    # TODO should the email to the seller go here?
+    # Notifier.send_offer_received_email(@user).deliver
+    Notifier.send_offer_confirmation_email(@user).deliver
   end
 
   def offer_confirmation
