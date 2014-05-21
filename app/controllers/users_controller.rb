@@ -22,8 +22,8 @@ class UsersController < ApplicationController
       create_remember_token
       sign_in @user
       flash[:success] = "Welcome to Tapsell!"
-      redirect_back_or dashboard_path(current_user.id)
-      Notifier.send_welcome_email(@user).deliver
+      redirect_to tutorial_step_one_path
+      # Notifier.send_welcome_email(@user).deliver
     else
       render 'new'
   	end
