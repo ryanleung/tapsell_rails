@@ -1,7 +1,7 @@
 class TutorialPagesController < ApplicationController
+  layout "no_format_tutorial_pages", except: [:sign_up]
 
   def landing
-    render :layout => false
   end
 
   def sign_up
@@ -19,31 +19,24 @@ class TutorialPagesController < ApplicationController
   end
 
   def step_one
-    render :layout => false
   end
 
   def step_two
-    render :layout => false
   end
 
   def step_three
-    render :layout => false
   end
 
   def step_four
-    render :layout => false
   end
 
   def step_five
-    render :layout => false
   end
 
   def step_six
-    render :layout => false
   end
 
   def finish
-    render :layout => false
   end
 
 private
