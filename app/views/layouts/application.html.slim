@@ -11,7 +11,7 @@ html
     = csrf_meta_tags
   body
     = bootstrap_flash
-    - unless controller_name.eql?("marketing_emails")
+    - unless controller_name.eql?("marketing_emails") 
       .nav.navbar-default.container-fluid.no-marg.main-navbar.bg-white role="navigation"
         .container.marg-top-0
           = link_to "javascript:void(0);", "data-toggle"=>"collapse", "data-target"=>".main-navbar-collapse", class: "navbar-toggle"
@@ -69,6 +69,6 @@ html
                 li
                   = link_to "SIGN UP", "/sign-up", class: "sign-up"
     = yield
-    - unless controller_name.eql?("marketing_emails")
+    - unless controller_name.eql?("marketing_emails") 
       = render "layouts/footer"
 

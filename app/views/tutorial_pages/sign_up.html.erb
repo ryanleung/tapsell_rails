@@ -1,0 +1,40 @@
+<% provide(:title, 'Join') %>
+<%= content_for :stylesheet_contents do %>
+  <%= stylesheet_link_tag "sessions" %>
+<% end %>
+
+<div class="col-xs-12">
+  <div class="container">
+    <div class="title-container">
+      <h1 class="login-title text-center">Sign up to complete the tutorial.</h1>
+      <h2 class="login-subtitle text-center">It takes less than a minute. </h2>
+
+
+    <div class="registration-container center-block">
+      <%= form_for(@user, as: :user, url: tutorial_create_user_path(@user), html: {method: :post, class: "col-xs-12", role: "form"}) do |f| %>
+
+        <div class="form-group">
+          <%= f.text_field :first_name, class: "form-control", placeholder: "First Name", :required => true %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name", :required => true %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :email, class: "form-control", placeholder: "Email", :required => true %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password, class: "form-control password-input", placeholder: "Password", :required => true %>
+        </div>
+
+        <div class="form-group text-center">
+          <%= f.submit "GET ME STARTED", class: "btn btn-large btn-primary" %>
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

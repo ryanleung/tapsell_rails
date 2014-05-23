@@ -63,14 +63,27 @@ Tapsell::Application.routes.draw do
   resources :listings
   resources :credit_cards
 
-  # Post marketing emaisl
+  # Post marketing emails
   post "/" => "marketing_emails#create", as: 'marketing_email'
+
+  # Tutorial page
+  get "/tutorial" => "tutorial_pages#landing", as: 'tutorial_landing'
+  get "/tutorial/sign_up" => "tutorial_pages#sign_up", as: 'tutorial_sign_up'
+  post "/tutorial/create" => "tutorial_pages#create", as: 'tutorial_create_user'
+  get "/tutorial/1" => "tutorial_pages#step_one", as: 'tutorial_step_one'
+  get "/tutorial/2" => "tutorial_pages#step_two", as: 'tutorial_step_two'
+  get "/tutorial/3" => "tutorial_pages#step_three", as: 'tutorial_step_three'
+  get "/tutorial/4" => "tutorial_pages#step_four", as: 'tutorial_step_four'
+  get "/tutorial/5" => "tutorial_pages#step_five", as: 'tutorial_step_five'
+  get "/tutorial/6" => "tutorial_pages#step_six", as: 'tutorial_step_six'
+  get "/tutorial/finish" => "tutorial_pages#finish", as: 'tutorial_finish'
+  get "/tutorial/get_certificate" => "tutorial_pages#get_certificate", as: 'tutorial_get_cert'
 
   ##################################
   # Static page routes
   ##################################
 
-  root :to => 'marketing_emails#launch'
+  root :to => 'tutorial_pages#landing'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/launch', to: 'marketing_emails#launch', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'
