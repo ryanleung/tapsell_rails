@@ -69,6 +69,7 @@ Tapsell::Application.routes.draw do
   # Tutorial page
   get "/tutorial" => "tutorial_pages#landing", as: 'tutorial_landing'
   get "/tutorial/sign_up" => "tutorial_pages#sign_up", as: 'tutorial_sign_up'
+  post "/tutorial/create" => "tutorial_pages#create", as: 'tutorial_create_user'
   get "/tutorial/1" => "tutorial_pages#step_one", as: 'tutorial_step_one'
   get "/tutorial/2" => "tutorial_pages#step_two", as: 'tutorial_step_two'
   get "/tutorial/3" => "tutorial_pages#step_three", as: 'tutorial_step_three'
@@ -76,6 +77,7 @@ Tapsell::Application.routes.draw do
   get "/tutorial/5" => "tutorial_pages#step_five", as: 'tutorial_step_five'
   get "/tutorial/6" => "tutorial_pages#step_six", as: 'tutorial_step_six'
   get "/tutorial/finish" => "tutorial_pages#finish", as: 'tutorial_finish'
+  get "/tutorial/get_certificate" => "tutorial_pages#get_certificate", as: 'tutorial_get_cert'
 
   ##################################
   # Static page routes

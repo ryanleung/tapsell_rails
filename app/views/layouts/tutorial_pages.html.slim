@@ -9,6 +9,7 @@ html
     = yield :javascript_contents
     = yield :stylesheet_contents
     = csrf_meta_tags
+  body
+    = bootstrap_flash
     = yield
-
 

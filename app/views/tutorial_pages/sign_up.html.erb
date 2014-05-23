@@ -11,20 +11,20 @@
 
 
     <div class="registration-container center-block">
-      <%= form_for(@user, html: {class: "col-xs-12", role: "form"}) do |f| %>
+      <%= form_for(@user, as: :user, url: tutorial_create_user_path(@user), html: {method: :post, class: "col-xs-12", role: "form"}) do |f| %>
 
         <div class="form-group">
-          <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+          <%= f.text_field :first_name, class: "form-control", placeholder: "First Name", :required => true %>
         </div>
         <div class="form-group">
-          <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+          <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name", :required => true %>
         </div>
         <div class="form-group">
-          <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+          <%= f.text_field :email, class: "form-control", placeholder: "Email", :required => true %>
         </div>
 
         <div class="form-group">
-          <%= f.password_field :password, class: "form-control password-input", placeholder: "Password" %>
+          <%= f.password_field :password, class: "form-control password-input", placeholder: "Password", :required => true %>
         </div>
 
         <div class="form-group text-center">

@@ -110,7 +110,9 @@ body
     <p style="font-family: 'Arvo', Helvetica, Arial, sans-serif !important; color: #878787 !important; font-size: 2.0em !important; -webkit-font-smoothing: antialiased !important;">
        Rebecca pays Bryant through the app, and picks up her new GoPro.</p> 
        <p style="font-family: Helvetica, Arial, sans-serif !important; color: #878787 !important; font-size: 1.1em !important; letter-spacing: 0.05em !important; -webkit-font-smoothing: antialiased !important;">
-    <a href="http://www.jacquelinechen.com/tapsell/tutorial/finish.html" style="color: #878787 !important;">Click to finish tutorial <img src="http://www.jacquelinechen.com/tapsell/tutorial/arrow.png"/></a>
+    <%= link_to tutorial_finish_path do %>
+    Click to finish tutorial <img src="http://www.jacquelinechen.com/tapsell/tutorial/arrow.png"/>
+    <% end %>
     </p>    
     </td>
 
