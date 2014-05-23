@@ -97,7 +97,7 @@ display: block;
 width: 300px;
 height: 61px;
 background:url(http://www.jacquelinechen.com/tapsell/tutorial/begintutorial_sprite.png) no-repeat 0 0;
-overflow: hidden;
+overflow: auto;
 text-indent: -15000px;
 font-size: 0px;
 line-height: 0px;
@@ -112,10 +112,6 @@ background-position: 0 -300px;
 }
 	
 	</style>
-    <%= link_to tutorial_sign_up_path do %>
-        <div class="imagesprite" style="position: relative; margin: 0 auto; margin-top: 45%;"></div>
-        <% end %>
-        <img src="http://www.jacquelinechen.com/tapsell/tutorial/arrow.png" style="padding-top: 0.5em;"/>
         </td>
         </tr>
         </table>
@@ -136,6 +132,10 @@ background-position: 0 -300px;
        
     <p style="font-family: Helvetica, Arial, sans-serif !important; color: #878787 !important; font-size: 1.2em !important; letter-spacing: 0.05em !important; -webkit-font-smoothing: antialiased !important;">
     Follow the arrows throughout the tutorial. You're only a few clicks away from free Phil's BBQ.
+    <%= link_to tutorial_sign_up_path do %>
+        <img src="http://www.jacquelinechen.com/Begin_Before.png" onmouseover="this.src='http://www.jacquelinechen.com/Begin_After.png'" onmouseout="this.src='http://www.jacquelinechen.com/Begin_Before.png'"  />
+    <% end %>
+    <img src="http://www.jacquelinechen.com/tapsell/tutorial/arrow.png" style="padding-top: 0.5em;"/>
     </p>
     </td>
     </tr>
@@ -144,20 +144,7 @@ background-position: 0 -300px;
     </div>
    
     
-    
-    <!--Footer-->
-    <div style="width: 100%; padding-top: 10px !important; position: absolute; bottom: 0; ">
-            <table width="70%" style="margin: 0 auto !important; text-align: center;">
-        <tr>
-        <td width="50%" style="text-align: left !important;">
-                <p style="font-family: 'Arvo', Helvetica, Arial, sans-serif !important; color: #9c9c9c !important; font-size: 1.0em !important; -webkit-font-smoothing: antialiased !important;">&#9825;, TEAM @ TAPSELL</p>
-        </td>
-        <td width="50%" style="text-align: right; !important">
-        <p style="font-family: 'Arvo', Helvetica, Arial, sans-serif !important; color: #9c9c9c !important; font-size: 1.0em !important; -webkit-font-smoothing: antialiased !important;">COPYRIGHT &copy; 2014 TAPSELL</p>
-        </td>
-        </tr>
-        </table>
-    </div>
+
     
     
     
