@@ -132,11 +132,12 @@ background-position: 0 -300px;
        
     <p style="font-family: Helvetica, Arial, sans-serif !important; color: #878787 !important; font-size: 1.2em !important; letter-spacing: 0.05em !important; -webkit-font-smoothing: antialiased !important;">
     Follow the arrows throughout the tutorial. You're only a few clicks away from free Phil's BBQ.
-    <%= link_to tutorial_sign_up_path do %>
-        <img src="http://www.jacquelinechen.com/Begin_Before.png" onmouseover="this.src='http://www.jacquelinechen.com/Begin_After.png'" onmouseout="this.src='http://www.jacquelinechen.com/Begin_Before.png'"  />
-    <% end %>
-    <img src="http://www.jacquelinechen.com/tapsell/tutorial/arrow.png" style="padding-top: 0.5em;"/>
     </p>
+    <%= link_to tutorial_sign_up_path, style: "text-decoration: none; color: #FFFFFF;" do %>
+        <img src="http://www.jacquelinechen.com/Begin_Before.png" onmouseover="this.src='http://www.jacquelinechen.com/Begin_After.png'" onmouseout="this.src='http://www.jacquelinechen.com/Begin_Before.png'" />
+    <% end %>
+    <br/>
+    <img src="http://www.jacquelinechen.com/tapsell/tutorial/arrow.png" style="padding-top: 0.5em;"/>
     </td>
     </tr>
     </table>
