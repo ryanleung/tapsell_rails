@@ -40,6 +40,16 @@ class Notifier < ActionMailer::Base
     mail(:to => @user.email,
     :bcc => "team@tapsell.co",
     :subject => "Offer confirmation")
-  end  
+  end
+
+  # Launch
+
+  def send_launch_email(user)
+    @user = user
+    @user = user
+    mail(:to => @user.email,
+    :bcc => "team@tapsell.co",
+    :subject => "Certificate Confirmation from Tapsell")
+  end
 
 end
