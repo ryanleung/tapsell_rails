@@ -3,9 +3,11 @@
     <div class="content col-xs-12" style="color: #3e3e3e">
       <div class="image pull-left img-responsive">
         <% if @listing.images.present? %>
-          <%= image_tag image_url(@listing.images[0].image.url) %>
+          <div class="listing-image" style="background-image: url('<%= image_url( @listing.images[0].image.url) %>')">
+          </div>
         <% else %>
-          <%= image_tag image_url("no_pic.jpg") %>
+          <div class="listing-image" style="background-image: url('<%= image_url("no_pic.jpg") %>')">
+          </div>
         <% end %>
       </div>
       <div class="message pull-left listing-message">
