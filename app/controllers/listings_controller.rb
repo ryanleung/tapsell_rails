@@ -114,7 +114,7 @@ class ListingsController < ApplicationController
 
   def update
     @listing = Listing.find(params[:id])
-    if @listing.update_attributes(user_params)
+    if @listing.update_attributes(listing_params)
       flash[:success] = "Listing update successful!"
       redirect_to @listing
     else
