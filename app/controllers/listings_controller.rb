@@ -107,6 +107,22 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
+  def edit
+    @user = current_user
+    @listing = Listing.find(params[:id])
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    if @listing.update_attributes(user_params)
+      flash[:success] = "Listing update successful!"
+      redirect_to @listing
+    else
+      flash[:notice] = "There was a problem updating your listing.  Please double-check and try again!"
+      render 'edit'
+    end
+  end
+
   def confirm_listing
     @user = current_user
     @listing = Listing.find(params[:id])
