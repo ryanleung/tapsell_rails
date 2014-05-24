@@ -44,11 +44,10 @@
           .price-container
             | $
             = @offer.price.to_i
-          .product-image-container
-            -if @listing.images.present?
-              =image_tag image_url(@listing.images[0].image.url), class: "product-image-container"
-            -else
-              =image_tag image_url("no_pic.jpg"), class: "product-image-container"
+          -if @listing.images.present?
+            .product-image-container style="background-image: url('#{image_url(@listing.images[0].image.url)}')"
+          -else
+            .product-image-container style="background-image: url('#{image_url("no_pic.jpg")}')"
           .product-guarantee-container
             span.black-check-icon
             p.pull-left Tapsell Buyer Guarantee
