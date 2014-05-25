@@ -61,7 +61,28 @@ html
                   = image_tag "/assets/message-icon.png"
                   .badge.pull-right
                     =current_user.unread_message_chain_count if current_user.unread_message_chain_count > 0
-                li.post-button-container= link_to "NEW LISTING", new_listing_path, class: "button-post"
+                li.listing-nav-container
+                  = link_to "POST LISTING", new_listing_path, class: "btn button-purple"
+                li.post-button-container.listing-nav-container.dropdown
+                  = link_to "javascript:void(0);", class: "btn button-orange", "data-toggle"=>"dropdown" do
+                    | BROWSE
+                    i.fa.fa-sort-asc
+                  ul.dropdown-menu role="menu" aria-labelledby="dlabel"
+                    li
+                      = link_to "Browse", listings_path
+                    li
+                      = link_to "Dashboard", dashboard_path(current_user.id)
+                    li
+                      = link_to "Inbox", messages_path(current_user.id)
+                    li
+                      = link_to "Profile", user_path(current_user.id)
+                    li
+                      = link_to "My Listings", my_listings_path(current_user.id)
+                    li
+                      = link_to "Settings", user_settings_path(current_user.id)
+                    li
+                      = link_to "Log Out", '/sign-out', method: :delete
+
 
               - else
                 li
