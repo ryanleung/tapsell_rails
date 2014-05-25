@@ -5,11 +5,11 @@
   </head>
   <body>
     <p> Hi <%= @user.first_name %>, </p>
-    <p> Your item posting was successful! </p>
-    <p> Here’s the link: </p>
-    <p> <%= "https://tapsell.co/listings/#{@user.listings_as_seller.last.id}" %> </p>
+    <p> Your listing "<%= @user.listings_as_seller.last.title %>" was successfully posted! </p>
+    <p> <%=link_to "Click here to view the listing", listing_url(@user.listings_as_seller.last.id) %> </p>
+    <p> Got questions?  Just reply to this email.  </p>
     <p> Happy selling, </p>
     <p> Team Tapsell </p>
-    <a href="http://www.tapsell.co">Visit the Tapsell website</a>
+    <%= link_to "Visit the Tapsell website", root_url %>
   </body>
 </html>

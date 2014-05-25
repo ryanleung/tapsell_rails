@@ -5,13 +5,12 @@
   </head>
   <body>
     <p> Hey <%= @user.first_name %>, </p>
-    <p> We’re writing to confirm that your offer for “<%= Listing.find_by_id(@user.offers_as_buyer.last.listing_id).title %>" has been submitted. </p>
-    <p> Here’s the listing link: </p>
-    <p> https://www.tapsell.co<%= listing_path(@user.offers_as_buyer.last.listing_id) %> </p>
-    <p> We’ve authorized your credit card for the offer amount to make sure it’s valid.  <b> Your card will only be charged if the seller accepts your offer within 24 hours. </b>  If they don’t accept, the authorization disappears automatically. </p>
+    <p> We’re writing to confirm that your offer of <%= number_to_currency(@user.offers_as_buyer.last.price, :locale => 'en_us', :precision => 0) %> for “<%= Listing.find_by_id(@user.offers_as_buyer.last.listing_id).title %>" has been submitted. </p>
+    <p> <%= link_to "Click here to view the listing", listing_url(@user.offers_as_buyer.last.listing_id) %> </p>
+    <p> Hang tight - the seller has 24 hours to accept or decline your offer. </p>
     <p> Got questions?  Just reply to this email. </p>
     <p> Keep calm and haggle on, </p>
     <p> Team Tapsell </p>
-    <a href="https://www.tapsell.co">Visit the Tapsell website</a>
+    <p> <%= link_to "Visit the Tapsell website", root_url %> </p>
   </body>
 </html>
