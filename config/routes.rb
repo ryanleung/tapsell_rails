@@ -1,5 +1,7 @@
 Tapsell::Application.routes.draw do
 
+  get "reviews/new"
+  get "reviews/create"
   get "marketing_emails/create"
   get "dashboard/show"
   ##################################
@@ -15,7 +17,7 @@ Tapsell::Application.routes.draw do
   get "users/message/accept/:id" => "messages#accept_offer_message", as: 'accept_offer_message'
   get "users/message/decline/:id" => "messages#decline_offer_message", as: 'decline_offer_message'
 
-  # View messags
+  # View messages
   get "users/:id/message" => "messages#index", as: 'messages'
   get "update_msg_chain" => "messages#update_msg_chain", as: 'update_msg_chain'
   post "users/:id/message" => "messages#create", as: 'new_message'
