@@ -1,5 +1,6 @@
 @import "global.css.less";
 @import "mixins.less";
+@import "lesshat";
 .product-live-view-image {
 	img {
 		width: 125px;
@@ -30,12 +31,34 @@
 	.item {
 		width: 97%;
 		height: 420px;
+		overflow: hidden;
+		.watermark {
+			background-color: rgba(201, 25, 7, 0.51);
+			text-align: center;
+			color: white;
+			width: 143%;
+			height: 228px;
+			display: table;
+			vertical-align: middle;
+			position: absolute;
+			-webkit-transform: rotate(-35deg);
+			   -moz-transform: rotate(-35deg);
+			    -ms-transform: rotate(-35deg);
+			     -o-transform: rotate(-35deg);
+			        transform: rotate(-35deg);
+			margin-top: 135px;
+			margin-left: -109px;
+			padding: 43px;
+			font-size: 36px;
+		}
 		.listing-image {
 			margin: 0 auto;
+			.border-radius(0);
+			border: none;
 		}
 		.vertical-image {
 			height: 100%;
-			width: auto; 
+			width: 275px; 
 		}
 	}
 }
