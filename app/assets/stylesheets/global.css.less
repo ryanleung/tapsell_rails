@@ -437,13 +437,23 @@ a {
 	}
 }
 
+.button-purple {
+	background-color: @purple;
+	font-family: @futuraextended;
+	color: #fff;
+	&:hover, &:active, &:focus {
+		color: #fff;
+		background-color: darken(@purple, 10%) !important;
+	}
+}
+
 .button-orange {
 	background-color: @orange;
 	font-family: @futuraextended;
 	color: #fff;
-	&:hover {
+	&:hover, &:active, &:focus {
 		color: #fff;
-		background-color: darken(@orange, 10%)
+		background-color: darken(@orange, 10%) !important;
 	}
 }
 
@@ -516,6 +526,29 @@ a {
 	float: left;
 	background-size: 100%;
 	background-position: inherit;
+}
+
+.listing-nav-container {
+	margin-left: 20px;
+	margin-top: 18px;
+
+	&:last-child {
+		margin-left: 10px;
+		padding-left: 0 !important;
+	}
+	.btn {
+		padding: 5px 17px;
+		color: #fff !important;
+		.fa {
+			margin-left: 10px;
+			&:before {
+				display: block;
+				position: relative;
+				margin-top: -16px;
+				font-size: 18px;
+			}
+		}
+	}
 }
 
 .main-navbar-collapse {
