@@ -25,10 +25,9 @@ class OffersController < ApplicationController
 
     create_authorization
     @offer = Offer.create_offer!(current_user, Listing.find(@listing), @credit_card, params[:offer_price].to_f)
-
-    # TODO should the email to the seller go here?
-    # Notifier.send_offer_received_email(@user).deliver
-    # Notifier.send_offer_confirmation_email(@user).deliver
+    buyer = @offer.buyer
+    #Notifier.send_offer_received_email(@offer.seller).deliver
+    Notifier.send_offer_confirmation_email(buyer).deliver
     redirect_to offer_confirmation_path({:offer_id => @offer.id, :message => params[:message]})
   end
 
