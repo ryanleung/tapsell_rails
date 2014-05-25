@@ -1,1 +1,18 @@
-Send offer received placeholder
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p> Howdy, <%= @user.first_name %>, </p>
+    <p> Congratulations!  You've got an offer of xx for your listing "Listing title" </p>
+    <p> Click here to accept or reject the offer within 24 hours. </p>
+    <p> Some tips: </p>
+    <ul> (1) Both you and the buyer will have a chance to leave a review after the transaction - be a good sport and follow through if you accept the offer! </ul>
+    <ul> (2) Once you accept the offer, you should try to meet the buyer within 3 days.  Fast meetups are better for everyone in the community.</ul>
+    <p> Thanks again for using Tapsell.  You rock.  </p>
+    <p> Love, </p>
+    <p> Team Tapsell </p>
+    <%= link_to "Visit the Tapsell website", root_url %>
+  </body>
+</html>

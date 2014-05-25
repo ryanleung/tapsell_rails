@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p> Hi, <%= @user.first_name %>, </p>
+    <p> "Sender name" sent you a message about "Listing title." </p>
+    <p> "Sender name": "Message body" </p>
+    <p> "Click here to respond" </p>
+    <p> Tip: We recommend responding promptly.  This keeps the conversation moving and makes everyone happy.  Just a thought! </p>
+    <p> Warmly, </p>
+    <p> Team Tapsell </p>
+    <%= link_to "Visit the Tapsell website", root_url %>
+  </body>
+</html>
