@@ -1,10 +1,10 @@
 class OffersController < ApplicationController
 
-  def new
+  def confirm_listings_page
     @listing = Listing.find(params[:id])
     @offer_price = params[:offer_price]
     if signed_in?
-      render '_confirm_offer'
+      create_new_offer
     else
       @user = User.new
       render '_sign_in_to_offer'
@@ -12,8 +12,42 @@ class OffersController < ApplicationController
     end
   end
 
-  def create_authorization
+  def create_new_offer
     @user = current_user
+    # @credit_card = get_chosen_credit_card
+    # if @credit_card.nil?
+    #   @listing = Listing.find(params[:listing_id].to_i)
+    #   @offer_price = params[:offer_price].to_f
+    #   flash[:notice] = 'There was a problem creating the offer.  Please double-check your credit card information and try again.'
+    #   render '_confirm_offer'
+    #   return
+    # end
+
+    create_authorization
+    @offer = Offer.create_offer!(current_user, Listing.find(@listing), @credit_card, params[:offer_price].to_f)
+
+    # TODO should the email to the seller go here?
+    # Notifier.send_offer_received_email(@user).deliver
+    # Notifier.send_offer_confirmation_email(@user).deliver
+    redirect_to offer_confirmation_path({:offer_id => @offer.id, :message => params[:message]})
+  end
+
+  def offer_confirmation
+    @offer = Offer.find(params[:offer_id])
+    @listing = @offer.listing
+
+    # If the offer created is successful, delete notice messages and initialize timer/send inquiry message.
+    # Create offer message to seller, then add additional message.
+    flash.delete(:notice)
+    MessageChain.send_message(current_user.id, @listing.id, "#{current_user.first_name.titleize} #{current_user.last_name.titleize} offered #{ActionController::Base.helpers.number_to_currency(@offer.price)} for #{@listing.title}." , Message::TYPE_OFFER, nil, @offer)
+    if params[:message].present?
+      MessageChain.send_message(current_user.id, @listing.id, params[:message], Message::TYPE_DEFAULT, nil, nil)
+    end
+
+    @offer.initialize_accept_timer
+  end
+
+  def get_chosen_credit_card
     credit_card = nil
     # if there is a chosen card id, use that
     if params[:chosen_card_id].present?
@@ -23,39 +57,14 @@ class OffersController < ApplicationController
       begin
         credit_card = CreditCard.create_cc(current_user, params[:number], params[:exp_month].to_i, params[:exp_year].to_i, params[:cvc])
       rescue
-        # TODO:HACK, find better way to reset
-        @listing = Listing.find(params[:listing_id].to_i)
-        @offer_price = params[:offer_price].to_f
-        flash[:notice] = 'There was a problem creating the offer.  Please double-check your credit card information and try again.'
-        render '_confirm_offer'
-        return
+        return nil
       end
     end
-    begin
-      @offer = Offer.create_offer!(current_user, Listing.find(params[:listing_id].to_i), credit_card, params[:offer_price].to_f)
-    rescue
-      # TODO:HACK, find better way to reset
-      @listing = Listing.find(params[:listing_id].to_i)
-      @offer_price = params[:offer_price].to_f
-      flash[:notice] = 'There was a problem creating the offer.  Please double-check your credit card information and try again.'
-      render '_confirm_offer'
-    end
-    flash.delete(:notice)
-    redirect_to offer_confirmation_path({:offer_id => @offer.id, :message => params[:message]})
-    # TODO should the email to the seller go here?
-    # Notifier.send_offer_received_email(@user).deliver
-    Notifier.send_offer_confirmation_email(@user).deliver
+    return credit_card
   end
 
-  def offer_confirmation
-    @offer = Offer.find(params[:offer_id])
-    @listing = @offer.listing
-
-    # create offer message to seller, then add additional message
-    MessageChain.send_message(current_user.id, @listing.id, "#{current_user.first_name} has offered #{ActionController::Base.helpers.number_to_currency(@offer.price)} for your listing, #{@listing.title}" , Message::TYPE_OFFER, nil, @offer)
-    if params[:message].present?
-      MessageChain.send_message(current_user.id, @listing.id, params[:message], Message::TYPE_DEFAULT, nil, nil)
-    end
+  def create_authorization
+    # Authorize credit cards here
   end
   
 end

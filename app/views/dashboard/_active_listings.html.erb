@@ -15,7 +15,7 @@
         <p class="listing-content">
           <% if @listing.info.present? %>
             <% if @listing.info.length > 100 %>
-              <%= @listing.info[1...100] + "..." %>
+              <%= @listing.info[0...100] + "..." %>
             <% else %>
               <%= @listing.info %>
             <% end %>

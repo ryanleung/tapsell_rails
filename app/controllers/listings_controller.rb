@@ -113,15 +113,8 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    # Change status of listing to removed, send deleted message
-    # to each message chain attached to the listing
     @listing = Listing.find(params[:id])
-    @listing.status = Listing::STATUS_REMOVED
-    @listing.save
-
-    @listing.message_chains.each do |m|
-      MessageChain.send_message(current_user.id, @listing.id, "#{current_user.first_name.titleize} has removed this listing.", Message::TYPE_LISTING_REMOVED, m.id, nil)
-    end
+    @listing.remove
 
     redirect_to :action => :show_my_listings
   end

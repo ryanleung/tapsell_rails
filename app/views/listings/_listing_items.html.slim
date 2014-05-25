@@ -9,7 +9,7 @@
 				= link_to listing_path(listing),class: "col-xs-12 no-pad"
 					.image-container style="background-image: url('#{image_url('no_pic.jpg')}')"
 			.col-xs-6.no-pad
-				.time-post.pull-left= time_ago_in_words(listing.created_at)
+				.time-post.pull-left= distance_of_time_in_words(Time.now, listing.created_at, false, { vague: true })
 				ago
 			.col-xs-6.no-pad
 				.price.pull-right class="price-#{listing.price.to_i}" id="#{listing.price.to_i}"

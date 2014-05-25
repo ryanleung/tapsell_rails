@@ -7,8 +7,8 @@ Tapsell::Application.routes.draw do
   ##################################
 
   # Checkout process
-  get "offers/listings/:id" => "offers#new", as: 'new_offer'
-  post "offers/listings/:id/" => "offers#create_authorization", as: 'offer'
+  get "offers/listings/:id" => "offers#confirm_listings_page", as: 'new_offer'
+  post "offers/listings/:id" => "offers#create_new_offer", as: 'offer'
   get "offers/listings/:id/confirmation" => "offers#offer_confirmation", as: 'offer_confirmation'
 
   # Offer message paths

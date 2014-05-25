@@ -1,6 +1,10 @@
 <% if @current_msg_chain.present? %>
-  <% if @current_msg_chain.offer.status == Offer::STATUS_WAITING_FOR_SELLER_RESPONSE && current_user == @current_msg_chain.seller %>
-    <%= render "message_header_accept_decline" %>
+  <% if @current_msg_chain.offer.status == Offer::STATUS_WAITING_FOR_SELLER_RESPONSE %>
+    <% if current_user == @current_msg_chain.buyer %>
+      <%= render "message_header_buyer_waiting" %>
+    <% else %>
+      <%= render "message_header_accept_decline" %>
+    <% end %>
   <% elsif @current_msg_chain.offer.status == Offer::STATUS_DENIED %>
     <%= render "message_header_decline" %>
   <% elsif @current_msg_chain.offer.status == Offer::STATUS_ACCEPTED %>
