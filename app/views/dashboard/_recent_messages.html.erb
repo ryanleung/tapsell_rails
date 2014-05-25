@@ -16,7 +16,7 @@
         <p class="name"><%= @msg_chain.most_recent_message.sender.first_name.titleize + " " + @msg_chain.most_recent_message.sender.last_name.titleize %>
         </p>
         <p class="date">
-        <%= time_ago_in_words(@msg_chain.updated_at) %>
+        <%= distance_of_time_in_words(Time.now, @msg_chain.updated_at, false, { vague: true }) %>
         </p>
       </div>
       <div class="message pull-left">

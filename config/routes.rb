@@ -1,5 +1,7 @@
 Tapsell::Application.routes.draw do
 
+  get "reviews/new"
+  get "reviews/create"
   get "marketing_emails/create"
   get "dashboard/show"
   ##################################
@@ -7,15 +9,15 @@ Tapsell::Application.routes.draw do
   ##################################
 
   # Checkout process
-  get "offers/listings/:id" => "offers#new", as: 'new_offer'
-  post "offers/listings/:id/" => "offers#create_authorization", as: 'offer'
+  get "offers/listings/:id" => "offers#confirm_listings_page", as: 'new_offer'
+  post "offers/listings/:id" => "offers#create_new_offer", as: 'offer'
   get "offers/listings/:id/confirmation" => "offers#offer_confirmation", as: 'offer_confirmation'
 
   # Offer message paths
   get "users/message/accept/:id" => "messages#accept_offer_message", as: 'accept_offer_message'
   get "users/message/decline/:id" => "messages#decline_offer_message", as: 'decline_offer_message'
 
-  # View messags
+  # View messages
   get "users/:id/message" => "messages#index", as: 'messages'
   get "update_msg_chain" => "messages#update_msg_chain", as: 'update_msg_chain'
   post "users/:id/message" => "messages#create", as: 'new_message'

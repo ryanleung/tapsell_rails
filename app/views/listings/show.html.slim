@@ -29,7 +29,7 @@
                     = text_field_tag :offer_price, "", class: "form-control numeric", maxlength: "4", required: true
                     span.input-group-addon.last-addon .00
                   .button-product-container
-                    - if @listing.seller.eql?(current_user)
+                    - if @listing.seller.eql?(current_user) || @listing.status != Listing::STATUS_ACTIVE
                         = link_to "MAKE AN OFFER", "javascript:void(0);", class: "btn col-xs-12", disabled: true
                     - else
                       = submit_tag "MAKE AN OFFER", class: "btn col-xs-12"

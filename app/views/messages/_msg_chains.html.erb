@@ -24,12 +24,12 @@
             <%= other_user.first_name.titleize + " " + other_user.last_name.titleize %>
           </div>
           <div class="pull-right">
-            <%= time_ago_in_words(@msg_chain.updated_at) %>
+            <%= distance_of_time_in_words(Time.now, @msg_chain.updated_at, false, { vague: true }) %>
           </div>
         </div>
         <div class="col-xs-12 no-pad message-preview">
           <p>
-            <%= @msg_chain.most_recent_message.content %>
+            <%= @msg_chain.most_recent_message.content[0...100] %>
           </p>
         </div>
       </div>

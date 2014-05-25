@@ -64,7 +64,7 @@
 							<% end %>
 							<div class="col-xs-6 no-pad">
 								<div class="time-post pull-left">
-									<%= time_ago_in_words(listing.created_at) %>
+									<%= distance_of_time_in_words(Time.now, listing.created_at, false, { vague: true }) %>
 								</div>
 							</div>
 							<div class="col-xs-6 no-pad">

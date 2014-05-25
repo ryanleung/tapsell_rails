@@ -1,9 +1,7 @@
 <div class="col-xs-10 right-heading" id="message-header">
 	<h4 class="title">
-		<span class="time-accept">2 days, 23 hours</span>
-		left to meet with
-		<span class="name"><%= @current_msg_chain.seller.first_name.titleize %></span>
-		and complete transaction 
+		<span class="time-accept"><%= distance_of_time_in_words(Time.now, @current_msg_chain.offer.target_time_for_delivery) %></span>
+		left to meet up and complete transaction 
 	</h4>
 	<h4 class="title">
 		<span class="pull-left img-accept">
