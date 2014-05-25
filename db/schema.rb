@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519004752) do
+ActiveRecord::Schema.define(version: 20140524025143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,11 @@ ActiveRecord::Schema.define(version: 20140519004752) do
     t.integer  "message_chain_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_time_for_accepting"
+    t.datetime "target_time_for_accepting"
+    t.datetime "start_time_for_delivery"
+    t.datetime "target_time_for_delivery"
+    t.boolean  "disabled",                  default: false
   end
 
   add_index "offers", ["buyer_id"], name: "index_offers_on_buyer_id", using: :btree
