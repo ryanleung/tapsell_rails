@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+<div class="col-xs-7 right-heading" id="message-header">
+	<h4 class="title">
+		<span class="name">Vincent</span>
+		made an offer of
+		<span class="price">$39.00</span>
+		for
+		<span class="subject">"IKEA Sofa Taupe Leather"</span>
+=======
 <div class="col-xs-10 right-heading" id="message-header">
 	<h4 class="title">
 		<span class="name"><%= @current_msg_chain.buyer.first_name.titleize %></span>
@@ -5,6 +14,7 @@
 		<span class="price"><%= number_to_currency(@current_msg_chain.offer.price, :locale => 'en_us', :precision => 0) %></span>
 		for
 		<span class="subject"><%= link_to @current_msg_chain.offer.listing.title, listing_path(@current_msg_chain.listing) %></span>
+>>>>>>> c9efa0f5dfb4d48c381d8b7f986e19497143f67b
 	</h4>
 	<h4 class="title">
 		<span class="pull-left img-decline">

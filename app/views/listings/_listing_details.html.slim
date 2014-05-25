@@ -5,16 +5,32 @@
     .col-xs-10.pad-right-0
       #carousel-example-generic.carousel.slide data-ride=("carousel")
         .carousel-inner
+          / PRODUCT SOLD
           - if @listing.images.present?
             - @listing.images.each_with_index do |listing, index|
               - if index.eql?(0)
                 .item.active
+                  .watermark
+                    | SOLD
                   = image_tag image_url(listing.image), class: "listing-image"
               - else
                 .item
+                  .watermark
+                    | SOLD
                   = image_tag image_url(listing.image), class: "listing-image"
           - else
             .item.active style=("background-image: url(#{image_url('no_pic.jpg')});")
+          / if product active
+          / - if @listing.images.present?
+          /   - @listing.images.each_with_index do |listing, index|
+          /     - if index.eql?(0)
+          /       .item.active
+          /         = image_tag image_url(listing.image), class: "listing-image"
+          /     - else
+          /       .item
+          /         = image_tag image_url(listing.image), class: "listing-image"
+          / - else
+          /   .item.active style=("background-image: url(#{image_url('no_pic.jpg')});")
     .col-xs-2.text-right.pad-left-0
       ol.carousel-indicators
         - @listing.images.each_with_index do |listing, index|
