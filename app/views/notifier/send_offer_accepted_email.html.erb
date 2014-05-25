@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p> Hey there, <%= @user.first_name %>, </p>
+    <p> Congratulations!  "Seller name" accepted your purchase request for "Listing title" </p>
+    <p> Wondering what happens next? </p>
+    <ul> (1) Arrange a meetup with the seller.  To contact them, open the website, or use the contact info at the end of this message. </ul>
+    <ul> (2) Meet up within 3 days. </ul>
+    <ul> (3) Exchange moolah for your stuff and enjoy! </ul>
+    <p> Thanks again for using Tapsell.  You rock.  </p>
+    <p> Love, </p>
+    <p> Team Tapsell </p>
+    <%= link_to "Visit the Tapsell website", root_url %>
+  </body>
+</html>
