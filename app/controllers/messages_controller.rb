@@ -58,7 +58,7 @@ class MessagesController < ApplicationController
       raise "Accepting offer error: #{e.message}"
     end
     MessageChain.send_message(current_user.id, message_chain.listing, "#{message_chain.seller.first_name.titleize} #{message_chain.seller.last_name.titleize} has accepted #{message_chain.buyer.first_name.titleize}'s offer.", Message::TYPE_DEFAULT,
-      message_chain.id, message_chain.offer)
+      message_chain.id, nil)
     offer.initialize_delivery_timer
     redirect_to action: 'index'
   end
@@ -68,7 +68,7 @@ class MessagesController < ApplicationController
     offer = message_chain.offer
     offer.cancel
     MessageChain.send_message(current_user.id, message_chain.listing, "#{message_chain.seller.first_name.titleize} #{message_chain.seller.last_name.titleize} has declined #{message_chain.buyer.first_name.titleize}'s offer.", Message::TYPE_DEFAULT,
-      message_chain.id, message_chain.offer)
+      message_chain.id, nil)
     redirect_to action: 'index'
   end
 end

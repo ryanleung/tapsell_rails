@@ -107,7 +107,7 @@ class Offer < ActiveRecord::Base
 
     # If it hasn't, then decline the offer and send a declining message.
     self.cancel
-    MessageChain.send_message(self.seller.id, self.listing.id, "#{self.seller.first_name.titleize} has rejected your offer." , Message::TYPE_DEFAULT, self.message_chain.id, self)
+    MessageChain.send_message(self.seller.id, self.listing.id, "#{self.seller.first_name.titleize} has rejected your offer." , Message::TYPE_DEFAULT, self.message_chain.id, nil)
   end
 
   def initialize_accept_timer

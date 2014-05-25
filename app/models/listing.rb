@@ -40,8 +40,10 @@ class Listing < ActiveRecord::Base
     self.save
 
     self.message_chains.each do |m|
-    	m.offer.cancel if m.offer != offer
-      MessageChain.send_message(self.seller.id, self.id, "#{self.seller.first_name.titleize} has sold this listing.", Message::TYPE_LISTING_SOLD, m.id, nil)
+      if m.offer != offer
+        m.offer.cancel
+        MessageChain.send_message(self.seller.id, self.id, "#{self.seller.first_name.titleize} has sold this listing.", Message::TYPE_LISTING_SOLD, m.id, nil)
+      end
     end
 	end
 
