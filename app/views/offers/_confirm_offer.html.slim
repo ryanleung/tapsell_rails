@@ -11,7 +11,8 @@
         h1 > Confirm your offer.
       .col-xs-12.content-section
         p.content-section-title What happens when I make an offer?
-        p The seller has 24 hours to accept the offer, and your card won't be charged unless the seller accepts. All purchases are covered by the Tapsell Buyer Guarantee: if the items aren't as described, or the seller isn't being responsive, just let us know within 3 days for a full refund.
+        p style="padding-right: 50px;" 
+          |The seller has 24 hours to accept the offer, and your card won't be charged unless the seller accepts. All purchases are covered by the Tapsell Buyer Guarantee: if the items aren't as described, or the seller isn't being responsive, just let us know within 3 days for a full refund.
       .col-xs-12.left-container-content
         h3 PAYMENT METHOD
         .col-xs-12.select-payment-container
@@ -24,7 +25,7 @@
             = link_to "Add New Card", "javascript:void(0);", class: "aqua add-new-credit-card"
             = link_to "Cancel", "javascript:void(0);", class: "red cancel-add-credit-card hide"
         .col-xs-12.select-payment-container.insert-credit-card-container.hide
-          h3 ADD A NEW CREDITCARD
+          h3 ADD A NEW CREDIT CARD
           = render "credit_card_form"
         .col-xs-12.select-payment-container
           h3 OPTIONAL INFORMATION
@@ -55,11 +56,10 @@
             b= @listing.seller.first_name.upcase
           .price-container
             = number_to_currency(@offer_price, :locale => 'en_us', :precision => 0)
-          .product-image-container
-            -if @listing.images.present?
-              =image_tag image_url(@listing.images[0].image.url), class: "product-image-container"
-            -else
-              =image_tag image_url("no_pic.jpg"), class: "product-image-container"
+          -if @listing.images.present?
+            .product-image-container style="background-image: url('#{image_url(@listing.images[0].image.url)}')"
+          -else
+            .product-image-container style="background-image: url('#{image_url("no_pic.jpg")}')"
           .product-guarantee-container
             span.black-check-icon
             p.pull-left Tapsell Buyer Guarantee

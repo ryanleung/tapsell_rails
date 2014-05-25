@@ -65,9 +65,29 @@
                 = image_tag "/assets/green-like.png"
                 = @listing.seller.percent_pos_reviews 
                 | % POSITIVE REVIEWS &nbsp;
-              = link_to "javascript:void(0);", class: "btn listing-message-btn" do
-                | MESSAGE &nbsp;
-                = @listing.seller.first_name.upcase
+              - if @listing.seller != current_user
+                = link_to "#send-message", class: "btn listing-message-btn", "data-toggle"=>"modal", "data-target"=>"#send-message" do
+                  | MESSAGE &nbsp;
+                  = @listing.seller.first_name.upcase
+#send-message.modal.fade
+  .modal-dialog.col-xs-12.custom-modal-dialog
+    .modal-content.col-xs-12.custom-modal-content 
+      .modal-header.custom-modal-header.col-xs-12.no-pad.text-left
+        = image_tag image_url("message-icon.png"), class: "pull-left"
+        h4.title.pull-left compose new message
+        a.close href="javascript:void(0);" data-dismiss="modal" aria-hidden="true" style="padding-top:0;"
+          | x
+        .col-xs-12.no-pad.send-seller
+          h3.pull-left
+            | to: &nbsp;
+          h2.pull-left= @listing.seller.first_name.titleize
+      .modal-body.col-xs-12.no-pad
+        form.col-xs-12.no-pad role="form"
+          .form-group
+            textarea.form-control placeholder="Write Message ..."
+          .form-group.text-right style="margin-bottom: 0;"
+            button.button-orange.btn.submit-modal-button type="submit" SEND
+
 
 = content_for :javascript_contents do
   = javascript_include_tag "products"
