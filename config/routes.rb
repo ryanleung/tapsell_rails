@@ -23,6 +23,7 @@ Tapsell::Application.routes.draw do
   # Listings
   get "listings/search" => "listings#search_listings", as: 'search_listings'
   get "listings/:id/confirm" => "listings#confirm_listing", as: 'confirm_listing'
+  post "listings/:id/direct_message" => "listings#direct_message", as: 'direct_message'
   get "newest_listings" => "listings#newest_listings", as: 'newest_listings'
   get "oldest_listings" => "listings#oldest_listings", as: 'oldest_listings'
   get "low_price_listings" => "listings#low_price_listings", as: 'low_price_listings'

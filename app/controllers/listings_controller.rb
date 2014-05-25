@@ -135,6 +135,13 @@ class ListingsController < ApplicationController
     redirect_to :action => :show_my_listings
   end
 
+  def direct_message
+    debugger
+    @msg_chain = MessageChain.send_message(current_user.id, params[:listing_id],
+              params[:content], nil, nil, nil)
+    redirect_to :action => :show
+  end
+
 private
 
   def order_listings(sort_detail)

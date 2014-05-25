@@ -82,11 +82,13 @@
             | to: &nbsp;
           h2.pull-left= @listing.seller.first_name.titleize
       .modal-body.col-xs-12.no-pad
-        form.col-xs-12.no-pad role="form"
-          .form-group
-            textarea.form-control placeholder="Write Message ..."
-          .form-group.text-right style="margin-bottom: 0;"
-            button.button-orange.btn.submit-modal-button type="submit" SEND
+        = form_tag direct_message_path(@listing), :method => "post"
+          form.col-xs-12.no-pad role="form"
+            .form-group
+              textarea.form-control placeholder="Write Message ..." name="content"
+            .form-group.text-right style="margin-bottom: 0;"
+              = hidden_field_tag :listing_id, @listing.id
+              = button_tag "SEND", class: "button button-orange btn submit-modal-button"
 
 
 = content_for :javascript_contents do
