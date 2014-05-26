@@ -2,6 +2,12 @@
   = stylesheet_link_tag "offers", "products"
 
 .container.marg-top-125
+  - if @listing.seller.eql?(current_user)
+    .col-xs-12 
+      .col-xs-8.text-right.no-pad
+        = link_to "javascript:void(0);", class: "edit-listing-btn" do
+          = image_tag image_url("pencil.png"), class: "edit-listing-icon"
+          | Edit This Listing
   .col-xs-8.box-container.left-container
     .col-xs-12.listing-title-container.title-container
       h1.order-title.product-title
