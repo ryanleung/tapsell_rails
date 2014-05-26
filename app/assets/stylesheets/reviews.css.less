@@ -1,0 +1,99 @@
+@import "lesshat";
+@import "mixins";
+
+.tapsell-review-welcome-text {
+	font-size: 54px !important;
+	span {
+		display: block;
+		margin-top: 20px;
+		font-size: 36px;
+	}
+}
+
+.review-location {
+	padding-bottom: 25px;
+	font-family: @futuraextended;
+}
+
+.list-container {
+	padding: 0 0;
+	float: left;
+	width: 100%;
+	.list {
+		border-bottom: 1px solid #b6b1ad;
+		float: left;
+		width: 100%;
+		margin: 0 auto;
+		margin-bottom: 2px;
+	}
+}
+
+.tapsell-review-title {
+	margin-top: 30px;
+}
+
+.tapsell-thumbs {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	.btn {
+		.border-radius(0);
+		font-family: @futuraextended;
+		font-size: 20px;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-top: 3px;
+		padding-bottom: 5px;
+		margin: 10px;
+		img {
+			width: 24px;
+			margin-right: 10px;
+		}
+	}
+	.thumb-up {
+		color: #a6d181;
+		border: 1px solid #a6d181;
+	}
+	.thumb-down {
+		color: #e14234;
+		border: 1px solid #e14234;
+	}
+	.thumb-up-active, .thumb-down-active {
+		color: white;
+	}
+	.thumb-up-active {
+		background-color: #a6d181;
+	}
+	.thumb-down-active {
+		background-color: #e14234;
+	}
+}
+
+.tapsell-description {
+	padding-bottom: 25px;
+	p {
+		font-family: @futuraextended;
+		color: #a4a4a4;
+		margin-bottom: 0;
+	}
+}
+
+.tapsell-review-message-container {
+	background-color: #f6f6f6;
+	border-top: 1px solid #ccc;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	h5 {
+		font-family: @futuraextended;
+		margin-bottom: 20px;
+	}
+	textarea {
+		font-family: @futuraextended;
+		.border-radius(0);
+	}
+	.review-submit {
+		font-size: 13px;
+		margin-top: 15px;
+		padding-left: 60px;
+		padding-right: 60px;
+	}
+}
