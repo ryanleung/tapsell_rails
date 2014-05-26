@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default from: "team@tapsell.co"
+  default from: '"Tapsell" <team@tapsell.co>'
 
 # General-purpose emails
 
@@ -36,15 +36,17 @@ class Notifier < ActionMailer::Base
 
   # Transaction process emails (Buyer)
 
-  def send_offer_confirmation_email(buyer)
+  def send_offer_confirmation_email(buyer, offer)
     @buyer = buyer
+    @offer = offer
     mail(:to => @buyer.email,
     :bcc => "team@tapsell.co",
     :subject => "Confirmation of your offer")
   end
 
-  def send_offer_accepted_email(user)
+  def send_offer_accepted_email(user, offer)
     @user = user
+    @offer = offer
     mail(:to => @user.email,
     :bcc => "team@tapsell.co",
     :subject => "Your offer was accepted!")
@@ -52,11 +54,12 @@ class Notifier < ActionMailer::Base
 
   # Transaction process emails (Seller)
 
-  def send_offer_received_email(user)
-    @user = user
-    mail(:to => @user.email,
+  def send_offer_received_email(seller, offer)
+    @seller = seller
+    @offer = offer
+    mail(:to => @seller.email,
     :bcc => "team@tapsell.co",
-    :subject => "Offer confirmation")
+    :subject => "New offer for your listing!")
   end
 
 

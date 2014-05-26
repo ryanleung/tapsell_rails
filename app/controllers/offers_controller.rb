@@ -26,8 +26,9 @@ class OffersController < ApplicationController
     create_authorization
     @offer = Offer.create_offer!(current_user, Listing.find(@listing), @credit_card, params[:offer_price].to_f)
     buyer = @offer.buyer
-    #Notifier.send_offer_received_email(@offer.seller).deliver
-    Notifier.send_offer_confirmation_email(buyer).deliver
+    seller = @offer.seller
+    Notifier.send_offer_received_email(seller, @offer).deliver
+    Notifier.send_offer_confirmation_email(buyer, @offer).deliver
     redirect_to offer_confirmation_path({:offer_id => @offer.id, :message => params[:message]})
   end
 
