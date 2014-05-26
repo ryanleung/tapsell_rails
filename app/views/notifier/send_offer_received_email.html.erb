@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p> Howdy, <%= @user.first_name %>, </p>
-    <p> Congratulations!  You've got an offer of xx for your listing "Listing title" </p>
-    <p> Click here to accept or reject the offer within 24 hours. </p>
+    <p> Howdy, <%= @seller.first_name %>, </p>
+    <p> Congratulations!  You've got an offer of <%= number_to_currency(@offer.price, :locale => 'en_us', :precision => 0) %> for your listing "<%= @offer.listing.title %>" </p>
+    <p> <%= link_to "Click here to accept or reject the offer within 24 hours.", messages_url(@seller) %> </p>
     <p> Some tips: </p>
     <ul> (1) Both you and the buyer will have a chance to leave a review after the transaction - be a good sport and follow through if you accept the offer! </ul>
     <ul> (2) Once you accept the offer, you should try to meet the buyer within 3 days.  Fast meetups are better for everyone in the community.</ul>

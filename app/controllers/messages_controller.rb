@@ -60,6 +60,12 @@ class MessagesController < ApplicationController
     MessageChain.send_message(current_user.id, message_chain.listing, "#{message_chain.seller.first_name.titleize} #{message_chain.seller.last_name.titleize} has accepted #{message_chain.buyer.first_name.titleize}'s offer.", Message::TYPE_DEFAULT,
       message_chain.id, nil)
     offer.initialize_delivery_timer
+    
+    # Send notification emails to seller and buyer
+    buyer = offer.buyer
+    seller = offer.seller
+    Notifier.delay.send_offer_accepted_email(buyer, offer)
+    Notifier.delay.send_offer_acceptance_confirmation_email(seller, offer)
     redirect_to action: 'index'
   end
 
@@ -69,6 +75,9 @@ class MessagesController < ApplicationController
     offer.cancel
     MessageChain.send_message(current_user.id, message_chain.listing, "#{message_chain.seller.first_name.titleize} #{message_chain.seller.last_name.titleize} has declined #{message_chain.buyer.first_name.titleize}'s offer.", Message::TYPE_DEFAULT,
       message_chain.id, nil)
+    # Send offer rejected email to buyer
+    buyer = offer.buyer
+    Notifier.delay.send_offer_rejected_email(buyer, offer)
     redirect_to action: 'index'
   end
 end
