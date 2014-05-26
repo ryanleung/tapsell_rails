@@ -583,3 +583,23 @@
 		color: @orange;
 	}
 }
+
+.watermark {
+	z-index: 1;
+	position: absolute;
+	display: table;
+	width: 100%;
+	.watermark-content {
+		vertical-align: middle;
+		display: table-cell;
+		text-align: center;
+		width: 100%;
+		h3 {
+			background-color: rgba(216, 36, 43, 0.4);
+			color: white;
+			padding: 10px 65px;
+			width: 200px;
+			margin: 0 auto;
+		}
+	}
+}
