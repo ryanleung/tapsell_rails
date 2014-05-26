@@ -5,7 +5,7 @@
   - if @listing.seller.eql?(current_user)
     .col-xs-12 
       .col-xs-8.text-right.no-pad
-        = link_to "javascript:void(0);", class: "edit-listing-btn" do
+        = link_to edit_listing_path(@listing), class: "edit-listing-btn" do
           = image_tag image_url("pencil.png"), class: "edit-listing-icon"
           | Edit This Listing
   .col-xs-8.box-container.left-container
