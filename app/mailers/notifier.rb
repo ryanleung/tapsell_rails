@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default from: "team@tapsell.co"
+  default from: '"Tapsell" <team@tapsell.co>'
 
 # General-purpose emails
 
@@ -24,44 +24,59 @@ class Notifier < ActionMailer::Base
     :subject => "Your listing was posted!")
   end
 
-  def send_message_notification_email
-    @user = user
-    mail(:to => @user.email,
+  def send_message_notification_email(receiver, sender, listing, message_body)
+    @receiver = receiver
+    @sender = sender
+    @listing = listing
+    @message_body = message_body
+    mail(:to => @receiver.email,
     :bcc => "team@tapsell.co",
     :subject => "You have a new message!")
   end
 
   # Transaction process emails (Buyer)
 
-  def send_offer_confirmation_email(user)
-    @user = user
-    mail(:to => @user.email,
+  def send_offer_confirmation_email(buyer, offer)
+    @buyer = buyer
+    @offer = offer
+    mail(:to => @buyer.email,
     :bcc => "team@tapsell.co",
-    :subject => "Offer confirmation")
+    :subject => "Confirmation of your offer")
   end
 
-  def send_offer_accepted_email(user)
-    @user = user
-    mail(:to => @user.email,
+  def send_offer_accepted_email(buyer, offer)
+    @buyer = buyer
+    @offer = offer
+    mail(:to => @buyer.email,
     :bcc => "team@tapsell.co",
     :subject => "Your offer was accepted!")
   end
 
+  def send_offer_rejected_email(buyer, offer)
+    @buyer = buyer
+    @offer = offer
+    mail(:to => @buyer.email,
+    :bcc => "team@tapsell.co",
+    :subject => "Your offer was declined")
+  end
+
   # Transaction process emails (Seller)
 
-  def send_offer_received_email(user)
-    @user = user
-    mail(:to => @user.email,
+  def send_offer_received_email(seller, offer)
+    @seller = seller
+    @offer = offer
+    mail(:to => @seller.email,
     :bcc => "team@tapsell.co",
-    :subject => "Offer confirmation")
+    :subject => "New offer for your listing!")
   end
 
 
-  def send_offer_acceptance_confirmation_email(user)
-    @user = user
-    mail(:to => @user.email,
+  def send_offer_acceptance_confirmation_email(seller, offer)
+    @seller = seller
+    @offer = offer
+    mail(:to => @seller.email,
     :bcc => "team@tapsell.co",
-    :subject => "Confirmation of offer acceptance")
+    :subject => "Confirming the offer you accepted")
   end
 
   # Launch emails (Phil's BBQ)

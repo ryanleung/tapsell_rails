@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
-    Notifier.send_password_reset_email(self).deliver
+    Notifier.delay.send_password_reset_email(self)
   end
 
   def generate_token(column)
