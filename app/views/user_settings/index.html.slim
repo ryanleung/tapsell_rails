@@ -2,39 +2,50 @@
   h1
     = @greeting
 = render "layouts/navigation"
-.container.marg-top-40.no-pad style="padding-left:20px;"
-  .col-md-12
-    .row
-      .col-md-12
-        .row
-          .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.visible-md.visible-sm.visible-xs style="margin-bottom: 15px;"
-            = link_to "PROFILE", user_path, class: "btn"
-            = link_to "USER SETTINGS", user_settings_path(@user), class: "btn pros-link-active"
-          .col-lg-4.col-push-8.box-container
-            .row
-              .col-md-12.text-center.well-label-name
-                h2 Making Payments
-                ul.list-group
-                  = render "credit_card_list"
-              .col-md-12.text-center.well-label-name
-                h2 Receiving Payments
-                ul.list-group
-          .col-md-8.col-push-4.profile-right-container
-            .row
-              .col-md-12.box-container.no-pad
-                .row
-                  .col-md-12
-                    ul.list-inline.profile-tab-menu
-                      li.list-inline-item
-                        = link_to "MAKING PAYMENTS", "javascript:void(0);", class: "making-payment orange"
-                      li.list-inline-item
-                        = link_to "RECEIVING PAYMENTS", "javascript:void(0);", class: "receiving-payment"
-                  .col-md-12
-                    .row
-                      .making-payment-container.col-md-12
-                        = render "making_payments"
-                      .receiving-payment-container.col-md-12.hide
-                        = render "receiving_payments"
+.col-xs-12.no-pad.user-setting-content-container
+  .col-xs-12.coming-soon-dim.text-center
+    .tapsell-com-soon-content.center-block 
+      h1 Coming Soon
+      .tapsell-com-soon-list
+      .tapsell-com-soon-list
+      .tapsell-com-soon-desc
+        p Defeat flakes, no-shows, and scammers
+        p by making offers securely in the app,
+        p backed by Tapsell Buyer Guarantee.
+
+  .container.no-pad style="padding-left:20px;"
+    .col-md-12
+      .row
+        .col-md-12
+          .row
+            .col-md-12.btn-group.btn-group-justified.border-medium.no-pad.box-container.visible-md.visible-sm.visible-xs style="margin-bottom: 15px;"
+              = link_to "PROFILE", user_path, class: "btn"
+              = link_to "USER SETTINGS", user_settings_path(@user), class: "btn pros-link-active"
+            .col-lg-4.col-push-8.box-container
+              .row
+                .col-md-12.text-center.well-label-name
+                  h2 Making Payments
+                  ul.list-group
+                    = render "credit_card_list"
+                .col-md-12.text-center.well-label-name
+                  h2 Receiving Payments
+                  ul.list-group
+            .col-md-8.col-push-4.profile-right-container
+              .row
+                .col-md-12.box-container.no-pad
+                  .row
+                    .col-md-12
+                      ul.list-inline.profile-tab-menu
+                        li.list-inline-item
+                          = link_to "MAKING PAYMENTS", "javascript:void(0);", class: "making-payment orange"
+                        li.list-inline-item
+                          = link_to "RECEIVING PAYMENTS", "javascript:void(0);", class: "receiving-payment"
+                    .col-md-12
+                      .row
+                        .making-payment-container.col-md-12
+                          = render "making_payments"
+                        .receiving-payment-container.col-md-12.hide
+                          = render "receiving_payments"
 = content_for :javascript_contents do
   = javascript_include_tag "bank_accounts"
 = content_for :stylesheet_contents do

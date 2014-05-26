@@ -1,4 +1,8 @@
 $(document).ready ->
+	dimHeight = $(".user-setting-content-container").height()
+	$(".coming-soon-dim").height(dimHeight - 39)
+
+
 	$(".routing-number, .account-number").numeric
 	  decimal: false
 	  negative: false
