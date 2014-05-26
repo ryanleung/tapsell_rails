@@ -13,6 +13,8 @@ class Offer < ActiveRecord::Base
   belongs_to :buyer, :class_name => "User", :foreign_key => "buyer_id"
   belongs_to :credit_card
 
+  has_many :reviews
+
   def self.create_offer!(buyer, listing, cc=nil, price=nil)
     if price.present?
       p = price

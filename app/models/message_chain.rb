@@ -38,6 +38,13 @@ class MessageChain < ActiveRecord::Base
     end
 
     msg_chain.build_and_append_message(sender_id, content, message_type)
+
+    # Send email to receiver
+    receiver = sender_id == msg_chain.seller.id ? msg_chain.buyer : msg_chain.seller
+    sender = User.find(sender_id)
+    listing = msg_chain.listing
+    message_body = msg_chain.most_recent_message.content
+    Notifier.delay.send_message_notification_email(receiver, sender, listing, message_body)
     return msg_chain
   end
 

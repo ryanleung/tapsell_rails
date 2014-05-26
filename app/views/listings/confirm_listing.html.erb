@@ -7,7 +7,7 @@
     <div class="center-block content">
       <section class="text-center col-xs-12 notif-title">
         <h1>Congratulations!</h1>
-        <p>We'll notify you when the item sells. Please note that it takes up to 24 hours for listings to appear on external sites.</p>
+        <p>Your listing was successfully posted.  Please note that it takes up to 24 hours for listings to appear on external sites.</p>
         </div>
       </section>
     </div>
@@ -51,9 +51,9 @@
               </div>
             </div>
             <div class="product-guarantee-container pad-v-20">
-              <span class="black-check-icon">
-              </span>
-              <p class="pull-left">Buyer guarantee</p>
+              <% #<span class="black-check-icon"> %>
+              <% # </span> %>
+              <% # <p class="pull-left">Buyer guarantee</p> %>
             </div>
             <div class="list-container">
               <div class="list"></div>
@@ -93,7 +93,7 @@
               <h3 class="text-center">
                 <% if @user.reviews_as_seller.present? %>
                 <%= image_tag image_url("green-like.png") %>
-                <%= @user.percent_pos_reviews %>
+                <%= @user.percent_pos_seller_reviews %>
                 POSITIVE REVIEWS
                 <% end %>
               </h3>

@@ -14,25 +14,17 @@
         p We've sent you an email confirmation of this offer.
         .list
     .col-md-12.text-center.order-footer
-      .row
-        .col-sm-12
-          h4 What do you want to do now?
-        .col-sm-5.text-right.no-pad
-          = link_to "javascript:void(0);" do
-            = image_tag "/assets/mobile-app.png", class: "mobile-app"
-        .col-sm-2.text-center.no-pad
-          = image_tag "/assets/vertical_list.png"
-        .col-sm-5.text-left.no-pad
+          .col-sm-2.text-center.no-pad
+          = link_to "Browse more listings", listings_path, class: "link-to-account"
+          .col-sm-2.text-center.no-pad
           = link_to "Go to my account", dashboard_path(current_user.id), class: "link-to-account"
-    .col-sm-12.text-center.last-content
-      | Thanks for using Tapsell. You rock.
   .col-md-4
     .row
       .col-md-11.box-container.right-container.no-pad
         .right-container-label
           | You made an offer for:
         .right-container-content
-          h4= @listing.title
+          h4= link_to @listing.title, listing_path(@listing)
           .post-container
             | POSTED &nbsp;
             b= @listing.created_at.strftime("%^b. %e")
@@ -46,8 +38,8 @@
           -else
             .product-image-container style="background-image: url('#{image_url("no_pic.jpg")}')"
           .product-guarantee-container
-            span.black-check-icon
-            p.pull-left Tapsell Buyer Guarantee
+          - #  span.black-check-icon
+          - #  p.pull-left Tapsell Buyer Guarantee
           .list-container
             .list
             .list

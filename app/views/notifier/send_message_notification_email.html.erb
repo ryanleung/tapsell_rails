@@ -4,10 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p> Hi, <%= @user.first_name %>, </p>
-    <p> "Sender name" sent you a message about "Listing title." </p>
-    <p> "Sender name": "Message body" </p>
-    <p> "Click here to respond" </p>
+    <p> Hi <%= @receiver.first_name %>, </p>
+    <p> <%= @sender.first_name %> sent you a message about "<%= @listing.title %>": </p>
+    <p> "<%= @message_body %>" </p>
+    <p> <%= link_to "Click here to respond", messages_url(@receiver) %> </p>
     <p> Tip: We recommend responding promptly.  This keeps the conversation moving and makes everyone happy.  Just a thought! </p>
     <p> Warmly, </p>
     <p> Team Tapsell </p>

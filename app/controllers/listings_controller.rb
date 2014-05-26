@@ -95,7 +95,7 @@ class ListingsController < ApplicationController
     if @listing.save
       flash[:success] = "Listing created!"
       redirect_to confirm_listing_path(@listing)
-      Notifier.send_item_posted_email(@user).deliver
+      Notifier.delay.send_item_posted_email(@user)
     else
       flash[:notice] = "Oops!  There was a problem creating the listing, please try again.  #{@listing.errors.full_messages.join(', ')}"
       redirect_to new_listing_path
@@ -136,7 +136,6 @@ class ListingsController < ApplicationController
   end
 
   def direct_message
-    debugger
     @msg_chain = MessageChain.send_message(current_user.id, params[:listing_id],
               params[:content], nil, nil, nil)
     redirect_to :action => :show

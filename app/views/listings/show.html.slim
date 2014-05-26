@@ -2,6 +2,12 @@
   = stylesheet_link_tag "offers", "products"
 
 .container.marg-top-125
+  - if @listing.seller.eql?(current_user)
+    .col-xs-12 
+      .col-xs-8.text-right.no-pad
+        = link_to "javascript:void(0);", class: "edit-listing-btn" do
+          = image_tag image_url("pencil.png"), class: "edit-listing-icon"
+          | Edit This Listing
   .col-xs-8.box-container.left-container
     .col-xs-12.listing-title-container.title-container
       h1.order-title.product-title
@@ -34,8 +40,8 @@
                     - else
                       = submit_tag "MAKE AN OFFER", class: "btn col-xs-12"
           .product-guarantee-container.pad-v-20
-            span.black-check-icon
-            p.pull-left Tapsell Buyer Guarantee
+          - #  span.black-check-icon
+          - #  p.pull-left Tapsell Buyer Guarantee
           .list-container
             .list
             .list
@@ -63,7 +69,7 @@
             h3.text-center
               - if @listing.seller.reviews_as_seller.present?
                 = image_tag "/assets/green-like.png"
-                = @listing.seller.percent_pos_reviews 
+                = @listing.seller.percent_pos_seller_reviews 
                 | % POSITIVE REVIEWS &nbsp;
               - if @listing.seller != current_user
                 = link_to "#send-message", class: "btn listing-message-btn", "data-toggle"=>"modal", "data-target"=>"#send-message" do

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p> Hi <%= @buyer.first_name %>, </p>
+    <p> We're sorry to report that your offer of <%= number_to_currency(@offer.price, :locale => 'en_us', :precision => 0) %> for "<%= @offer.listing.title %>" was declined by the seller, <%= @offer.seller.first_name %>.  Better luck next time! </p>
+    <p> Wondering what to do next? </p>
+    <ul> (1) If you're still interested, haggle with the seller a bit.  Just <%= link_to "send them a message through the website", messages_url(@offer.seller) %>.  Who knows what could happen. </ul>
+    <ul> (2) Once you agree on a price, you can always <%= link_to "make a new offer", listing_url(@offer.listing) %>.  </ul>
+    <ul> (3) Or, if you're no longer interested, just <%= link_to "browse for something else!", root_url %> </ul>
+    <p> Thanks again for using Tapsell.  You rock.  </p>
+    <p> Take care, </p>
+    <p> Team Tapsell </p>
+    <%= link_to "Visit the Tapsell website", root_url %>
+  </body>
+</html>

@@ -1,4 +1,9 @@
 <%- for @msg_chain in @recent_msg_chains %>
+  <% if @msg_chain.seller == current_user %>
+    <% other_user = @msg_chain.buyer %>
+  <% else %>
+    <% other_user = @msg_chain.seller %>
+  <% end %>
   <%= link_to messages_path(current_user.id), :class => "content col-xs-12" do %>
     <!-- TODO:HACK, move styling to css -->
     <div class="content col-xs-12" style="color:#3e3e3e">
@@ -13,7 +18,7 @@
         </div>
       <% end %>
       <div class="information pull-left">
-        <p class="name"><%= @msg_chain.most_recent_message.sender.first_name.titleize + " " + @msg_chain.most_recent_message.sender.last_name.titleize %>
+        <p class="name">To: <%= other_user.first_name.titleize + " " + other_user.last_name.titleize %>
         </p>
         <p class="date">
         <%= distance_of_time_in_words(Time.now, @msg_chain.updated_at, false, { vague: true }) %>
@@ -21,7 +26,11 @@
       </div>
       <div class="message pull-left">
         <p>
-          <%= @msg_chain.most_recent_message.content %>
+          <% if current_user == @msg_chain.most_recent_message.sender %>
+            <%=  "You: " + @msg_chain.most_recent_message.content %>
+          <% else %>
+            <%= @msg_chain.most_recent_message.sender.first_name.titleize + ": " + @msg_chain.most_recent_message.content %>
+          <% end %>
         </p>
       </div>
     </div> <!-- end content -->

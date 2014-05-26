@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p> Hey <%= @user.first_name %>, </p>
-    <p> We’re writing to confirm that your offer of <%= number_to_currency(@user.offers_as_buyer.last.price, :locale => 'en_us', :precision => 0) %> for “<%= Listing.find_by_id(@user.offers_as_buyer.last.listing_id).title %>" has been submitted. </p>
-    <p> <%= link_to "Click here to view the listing", listing_url(@user.offers_as_buyer.last.listing_id) %> </p>
+    <p> Hey <%= @buyer.first_name %>, </p>
+    <p> We’re writing to confirm that your offer of <%= number_to_currency(@buyer.offers_as_buyer.last.price, :locale => 'en_us', :precision => 0) %> for “<%= Listing.find_by_id(@buyer.offers_as_buyer.last.listing_id).title %>" has been submitted. </p>
+    <p> <%= link_to "Click here to view the listing", listing_url(@buyer.offers_as_buyer.last.listing_id) %> </p>
     <p> Hang tight - the seller has 24 hours to accept or decline your offer. </p>
     <p> Got questions?  Just reply to this email. </p>
     <p> Keep calm and haggle on, </p>
