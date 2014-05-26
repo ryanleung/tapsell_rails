@@ -44,12 +44,20 @@ class Notifier < ActionMailer::Base
     :subject => "Confirmation of your offer")
   end
 
-  def send_offer_accepted_email(user, offer)
-    @user = user
+  def send_offer_accepted_email(buyer, offer)
+    @buyer = buyer
     @offer = offer
-    mail(:to => @user.email,
+    mail(:to => @buyer.email,
     :bcc => "team@tapsell.co",
     :subject => "Your offer was accepted!")
+  end
+
+  def send_offer_rejected_email(buyer, offer)
+    @buyer = buyer
+    @offer = offer
+    mail(:to => @buyer.email,
+    :bcc => "team@tapsell.co",
+    :subject => "Your offer was rejected")
   end
 
   # Transaction process emails (Seller)
@@ -63,9 +71,9 @@ class Notifier < ActionMailer::Base
   end
 
 
-  def send_offer_acceptance_confirmation_email(user)
-    @user = user
-    mail(:to => @user.email,
+  def send_offer_acceptance_confirmation_email(seller, offer)
+    @seller = seller
+    mail(:to => @seller.email,
     :bcc => "team@tapsell.co",
     :subject => "Confirmation of offer acceptance")
   end

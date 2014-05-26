@@ -4,11 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p> Hey there, <%= @user.first_name %>, </p>
-    <p> Good news - your listing "Listing name" sold! </p>
+    <p> Hey there, <%= @seller.first_name %>, </p>
+    <p> Good news - your listing "<%= @offer.listing.title %>" sold! </p>
     <p> "Link to listing" </p>
     <p> Wondering what happens next? </p>
-    <ul> (1) Arrange a meetup with the buyer.  To contact them, open the website, or use the contact info at the end of this message. </ul>
+    <ul> (1) Arrange a meetup with the buyer.  To contact them, <%= link_to "send a message through the website", messages_url(@seller) %>. </ul>
     <ul> (2) Meet up within 3 days. </ul>
     <ul> (3) Exchange your stuff for moolah and enjoy! </ul>
     <p> Thanks again for using Tapsell.  You rock.  </p>
