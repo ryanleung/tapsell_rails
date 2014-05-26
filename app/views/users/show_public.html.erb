@@ -49,7 +49,7 @@
 					<div class="col-xs-6 col-md-3">
 						<div class="col-xs-12 col-md-12 thumbnail">
 							<h5 class="col-xs-12 no-pad">
-								<%= truncate(listing.title.html_safe, length: 30).titleize %>
+								<%= truncate(listing.title, length: 30).html_safe %>
 							</h5>
 							<% if listing.images.present? %>
 								<%= link_to listing_path(listing), class: 'col-xs-12 no-pad' do %>
