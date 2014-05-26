@@ -21,6 +21,32 @@ class Listing < ActiveRecord::Base
 	  return results
 	end
 
+	def remove
+	  # Change status of listing to removed, send deleted message
+	  # to each message chain attached to the listing
+    self.status = Listing::STATUS_REMOVED
+    self.save
+
+    self.message_chains.each do |m|
+    	m.offer.cancel
+      MessageChain.send_message(self.seller.id, self.id, "#{self.seller.first_name.titleize} has removed this listing.", Message::TYPE_LISTING_REMOVED, m.id, nil)
+    end
+	end
+
+	def sold_to(offer)
+	  # Change status of listing to sold, send deleted message
+	  # to each message chain attached to the listing
+    self.status = Listing::STATUS_PURCHASED
+    self.save
+
+    self.message_chains.each do |m|
+      if m.offer != offer
+        m.offer.cancel
+        MessageChain.send_message(self.seller.id, self.id, "#{self.seller.first_name.titleize} has sold this listing.", Message::TYPE_LISTING_SOLD, m.id, nil)
+      end
+    end
+	end
+
 
 	# Validations
 	# -----------

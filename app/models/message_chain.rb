@@ -25,6 +25,12 @@ class MessageChain < ActiveRecord::Base
       msg_chain = MessageChain.find_by(:listing_id => listing_id, :seller_id => seller_id, :buyer_id => sender_id)
     end
 
+    # If there is an offer attached, make the msg_chain keep that offer. This is for when people renegotiate offers.
+      if offer.present? && msg_chain.present?
+        msg_chain.offer.try(:cancel) if msg_chain.offer.present?
+        msg_chain.offer = offer
+      end
+
     if msg_chain.nil?
       # handle case if msg_chain does not exist yet
       # the sender must be a seller if nil
@@ -58,7 +64,7 @@ class MessageChain < ActiveRecord::Base
       raise "sender does not belong in this chain"
     end
     new_msg = Message.create(:content => content, :message_chain => self, :message_type => message_type, :sender_id => sender_id)
-    self.messages.push(new_msg)
+    self.messages << new_msg
     # TODO: there are better ways to find out dirty than always these if statements
     if self.seller_id == sender_id
       self.buyer_dirty = true

@@ -26,7 +26,11 @@
 	</h4>
 	<p class="col-xs-12 no-pad second-title">
 		<span class="pull-left">YOU HAVE</span>
-		<span class="pull-left time">23hr 59min</span>
+		<% if @current_msg_chain.offer.target_time_for_accepting.present? %>
+			<span class="pull-left time"><%= distance_of_time_in_words(Time.now, @current_msg_chain.offer.target_time_for_accepting) %></span>
+		<% else %>
+			<span class="pull-left time">LESS THAN 1 DAY </span>
+		<% end %>
 		<span class="pull-left">LEFT TO:</span>
 		<span class="pull-left btn-content">
 			<%= link_to accept_offer_message_path(@current_msg_chain.id), class: "btn btn-accept text-center" do %>

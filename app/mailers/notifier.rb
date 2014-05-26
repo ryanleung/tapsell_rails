@@ -24,6 +24,13 @@ class Notifier < ActionMailer::Base
     :subject => "Your listing was posted!")
   end
 
+  def send_message_notification_email
+    @user = user
+    mail(:to => @user.email,
+    :bcc => "team@tapsell.co",
+    :subject => "You have a new message!")
+  end
+
   # Transaction process emails (Buyer)
 
   def send_offer_confirmation_email(user)
@@ -31,7 +38,14 @@ class Notifier < ActionMailer::Base
     mail(:to => @user.email,
     :bcc => "team@tapsell.co",
     :subject => "Offer confirmation")
-  end  
+  end
+
+  def send_offer_accepted_email(user)
+    @user = user
+    mail(:to => @user.email,
+    :bcc => "team@tapsell.co",
+    :subject => "Your offer was accepted!")
+  end
 
   # Transaction process emails (Seller)
 
@@ -42,7 +56,15 @@ class Notifier < ActionMailer::Base
     :subject => "Offer confirmation")
   end
 
-  # Launch
+
+  def send_offer_acceptance_confirmation_email(user)
+    @user = user
+    mail(:to => @user.email,
+    :bcc => "team@tapsell.co",
+    :subject => "Confirmation of offer acceptance")
+  end
+
+  # Launch emails (Phil's BBQ)
 
   def send_launch_email(user)
     @user = user

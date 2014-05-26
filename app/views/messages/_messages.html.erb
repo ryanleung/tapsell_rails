@@ -1,5 +1,5 @@
 <% if @current_msg_chain.present? %>
-  <%- for @message in @current_msg_chain.messages %>
+  <%- for @message in @current_msg_chain.messages.sort_by(&:created_at) %>
     <div class="col-xs-12" style="overflow">
       <% if @current_user == @message.sender %>
         <div class="message-item col-xs-12 col-md-9 buyer pull-right">
@@ -21,7 +21,7 @@
         </div>
       <% end %>
       <div class="col-xs-12 col-md-9 pull-left no-pad">
-        <p class="text-right time"><%= time_ago_in_words(@message.created_at) %></p>
+        <p class="text-right time"><%= distance_of_time_in_words(Time.now, @message.created_at, false, { vague: true }) %></p>
       </div>
     </div>
   <% end %>

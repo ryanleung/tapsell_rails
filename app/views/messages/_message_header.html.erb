@@ -1,20 +1,28 @@
 <% if @current_msg_chain.present? %>
-  <% if @current_msg_chain.offer.status == Offer::STATUS_WAITING_FOR_SELLER_RESPONSE && current_user == @current_msg_chain.seller %>
-    <%= render "message_header_accept_decline" %>
-  <% elsif @current_msg_chain.offer.status == Offer::STATUS_DENIED %>
+  <% # handle direct message case %>
+  <% status = @current_msg_chain.offer.try(:status) %>
+  <% if status == Offer::STATUS_WAITING_FOR_SELLER_RESPONSE %>
+    <% if current_user == @current_msg_chain.buyer %>
+      <%= render "message_header_buyer_waiting" %>
+    <% else %>
+      <%= render "message_header_accept_decline" %>
+    <% end %>
+  <% elsif status == Offer::STATUS_DENIED %>
     <%= render "message_header_decline" %>
-  <% elsif @current_msg_chain.offer.status == Offer::STATUS_ACCEPTED %>
+  <% elsif status == Offer::STATUS_ACCEPTED %>
     <%= render "message_header_accept" %>
-  <% elsif @current_msg_chain.offer.status == Offer::STATUS_TRANSACTION_SUCCESSFUL %>
+  <% elsif status == Offer::STATUS_TRANSACTION_SUCCESSFUL %>
     <% if current_user == @current_msg_chain.buyer %>
       <%= render "message_chain_success_buyer" %>
     <% else %>
       <%= render "message_chain_success_seller" %>
     <% end %>
   <% else %>
-    <h1>
+    <h3>
       Conversation with
       <%= @other_user.first_name %>
-    </h1>
+      about
+      <%= link_to @current_msg_chain.listing.title, listing_path(@current_msg_chain.listing) %>
+    </h3>
   <% end %>
 <% end %>

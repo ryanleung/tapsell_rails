@@ -2,7 +2,7 @@ Hello <%= @user.first_name %>,
 
 Your item posting was successful!  You can manage and edit your listing through the mobile app.  Here’s the public link:
 
-https://tapsell.co/listings/<%= @user.selling_listings.last.id %>
+http://tapsell.co/listings/<%= @user.listings_as_seller.last.id %>
 
 Some selling tips:
 
