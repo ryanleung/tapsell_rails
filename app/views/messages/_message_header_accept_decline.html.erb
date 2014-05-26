@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+<div class="col-xs-7 right-heading" id="message-header">
+	<h4 class="title">
+		Clone made an offer of
+		<span class="price">$39.00</span>
+		for
+		<span class="subject">FIFTY SHADES OF GREY</span> 
+	</h4>
+	<p class="col-xs-12 no-pad second-title">
+		<span class="pull-left">YOU HAVE</span>
+		<span class="pull-left time">13hr 43min</span>
+		<span class="pull-left">LEFT TO:</span>
+		<span class="pull-left btn-content">
+			<%= link_to "javascript:void(0);", class: "btn btn-accept text-center" do %>
+				<i class="pull-left"></i>
+				ACCEPT
+			<% end %>
+			<%= link_to "javascript:void(0);", class: "btn btn-decline text-center" do %>
+=======
 <div class="col-xs-10 right-heading" id="message-header">
 	<h4 class="title">
 		<%= "#{@other_user.first_name.titleize} made an offer of" %>
@@ -19,6 +38,7 @@
 				ACCEPT
 			<% end %>
 			<%= link_to decline_offer_message_path(@current_msg_chain.id), class: "btn btn-decline text-center" do %>
+>>>>>>> c9efa0f5dfb4d48c381d8b7f986e19497143f67b
 				<i class="pull-left"></i>
 				DECLINE
 			<% end %>

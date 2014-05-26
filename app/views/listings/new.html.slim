@@ -59,25 +59,19 @@
       .col-xs-12.header-box-container
         .row
           = image_tag "/assets/tapsell-third-icon.png", class: "icon-post pull-left"
-          h3.pull-left Where else would you like post your item? 
-      .col-xs-12.box-container-content.pull-left
+          h3.pull-left Where else would you like to post your listing
+      .col-xs-12.box-container-content.pull-left.post-social-container
         .row
-          .col-xs-4.text-center
-            .check-container.col-xs-12
-              = image_tag "/assets/tapsell-check-icon.png", class: "check-craigslist hide animated fadeInUp"
-            .button-container
-              = link_to "CRAIGSLIST", "javascript:void(0);", class: "btn craigslist-link col-xs-12 animated fadeInUp"
-              = link_to "CRAIGSLIST", "javascript:void(0);", class: "btn craigslist-active active col-xs-12 hide animated fadeInUp"
-          .col-xs-4.text-center
+          .col-xs-6.text-center
             .check-container.col-xs-12
               = image_tag "/assets/tapsell-check-icon.png", class: "check-facebook-group hide animated fadeInUp"
-            .button-container
+            .button-container.text-center
               = link_to "FACEBOOK FREE & FOR SALE", "javascript:void(0);", class: "btn facebook-link col-xs-12 animated fadeInUp"
               = link_to "FACEBOOK FREE & FOR SALE", "javascript:void(0);", class: "btn hide facebook-active active col-xs-12 animated fadeInUp"
-          .col-xs-4.text-center
+          .col-xs-6.text-center
             .check-container.col-xs-12
               = image_tag "/assets/tapsell-check-icon.png", class: "check-facebook-timeline hide animated fadeInUp"
-            .button-container
+            .button-container.text-center
               = link_to "FACEBOOK TIMELINE", "javascript:void(0);", class: "btn facebook-timeline-link col-xs-12 animated fadeInUp"
               = link_to "FACEBOOK TIMELINE", "javascript:void(0);", class: "btn hide facebook-timeline-active active col-xs-12 animated fadeInUp"
 
