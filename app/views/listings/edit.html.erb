@@ -1,1 +1,130 @@
-Edit listing placeholder
+<%= content_for :stylesheet_contents do %>
+	<%= stylesheet_link_tag "offers", "products" %>
+<% end %>
+
+<%= form_for @listing, html: {role: "form", style: "overflow: hidden;"} do |f| %>
+<div class="col-xs-12 edit-listing-header text-center animated slideInDown">
+	<%= image_tag image_url("tapsell_white_pencil.png"), class: "white-pencil-icon" %>
+	&nbsp; You are currently in edit mode
+	<button type="submit" class="btn edit-listing-submit">SAVE AND VIEW CHANGES</button>
+</div>
+<div class="container">
+		<div class="col-xs-12 no-pad">
+			
+		</div>
+		<div class="col-xs-12 no-pad">
+			<div class="col-xs-8 box-container left-container" style="padding-left: 0; padding-right: 0;">
+				<div class="col-xs-12 listing-title-container title-container">
+					<h1 class="order-title product-title">
+						<%= f.text_field :title, class: "form-control input-lg edit-listing-title" %>
+						<%= text_field_tag :title, "", class: "form-control edit-listing-name", placeholder: "POST SEPT. 19 by NEIL PATRICK HARRIS" %>
+					</h1>
+					<sub class="sub-product-title">
+					</sub>
+				</div>
+				<div class="col-xs-12 content-section no-bg" style="padding: 0 40px 15px 40px">
+					<div class="col-xs-12 no-pad">
+						<div class="alert alert-success marg-top-30 hide"></div>
+					</div>
+					<div class="col-xs-12 no-pad">
+						<div class="col-xs-10 no-pad">
+							<%- if @listing.images.present? %>
+								<%= image_tag image_url(@listing.images.first.image), class: "edit-listing-image" %>
+							<%- else %>
+								<%= image_tag mage_url("no_pic.jpg"), class: "edit-listing-image" %>
+							<%- end %>
+						</div>
+						<div class="col-xs-2 text-right pad-left-0">
+							<ul class="image-edit-listing">
+								<% @listing.images.each_with_index do |listing| %>
+									<li class="thumb-slider" style="background-image: url('<%= image_url(listing.image) %>')"></li>
+								<% end %>
+							</ul>
+						</div>
+					</div>
+					<div class="col-xs-12 no-pad product-description">
+						<%= f.text_area :info, class: "form-control edit-listing-info" %>
+					</div>
+				</div>
+			</div><!-- end left-container -->
+			<div class="col-xs-4">
+				<div class="col-xs-11 box-container right-container no-pad">
+					<div class="right-container-content">
+						<div class="price-container price-product-container">
+							<%= form_tag new_offer_path, method: "get", html: {role: "form", class: "center-block"} do %>
+								<div class="from-group">
+									<div class="input-group input-group-lg edit-listing-input-group">
+										<span class="input-group-addon first-addon">$</span>
+										<%= text_field_tag :offer_price, "", class: "form-control numeric", maxlength: "4", required: "false", disabled: "true" %>
+										<span class="input-group-addon last-addon">.00</span>
+									</div>
+									<div class="button-product-container">
+										<%- if @listing.seller.eql?(current_user) || @listing.status != Listing::STATUS_ACTIVE %>
+											<%= link_to "MAKE AN OFFER", "javascript:void(0);", class: "btn col-xs-12", disabled: "true" %>
+										<%- else %>	
+											<%= submit_tag "MAKE AN OFFER", class: "btn col-xs-12" %>
+										<%- end %>
+									</div>
+								</div>
+							<% end %>
+						</div><!-- end price-container -->
+						<div class="product-guarantee-container pad-v-20"></div>
+						<div class="list-container">
+							<div class="list"></div>
+							<div class="list"></div>
+						</div>
+						<div class="location-container">
+							Pick up location:
+							UC San Diego
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-11 box-container right-container no-pad">
+					<div class="right-container-content">
+						<h3 class="text-center">
+							<%= @listing.seller.first_name %>
+						</h3>
+						<div class="avatar-container text-center">
+							<%= link_to public_profile_path(@listing.seller.id) do %>
+								<% if @listing.seller.image.nil? %>
+									<%= image_tag image_url("no_image.png"), class: "img-circle" %>
+								<% else %>
+									<%= image_tag image_url(@listing.seller.image.image.square), class: "img-circle" %>
+								<% end %>
+							<% end %>
+						</div>
+						<div class="user-location-container">
+							<h4 class="location text-center">
+								<%= image_tag image_url("pin.png") %>
+								<%= location = "UC San Diego"%>
+							</h4>
+						</div>
+						<div class="list-container">
+							<div class="list"></div>
+							<div class="list"></div>
+						</div>
+						<div class="review-container">
+							<h3 class="text-center">
+								<% if @listing.seller.reviews_as_seller.present? %>
+									<%= image_tag image_url("green-like.png") %>
+									<%= @listing.seller.percent_pos_seller_reviews %>
+									% POSITIVE REVIEWS &nbsp;
+								<% end %>
+								<% if !@listing.seller.eql?(current_user) %>
+									<%= link_to "#send-message", class: "btn listing-message-btn", "data-toggle"=>"modal", "data-target"=>"#send-message" do %>
+										MESSAGE &nbsp; <%= @listing.seller.first_name.upcase %>
+									<% end %>	 
+								<% end %>
+							</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<% end %>
+
+<%= content_for :javascript_contents do %>
+  <%= javascript_include_tag "products" %>
+<% end %>
+  
