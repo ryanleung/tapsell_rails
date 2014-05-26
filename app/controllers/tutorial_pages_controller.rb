@@ -16,7 +16,7 @@ class TutorialPagesController < ApplicationController
       sign_in @user
       flash[:success] = "Welcome to Tapsell!"
       redirect_to tutorial_step_one_path
-      Notifier.send_welcome_email(@user).deliver
+      Notifier.delay.send_welcome_email(@user)
     else
       flash[:notice] = 'That email / password combination is invalid, please try again.'
       redirect_to tutorial_sign_up_path
