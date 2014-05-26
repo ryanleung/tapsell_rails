@@ -93,7 +93,7 @@
               <h3 class="text-center">
                 <% if @user.reviews_as_seller.present? %>
                 <%= image_tag image_url("green-like.png") %>
-                <%= @user.percent_pos_reviews %>
+                <%= @user.percent_pos_seller_reviews %>
                 POSITIVE REVIEWS
                 <% end %>
               </h3>

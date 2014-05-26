@@ -63,7 +63,7 @@
             h3.text-center
               - if @listing.seller.reviews_as_seller.present?
                 = image_tag "/assets/green-like.png"
-                = @listing.seller.percent_pos_reviews 
+                = @listing.seller.percent_pos_seller_reviews 
                 | % POSITIVE REVIEWS &nbsp;
               - if @listing.seller != current_user
                 = link_to "#send-message", class: "btn listing-message-btn", "data-toggle"=>"modal", "data-target"=>"#send-message" do

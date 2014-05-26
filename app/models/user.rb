@@ -12,9 +12,7 @@ class User < ActiveRecord::Base
 	# Relationships - Ordered Alphabetically
 	# --------------------------------------
 
-	# Ryan, you should check this
-  has_many :reviews_as_seller, :class_name => "Review", :foreign_key => :seller_id
-  has_many :reviews_as_buyer, :class_name => "Review", :foreign_key => :buyer_id
+  has_many :reviews
   has_many :listings_as_seller, :class_name => "Listing", :foreign_key => :seller_id
   has_many :listings_as_buyer, :class_name => "Listing", :foreign_key => :buyer_id
   has_one :image
@@ -173,17 +171,38 @@ class User < ActiveRecord::Base
   # Reviews
   # ---------------------------
 
-  def pos_reviews
-    User.find_by_id(id).reviews_as_seller.sum(:positive)
+  def reviews_as_seller
+    Review.joins(:offer).
+            where('reviews.user_id = ? AND offers.seller_id = ?',
+                  self.id, self.id)
   end
 
-  def total_reviews
-    User.find_by_id(id).reviews_as_seller.count
+  def reviews_as_buyer
+    Review.joins(:offer).
+            where('reviews.user_id = ? AND offers.buyer_id = ?',
+                  self.id, self.id)
   end
 
+  def pos_seller_reviews
+    self.reviews_as_seller.sum(:rating)
+  end
+
+  def total_seller_reviews
+    self.reviews_as_seller.count
+  end
+
+  def pos_buyer_reviews
+    self.reviews_as_buyer.sum(:rating)
+  end
+
+  def total_buyer_reviews
+    self.reviews_as_buyer.count
+  end
   # This may automatically round the answer - need to check
-  def percent_pos_reviews
-    (pos_reviews * 100.0) / (total_reviews * 100.0)
+  def percent_pos_seller_reviews
+    return 0 if total_seller_reviews == 0
+    
+    (pos_seller_reviews * 100.0) / (total_seller_reviews * 100.0)
   end
 
   # Listings
