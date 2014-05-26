@@ -13,7 +13,7 @@
 			<li class="<%= controller_name.eql?('users') ? "active" : "" %>">
 				<%= link_to "PROFILE", user_path(current_user.id), class: "nav-link" %>
 			</li>
-			<li class="<%= controller_name.eql?('payment_settings') ? "active" : "" %>">
+			<li class="<%= controller_name.eql?('user_settings') ? "active" : "" %>">
 				<%= link_to "SETTINGS", user_settings_path(current_user.id), class: "nav-link" %>
 			</li>
 		</ul>

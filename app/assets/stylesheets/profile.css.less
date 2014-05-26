@@ -466,3 +466,37 @@
 	background-position: center;
 	background-size: 100%;
 }
+
+.coming-soon-dim {
+	background-color: rgba(87, 87, 87, 0.6);
+	height: 100%;
+	z-index: 1;
+	position: absolute;
+	float: none;
+	display: table;
+	.tapsell-com-soon-content {
+		vertical-align: middle;
+		display: table-cell;
+		width: 400px;
+		h1 {
+			color: white;
+			font-size: 54px;
+			margin-bottom: 20px;
+		}
+		.tapsell-com-soon-list {
+			border-bottom: 1px solid white;
+			width: 400px;
+			margin: 4px auto;
+		}
+		.tapsell-com-soon-desc {
+			width: 450px;
+			margin: 20px auto;
+			p {
+				font-size: 26px;
+				color: white;
+				font-family: @futuraextended;
+				margin-bottom: -5px;
+			}
+		}
+	}
+}
