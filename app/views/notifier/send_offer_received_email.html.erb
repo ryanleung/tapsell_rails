@@ -5,7 +5,7 @@
   </head>
   <body>
     <p> Howdy, <%= @seller.first_name %>, </p>
-    <p> Congratulations!  You've got an offer of <% number_to_currency(@offer.price, :locale => 'en_us', :precision => 0) %> for your listing "<%= @offer.listing.title %>" </p>
+    <p> Congratulations!  You've got an offer of <%= number_to_currency(@offer.price, :locale => 'en_us', :precision => 0) %> for your listing "<%= @offer.listing.title %>" </p>
     <p> <%= link_to "Click here to accept or reject the offer within 24 hours.", messages_url(@seller) %> </p>
     <p> Some tips: </p>
     <ul> (1) Both you and the buyer will have a chance to leave a review after the transaction - be a good sport and follow through if you accept the offer! </ul>

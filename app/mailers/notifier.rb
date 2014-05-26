@@ -57,7 +57,7 @@ class Notifier < ActionMailer::Base
     @offer = offer
     mail(:to => @buyer.email,
     :bcc => "team@tapsell.co",
-    :subject => "Your offer was rejected")
+    :subject => "Your offer was declined")
   end
 
   # Transaction process emails (Seller)
@@ -73,9 +73,10 @@ class Notifier < ActionMailer::Base
 
   def send_offer_acceptance_confirmation_email(seller, offer)
     @seller = seller
+    @offer = offer
     mail(:to => @seller.email,
     :bcc => "team@tapsell.co",
-    :subject => "Confirmation of offer acceptance")
+    :subject => "Confirming the offer you accepted")
   end
 
   # Launch emails (Phil's BBQ)
