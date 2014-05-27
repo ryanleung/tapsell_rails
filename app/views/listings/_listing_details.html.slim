@@ -10,13 +10,15 @@
               - @listing.images.each_with_index do |listing, index|
                 - if index.eql?(0)
                   .item.active
-                    .watermark
-                      | SOLD
+                    .watermark.text-center
+                      .watermark-content
+                        h3 SOLD
                     = image_tag image_url(listing.image), class: "listing-image"
                 - else
                   .item
-                    .watermark
-                      | SOLD
+                    .watermark.text-center
+                      .watermark-content
+                        h3 SOLD
                     = image_tag image_url(listing.image), class: "listing-image"
             - else
               - @listing.images.each_with_index do |listing, index|
@@ -29,11 +31,15 @@
           - else
             - if @listing.status.eql?(Listing::STATUS_PURCHASED)
               .item.active
-                .watermark
-                  | SOLD
+                .watermark.text-center
+                  .watermark-content
+                    h3 SOLD
                 = image_tag image_url('no_pic.jpg'), class: "listing-image"
             - else
               .item.active
+                .watermark.text-center
+                  .watermark-content
+                    h3 SOLD
                 = image_tag image_url('no_pic.jpg'), class: "listing-image"
     .col-xs-2.text-right.pad-left-0
       ol.carousel-indicators
