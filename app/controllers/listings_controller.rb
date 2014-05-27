@@ -69,7 +69,7 @@ class ListingsController < ApplicationController
 
   def show_my_listings
     @current_user = current_user
-    @listings = @current_user.active_listings_as_seller
+    @listings = @current_user.listings_as_seller.order("created_at DESC")
     @greeting = Greeting.random_greeting
   end
 
