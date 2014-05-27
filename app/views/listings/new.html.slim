@@ -55,32 +55,6 @@
 
         = f.link_to_add "Add a task", :images, id: 'link_add', class: 'hide'
 
-    .col-xs-12.box-container.pull-left
-      .col-xs-12.header-box-container
-        .row
-          = image_tag "/assets/tapsell-third-icon.png", class: "icon-post pull-left"
-          h3.pull-left Where else would you like post your item? 
-      .col-xs-12.box-container-content.pull-left
-        .row
-          .col-xs-4.text-center
-            .check-container.col-xs-12
-              = image_tag "/assets/tapsell-check-icon.png", class: "check-craigslist hide animated fadeInUp"
-            .button-container
-              = link_to "CRAIGSLIST", "javascript:void(0);", class: "btn craigslist-link col-xs-12 animated fadeInUp"
-              = link_to "CRAIGSLIST", "javascript:void(0);", class: "btn craigslist-active active col-xs-12 hide animated fadeInUp"
-          .col-xs-4.text-center
-            .check-container.col-xs-12
-              = image_tag "/assets/tapsell-check-icon.png", class: "check-facebook-group hide animated fadeInUp"
-            .button-container
-              = link_to "FACEBOOK FREE & FOR SALE", "javascript:void(0);", class: "btn facebook-link col-xs-12 animated fadeInUp"
-              = link_to "FACEBOOK FREE & FOR SALE", "javascript:void(0);", class: "btn hide facebook-active active col-xs-12 animated fadeInUp"
-          .col-xs-4.text-center
-            .check-container.col-xs-12
-              = image_tag "/assets/tapsell-check-icon.png", class: "check-facebook-timeline hide animated fadeInUp"
-            .button-container
-              = link_to "FACEBOOK TIMELINE", "javascript:void(0);", class: "btn facebook-timeline-link col-xs-12 animated fadeInUp"
-              = link_to "FACEBOOK TIMELINE", "javascript:void(0);", class: "btn hide facebook-timeline-active active col-xs-12 animated fadeInUp"
-
     .col-xs-12.text-center.submit-container
       = f.submit "Create my listing", class: "btn submit-btn", "data-disabled"=>"please wait ..."
 = content_for :javascript_contents do
