@@ -75,8 +75,14 @@ class MessageChain < ActiveRecord::Base
     # TODO: there are better ways to find out dirty than always these if statements
     if self.seller_id == sender_id
       self.buyer_dirty = true
+      buyer = self.buyer
+      buyer.notification_count += 1
+      buyer.save
     else
       self.seller_dirty = true
+      seller = self.seller
+      seller.notification_count += 1
+      seller.save
     end
     save!
     touch

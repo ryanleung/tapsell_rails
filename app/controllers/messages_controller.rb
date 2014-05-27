@@ -13,6 +13,11 @@ class MessagesController < ApplicationController
         @other_user = @current_msg_chain.seller
       end
     end
+
+    # clear notification count
+    @current_user.notification_count = 0
+    @current_user.save
+    
     @greeting = Greeting.random_greeting
   end
 
