@@ -84,7 +84,6 @@ class Notifier < ActionMailer::Base
   # Certificate email for Phil's BBQ
   def send_launch_email(user)
     @user = user
-    @user = user
     mail(:to => @user.email,
     :bcc => "team@tapsell.co",
     :subject => "Certificate Confirmation from Tapsell")
@@ -98,5 +97,12 @@ class Notifier < ActionMailer::Base
     :subject => "We're live, join us for free Phil's!")
   end
 
+  # Review emails
 
+  def send_review_email(review)
+    @review = review
+    mail(:to => @review.reviewer.email,
+      :bcc => "team@tapsell.co",
+      :subject => "Please review #{@review.reviewer.full_name.titleize}")
+  end
 end

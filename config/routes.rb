@@ -1,9 +1,5 @@
 Tapsell::Application.routes.draw do
 
-  get "reviews/new"
-  get "reviews/create"
-  get "marketing_emails/create"
-  get "dashboard/show"
   ##################################
   # Web app routes
   ##################################
@@ -54,6 +50,10 @@ Tapsell::Application.routes.draw do
   # View user dashboard
   get "users/:id/dashboard" => "dashboard#show", as: 'dashboard'
 
+  # Reviews
+  get "reviews/:id" => "reviews#new", as: 'new_review'
+  post "reviews/:id" => "reviews#create", as: 'review'
+
   # Authentication
   match '/sign-up', to: 'users#new', via: 'get'
   match 'sign-in', to: 'sessions#new', via: 'get', as: 'sign_in'
@@ -65,9 +65,6 @@ Tapsell::Application.routes.draw do
   resources :password_resets
   resources :listings
   resources :credit_cards
-
-  # Post marketing emails
-  post "/" => "marketing_emails#create", as: 'marketing_email'
 
   # Tutorial page
   get "/tutorial" => "tutorial_pages#landing", as: 'tutorial_landing'
@@ -86,7 +83,7 @@ Tapsell::Application.routes.draw do
   # Static page routes
   ##################################
 
-  root :to => 'tutorial_pages#landing'
+  root :to => 'listings#index'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/launch', to: 'marketing_emails#launch', via: 'get'
   match '/team', to: 'static_pages#team', via: 'get'

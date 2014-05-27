@@ -13,9 +13,9 @@
     <%= render "message_header_accept" %>
   <% elsif status == Offer::STATUS_TRANSACTION_SUCCESSFUL %>
     <% if current_user == @current_msg_chain.buyer %>
-      <%= render "message_chain_success_buyer" %>
+      <%= render "message_header_success_buyer" %>
     <% else %>
-      <%= render "message_chain_success_seller" %>
+      <%= render "message_header_success_seller" %>
     <% end %>
   <% else %>
     <h3>

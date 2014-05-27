@@ -69,7 +69,9 @@ class ListingsController < ApplicationController
 
   def show_my_listings
     @current_user = current_user
-    @listings = @current_user.listings_as_seller.order("created_at DESC")
+    @listings = @current_user.active_listings_as_seller.sort_by(&:created_at)
+    # TODO: HACK
+    @listings.reverse!
     @greeting = Greeting.random_greeting
   end
 
@@ -144,11 +146,11 @@ class ListingsController < ApplicationController
 private
 
   def order_listings(sort_detail)
-    @listings = Listing.where(status: [nil, Listing::STATUS_ACTIVE]).order(sort_detail).page(params[:page]).limit(28)
+    @listings = Listing.where.not(status: Listing::STATUS_REMOVED).order(sort_detail).page(params[:page]).limit(28)
   end
 
   def order_by_category(name)
-    @listings = Listing.where(category: name, status: [nil, Listing::STATUS_ACTIVE]).order("created_at DESC").page(params[:page]).limit(28)
+    @listings = Listing.where(category: name).where.not(status: Listing::STATUS_REMOVED).order("created_at DESC").page(params[:page]).limit(28)
   end
 
   def listing_params

@@ -1,17 +1,56 @@
 - @listings.each do |listing|
-	.col-xs-6.col-md-3.listing-item data-price="#{listing.price.to_i}"
-		.col-xs-12.col-md-12.thumbnail
-			h5.col-xs-12.no-pad= truncate(listing.title.html_safe, length: 30).titleize
-			- if listing.images.present?
-				= link_to listing_path(listing),class: "col-xs-12 no-pad"
-					.image-container style="background-image: url('#{image_url(listing.images[0].image.url)}')"
-			- else
-				= link_to listing_path(listing),class: "col-xs-12 no-pad"
-					.image-container style="background-image: url('#{image_url('no_pic.jpg')}')"
-			.col-xs-6.no-pad
-				.time-post.pull-left= distance_of_time_in_words(Time.now, listing.created_at, false, { vague: true })
-				ago
-			.col-xs-6.no-pad
-				.price.pull-right class="price-#{listing.price.to_i}" id="#{listing.price.to_i}"
-					| $
-					= listing.price.to_i
+  .col-xs-6.col-md-3.listing-item data-price="#{listing.price.to_i}"
+    .col-xs-12.col-md-12.thumbnail
+      h5.col-xs-12.no-pad= truncate(listing.title.html_safe, length: 30).titleize
+      - if listing.images.present?
+        = link_to listing_path(listing),class: "col-xs-12 no-pad"
+          - if listing.status == Listing::STATUS_PURCHASED
+            .watermark.text-center
+              .watermark-content
+                h3 SOLD
+            .image-container style="background-image: url('#{image_url(listing.images[0].image.url)}')"
+          - else
+            .image-container style="background-image: url('#{image_url(listing.images[0].image.url)}')"
+      - else
+        = link_to listing_path(listing),class: "col-xs-12 no-pad"
+          - if listing.status == Listing::STATUS_PURCHASED
+            .watermark.text-center
+              .watermark-content
+                h3 SOLD
+            .image-container style="background-image: url('#{image_url('no_pic.jpg')}')"
+          - else
+            .image-container style="background-image: url('#{image_url('no_pic.jpg')}')"
+      .col-xs-6.no-pad
+        .time-post.pull-left= distance_of_time_in_words(Time.now, listing.created_at, false, { vague: true })
+        ago
+      .col-xs-6.no-pad
+        .price.pull-right class="price-#{listing.price.to_i}" id="#{listing.price.to_i}"
+          | $
+          = listing.price.to_i
+
+javascript:
+  $(document).ready(function(){
+    var watHeight = $(".item").height(); 
+    $(".watermark-content").height(watHeight);
+
+    $(".carousel").carousel();
+
+    var imageWidth = $(".listing-image").width();
+    var imageHeight = $(".listing-image").height();
+    if(imageHeight >= imageWidth) {
+      $(".listing-image").addClass("vertical-image");
+    }
+    else if(imageWidth >= imageHeight) {
+      $(".listing-image").css("width", "400px");
+    }
+  });
+
+- if session[:sosmed_type]
+  = render "home/modal_verify"
+  javascript:
+    $(document).ready(function(){
+      $("#verify-modal").modal({
+        backdrop: "static",
+        keyboard: false
+      })
+    });

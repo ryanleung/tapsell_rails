@@ -60,7 +60,7 @@ html
                 li.message-icon-container= link_to messages_path(current_user.id) do
                   = image_tag "/assets/message-icon.png"
                   .badge.pull-right
-                    =current_user.unread_message_chain_count if current_user.unread_message_chain_count > 0
+                    =current_user.notification_count if current_user.notification_count > 0
                 li.listing-nav-container
                   = link_to "POST LISTING", new_listing_path, class: "btn button-purple"
                 li.post-button-container.listing-nav-container.dropdown

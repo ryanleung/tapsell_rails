@@ -7,7 +7,7 @@
             h4 Company
             ul.list-unstyled
               li
-                p = link_to "About", about_path
+                p = link_to "About", "http://blog.tapsell.co/about-tapsell/"
               li
                 p = link_to "Blog", "http://blog.tapsell.co"
           .col-xs-12.col-sm-3.item-container
@@ -15,10 +15,6 @@
             ul.list-unstyled
               li
                 p = mail_to "team@tapsell.co", "Contact"
-              li
-                p = link_to "FAQ", "javascript:void(0);"
-              li
-                p = link_to "Buyer Guide", "javascript:void(0);"
           .col-xs-12.col-sm-3.item-container
             h4 Legal
             ul.list-unstyled
@@ -26,17 +22,12 @@
                 p = link_to "Terms of Service", terms_path
               li
                 p = link_to "Privacy Policy", privacy_path
-              li
-                p = link_to "Buyer Guarantee", buyer_guarantee_path
           .col-xs-12.col-sm-3.item-container
             h4 Social
             ul.list-inline
               li.list-inline-item
                 = link_to "https://www.facebook.com/trytapsell" do
                   = image_tag "/assets/fb2-icon.png", class: "fb-icon"
-              li.list-inline-item
-                = link_to "javascript:void(0);" do
-                  = image_tag "/assets/in-icon.png", class: "in-icon"
     .copyright.col-xs-12.text-right
       .container
         p
