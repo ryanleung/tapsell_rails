@@ -1,3 +1,6 @@
+= content_for :stylesheet_contents do
+  = stylesheet_link_tag "products"
+
 .col-xs-12.header-title-container
   .container.text-center
     h1 Get your browse on!
@@ -61,6 +64,5 @@
   ul.pagination= will_paginate home
 #hobbies-paginate.col-xs-12.text-center.animated.fadeInUp.hide
   ul.pagination= will_paginate hobbies
-
 
 = javascript_include_tag "listings", "jquery.tinysort.min"
