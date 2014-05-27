@@ -6,7 +6,7 @@
   <body>
     <p> Hey there <%= @seller.first_name %>, </p>
     <p> Good news - your listing "<%= @offer.listing.title %>" sold! </p>
-    <p> <%= link_to "Click here to view your listing", listing_url(@offer.listing) </p>
+    <p> <%= link_to "Click here to view your listing", listing_url(@offer.listing) %></p>
     <p> Wondering what happens next? </p>
     <ul> (1) Arrange a meetup with the buyer.  To contact them, <%= link_to "send a message through the Tapsell website", messages_url(@seller) %>. </ul>
     <ul> (2) Meet up within 3 days. </ul>

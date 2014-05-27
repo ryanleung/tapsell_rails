@@ -214,7 +214,7 @@ class User < ActiveRecord::Base
     if total_seller_reviews == 0
       "Not yet reviewed"
     else
-      "#{percent_pos_seller_reviews}% POSITIVE REVIEWS"
+      "#{(percent_pos_seller_reviews * 100).to_i}% POSITIVE REVIEWS"
     end
   end
 

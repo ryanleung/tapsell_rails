@@ -5,7 +5,7 @@
   </head>
   <body>
     <p> Hey <%= @review.reviewer.first_name %>! </p>
-    <p> Please review <%= @review.reviewee.full_name.titleize %> at new_review_url(@review.id). </p>
+    <p> Please review <%= @review.reviewee.full_name.titleize %> at <%= new_review_url(@review) %>. </p>
     <p> If you’ve got questions or feedback, just reply to this email.  We’d be really happy to hear from you. </p>
     <p> Warmly, </p>
     <p> Team Tapsell </p>
