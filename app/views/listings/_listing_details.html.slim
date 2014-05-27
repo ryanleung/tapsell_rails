@@ -22,18 +22,19 @@
               - @listing.images.each_with_index do |listing, index|
                 - if index.eql?(0)
                   .item.active
-                    .watermark.text-center
-                      .watermark-content
-                        h3 SOLD
                     = image_tag image_url(listing.image), class: "listing-image"
                 - else
                   .item
-                    .watermark.text-center
-                      .watermark-content
-                        h3 SOLD
                     = image_tag image_url(listing.image), class: "listing-image"
           - else
-            .item.active style=("background-image: url(#{image_url('no_pic.jpg')});")
+            - if @listing.status.eql?(Listing::STATUS_PURCHASED)
+              .item.active
+                .watermark
+                  | SOLD
+                = image_tag image_url('no_pic.jpg'), class: "listing-image"
+            - else
+              .item.active
+                = image_tag image_url('no_pic.jpg'), class: "listing-image"
     .col-xs-2.text-right.pad-left-0
       ol.carousel-indicators
         - @listing.images.each_with_index do |listing, index|

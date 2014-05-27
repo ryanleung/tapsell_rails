@@ -210,7 +210,7 @@ class User < ActiveRecord::Base
     (pos_seller_reviews * 100.0) / (total_seller_reviews * 100.0)
   end
 
-  def percent_post_seller_reviews_display
+  def percent_pos_seller_reviews_display
     if total_seller_reviews == 0
       "Not yet reviewed"
     else
