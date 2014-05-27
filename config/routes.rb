@@ -1,7 +1,5 @@
 Tapsell::Application.routes.draw do
 
-  get "marketing_emails/create"
-  get "dashboard/show"
   ##################################
   # Web app routes
   ##################################
@@ -67,9 +65,6 @@ Tapsell::Application.routes.draw do
   resources :password_resets
   resources :listings
   resources :credit_cards
-
-  # Post marketing emails
-  post "/" => "marketing_emails#create", as: 'marketing_email'
 
   # Tutorial page
   get "/tutorial" => "tutorial_pages#landing", as: 'tutorial_landing'
