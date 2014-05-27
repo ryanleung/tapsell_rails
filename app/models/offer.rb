@@ -46,7 +46,6 @@ class Offer < ActiveRecord::Base
     offer.status = STATUS_ACCEPTED
     offer.listing.sold_to(offer)
     offer.save!
-
     # TODO: this must be handled in two different flows, one where
     # user has a bank account, and thus we can just use escrow with braintree,
     # and one where we send the funds to our account to act as escrow if they
@@ -103,32 +102,44 @@ class Offer < ActiveRecord::Base
     self.save!
   end
 
-  def accept_timer_did_finish
-    # If the offer is already accepted, then ignore.
-    return if self.status == STATUS_ACCEPTED
-
-    # If it hasn't, then decline the offer and send a declining message.
-    self.cancel
-    MessageChain.send_message(self.seller.id, self.listing.id, "#{self.seller.first_name.titleize} did not reply to the offer in time." , Message::TYPE_DEFAULT, self.message_chain.id, nil)
-  end
-
   def initialize_accept_timer
     # Initialize timers on offer, check status in a day.
     self.set_accept_timers
-    self.delay(run_at: 1.day.from_now.end_of_day, queue: "offer_id$$$#{self.id}").accept_timer_did_finish
+
+    Offer.delay(run_at: 1.day.from_now.end_of_day, queue: "offer_id$$$#{self.id}").accept_timer_did_finish(self.id)
   end
 
   def initialize_delivery_timer
     # Initialize timers on offer, check status in three days.
     self.set_delivery_timers
-    self.delay(run_at: 3.days.from_now.end_of_day, queue: "offer_id$$$#{self.id}").delivery_timer_did_finish
+
+    Offer.delay(run_at: 3.days.from_now.end_of_day, queue: "offer_id$$$#{self.id}").delivery_timer_did_finish(self.id)
   end
 
-  def delivery_timer_did_finish
+  def self.delivery_timer_did_finish(offer_id)
+    offer = Offer.find(offer_id)
+
     # If the offer is halted, then just return.
-    return if self.status == STATUS_HALTED
+    return if offer.status == STATUS_HALTED
 
     # Otherwise, the offer is successful, send success message, send reviews
+    offer.status = STATUS_TRANSACTION_SUCCESSFUL
+    offer.save
+    review_to_buyer = Review.create(reviewer: offer.buyer, reviewee: offer.seller, offer: offer)
+    review_to_seller = Review.create(reviewer: offer.seller, reviewee: offer.buyer, offer: offer)
+    Notifier.delay.send_review_email(review_to_buyer)
+    Notifier.delay.send_review_email(review_to_seller)
+  end
+
+  def self.accept_timer_did_finish(offer_id)
+    offer = Offer.find(offer_id)
+
+    # If the offer has ben acted on, then ignore.
+    return if offer.status != STATUS_WAITING_FOR_SELLER_RESPONSE
+
+    # If it hasn't, then decline the offer and send a declining message.
+    offer.cancel
+    MessageChain.send_message(offer.seller.id, offer.listing.id, "#{offer.seller.first_name.titleize} did not reply to the offer in time." , Message::TYPE_DEFAULT, offer.message_chain.id, nil)
   end
 
 end

@@ -1,0 +1,86 @@
+<%= stylesheet_link_tag "reviews", "profiles", "global" %>
+<div class="col-xs-12 text-center welcome-container no-pad">
+  <h1 class="tapsell-review-welcome-text text-center">
+    How was your experience with
+    <br/>
+    <span><%= @review.reviewee.full_name.titleize %></span>
+  </h1>
+</div>
+
+<div class="col-xs-12 no-pad marg-top-40">
+  <div class="container">
+    <div class="col-xs-4 box-container" style="padding-bottom: 40px;">
+      <div class="col-xs-12 text-center well-label-name">
+        <h2><%= @review.reviewee.full_name.titleize %></h2>
+      </div>
+      <div class="col-xs-12 profile-live-view-image">
+      <% if @review.reviewee.image.present? %>
+        <%= image_tag @review.reviewee.image.image.thumbnail.url, class: "avatar-profile img-circle" %>
+      <% else %>
+        <%= image_tag "no_avatar.png", class: "avatar-profile img-circle" %>
+      <% end %>
+      </div>
+      <div class="text-center pad-location">
+        <div class="col-xs-12 text-center">
+          <h4 class="left-location no-bot-border review-location">
+            <%= image_tag image_url("pin.png"), class: "pin-image" %>
+            &nbsp; 
+            <% if current_user.location %>
+              <%= current_user.location %>
+            <% else %>
+              Location
+            <% end %>
+          </h4>
+        </div>
+      </div>
+      <div class="col-xs-12 text-center list-container">
+        <div class="list"></div>
+        <div class="list"></div>
+      </div>
+      <div class="col-xs-12 text-center review-container">
+        <% if @review.reviewee.total_seller_reviews > 0 %>
+          <%= image_tag image_url("tapsell_green_thumb_up.png"), class: "thumb-icon" %>
+        <% end %>
+        &nbsp;
+        <%= @review.reviewee.percent_post_seller_reviews_display %>
+      </div>
+    </div>
+    <div class="col-xs-8 text-center">
+      <div class="col-xs-12 box-container text-center no-pad">
+        <h2 class="orange tapsell-review-title"><%= @review.offer.listing.title.titleize if @review.offer.present? %></h2>
+        <div class="tapsell-thumbs col-xs-12">
+          <%= link_to "javascript:void(0);", class: "btn thumb-up-active hide animated fadeInUp" do %>
+            <%= image_tag image_url("tapsell_white_thumb_up.png") %>
+            It was great!
+          <% end %>
+          <%= link_to "javascript:void(0);", class: "btn thumb-up animated fadeInUp" do %>
+            <%= image_tag image_url("tapsell_green_thumb_up.png") %>
+            It was great!
+          <% end %>
+          <%= link_to "javascript:void(0);", class: "btn thumb-down animated fadeInUp" do %>
+            <%= image_tag image_url("tapsell_red_thumb_down.png") %>
+            Not too great!
+          <% end %>
+          <%= link_to "javascript:void(0);", class: "btn thumb-down-active hide animated fadeInUp" do %>
+            <%= image_tag image_url("tapsell_white_thumb_down.png") %>
+            Not too great!
+          <% end %>
+        </div>
+        <div class="tapsell-description col-xs-12 text-center">
+          <p>Your rating is only use in aggregate with other ratings.</p>
+          <p>Your host won't know what rating you left.</p>
+        </div>
+        <div class="tapsell-review-message-container col-xs-12">
+          <h5 class="text-left">SHARE YOUR EXPERIENCE (OPTIONAL)</h5>
+          <%= form_tag "", html: {role: "form"} do %>
+            <%= hidden_field_tag :rating, 0, id: "rating" %>
+            <%= text_area_tag "", "", name: "comment", class: "form-control", placeholder: "How was comunication with the seller? Was the item as advertised? Tell other Tapsell users about your experience and help out the Tapsell community!" %>
+            <button type="submit" class="btn button-orange pull-right review-submit">SEND</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "reviews" %>

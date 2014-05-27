@@ -89,4 +89,13 @@ class Notifier < ActionMailer::Base
     :subject => "Certificate Confirmation from Tapsell")
   end
 
+  # Review emails
+
+  def send_review_email(review)
+    @review = review
+    mail(:to => @review.reviewer.email,
+      :bcc => "team@tapsell.co",
+      :subject => "Please review #{@review.reviewer.full_name.titleize}")
+  end
+  
 end
