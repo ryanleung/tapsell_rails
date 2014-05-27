@@ -6,16 +6,8 @@
   <div class="container">
     <div class="title-container">
       <h1 class="login-title text-center">Hey there, welcome back!</h1>
-      <div class="facebook-container text-center">
-        <%= link_to "javascript:void(0);", class: "btn btn-primary" do %>
-          <i class="fa fa-facebook-square"></i>
-          <span class="text-button">Sign in with Facebook</span>
-        <% end %>
-      </div>
-    </div>
-    <div class="center-block list-container">
-      <div class="list"></div>
-    </div>
+            <h2 class="login-subtitle text-center">Enter your info below to log in. </h2>
+
     <div class="registration-container center-block">
       <%= form_for(:session, url: sessions_path, html: {class: "col-xs-12", role: "form"}) do |f| %>
         <div class="form-group">

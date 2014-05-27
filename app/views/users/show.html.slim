@@ -38,11 +38,6 @@
                         = form_tag new_user_photo_path, :method => :post, :multipart => true do
                           = file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg'
                           = submit_tag 'Upload new photo'
-                      li
-                        = link_to "javascript:void(0);" do
-                          = image_tag "/assets/fb-icon.png", class: "fb-icon"
-                          | &nbsp;
-                          | Connect facebook
 
           .col-sm-8.col-push-4.profile-right-container
             .row
