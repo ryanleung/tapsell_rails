@@ -115,13 +115,15 @@ class Offer < ActiveRecord::Base
   def initialize_accept_timer
     # Initialize timers on offer, check status in a day.
     self.set_accept_timers
-    self.delay(run_at: 1.day.from_now.end_of_day, queue: "offer_id$$$#{self.id}").accept_timer_did_finish
+    # self.delay(run_at: 1.day.from_now.end_of_day, queue: "offer_id$$$#{self.id}").accept_timer_did_finish
+    self.delay(run_at: 2.minute.from_now, queue: "offer_id$$$#{self.id}").accept_timer_did_finish
   end
 
   def initialize_delivery_timer
     # Initialize timers on offer, check status in three days.
     self.set_delivery_timers
-    self.delay(run_at: 3.days.from_now.end_of_day, queue: "offer_id$$$#{self.id}").delivery_timer_did_finish
+    # self.delay(run_at: 3.days.from_now.end_of_day, queue: "offer_id$$$#{self.id}").delivery_timer_did_finish
+    self.delay(run_at: 2.minute.from_now, queue: "offer_id$$$#{self.id}").delivery_timer_did_finish
   end
 
   def delivery_timer_did_finish
@@ -129,6 +131,11 @@ class Offer < ActiveRecord::Base
     return if self.status == STATUS_HALTED
 
     # Otherwise, the offer is successful, send success message, send reviews
+    self.status = STATUS_TRANSACTION_SUCCESSFUL
+    review_to_buyer = Review.create(reviewer: self.buyer, reviewee: self.seller, offer: self)
+    review_to_seller = Review.create(reviewer: self.seller, reviewee: self.buyer, offer: self)
+    Notifier.delay.send_review_email(review_to_buyer)
+    Notifier.delay.send_review_email(review_to_seller)
   end
 
 end

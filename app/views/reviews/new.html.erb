@@ -3,7 +3,7 @@
   <h1 class="tapsell-review-welcome-text text-center">
     How was your experience with
     <br/>
-    <span>NEIL PATRICK HARRIS?</span>
+    <span><%= @review.reviewee.full_name.titleize %></span>
   </h1>
 </div>
 
@@ -11,10 +11,14 @@
   <div class="container">
     <div class="col-xs-4 box-container" style="padding-bottom: 40px;">
       <div class="col-xs-12 text-center well-label-name">
-        <h2>NEIL PATRICK HARRIS</h2>
+        <h2><%= @review.reviewee.full_name.titleize %></h2>
       </div>
       <div class="col-xs-12 profile-live-view-image">
-        <div class="avatar-profile img-circle" style="background-image: url('<%= image_url("no_avatar.png") %>')"></div>
+      <% if @review.reviewee.image.present? %>
+        <%= image_tag @review.reviewee.image.image.thumbnail.url, class: "avatar-profile img-circle" %>
+      <% else %>
+        <%= image_tag "no_avatar.png", class: "avatar-profile img-circle" %>
+      <% end %>
       </div>
       <div class="text-center pad-location">
         <div class="col-xs-12 text-center">
@@ -34,14 +38,16 @@
         <div class="list"></div>
       </div>
       <div class="col-xs-12 text-center review-container">
-        <%= image_tag image_url("tapsell_green_thumb_up.png"), class: "thumb-icon" %>
+        <% if @review.reviewee.total_seller_reviews > 0 %>
+          <%= image_tag image_url("tapsell_green_thumb_up.png"), class: "thumb-icon" %>
+        <% end %>
         &nbsp;
-        98% POSITIVE REVIEWS
+        <%= @review.reviewee.percent_post_seller_reviews_display %>
       </div>
     </div>
     <div class="col-xs-8 text-center">
       <div class="col-xs-12 box-container text-center no-pad">
-        <h2 class="orange tapsell-review-title">Heath Ceramic Vase Set</h2>
+        <h2 class="orange tapsell-review-title"><%= @review.offer.listing.title.titleize if @review.offer.present? %></h2>
         <div class="tapsell-thumbs col-xs-12">
           <%= link_to "javascript:void(0);", class: "btn thumb-up-active hide animated fadeInUp" do %>
             <%= image_tag image_url("tapsell_white_thumb_up.png") %>
@@ -67,7 +73,8 @@
         <div class="tapsell-review-message-container col-xs-12">
           <h5 class="text-left">SHARE YOUR EXPERIENCE (OPTIONAL)</h5>
           <%= form_tag "", html: {role: "form"} do %>
-            <%= text_area_tag "", "", class: "form-control", placeholder: "How was comunication with the seller? Was the item as advertised? Tell other Tapsell users about your experience and help out the Tapsell community!" %>
+            <%= hidden_field_tag :rating, 0, id: "rating" %>
+            <%= text_area_tag "", "", name: "comment", class: "form-control", placeholder: "How was comunication with the seller? Was the item as advertised? Tell other Tapsell users about your experience and help out the Tapsell community!" %>
             <button type="submit" class="btn button-orange pull-right review-submit">SEND</button>
           <% end %>
         </div>

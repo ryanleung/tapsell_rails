@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
 	# Relationships - Ordered Alphabetically
 	# --------------------------------------
 
-  has_many :reviews
+  has_many :reviews_as_reviewer, :class_name => "Review", :foreign_key => :reviewer_id
+  has_many :reviews_as_reviewee, :class_name => "Review", :foreign_key => :reviewee_id
   has_many :listings_as_seller, :class_name => "Listing", :foreign_key => :seller_id
   has_many :listings_as_buyer, :class_name => "Listing", :foreign_key => :buyer_id
   has_one :image
@@ -84,6 +85,10 @@ class User < ActiveRecord::Base
   		bio: self.bio,
   		rating: self.rating
   	}
+  end
+
+  def full_name
+    self.first_name + " " + self.last_name
   end
 
   # Instance Methods
@@ -173,13 +178,13 @@ class User < ActiveRecord::Base
 
   def reviews_as_seller
     Review.joins(:offer).
-            where('reviews.user_id = ? AND offers.seller_id = ?',
+            where('reviews.reviewee_id = ? AND offers.seller_id = ? AND reviews.rating IS NOT NULL',
                   self.id, self.id)
   end
 
   def reviews_as_buyer
     Review.joins(:offer).
-            where('reviews.user_id = ? AND offers.buyer_id = ?',
+            where('reviews.reviewee_id = ? AND offers.buyer_id = ? AND reviews.rating IS NOT NULL',
                   self.id, self.id)
   end
 
@@ -203,6 +208,14 @@ class User < ActiveRecord::Base
     return 0 if total_seller_reviews == 0
     
     (pos_seller_reviews * 100.0) / (total_seller_reviews * 100.0)
+  end
+
+  def percent_post_seller_reviews_display
+    if total_seller_reviews == 0
+      "Not yet reviewed"
+    else
+      "#{percent_pos_seller_reviews}% POSITIVE REVIEWS"
+    end
   end
 
   # Listings
