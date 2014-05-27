@@ -79,8 +79,9 @@ class Notifier < ActionMailer::Base
     :subject => "Confirming the offer you accepted")
   end
 
-  # Launch emails (Phil's BBQ)
+  # Marketing emails
 
+  # Certificate email for Phil's BBQ
   def send_launch_email(user)
     @user = user
     @user = user
@@ -88,5 +89,14 @@ class Notifier < ActionMailer::Base
     :bcc => "team@tapsell.co",
     :subject => "Certificate Confirmation from Tapsell")
   end
+
+  # Phil's BBQ launch event reminder email
+  def send_launch_reminder_email(user)
+    @user = user
+    mail(:to => @user.email,
+    :bcc => "team@tapsell.co",
+    :subject => "We're live, join us for free Phil's!")
+  end
+
 
 end
