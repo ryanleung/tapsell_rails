@@ -1,5 +1,7 @@
 <div class="col-xs-10 right-heading" id="message-header">
 	<h4 class="title">
+		<span class="name"><%= @current_msg_chain.seller.first_name.titleize %></span>
+		and complete transaction 
 		<span class="time-accept"><%= distance_of_time_in_words(Time.now, @current_msg_chain.offer.target_time_for_delivery) %></span>
 		left to meet up and complete transaction 
 	</h4>
@@ -8,6 +10,7 @@
 			<%= image_tag image_url("tapsell-accept.png"), class: "pull-left" %>
 			<span class="pull-left">ACCEPTED</span>
 		</span>
+		<!-- <span class="pull-left listing-name">"<%#= @listing.name.titleize %>" @ </span> -->
 		<span class="pull-left listing-name">- <%= @current_msg_chain.listing.title.titleize %> @ </span>
 		<!-- <span class="pull-left listing-name">"<%#= @listing.name.titleize %>" @ </span> -->
 		<span> &nbsp; <%= number_to_currency(@current_msg_chain.offer.price, :locale => 'en_us', :precision => 0) %>.</span>
