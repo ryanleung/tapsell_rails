@@ -9,24 +9,9 @@
     = form_tag offer_path, method: "post", id: "payment-form", class: "pull-left", role: "form" do |f|
       .col-xs-12.title-container
         h1 > Confirm your offer.
-      .col-xs-12.content-section
-        p.content-section-title What happens when I make an offer?
-        p style="padding-right: 50px;" 
-          |The seller has 24 hours to accept the offer, and your card won't be charged unless the seller accepts. All purchases are covered by the Tapsell Buyer Guarantee: if the items aren't as described, or the seller isn't being responsive, just let us know within 3 days for a full refund.
       .col-xs-12.left-container-content
-        h3 PAYMENT METHOD
         .col-xs-12.select-payment-container
           .col-xs-6.no-pad
-            label.col-sm-offset-4.pull-left Choose from your saved cards
-            = select_tag :chosen_card_id, options_for_select(current_user.credit_cards.collect{ |card| ["#{card.card_type}" + " " + "#{card.last_4}", card.id] }), class: "payment-method form-control col-sm-offset-4 pull-left", prompt: " "
-          .col-xs-1.or
-            | or
-          .col-xs-4.no-pad.text-left.add-new-card
-            = link_to "Add New Card", "javascript:void(0);", class: "aqua add-new-credit-card"
-            = link_to "Cancel", "javascript:void(0);", class: "red cancel-add-credit-card hide"
-        .col-xs-12.select-payment-container.insert-credit-card-container.hide
-          h3 ADD A NEW CREDIT CARD
-          = render "credit_card_form"
         .col-xs-12.select-payment-container
           h3 OPTIONAL INFORMATION
           .form-container

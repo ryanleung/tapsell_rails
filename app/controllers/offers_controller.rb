@@ -4,7 +4,7 @@ class OffersController < ApplicationController
     @listing = Listing.find(params[:id])
     @offer_price = params[:offer_price]
     if signed_in?
-      create_new_offer
+      render '_confirm_offer'
     else
       @user = User.new
       render '_sign_in_to_offer'
@@ -24,7 +24,7 @@ class OffersController < ApplicationController
     # end
 
     create_authorization
-    @offer = Offer.create_offer!(current_user, Listing.find(@listing), @credit_card, params[:offer_price].to_f)
+    @offer = Offer.create_offer!(current_user, Listing.find(params[:listing_id]), @credit_card, params[:offer_price].to_f)
     buyer = @offer.buyer
     seller = @offer.seller
     Notifier.delay.send_offer_received_email(seller, @offer)
