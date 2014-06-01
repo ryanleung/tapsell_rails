@@ -1,7 +1,7 @@
 - @listings.each do |listing|
   .col-xs-6.col-md-3.listing-item data-price="#{listing.price.to_i}"
     .col-xs-12.col-md-12.thumbnail
-      h5.col-xs-12.no-pad= truncate(listing.title.html_safe, length: 35).titleize
+      h5.col-xs-12.no-pad= truncate(listing.title.html_safe, length: 25).titleize
       - if listing.images.present?
         = link_to listing_path(listing),class: "col-xs-12 no-pad"
           - if listing.status == Listing::STATUS_PURCHASED
