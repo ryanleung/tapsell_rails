@@ -31,7 +31,7 @@ module SessionsHelper
 
   def deactivated?
     if current_user.present?
-      return !current_user.deactivated
+      return current_user.deactivated
     end
   end
 
