@@ -29,10 +29,21 @@ module SessionsHelper
   	!current_user.nil?
   end
 
+  def deactivated?
+    if current_user.present?
+      return !current_user.deactivated
+    end
+  end
+
   def signed_in_user
     unless signed_in?
       store_location
       redirect_to sign_in_path, notice: "Please sign in."
+    end
+
+    if deactivated?
+      store_location
+      redirect_to sign_in_path, notice: "This account has been deactivated, please contact team@tapsell.co to reactivate."
     end
   end
 
