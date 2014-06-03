@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526065050) do
+ActiveRecord::Schema.define(version: 20140603041908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140526065050) do
     t.integer  "listing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_tmp"
   end
 
   create_table "listings", force: true do |t|
@@ -161,14 +162,14 @@ ActiveRecord::Schema.define(version: 20140526065050) do
   create_table "reviews", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",    null: false
-    t.integer  "rating",     null: false
+    t.integer  "rating"
     t.integer  "offer_id"
     t.string   "comment"
+    t.integer  "reviewer_id"
+    t.integer  "reviewee_id"
   end
 
   add_index "reviews", ["offer_id"], name: "index_reviews_on_offer_id", using: :btree
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -187,6 +188,8 @@ ActiveRecord::Schema.define(version: 20140526065050) do
     t.string   "remember_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.integer  "notification_count",     default: 0
+    t.boolean  "deactivated",            default: false
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

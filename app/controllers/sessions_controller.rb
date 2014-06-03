@@ -10,6 +10,9 @@ class SessionsController < ApplicationController
       flash.delete(:notice)
       sign_in user
       redirect_back_or dashboard_path(current_user.id)
+    elsif user.deactivated
+      flash[:notice] = 'This email has been deactivated, please email team@tapsell.co to reactivate.'
+      render 'new'
     else
       flash[:notice] = 'That email / password combination is invalid, please try again.'
       render 'new'
