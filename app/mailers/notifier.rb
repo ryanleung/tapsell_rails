@@ -31,7 +31,7 @@ class Notifier < ActionMailer::Base
     @message_body = message_body
     mail(:to => @receiver.email,
     :bcc => "team@tapsell.co",
-    :subject => "You have a new message!")
+    :subject => "You have a new message from #{@sender.full_name.titleize}!")
   end
 
   # Transaction process emails (Buyer)
