@@ -103,6 +103,6 @@ class Notifier < ActionMailer::Base
     @review = review
     mail(:to => @review.reviewer.email,
       :bcc => "team@tapsell.co",
-      :subject => "Please review #{@review.reviewer.full_name.titleize}")
+      :subject => "Please review #{@review.reviewee.full_name.titleize}")
   end
 end
