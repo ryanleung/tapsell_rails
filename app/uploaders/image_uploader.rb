@@ -2,7 +2,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 	include Cloudinary::CarrierWave
 
-	process :convert => 'png'
+	process :convert => 'jpg'
 	process :tags => ['post_image']
 	process :resize_to_limit => [500, nil]
 
