@@ -81,6 +81,13 @@ class Notifier < ActionMailer::Base
 
   # Marketing emails
 
+  def send_moveout_email(user)
+    @user = user
+    mail(:to => @user.email,
+    :bcc => "team@tapsell.co",
+    :subject => "Moving out?  Win a $100 gift card from Tapsell")
+  end
+
   # Certificate email for Phil's BBQ
   def send_launch_email(user)
     @user = user
