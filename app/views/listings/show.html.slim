@@ -13,7 +13,7 @@
       h1.order-title.product-title
         = number_to_currency(@listing.price, :locale => 'en_us', :precision => 0)
         | &nbsp;
-        = @listing.title
+        = @listing.title.html_safe
       .sub-product-title
         | POSTED &nbsp;
         b= @listing.created_at.strftime("%^b. %e")
